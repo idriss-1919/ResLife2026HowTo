@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Build Training — UCLA ResLife 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #005587;
+    --gold: #FFD100;
+    --light-bg: #f0f4f8;
+    --white: #ffffff;
+    --text: #1a2733;
+    --muted: #6b7c8d;
+    --border: #d0dce8;
+    --gate-bg: #005587;
+    --gate-text: #ffffff;
+    --auto-bg: #e8f4e8;
+    --auto-border: #5a9a5a;
+    --auto-text: #2d6a2d;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    padding: 32px 24px 48px;
+    min-width: 900px;
+  }
+
+  .page-header {
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--gold);
+    display: inline-block;
+  }
+  .page-header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .page-header p {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Phase label */
+  .phase-label {
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .phase-pill {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 12px;
+  }
+
+  /* Connector arrow */
+  .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22px;
+    color: var(--blue);
+    font-size: 14px;
+    opacity: 0.6;
+  }
+  .arrow::after { content: '↓'; }
+
+  /* Standard box */
+  .box {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    position: relative;
+  }
+  .box h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .box p {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Gate / quality checkpoint */
+  .gate {
+    background: var(--gate-bg);
+    border: 1.5px solid var(--gate-bg);
+    border-radius: 6px;
+    padding: 10px 14px;
+    position: relative;
+  }
+  .gate h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .gate p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  /* Auto-compiled */
+  .auto {
+    background: var(--auto-bg);
+    border: 1.5px solid var(--auto-border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    position: relative;
+  }
+  .auto h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--auto-text);
+    margin-bottom: 2px;
+  }
+  .auto p {
+    font-size: 10px;
+    color: #4a8a4a;
+    line-height: 1.4;
+  }
+
+  /* Info icon */
+  .info-icon {
+    position: absolute;
+    left: -26px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .info-icon svg { width: 11px; height: 11px; fill: white; }
+  .gate .info-icon { background: #7a9db5; }
+  .gate .info-icon svg { fill: white; }
+  .box .info-icon { background: #b0bec5; }
+  .box .info-icon svg { fill: #ffffff; }
+
+  /* Design phase — single column centered */
+  .design-phase {
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .design-phase .box, .design-phase .gate {
+    position: relative;
+    margin-left: 28px;
+  }
+
+  /* Split layout for Build phase */
+  .build-phase {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+    margin-top: 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .video-col {
+    padding-right: 16px;
+    position: relative;
+  }
+  .live-col {
+    padding-left: 16px;
+    position: relative;
+  }
+  .col-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .path-divider {
+    border-right: 1px dashed var(--border);
+    height: 100%;
+    width: 0;
+    margin: 0 auto;
+  }
+
+  /* LED sub-box inside live session */
+  .led-box {
+    border: 1.5px solid var(--gold);
+    border-radius: 5px;
+    padding: 8px 10px;
+    margin-top: 8px;
+    background: #fffdf0;
+  }
+  .led-item {
+    font-size: 9px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .led-item strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* Branch arrows from gate */
+  .branch-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .branch-left, .branch-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .branch-arrow-down {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    font-size: 13px;
+    opacity: 0.55;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-top: 28px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+  }
+  .legend-swatch.gate-sw { background: var(--gate-bg); border-color: var(--gate-bg); }
+  .legend-swatch.video-sw { background: var(--white); border-color: var(--border); }
+  .legend-swatch.live-sw { background: #fffdf0; border-color: var(--gold); }
+  .legend-swatch.auto-sw { background: var(--auto-bg); border-color: var(--auto-border); }
+
+  .footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .footer span { color: var(--blue); font-weight: 600; }
+
+  /* Wide container */
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-header">
+    <h1>How We Build Training</h1>
+    <p>UCLA Residential Life &nbsp;·&nbsp; 2026 Summer Training</p>
+  </div>
+
+  <!-- PHASE 1: DESIGN -->
+  <div class="phase-label"><span class="phase-pill">Step 1 — Design</span></div>
+
+  <div class="design-phase">
+    <div class="box">
+      <span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+      <h3>We start with a plan</h3>
+      <p>Every module begins with a #, description, learning objectives, and an outline</p>
+    </div>
+    <div class="arrow"></div>
+    <div class="box">
+      <span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+      <h3>We check the plan</h3>
+      <p>We research what similar programs teach and make sure we're aligned</p>
+    </div>
+    <div class="arrow"></div>
+    <div class="gate">
+      <span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+      <h3>Quality checkpoint</h3>
+      <p>A reviewer asks: is this the right content? Does it meet our standards?</p>
+    </div>
+  </div>
+
+  <!-- Branch into Step 2 -->
+  <div style="height:20px;"></div>
+  <div class="phase-label"><span class="phase-pill">Step 2 — Build</span></div>
+
+  <!-- Split path labels -->
+  <div style="display:flex; max-width:900px; margin:0 auto 6px; gap:40px;">
+    <div style="flex:1; text-align:center;">
+      <div style="font-size:8px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Video Module Path</div>
+      <div style="display:inline-block; margin-top:4px; padding:2px 10px; border-radius:10px; background:rgba(0,85,135,0.12); font-size:8px; font-weight:700; letter-spacing:0.08em; color:var(--blue);">L — Learn</div>
+    </div>
+    <div style="width:40px;"></div>
+    <div style="flex:1; text-align:center;">
+      <div style="font-size:8px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Live Session Path</div>
+      <div style="display:inline-block; margin-top:4px; padding:2px 10px; border-radius:10px; background:rgba(255,180,0,0.15); font-size:8px; font-weight:700; letter-spacing:0.08em; color:#9a6800;">E · D — Engage · Deepen</div>
+    </div>
+  </div>
+
+  <div style="display:flex; max-width:900px; margin:0 auto; gap:0; align-items:flex-start;">
+    <!-- Video path -->
+    <div style="flex:1; padding-right:20px; display:flex; flex-direction:column; align-items:stretch; position:relative; margin-left:28px;">
+      <div class="box"><h3>We write the script</h3><p>Word-for-word narration that guides the video</p></div>
+      <div class="arrow"></div>
+      <div class="box"><h3>We design the visuals</h3><p>Each slide is designed to match what's being said</p></div>
+      <div class="arrow"></div>
+      <div class="box"><h3>We build the quiz</h3><p>Questions that confirm staff understood the material</p></div>
+      <div class="arrow"></div>
+      <div class="box"><h3>We create the workbook</h3><p>Activities staff complete alongside the video</p></div>
+      <div class="arrow"></div>
+      <div class="gate"><span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span><h3>Quality checkpoint</h3><p>Is everything complete and ready for the learner?</p></div>
+      <div class="arrow"></div>
+      <div class="auto"><h3>We compile the training package</h3><p>Script · quiz · workbook · resources — auto-compiled for the learner</p></div>
+      <div class="arrow"></div>
+      <div class="box"><span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span><h3>We record the video</h3><p>Narrator, visuals, and script come together on camera</p></div>
+      <div class="arrow"></div>
+      <div class="box"><span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span><h3>We publish to the learning system</h3><p>Uploaded and made available to staff</p></div>
+      <div class="arrow"></div>
+      <div class="gate"><span class="info-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span><h3>Quality checkpoint</h3><p>Is the module complete, accurate, and ready to release?</p></div>
+    </div>
+
+    <!-- Divider -->
+    <div style="width:40px; display:flex; justify-content:center; padding-top:10px;">
+      <div style="width:1px; background:var(--border); min-height:600px;"></div>
+    </div>
+
+    <!-- Live path -->
+    <div style="flex:1; padding-left:20px; display:flex; flex-direction:column; align-items:stretch; position:relative;">
+      <div class="box" style="position:relative; margin-left:4px;">
+        <h3>We design the session</h3>
+        <p>Pre-work, live facilitation, and expert discussion are planned out</p>
+        <div class="led-box">
+          <div class="led-item" style="opacity:0.55;"><strong>L — Learn</strong><br>Completed via the async video module</div>
+          <div class="led-item" style="margin-top:5px;"><strong>E — Engage</strong><br>Facilitator leads live activities</div>
+          <div class="led-item" style="margin-top:5px;"><strong>D — Deepen</strong><br>Expert panel adds real-world perspective</div>
+        </div>
+      </div>
+      <div class="arrow"></div>
+      <div class="gate" style="position:relative; margin-left:4px;">
+        <span class="info-icon" style="left:-22px;"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>Quality checkpoint</h3>
+        <p>Is the session plan ready? Are facilitators prepared?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch auto-sw"></div> Auto-compiled deliverable</div>
+    <div class="legend-item">
+      <div style="width:14px; height:14px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:9px; height:9px; fill:white;"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg>
+      </div>
+      Human review
+    </div>
+    <div class="legend-item">
+      <div style="width:14px; height:14px; border-radius:50%; background:#7a9db5; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:9px; height:9px; fill:white;"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg>
+      </div>
+      Human touchpoint
+    </div>
+    <div class="legend-item"><div class="legend-swatch live-sw"></div> Live session step</div>
+  </div>
+
+  <div class="footer">
+    <span>UCLA Residential Life</span> &nbsp;·&nbsp; Building Connections. Creating Communities.
+  </div>
+
+</div>
+</body>
+</html>
