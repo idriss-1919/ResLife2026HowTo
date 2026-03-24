@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module Production Pipeline — UCLA ResLife 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #005587;
+    --gold: #FFD100;
+    --light-bg: #f0f4f8;
+    --white: #ffffff;
+    --text: #1a2733;
+    --muted: #6b7c8d;
+    --border: #d0dce8;
+    --gate-bg: #005587;
+    --auto-bg: #e8f4e8;
+    --auto-border: #5a9a5a;
+    --auto-text: #2d6a2d;
+    --skill-color: #888;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    padding: 32px 24px 48px;
+    min-width: 900px;
+  }
+
+  .page-header {
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--gold);
+    display: inline-block;
+  }
+  .page-header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .page-header p {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .phase-label {
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .phase-pill {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 12px;
+  }
+  .phase-pill.delivery {
+    background: #3a7a3a;
+  }
+
+  .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    color: var(--blue);
+    font-size: 13px;
+    opacity: 0.55;
+  }
+  .arrow::after { content: '↓'; }
+
+  .box {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    position: relative;
+  }
+  .box h3 { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .box p { font-size: 10px; color: var(--muted); line-height: 1.4; }
+
+  .gate {
+    background: var(--gate-bg);
+    border: 1.5px solid var(--gate-bg);
+    border-radius: 6px;
+    padding: 10px 14px;
+    position: relative;
+  }
+  .gate h3 { font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .gate p { font-size: 10px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+
+  .auto {
+    background: var(--auto-bg);
+    border: 1.5px solid var(--auto-border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    position: relative;
+  }
+  .auto h3 { font-size: 12px; font-weight: 600; color: var(--auto-text); margin-bottom: 2px; }
+  .auto p { font-size: 10px; color: #4a8a4a; line-height: 1.4; }
+
+  .skill-tag {
+    display: inline-block;
+    font-size: 8.5px;
+    font-weight: 500;
+    color: var(--skill-color);
+    font-style: italic;
+    background: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .design-phase {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .design-phase > .box,
+  .design-phase > .gate {
+    margin-left: 28px;
+  }
+
+  .val-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .val-tag {
+    font-size: 8.5px;
+    background: #eef4fa;
+    border: 1px solid #c5d8ec;
+    color: var(--blue);
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-weight: 500;
+  }
+
+  .build-split {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 0;
+    align-items: flex-start;
+  }
+  .async-col {
+    flex: 1;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 28px;
+  }
+  .live-col {
+    flex: 1;
+    padding-left: 36px;
+    display: flex;
+    flex-direction: column;
+  }
+  .divider-v {
+    width: 1px;
+    background: var(--border);
+    min-height: 700px;
+    margin: 0 0;
+    flex-shrink: 0;
+  }
+
+  .path-labels {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto 6px;
+  }
+  .path-label {
+    flex: 1;
+    text-align: center;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .annotated-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .annotated-row > .box,
+  .annotated-row > .gate,
+  .annotated-row > .auto {
+    flex: 1;
+  }
+  .side-note {
+    font-size: 8px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+    padding-top: 12px;
+    white-space: nowrap;
+  }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-top: 28px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .legend-swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+  }
+  .ls-gate { background: var(--gate-bg); border-color: var(--gate-bg); }
+  .ls-async { background: var(--white); border-color: var(--border); }
+  .ls-live { background: #fffdf0; border-color: var(--gold); }
+  .ls-auto { background: var(--auto-bg); border-color: var(--auto-border); }
+
+  .footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .footer span { color: var(--blue); font-weight: 600; }
+
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .info-icon {
+    position: absolute;
+    left: -26px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .info-icon svg { width: 11px; height: 11px; fill: white; }
+  .gate .info-icon { background: #7a9db5; }
+  .box .info-icon { background: #b0bec5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-header">
+    <h1>Module Production Pipeline</h1>
+    <p>UCLA Residential Life &nbsp;·&nbsp; 2026 Summer Training</p>
+  </div>
+
+  <div class="phase-label"><span class="phase-pill">Phase 1 — Design</span></div>
+  <div class="design-phase">
+    <div class="box" style="margin-left:28px;">
+      <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+      <h3>Select pillar</h3>
+      <p>Welcomes · Connects · Responds</p>
+    </div>
+    <div class="arrow"></div>
+    <div class="annotated-row" style="margin-left:28px;">
+      <div class="box">
+        <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>Draft all modules</h3>
+        <p># · Description · LOs · Sections</p>
+      </div>
+      <div class="side-note">Foundation page</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="box" style="margin-left:28px;">
+      <h3>Content validation</h3>
+      <p><span style="font-size:9px;font-style:italic;">/gate1 [module name]</span></p>
+      <div class="val-tags" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+        <span class="val-tag">Notion · ResLife workspace</span>
+        <span class="val-tag">Website · reslife.ucla.edu</span>
+        <span class="val-tag">Higher Ed · peer institutions</span>
+        <span class="val-tag">ACUHO-I · standards</span>
+      </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="gate" style="margin-left:28px;">
+      <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+      <h3>Gate 1 — Content review</h3>
+      <p>Ready to produce?</p>
+    </div>
+  </div>
+
+  <div style="height:20px;"></div>
+  <div class="phase-label"><span class="phase-pill">Phase 2 — Production</span></div>
+
+  <div class="path-labels">
+    <div class="path-label">Async<span style="display:block;font-size:7.5px;font-weight:700;color:var(--blue);margin-top:3px;text-transform:uppercase;">L — Learn</span></div>
+    <div style="width:41px;"></div>
+    <div class="path-label">Live<span style="display:block;font-size:7.5px;font-weight:700;color:#9a6800;margin-top:3px;text-transform:uppercase;">E · D — Engage · Deepen</span></div>
+  </div>
+
+  <div class="build-split">
+    <div class="async-col">
+      <div class="annotated-row">
+        <div class="box"><h3>Narration script</h3><p>Script for the video</p><div><span class="skill-tag">/narrate</span></div></div>
+        <div class="side-note">sub-page</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="annotated-row">
+        <div class="box"><h3>Visual slides</h3><p>Branded PNGs per storyboard</p><div><span class="skill-tag">/skill-three</span></div></div>
+        <div class="side-note">sub-page</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="annotated-row">
+        <div class="box"><h3>Knowledge check</h3><p>MCQs keyed to LOs</p><div><span class="skill-tag">/knowledge-check</span></div></div>
+        <div class="side-note">sub-page</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="annotated-row">
+        <div class="box"><h3>Workbook</h3><p>Learner activities</p><div><span class="skill-tag">/workbook</span></div></div>
+        <div class="side-note">sub-page</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="gate">
+        <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>Gate 2A — Package review</h3>
+        <p>Ready to build Learner's Companion?</p>
+      </div>
+      <div style="height:20px;"></div>
+      <div style="text-align:center;margin-bottom:14px;"><span class="phase-pill delivery">Phase 3 — Delivery</span></div>
+      <div class="annotated-row">
+        <div class="auto"><h3>Learner's Companion</h3><p>Description · LOs · Script · Workbook · Resources</p><div><span class="skill-tag">/learners-companion</span></div></div>
+        <div class="side-note">sub-page</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="box">
+        <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>Video production</h3>
+        <p>Script · slides · talent · video</p>
+      </div>
+      <div class="arrow"></div>
+      <div class="box">
+        <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>LMS packaging + upload</h3>
+        <p>Articulate 360 · BruinLearn</p>
+      </div>
+      <div class="arrow"></div>
+      <div class="gate">
+        <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>Gate 3A — Module QA</h3>
+        <p>Module complete · ready to release?</p>
+      </div>
+    </div>
+
+    <div class="divider-v"></div>
+
+    <div class="live-col">
+      <div class="annotated-row">
+        <div class="box" style="background:#fffdf0;border-color:var(--gold);">
+          <h3>Facilitation design</h3>
+          <p>Designs the E·D live experience (Engage + Deepen)</p>
+          <div><span class="skill-tag">/led-session</span></div>
+        </div>
+        <div class="side-note">sub-page</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="gate" style="border-color:var(--gold);background:#005587;">
+        <span class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></span>
+        <h3>Gate 2L — Session QA</h3>
+        <p>Plan complete · ready to facilitate?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch ls-auto"></div> Auto compilation</div>
+    <div class="legend-item"><div class="legend-swatch ls-async"></div> Async step</div>
+    <div class="legend-item">
+      <div style="width:14px;height:14px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:white;"><circle cx="12" cy="7" r="4"/><path d="M12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg>
+      </div> Human review
+    </div>
+    <div class="legend-item"><div class="legend-swatch ls-live"></div> Live step</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#f4f4f4;border:1px dashed #e0e0e0;"></div> <em>Italic</em> = skill</div>
+  </div>
+
+  <div class="footer">
+    <span>UCLA Residential Life</span> &nbsp;·&nbsp; Building Connections. Creating Communities.
+  </div>
+</div>
+</body>
+</html>
