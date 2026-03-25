@@ -58,11 +58,12 @@
   .row-label.r-label { border-left: 3px solid var(--charcoal); }
   .row-label.o-label { border-left: 3px solid var(--charcoal); }
 
-  .cell { border-radius: 12px; padding: 16px 15px; display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden; background: var(--white); border: 1px solid var(--border); }
+  .cell { border-radius: 12px; padding: 16px 15px; display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden; background: var(--white); border: 1px solid var(--border); transition: background 0.15s, box-shadow 0.15s; }
   .cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
   .cell.w::before { background: var(--charcoal); }
   .cell.c::before { background: var(--blue); }
   .cell.r::before { background: var(--gold); }
+  .cell:hover { background: #fafafa; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .cell-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; }
   .cell-desc { font-size: 10.5px; font-weight: 400; color: var(--muted); line-height: 1.55; flex: 1; }
   .cell-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
@@ -80,7 +81,7 @@
   .o-divider { display: flex; align-items: center; gap: 8px; padding: 0 12px; margin: 0; }
   .o-divider-line { flex: 1; height: 1px; background: rgba(255,184,28,0.4); }
   .o-divider-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #b07f00; padding: 6px 0; white-space: nowrap; }
-  .o-capstone { background: rgba(255,184,28,0.08); padding: 14px 15px 16px; }
+  .o-capstone { background: rgba(255,184,28,0.08); padding: 14px 15px 16px; position: relative; }
   .capstone-eyebrow { font-size: 8.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #9a6800; margin-bottom: 5px; }
   .capstone-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 6px; }
   .capstone-desc { font-size: 10.5px; font-weight: 400; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
@@ -123,7 +124,6 @@
 </div>
 
 <div class="grid-wrapper">
-
   <div class="col-headers">
     <div class="col-spacer"></div>
     <div class="col-header-wrap">
@@ -148,17 +148,17 @@
     <div class="cell w">
       <div class="cell-title">Why</div>
       <div class="cell-desc">The beliefs and commitments that give this work meaning — belonging, inclusive excellence, and our responsibility to the communities we serve.</div>
-      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      <div class="cell-badges"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
     </div>
     <div class="cell c">
       <div class="cell-title">Why</div>
       <div class="cell-desc">The science of belonging in residential communities and the ResLife Connects framework that shapes every engagement decision staff make.</div>
-      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      <div class="cell-badges"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
     </div>
     <div class="cell r">
       <div class="cell-title">Why</div>
       <div class="cell-desc">The purpose and weight of duty — why the system exists, who it protects, and the legal-ethical framework that governs every response.</div>
-      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      <div class="cell-badges"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
     </div>
   </div>
 
@@ -177,17 +177,17 @@
     <div class="cell w">
       <div class="cell-title">Who</div>
       <div class="cell-desc">The layered staffing model across all 10 units — who holds what role, what they own, and how supervision and collaboration work across the department.</div>
-      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      <div class="cell-badges"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
     </div>
     <div class="cell c">
       <div class="cell-title">Who</div>
       <div class="cell-desc">The community engagement ecosystem — who owns what, who partners with whom, and how staff connect residents to the right campus resources.</div>
-      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      <div class="cell-badges"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
     </div>
     <div class="cell r">
       <div class="cell-title">Who</div>
       <div class="cell-desc">The layered duty structure from RA to AD — clear authority levels and escalation pathways so there's no ambiguity about who does what when it matters most.</div>
-      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      <div class="cell-badges"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
     </div>
   </div>
 
@@ -207,7 +207,7 @@
       <div class="o-top">
         <div class="cell-title">How</div>
         <div class="cell-desc" style="margin-top:6px;">Every system that keeps the department running — from recruiting and onboarding to resource stewardship, team development, and move-in operations.</div>
-        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
       </div>
       <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">✦ Capstone</div><div class="o-divider-line"></div></div>
       <div class="o-capstone">
@@ -220,7 +220,7 @@
       <div class="o-top">
         <div class="cell-title">How</div>
         <div class="cell-desc" style="margin-top:6px;">The full CONNECT cycle from concept to reflection, plus inclusive program design and True Bruin Welcome preparation.</div>
-        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
       </div>
       <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">✦ Capstone</div><div class="o-divider-line"></div></div>
       <div class="o-capstone">
@@ -233,7 +233,7 @@
       <div class="o-top">
         <div class="cell-title">How</div>
         <div class="cell-desc" style="margin-top:6px;">Every protocol staff need on duty — the BOARDS method, incident documentation, mental health response, emergency procedures, and bystander intervention.</div>
-        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Async</span><span class="badge badge-ed">E · D — Live Session</span></div>
       </div>
       <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">✦ Capstone</div><div class="o-divider-line"></div></div>
       <div class="o-capstone">
@@ -243,7 +243,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="led-section">
@@ -251,7 +250,7 @@
   <div class="led-item led-l">
     <div class="led-box">L</div>
     <div>
-      <div class="led-head">Learn — Self-Paced Pre-Work</div>
+      <div class="led-head">Learn — Async</div>
       <div class="led-sub">Completed at least 24 hours before the session. Includes pre-recorded videos, articles &amp; readings, case studies, and reflection questions — so staff arrive with foundational knowledge, not a blank slate.</div>
     </div>
   </div>
