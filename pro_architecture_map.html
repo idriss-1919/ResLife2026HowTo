@@ -8,25 +8,22 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
   :root {
-    --charcoal: #1C1C1C;
-    --blue:     #005587;
-    --gold:     #FFB81C;
-    --white:    #ffffff;
-    --text:     #1C1C1C;
-    --muted:    #6b7a8d;
-    --border:   rgba(0,0,0,0.09);
-    --subtle:   rgba(0,0,0,0.03);
+    --charcoal:      #1C1C1C;
+    --blue:          #005587;
+    --gold:          #FFB81C;
+    --white:         #ffffff;
+    --text:          #1C1C1C;
+    --muted:         #6b7a8d;
+    --border:        rgba(0,0,0,0.09);
+    --subtle:        rgba(0,0,0,0.03);
+    --welcome-blue:  #2655A4;
+    --connect-pink:  #E01D8C;
+    --respond-yellow:#FFB81C;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: var(--white);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 52px 36px 64px;
-  }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--text); min-height: 100vh; padding: 52px 36px 64px; }
 
   .header { text-align: center; margin-bottom: 24px; }
   .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
@@ -46,9 +43,9 @@
   .what-tag { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 5px; padding-left: 15px; }
   .col-header { text-align: center; padding: 18px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
   .col-header .icon { font-size: 18px; display: block; margin-bottom: 6px; }
-  .col-header.welcomes { background: var(--charcoal); color: var(--white); }
-  .col-header.connects { background: var(--blue); color: var(--white); }
-  .col-header.responds { background: var(--gold); color: var(--charcoal); }
+  .col-header.welcomes { background: var(--welcome-blue); color: var(--white); }
+  .col-header.connects { background: var(--connect-pink); color: var(--white); }
+  .col-header.responds { background: var(--respond-yellow); color: var(--charcoal); }
 
   .grid-row { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   .row-label { display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; padding: 14px 8px; text-align: center; background: var(--subtle); border: 1px solid var(--border); }
@@ -60,9 +57,9 @@
 
   .cell { border-radius: 12px; padding: 16px 15px; display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden; background: var(--white); border: 1px solid var(--border); transition: background 0.15s, box-shadow 0.15s; }
   .cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
-  .cell.w::before { background: var(--charcoal); }
-  .cell.c::before { background: var(--blue); }
-  .cell.r::before { background: var(--gold); }
+  .cell.w::before { background: var(--welcome-blue); }
+  .cell.c::before { background: var(--connect-pink); }
+  .cell.r::before { background: var(--respond-yellow); }
   .cell:hover { background: #fafafa; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .cell-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; }
   .cell-desc { font-size: 10.5px; font-weight: 400; color: var(--muted); line-height: 1.55; flex: 1; }
@@ -75,9 +72,9 @@
   .o-col { display: flex; flex-direction: column; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--white); }
   .o-top { background: var(--white); padding: 16px 15px 14px; position: relative; flex: 1; }
   .o-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-  .o-col.w .o-top::before { background: var(--charcoal); }
-  .o-col.c .o-top::before { background: var(--blue); }
-  .o-col.r .o-top::before { background: var(--gold); }
+  .o-col.w .o-top::before { background: var(--welcome-blue); }
+  .o-col.c .o-top::before { background: var(--connect-pink); }
+  .o-col.r .o-top::before { background: var(--respond-yellow); }
   .o-divider { display: flex; align-items: center; gap: 8px; padding: 0 12px; margin: 0; }
   .o-divider-line { flex: 1; height: 1px; background: rgba(255,184,28,0.4); }
   .o-divider-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #b07f00; padding: 6px 0; white-space: nowrap; }
@@ -97,7 +94,7 @@
   .led-l .led-box { background: rgba(28,28,28,0.08); color: var(--charcoal); }
   .led-e .led-box, .led-d .led-box { background: rgba(0,85,135,0.08); color: var(--blue); border: 1px solid rgba(0,85,135,0.2); }
   .led-head { font-size: 11.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-  .led-sub  { font-size: 10px; color: var(--muted); line-height: 1.45; }
+  .led-sub { font-size: 10px; color: var(--muted); line-height: 1.45; }
 </style>
 </head>
 <body>
@@ -109,18 +106,9 @@
 </div>
 
 <div class="legend">
-  <div class="legend-item">
-    <div class="legend-letter" style="color:#1C1C1C;">P</div>
-    <div class="legend-label" style="color:#1C1C1C;">Philosophy</div>
-  </div>
-  <div class="legend-item">
-    <div class="legend-letter" style="color:#1C1C1C;">R</div>
-    <div class="legend-label" style="color:#1C1C1C;">Roles</div>
-  </div>
-  <div class="legend-item">
-    <div class="legend-letter" style="color:#1C1C1C;">O</div>
-    <div class="legend-label" style="color:#1C1C1C;">Operations</div>
-  </div>
+  <div class="legend-item"><div class="legend-letter" style="color:#1C1C1C;">P</div><div class="legend-label" style="color:#1C1C1C;">Philosophy</div></div>
+  <div class="legend-item"><div class="legend-letter" style="color:#1C1C1C;">R</div><div class="legend-label" style="color:#1C1C1C;">Roles</div></div>
+  <div class="legend-item"><div class="legend-letter" style="color:#1C1C1C;">O</div><div class="legend-label" style="color:#1C1C1C;">Operations</div></div>
 </div>
 
 <div class="grid-wrapper">
@@ -128,23 +116,20 @@
     <div class="col-spacer"></div>
     <div class="col-header-wrap">
       <div class="what-tag">What</div>
-      <div class="col-header welcomes"><span class="icon">⌂</span>ResLife Welcomes</div>
+      <div class="col-header welcomes"><span class="icon">■</span>ResLife Welcomes</div>
     </div>
     <div class="col-header-wrap">
       <div class="what-tag">What</div>
-      <div class="col-header connects"><span class="icon">∞</span>ResLife Connects</div>
+      <div class="col-header connects"><span class="icon">●</span>ResLife Connects</div>
     </div>
     <div class="col-header-wrap">
       <div class="what-tag">What</div>
-      <div class="col-header responds"><span class="icon">✚</span>ResLife Responds</div>
+      <div class="col-header responds"><span class="icon">▲</span>ResLife Responds</div>
     </div>
   </div>
 
   <div class="grid-row">
-    <div class="row-label p-label">
-      <div class="rl-letter">P</div>
-      <div class="rl-name">Philosophy</div>
-    </div>
+    <div class="row-label p-label"><div class="rl-letter">P</div><div class="rl-name">Philosophy</div></div>
     <div class="cell w">
       <div class="cell-title">Why</div>
       <div class="cell-desc">The beliefs and commitments that give this work meaning — belonging, inclusive excellence, and our responsibility to the communities we serve.</div>
@@ -162,18 +147,10 @@
     </div>
   </div>
 
-  <div class="flow-row">
-    <div></div>
-    <div class="flow-cell">↓</div>
-    <div class="flow-cell">↓</div>
-    <div class="flow-cell">↓</div>
-  </div>
+  <div class="flow-row"><div></div><div class="flow-cell">↓</div><div class="flow-cell">↓</div><div class="flow-cell">↓</div></div>
 
   <div class="grid-row">
-    <div class="row-label r-label">
-      <div class="rl-letter">R</div>
-      <div class="rl-name">Roles</div>
-    </div>
+    <div class="row-label r-label"><div class="rl-letter">R</div><div class="rl-name">Roles</div></div>
     <div class="cell w">
       <div class="cell-title">Who</div>
       <div class="cell-desc">The layered staffing model across all 10 units — who holds what role, what they own, and how supervision and collaboration work across the department.</div>
@@ -191,18 +168,10 @@
     </div>
   </div>
 
-  <div class="flow-row">
-    <div></div>
-    <div class="flow-cell">↓</div>
-    <div class="flow-cell">↓</div>
-    <div class="flow-cell">↓</div>
-  </div>
+  <div class="flow-row"><div></div><div class="flow-cell">↓</div><div class="flow-cell">↓</div><div class="flow-cell">↓</div></div>
 
   <div class="o-row-wrapper">
-    <div class="row-label o-label" style="align-self:stretch;">
-      <div class="rl-letter">O</div>
-      <div class="rl-name">Operations</div>
-    </div>
+    <div class="row-label o-label" style="align-self:stretch;"><div class="rl-letter">O</div><div class="rl-name">Operations</div></div>
     <div class="o-col w">
       <div class="o-top">
         <div class="cell-title">How</div>
