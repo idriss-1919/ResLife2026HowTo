@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a PRO — Module Audit Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  :root {
+    --charcoal:       #1C1C1C;
+    --blue:           #005587;
+    --gold:           #FFB81C;
+    --white:          #ffffff;
+    --text:           #1C1C1C;
+    --muted:          #6b7a8d;
+    --border:         rgba(0,0,0,0.09);
+    --subtle:         rgba(0,0,0,0.03);
+    --welcome-blue:   #2655A4;
+    --connect-pink:   #E01D8C;
+    --respond-yellow: #FFB81C;
+    --green:          #1a7a4a;
+    --green-bg:       rgba(26,122,74,0.08);
+    --warn:           #c45c00;
+    --warn-bg:        rgba(196,92,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--text); padding: 52px 36px 64px; }
+
+  .header { text-align: center; margin-bottom: 22px; }
+  .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .headline { font-size: 68px; font-weight: 900; letter-spacing: -2.5px; line-height: 1; color: var(--charcoal); }
+  .headline em { font-style: normal; color: var(--welcome-blue); }
+  .tagline { font-size: 15px; font-weight: 400; color: var(--muted); margin-top: 16px; letter-spacing: 0.3px; }
+
+  .audit-bar { display: flex; justify-content: center; gap: 8px; margin: 18px auto 26px; flex-wrap: wrap; }
+  .audit-chip { display: flex; align-items: center; gap: 5px; padding: 5px 13px; border-radius: 30px; font-size: 10.5px; font-weight: 700; }
+  .chip-total { background: rgba(28,28,28,0.06); color: var(--charcoal); border: 1px solid rgba(28,28,28,0.12); }
+  .chip-ok    { background: var(--green-bg); color: var(--green); border: 1px solid rgba(26,122,74,0.2); }
+  .chip-warn  { background: var(--warn-bg); color: var(--warn); border: 1px solid rgba(196,92,0,0.25); }
+  .chip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .legend { display: flex; justify-content: center; gap: 0; margin: 0 auto 26px; max-width: 440px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--white); }
+  .legend-item { flex: 1; padding: 18px 20px; text-align: center; border-right: 1px solid var(--border); }
+  .legend-item:last-child { border-right: none; }
+  .legend-letter { font-size: 30px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 5px; color: var(--charcoal); }
+  .legend-label  { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--muted); }
+
+  .grid-wrapper { max-width: 1120px; margin: 0 auto; }
+  .col-headers { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .col-header { text-align: center; padding: 18px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+  .col-header .icon { font-size: 18px; display: block; margin-bottom: 6px; }
+  .col-header.welcomes { background: var(--welcome-blue); color: var(--white); }
+  .col-header.connects { background: var(--connect-pink); color: var(--white); }
+  .col-header.responds { background: var(--respond-yellow); color: var(--charcoal); }
+
+  .grid-row { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .row-label { display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; padding: 14px 8px; text-align: center; background: var(--subtle); border: 1px solid var(--border); }
+  .row-label .rl-letter { font-size: 36px; font-weight: 900; letter-spacing: -1px; line-height: 1; color: var(--charcoal); }
+  .row-label .rl-name   { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; color: var(--muted); }
+  .row-label.p-label { border-left: 3px solid var(--charcoal); }
+  .row-label.r-label { border-left: 3px solid var(--charcoal); }
+  .row-label.o-label { border-left: 3px solid var(--charcoal); }
+
+  .cell { border-radius: 12px; padding: 15px 14px; display: flex; flex-direction: column; gap: 9px; position: relative; overflow: hidden; background: var(--white); border: 1px solid var(--border); transition: box-shadow 0.15s; }
+  .cell:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
+  .cell.w::before { background: var(--welcome-blue); }
+  .cell.c::before { background: var(--connect-pink); }
+  .cell.r::before { background: var(--respond-yellow); }
+
+  .cell-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .cell-title { font-size: 12px; font-weight: 800; color: var(--text); line-height: 1.2; }
+  .cell-sub   { font-size: 10px; font-weight: 400; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+
+  .count-badge { flex-shrink: 0; font-size: 11px; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .count-badge.ok   { background: var(--green-bg); color: var(--green); border: 1px solid rgba(26,122,74,0.25); }
+  .count-badge.warn { background: var(--warn-bg);  color: var(--warn);  border: 1px solid rgba(196,92,0,0.3); }
+
+  .module-list { display: flex; flex-direction: column; gap: 2px; }
+  .mod-item { display: flex; align-items: baseline; gap: 5px; padding: 3px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+  .mod-item:last-child { border-bottom: none; }
+  .mod-code { font-size: 9px; font-weight: 800; letter-spacing: 0.3px; flex-shrink: 0; width: 52px; }
+  .cell.w .mod-code { color: var(--welcome-blue); }
+  .cell.c .mod-code { color: var(--connect-pink); }
+  .cell.r .mod-code { color: #8a5c00; }
+  .o-col.w .mod-code { color: var(--welcome-blue); }
+  .o-col.c .mod-code { color: var(--connect-pink); }
+  .o-col.r .mod-code { color: #8a5c00; }
+  .mod-name { font-size: 9px; font-weight: 400; color: var(--muted); line-height: 1.35; }
+  .mod-pill { flex-shrink: 0; margin-left: auto; font-size: 7.5px; font-weight: 700; padding: 1.5px 5px; border-radius: 10px; white-space: nowrap; }
+  .pill-async { background: rgba(28,28,28,0.06); color: #444; border: 1px solid rgba(0,0,0,0.1); }
+  .pill-live  { background: rgba(38,85,164,0.08); color: var(--welcome-blue); border: 1px solid rgba(38,85,164,0.2); }
+  .pill-team  { background: rgba(255,184,28,0.14); color: #8a5c00; border: 1px solid rgba(255,184,28,0.4); }
+
+  .flow-row { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .flow-cell { display: flex; align-items: center; justify-content: center; height: 18px; color: rgba(0,0,0,0.2); font-size: 14px; }
+
+  .o-row-wrapper { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .o-col { display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--white); }
+  .o-top { background: var(--white); padding: 15px 14px 12px; position: relative; flex: 1; }
+  .o-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .o-col.w .o-top::before { background: var(--welcome-blue); }
+  .o-col.c .o-top::before { background: var(--connect-pink); }
+  .o-col.r .o-top::before { background: var(--respond-yellow); }
+
+  .o-section-head { font-size: 8px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 8px 0 4px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+  .o-divider { display: flex; align-items: center; gap: 8px; padding: 0 12px; }
+  .o-divider-line { flex: 1; height: 1px; background: rgba(255,184,28,0.4); }
+  .o-divider-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #b07f00; padding: 6px 0; white-space: nowrap; }
+
+  .o-capstone { background: rgba(255,184,28,0.08); padding: 13px 14px 15px; }
+  .capstone-eyebrow { font-size: 8.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #9a6800; margin-bottom: 4px; }
+  .capstone-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 3px; }
+  .capstone-code  { font-size: 9px; font-weight: 700; color: #9a6800; margin-bottom: 6px; }
+  .capstone-desc  { font-size: 10px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+  .badge-cap { background: rgba(255,184,28,0.2); color: #9a6800; border: 1px solid rgba(255,184,28,0.5); font-size: 8.5px; font-weight: 700; padding: 2.5px 7px; border-radius: 20px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">UCLA Residential Life · Summer Training Architecture · Module Audit</div>
+  <div class="headline">Become a <em>PRO</em></div>
+  <div class="tagline">Not just trained. Prepared.</div>
+</div>
+
+<div class="audit-bar">
+  <div class="audit-chip chip-total"><span class="chip-dot" style="background:#1C1C1C"></span> 71 Modules</div>
+  <div class="audit-chip chip-ok"><span class="chip-dot" style="background:#1a7a4a"></span> Philosophy consistent across all 3 pillars</div>
+  <div class="audit-chip chip-ok"><span class="chip-dot" style="background:#1a7a4a"></span> Calibration sessions defined across all 3 pillars</div>
+  <div class="audit-chip chip-warn"><span class="chip-dot" style="background:#c45c00"></span> W203 · C203 · R203 created — content pending</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-letter">P</div><div class="legend-label">Philosophy</div></div>
+  <div class="legend-item"><div class="legend-letter">R</div><div class="legend-label">Roles</div></div>
+  <div class="legend-item"><div class="legend-letter">O</div><div class="legend-label">Operations</div></div>
+</div>
+
+<div class="grid-wrapper">
+
+  <div class="col-headers">
+    <div></div>
+    <div class="col-header welcomes"><span class="icon">■</span>ResLife Welcomes</div>
+    <div class="col-header connects"><span class="icon">●</span>ResLife Connects</div>
+    <div class="col-header responds"><span class="icon">▲</span>ResLife Responds</div>
+  </div>
+
+  <div class="grid-row">
+    <div class="row-label p-label"><div class="rl-letter">P</div><div class="rl-name">Philosophy</div></div>
+    <div class="cell w">
+      <div class="cell-header">
+        <div><div class="cell-title">Why · Framework · Field</div><div class="cell-sub">Purpose, model, peer wisdom</div></div>
+        <div class="count-badge ok">3</div>
+      </div>
+      <div class="module-list">
+        <div class="mod-item"><span class="mod-code">W101</span><span class="mod-name">Why ResLife Welcomes?</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">W102</span><span class="mod-name">The Framework</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">W103</span><span class="mod-name">Insights from the Field</span><span class="mod-pill pill-team">Team</span></div>
+      </div>
+    </div>
+    <div class="cell c">
+      <div class="cell-header">
+        <div><div class="cell-title">Why · Framework · Field</div><div class="cell-sub">Purpose, model, peer wisdom</div></div>
+        <div class="count-badge ok">3</div>
+      </div>
+      <div class="module-list">
+        <div class="mod-item"><span class="mod-code">C101</span><span class="mod-name">Why ResLife Connects?</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">C102</span><span class="mod-name">The Framework</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">C103</span><span class="mod-name">Insights from the Field</span><span class="mod-pill pill-team">Team</span></div>
+      </div>
+    </div>
+    <div class="cell r">
+      <div class="cell-header">
+        <div><div class="cell-title">Why · Framework · Field</div><div class="cell-sub">Purpose, model, peer wisdom</div></div>
+        <div class="count-badge ok">3</div>
+      </div>
+      <div class="module-list">
+        <div class="mod-item"><span class="mod-code">R101</span><span class="mod-name">Why ResLife Responds?</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">R102</span><span class="mod-name">The Framework</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">R103</span><span class="mod-name">Insights from the Field</span><span class="mod-pill pill-team">Team</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-row"><div></div><div class="flow-cell">↓</div><div class="flow-cell">↓</div><div class="flow-cell">↓</div></div>
+
+  <div class="grid-row">
+    <div class="row-label r-label"><div class="rl-letter">R</div><div class="rl-name">Roles</div></div>
+    <div class="cell w">
+      <div class="cell-header">
+        <div><div class="cell-title">Who · Partners · System</div><div class="cell-sub">Org map, partner network, team role</div></div>
+        <div class="count-badge ok">3</div>
+      </div>
+      <div class="module-list">
+        <div class="mod-item"><span class="mod-code">W201</span><span class="mod-name">Who Powers ResLife?</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">W202</span><span class="mod-name">Our ResLife Welcomes Partner Network</span><span class="mod-pill pill-team">Team</span></div>
+        <div class="mod-item"><span class="mod-code">W203</span><span class="mod-name">Your Role in the System</span><span class="mod-pill pill-team">Team</span></div>
+      </div>
+    </div>
+    <div class="cell c">
+      <div class="cell-header">
+        <div><div class="cell-title">Who · Partners · System</div><div class="cell-sub">Ecosystem, partner network, team role</div></div>
+        <div class="count-badge ok">3</div>
+      </div>
+      <div class="module-list">
+        <div class="mod-item"><span class="mod-code">C201</span><span class="mod-name">Who Engages the Community?</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">C202</span><span class="mod-name">Our ResLife Connects Partner Network</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">C203</span><span class="mod-name">Your Role in the System</span><span class="mod-pill pill-team">Team</span></div>
+      </div>
+    </div>
+    <div class="cell r">
+      <div class="cell-header">
+        <div><div class="cell-title">Who · Partners · System</div><div class="cell-sub">Duty structure, partner network, team role</div></div>
+        <div class="count-badge ok">3</div>
+      </div>
+      <div class="module-list">
+        <div class="mod-item"><span class="mod-code">R201</span><span class="mod-name">Who Responds to Incidents?</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">R202</span><span class="mod-name">Our ResLife Responds Partner Network</span><span class="mod-pill pill-async">Async</span></div>
+        <div class="mod-item"><span class="mod-code">R203</span><span class="mod-name">Your Role in the System</span><span class="mod-pill pill-team">Team</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-row"><div></div><div class="flow-cell">↓</div><div class="flow-cell">↓</div><div class="flow-cell">↓</div></div>
+
+  <div class="o-row-wrapper">
+    <div class="row-label o-label" style="align-self:stretch;"><div class="rl-letter">O</div><div class="rl-name">Operations</div></div>
+
+    <div class="o-col w">
+      <div class="o-top">
+        <div class="cell-header" style="margin-bottom:10px;">
+          <div><div class="cell-title">How We Run the Department</div><div class="cell-sub">Org systems, culture, compliance, move-in</div></div>
+          <div class="count-badge ok">22</div>
+        </div>
+        <div class="module-list">
+          <div class="mod-item"><span class="mod-code">W301</span><span class="mod-name">How We Welcome — Elevating Every Human Interaction</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W302</span><span class="mod-name">How We Recruit</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W303</span><span class="mod-name">How We Onboard</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W304</span><span class="mod-name">How We Train</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W305</span><span class="mod-name">How We Develop</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W306</span><span class="mod-name">How We Steward Resources</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W307</span><span class="mod-name">How We Learn &amp; Improve</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W308</span><span class="mod-name">How We Communicate &amp; Use Technology</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W309</span><span class="mod-name">How We Take Care of Each Other</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">W310</span><span class="mod-name">How We Celebrate Each Other</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="o-section-head">All Staff</div>
+          <div class="mod-item"><span class="mod-code">W311</span><span class="mod-name">Move-In Operation</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W312</span><span class="mod-name">Inclusive Excellence</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W313</span><span class="mod-name">Dialogue Across Difference</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W314</span><span class="mod-name">Bias Incident Response — Title VI</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W315</span><span class="mod-name">Title IX Response for Residential Staff</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W316</span><span class="mod-name">Supervision &amp; HR Essentials</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W317</span><span class="mod-name">Train the Trainer</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W318</span><span class="mod-name">Resilience, EQ &amp; Critical Thinking</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">W350</span><span class="mod-name">Inclusive Excellence Workshops</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="o-section-head">Team Time</div>
+          <div class="mod-item"><span class="mod-code">W351</span><span class="mod-name">Navigating Scenarios</span><span class="mod-pill pill-team">Team</span></div>
+        </div>
+      </div>
+      <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">Calibration</div><div class="o-divider-line"></div></div>
+      <div class="o-capstone">
+        <div class="capstone-eyebrow">All Staff · Assessment</div>
+        <div class="capstone-title">Welcomes Calibration I &amp; II</div>
+        <div class="capstone-code">W390 · W391</div>
+        <div class="capstone-desc">Scenario-based assessment of org knowledge (W390, All Staff, 50 min) and operational How We framework (W391, Team Time, 60 min).</div>
+        <span class="badge-cap">2 Calibration Sessions</span>
+      </div>
+    </div>
+
+    <div class="o-col c">
+      <div class="o-top">
+        <div class="cell-header" style="margin-bottom:10px;">
+          <div><div class="cell-title">The CONNECT Cycle</div><div class="cell-sub">Craft · Obtain · Nail · Notify · Execute · Capture · Transform</div></div>
+          <div class="count-badge ok">13</div>
+        </div>
+        <div class="module-list">
+          <div class="mod-item"><span class="mod-code">C301</span><span class="mod-name">Craft the Concept</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C302</span><span class="mod-name">Obtain Approvals</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C303</span><span class="mod-name">Nail the Details</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C304</span><span class="mod-name">Notify Your Audience</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C305</span><span class="mod-name">Execute with Energy</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C306</span><span class="mod-name">Capture Feedback</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C307</span><span class="mod-name">Transform the Next Idea</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C308</span><span class="mod-name">True Bruin Welcome</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">C309</span><span class="mod-name">Inclusive Engagement Design</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="o-section-head">All Staff</div>
+          <div class="mod-item"><span class="mod-code">C390</span><span class="mod-name">Calibration I — Foundations</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">C391</span><span class="mod-name">Calibration II — The CONNECT Cycle</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">C392</span><span class="mod-name">Calibration III — True Bruin Welcome</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="o-section-head">Team Time</div>
+          <div class="mod-item"><span class="mod-code">C350</span><span class="mod-name">Engagement Planning Lab</span><span class="mod-pill pill-team">Team</span></div>
+        </div>
+      </div>
+      <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">Calibration</div><div class="o-divider-line"></div></div>
+      <div class="o-capstone">
+        <div class="capstone-eyebrow">All Staff · Assessment</div>
+        <div class="capstone-title">Connects Calibrations I – III</div>
+        <div class="capstone-code">C390 · C391 · C392</div>
+        <div class="capstone-desc">Scenario-based assessments covering foundations (60 min), the full CONNECT cycle (90 min), and True Bruin Welcome readiness (50 min).</div>
+        <span class="badge-cap">3 Calibration Sessions</span>
+      </div>
+    </div>
+
+    <div class="o-col r">
+      <div class="o-top">
+        <div class="cell-header" style="margin-bottom:10px;">
+          <div><div class="cell-title">Duty, Protocols &amp; Crisis Response</div><div class="cell-sub">Schedule, BOARDS method, documentation, care</div></div>
+          <div class="count-badge ok">18</div>
+        </div>
+        <div class="module-list">
+          <div class="mod-item"><span class="mod-code">R301</span><span class="mod-name">Schedule &amp; Coverage</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R302</span><span class="mod-name">Mechanics of Duty</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R303</span><span class="mod-name">The BOARDS Method</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R304</span><span class="mod-name">Protocols</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R305</span><span class="mod-name">Quick Resource List</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R306</span><span class="mod-name">Documenting Incidents</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R307</span><span class="mod-name">Aftercare &amp; Follow-Up</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="mod-item"><span class="mod-code">R308</span><span class="mod-name">Living with Roommates</span><span class="mod-pill pill-async">Async</span></div>
+          <div class="o-section-head">All Staff</div>
+          <div class="mod-item"><span class="mod-code">R309</span><span class="mod-name">Assisting Bruins in Crisis</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">R310</span><span class="mod-name">Mental Health Emergencies &amp; Suicide Prevention</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">R311</span><span class="mod-name">Emergency Preparedness</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">R312</span><span class="mod-name">Active Threat</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="mod-item"><span class="mod-code">R313</span><span class="mod-name">HEART &amp; Bystander Intervention</span><span class="mod-pill pill-live">All Staff</span></div>
+          <div class="o-section-head">Team Time</div>
+          <div class="mod-item"><span class="mod-code">R350</span><span class="mod-name">RESPOND — The Game</span><span class="mod-pill pill-team">Team</span></div>
+          <div class="mod-item"><span class="mod-code">R351</span><span class="mod-name">Behind Closed Doors</span><span class="mod-pill pill-team">Team</span></div>
+        </div>
+      </div>
+      <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">Calibration</div><div class="o-divider-line"></div></div>
+      <div class="o-capstone">
+        <div class="capstone-eyebrow">Team Time · Assessment</div>
+        <div class="capstone-title">Responds Calibrations I – III</div>
+        <div class="capstone-code">R390 · R391 · R392</div>
+        <div class="capstone-desc">Conduct processes &amp; aftercare (90 min), duty structure &amp; mechanics (75 min), and applied BOARDS method &amp; protocols (90 min).</div>
+        <span class="badge-cap">3 Calibration Sessions</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
