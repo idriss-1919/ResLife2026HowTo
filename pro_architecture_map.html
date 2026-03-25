@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a PRO — UCLA ResLife Training Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --charcoal: #1C1C1C;
+    --blue:     #005587;
+    --gold:     #FFB81C;
+    --white:    #ffffff;
+    --text:     #1C1C1C;
+    --muted:    #6b7a8d;
+    --border:   rgba(0,0,0,0.09);
+    --subtle:   rgba(0,0,0,0.03);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 52px 36px 64px;
+  }
+
+  .header { text-align: center; margin-bottom: 24px; }
+  .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .headline { font-size: 68px; font-weight: 900; letter-spacing: -2.5px; line-height: 1; color: var(--charcoal); }
+  .headline em { font-style: normal; color: var(--blue); }
+  .tagline { font-size: 15px; font-weight: 400; color: var(--muted); margin-top: 16px; letter-spacing: 0.3px; }
+
+  .legend { display: flex; justify-content: center; gap: 0; margin: 0 auto 28px; max-width: 440px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--white); }
+  .legend-item { flex: 1; padding: 18px 20px; text-align: center; border-right: 1px solid var(--border); }
+  .legend-item:last-child { border-right: none; }
+  .legend-letter { font-size: 30px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 5px; }
+  .legend-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--muted); }
+
+  .grid-wrapper { max-width: 1120px; margin: 0 auto; }
+  .col-headers { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .col-header-wrap { display: flex; flex-direction: column; }
+  .what-tag { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 5px; padding-left: 15px; }
+  .col-header { text-align: center; padding: 18px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+  .col-header .icon { font-size: 18px; display: block; margin-bottom: 6px; }
+  .col-header.welcomes { background: var(--charcoal); color: var(--white); }
+  .col-header.connects { background: var(--blue); color: var(--white); }
+  .col-header.responds { background: var(--gold); color: var(--charcoal); }
+
+  .grid-row { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .row-label { display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; padding: 14px 8px; text-align: center; background: var(--subtle); border: 1px solid var(--border); }
+  .row-label .rl-letter { font-size: 36px; font-weight: 900; letter-spacing: -1px; line-height: 1; color: var(--charcoal); }
+  .row-label .rl-name { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; color: var(--muted); }
+  .row-label.p-label { border-left: 3px solid var(--charcoal); }
+  .row-label.r-label { border-left: 3px solid var(--charcoal); }
+  .row-label.o-label { border-left: 3px solid var(--charcoal); }
+
+  .cell { border-radius: 12px; padding: 16px 15px; display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden; background: var(--white); border: 1px solid var(--border); }
+  .cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
+  .cell.w::before { background: var(--charcoal); }
+  .cell.c::before { background: var(--blue); }
+  .cell.r::before { background: var(--gold); }
+  .cell-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .cell-desc { font-size: 10.5px; font-weight: 400; color: var(--muted); line-height: 1.55; flex: 1; }
+  .cell-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+  .badge { font-size: 8.5px; font-weight: 700; letter-spacing: 0.4px; padding: 2.5px 7px; border-radius: 20px; }
+  .badge-l  { background: rgba(28,28,28,0.07); color: var(--charcoal); border: 1px solid rgba(28,28,28,0.15); }
+  .badge-ed { background: rgba(0,85,135,0.08); color: var(--blue); border: 1px solid rgba(0,85,135,0.2); }
+
+  .o-row-wrapper { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .o-col { display: flex; flex-direction: column; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--white); }
+  .o-top { background: var(--white); padding: 16px 15px 14px; position: relative; flex: 1; }
+  .o-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .o-col.w .o-top::before { background: var(--charcoal); }
+  .o-col.c .o-top::before { background: var(--blue); }
+  .o-col.r .o-top::before { background: var(--gold); }
+  .o-divider { display: flex; align-items: center; gap: 8px; padding: 0 12px; margin: 0; }
+  .o-divider-line { flex: 1; height: 1px; background: rgba(255,184,28,0.4); }
+  .o-divider-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #b07f00; padding: 6px 0; white-space: nowrap; }
+  .o-capstone { background: rgba(255,184,28,0.08); padding: 14px 15px 16px; }
+  .capstone-eyebrow { font-size: 8.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #9a6800; margin-bottom: 5px; }
+  .capstone-title { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 6px; }
+  .capstone-desc { font-size: 10.5px; font-weight: 400; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
+
+  .flow-row { display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .flow-cell { display: flex; align-items: center; justify-content: center; height: 18px; color: rgba(0,0,0,0.2); font-size: 14px; }
+
+  .led-section { max-width: 1120px; margin: 40px auto 0; border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; background: #f7f8fa; display: grid; grid-template-columns: auto 1fr 1fr 1fr; align-items: center; gap: 0; }
+  .led-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); padding-right: 28px; border-right: 1px solid var(--border); margin-right: 28px; white-space: nowrap; line-height: 1.6; }
+  .led-item { display: flex; align-items: flex-start; gap: 12px; padding: 0 20px; border-right: 1px solid var(--border); }
+  .led-item:last-child { border-right: none; }
+  .led-box { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 900; flex-shrink: 0; }
+  .led-l .led-box { background: rgba(28,28,28,0.08); color: var(--charcoal); }
+  .led-e .led-box, .led-d .led-box { background: rgba(0,85,135,0.08); color: var(--blue); border: 1px solid rgba(0,85,135,0.2); }
+  .led-head { font-size: 11.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .led-sub  { font-size: 10px; color: var(--muted); line-height: 1.45; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">UCLA Residential Life · Summer Training Architecture</div>
+  <div class="headline">Become a <em>PRO</em></div>
+  <div class="tagline">Not just trained. Prepared.</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-letter" style="color:#1C1C1C;">P</div>
+    <div class="legend-label" style="color:#1C1C1C;">Philosophy</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-letter" style="color:#1C1C1C;">R</div>
+    <div class="legend-label" style="color:#1C1C1C;">Roles</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-letter" style="color:#1C1C1C;">O</div>
+    <div class="legend-label" style="color:#1C1C1C;">Operations</div>
+  </div>
+</div>
+
+<div class="grid-wrapper">
+
+  <div class="col-headers">
+    <div class="col-spacer"></div>
+    <div class="col-header-wrap">
+      <div class="what-tag">What</div>
+      <div class="col-header welcomes"><span class="icon">⌂</span>ResLife Welcomes</div>
+    </div>
+    <div class="col-header-wrap">
+      <div class="what-tag">What</div>
+      <div class="col-header connects"><span class="icon">∞</span>ResLife Connects</div>
+    </div>
+    <div class="col-header-wrap">
+      <div class="what-tag">What</div>
+      <div class="col-header responds"><span class="icon">✚</span>ResLife Responds</div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="row-label p-label">
+      <div class="rl-letter">P</div>
+      <div class="rl-name">Philosophy</div>
+    </div>
+    <div class="cell w">
+      <div class="cell-title">Why</div>
+      <div class="cell-desc">The beliefs and commitments that give this work meaning — belonging, inclusive excellence, and our responsibility to the communities we serve.</div>
+      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+    </div>
+    <div class="cell c">
+      <div class="cell-title">Why</div>
+      <div class="cell-desc">The science of belonging in residential communities and the ResLife Connects framework that shapes every engagement decision staff make.</div>
+      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+    </div>
+    <div class="cell r">
+      <div class="cell-title">Why</div>
+      <div class="cell-desc">The purpose and weight of duty — why the system exists, who it protects, and the legal-ethical framework that governs every response.</div>
+      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div></div>
+    <div class="flow-cell">↓</div>
+    <div class="flow-cell">↓</div>
+    <div class="flow-cell">↓</div>
+  </div>
+
+  <div class="grid-row">
+    <div class="row-label r-label">
+      <div class="rl-letter">R</div>
+      <div class="rl-name">Roles</div>
+    </div>
+    <div class="cell w">
+      <div class="cell-title">Who</div>
+      <div class="cell-desc">The layered staffing model across all 10 units — who holds what role, what they own, and how supervision and collaboration work across the department.</div>
+      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+    </div>
+    <div class="cell c">
+      <div class="cell-title">Who</div>
+      <div class="cell-desc">The community engagement ecosystem — who owns what, who partners with whom, and how staff connect residents to the right campus resources.</div>
+      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+    </div>
+    <div class="cell r">
+      <div class="cell-title">Who</div>
+      <div class="cell-desc">The layered duty structure from RA to AD — clear authority levels and escalation pathways so there's no ambiguity about who does what when it matters most.</div>
+      <div class="cell-badges"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div></div>
+    <div class="flow-cell">↓</div>
+    <div class="flow-cell">↓</div>
+    <div class="flow-cell">↓</div>
+  </div>
+
+  <div class="o-row-wrapper">
+    <div class="row-label o-label" style="align-self:stretch;">
+      <div class="rl-letter">O</div>
+      <div class="rl-name">Operations</div>
+    </div>
+    <div class="o-col w">
+      <div class="o-top">
+        <div class="cell-title">How</div>
+        <div class="cell-desc" style="margin-top:6px;">Every system that keeps the department running — from recruiting and onboarding to resource stewardship, team development, and move-in operations.</div>
+        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      </div>
+      <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">✦ Capstone</div><div class="o-divider-line"></div></div>
+      <div class="o-capstone">
+        <div class="capstone-eyebrow">Final Step · O</div>
+        <div class="capstone-title">Navigating Scenarios</div>
+        <div class="capstone-desc">Staff work through a layered move-in scenario — applying philosophy, owning their role, and executing the operation from start to resolution.</div>
+      </div>
+    </div>
+    <div class="o-col c">
+      <div class="o-top">
+        <div class="cell-title">How</div>
+        <div class="cell-desc" style="margin-top:6px;">The full CONNECT cycle from concept to reflection, plus inclusive program design and True Bruin Welcome preparation.</div>
+        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      </div>
+      <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">✦ Capstone</div><div class="o-divider-line"></div></div>
+      <div class="o-capstone">
+        <div class="capstone-eyebrow">Final Step · O</div>
+        <div class="capstone-title">Engagement Planning Lab</div>
+        <div class="capstone-desc">Teams design and pitch a complete community program — running the full CONNECT cycle from concept to post-event reflection in a live planning session.</div>
+      </div>
+    </div>
+    <div class="o-col r">
+      <div class="o-top">
+        <div class="cell-title">How</div>
+        <div class="cell-desc" style="margin-top:6px;">Every protocol staff need on duty — the BOARDS method, incident documentation, mental health response, emergency procedures, and bystander intervention.</div>
+        <div class="cell-badges" style="margin-top:10px;"><span class="badge badge-l">L — Pre-Work</span><span class="badge badge-ed">E · D — Live Session</span></div>
+      </div>
+      <div class="o-divider"><div class="o-divider-line"></div><div class="o-divider-label">✦ Capstone</div><div class="o-divider-line"></div></div>
+      <div class="o-capstone">
+        <div class="capstone-eyebrow">Final Step · O</div>
+        <div class="capstone-title">Behind Closed Doors</div>
+        <div class="capstone-desc">A live crisis simulation where staff respond to a layered, unscripted scenario — coordinating roles, making real-time referrals, and completing full incident documentation.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="led-section">
+  <div class="led-label">LED<br>Method</div>
+  <div class="led-item led-l">
+    <div class="led-box">L</div>
+    <div>
+      <div class="led-head">Learn — Self-Paced Pre-Work</div>
+      <div class="led-sub">Completed at least 24 hours before the session. Includes pre-recorded videos, articles &amp; readings, case studies, and reflection questions — so staff arrive with foundational knowledge, not a blank slate.</div>
+    </div>
+  </div>
+  <div class="led-item led-e">
+    <div class="led-box">E</div>
+    <div>
+      <div class="led-head">Engage — Facilitator-Led Session</div>
+      <div class="led-sub">Builds on pre-work — never repeats it. Flow: quick recap of key takeaways → deep dive with real-world scenarios → interactive elements (polls, knowledge checks, small group discussion).</div>
+    </div>
+  </div>
+  <div class="led-item led-d">
+    <div class="led-box">D</div>
+    <div>
+      <div class="led-head">Deepen — Guided Panel Discussion</div>
+      <div class="led-sub">Facilitator introduces panelists → 4–6 pre-prepared guided questions → panelist open floor → participant Q&amp;A → wrap-up with key takeaways and a challenge to apply the learning.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
