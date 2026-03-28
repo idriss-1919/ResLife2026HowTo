@@ -165,13 +165,13 @@
   .tier-header-label { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 
   /* ── CASCADE BRIDGE ── */
-  .cascade-bridge { max-width: 1120px; margin: 20px auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #f7f8fa; }
-  .bridge-side { padding: 14px 20px; }
+  .cascade-bridge { max-width: 1120px; margin: 20px auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #f7f8fa; }
+  .bridge-side { padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; }
   .bridge-side.left { border-right: 1px solid var(--border); }
-  .bridge-center { padding: 12px 18px; text-align: center; background: rgba(0,85,135,0.04); border-right: 1px solid var(--border); }
-  .bridge-eyebrow { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .bridge-center { padding: 10px 16px; text-align: center; background: rgba(0,85,135,0.04); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .bridge-eyebrow { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--charcoal); margin-bottom: 4px; }
   .bridge-title { font-size: 12px; font-weight: 800; color: var(--text); margin-bottom: 2px; }
-  .bridge-desc { font-size: 9px; color: var(--muted); line-height: 1.45; }
+  .bridge-desc { font-size: 9.5px; color: var(--muted); line-height: 1.45; }
   .bridge-arrow { font-size: 20px; color: var(--blue); opacity: 0.35; }
   .bridge-pill-row { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 7px; }
   .bridge-pill { font-size: 8px; font-weight: 700; padding: 2px 7px; border-radius: 20px; border: 1px solid; }
@@ -477,8 +477,7 @@
 <!-- APPLICATION BRIDGE (shown first so scope context is set) -->
 <div class="cascade-bridge" style="margin-bottom:20px;">
   <div class="bridge-side left">
-    <div class="bridge-eyebrow">Department Core establishes</div>
-    <div class="bridge-title">The What &amp; Why</div>
+    <div class="bridge-eyebrow">Department Core</div>
     <div class="bridge-desc">Foundational knowledge, shared language, and department-wide standards every staff member carries, regardless of unit.</div>
   </div>
   <div class="bridge-center">
@@ -487,8 +486,7 @@
     <div style="font-size:8.5px;color:var(--muted);margin-top:5px;line-height:1.4;">Start at the Department Core, then transition into your Unit Layer.</div>
   </div>
   <div class="bridge-side">
-    <div class="bridge-eyebrow">Unit Layer answers</div>
-    <div class="bridge-title">The How In Our Context</div>
+    <div class="bridge-eyebrow">Unit Layer</div>
     <div class="bridge-desc">Unit-specific application: role-focused, grounded in each team's actual workflows, population, and environment.</div>
   </div>
 </div>
