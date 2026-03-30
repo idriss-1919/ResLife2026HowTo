@@ -308,9 +308,9 @@
     .unit-row>.unit-label{display:flex !important;flex-direction:row;gap:8px;padding:8px 12px;}
     .pillar-header-bar{flex-direction:column;padding:16px 18px;gap:12px;text-align:center;}
     .pillar-stats{margin-left:0;gap:20px;}
-    .mod-cards-row{flex-wrap:wrap;}
-    .mod-card-full{width:150px !important;min-width:150px !important;max-width:150px !important;min-height:100px !important;}
-    .hz-card{width:150px !important;min-width:150px !important;max-width:150px !important;min-height:100px !important;}
+    .mod-cards-row{flex-wrap:wrap;margin-left:0 !important;}
+    .mod-card-full{width:100% !important;min-width:unset !important;max-width:100% !important;min-height:80px !important;}
+    .hz-card{width:100% !important;min-width:unset !important;max-width:100% !important;min-height:80px !important;}
     .arc-cols,.arc-cols-7{display:flex !important;flex-wrap:wrap;justify-content:center;gap:10px !important;}
     .arc-col{min-width:100px;flex:0 0 calc(33% - 8px);}
     .arc-circle{width:56px !important;height:56px !important;min-width:56px !important;min-height:56px !important;}
@@ -333,6 +333,25 @@
     .bridge-note{font-size:12px !important;}
     .umod-name{font-size:12px !important;}
     .umod-code{font-size:10px !important;}
+    /* Horizontal cascade mobile */
+    .hz-cycle{flex-direction:column !important;align-items:flex-start !important;gap:8px !important;}
+    .hz-cycle-top{flex-direction:row !important;gap:8px !important;min-width:unset !important;}
+    .hz-cards-row{flex-wrap:wrap !important;gap:8px !important;}
+    .hz-inline-row{padding-left:0 !important;flex-direction:column !important;align-items:flex-start !important;gap:10px !important;}
+    .hz-inline-row .hz-cycle-top{position:relative !important;left:auto !important;top:auto !important;bottom:auto !important;width:auto !important;flex-direction:row !important;gap:8px !important;}
+    .hz-inline-row .dept-grayed{flex-wrap:wrap !important;}
+    .hz-inline-row .unit-section{flex-wrap:wrap !important;}
+    .hzc-name{font-size:14px !important;}
+    .hzc-code{font-size:12px !important;}
+    /* Inline track rows mobile */
+    .inline-track-row{flex-direction:column !important;margin-left:0 !important;gap:8px !important;}
+    .inline-track-row .dept-grayed{flex-direction:column !important;}
+    .inline-track-row .unit-section{flex-direction:column !important;}
+    .inline-track-row .mod-card-full{width:100% !important;min-width:unset !important;max-width:100% !important;}
+    /* Track inline mobile */
+    .track-inline{flex-direction:column !important;align-items:flex-start !important;gap:8px !important;}
+    /* Guide page mobile */
+    .pillar-header-bar .pillar-bar-title{font-size:18px !important;}
   }
   @media(max-width:480px){
     .headline{font-size:28px !important;}
