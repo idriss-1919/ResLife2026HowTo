@@ -119,22 +119,22 @@
 
   /* Pillar layout */
   .pillar-single{max-width:980px;margin:0 auto;}
-  .pillar-header-bar{border-radius:14px;padding:20px 28px;margin-bottom:20px;display:flex;align-items:center;gap:20px;}
+  .pillar-header-bar{border-radius:14px;padding:0 28px;margin-bottom:20px;display:flex;align-items:center;gap:14px;height:60px;}
   .pillar-header-bar.w-bar{background:var(--welcome-blue);}
   .pillar-header-bar.c-bar{background:var(--connect-pink);}
   .pillar-header-bar.r-bar{background:var(--respond-yellow);}
-  .pillar-icon{line-height:1;color:#fff;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .pi-sq{width:20px;height:20px;background:#fff;border-radius:2px;}
-  .pi-ci{width:20px;height:20px;background:#fff;border-radius:50%;}
-  .pi-tr{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:20px solid #fff;}
+  .pillar-icon{line-height:1;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:center;}
+  .pi-sq{width:22px;height:22px;background:#fff;border-radius:2px;}
+  .pi-ci{width:22px;height:22px;background:#fff;border-radius:50%;}
+  .pi-tr{width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:22px solid #fff;}
   .r-bar .pi-tr{border-bottom-color:var(--charcoal);}
   .r-bar .pillar-icon{color:var(--charcoal);}
-  .pillar-bar-title{font-size:24px;font-weight:700;color:#fff;}
+  .pillar-bar-title{font-size:22px;font-weight:700;color:#fff;line-height:60px;margin-top:5px;}
   .pillar-bar-sub{font-size:12px;font-weight:400;color:rgba(255,255,255,0.75);margin-top:3px;}
   .r-bar .pillar-bar-title{color:var(--charcoal);}
   .r-bar .pillar-bar-sub{color:rgba(28,28,28,0.6);}
-  .pillar-stats{display:flex;gap:20px;margin-left:auto;text-align:center;}
-  .ps-num{font-size:22px;font-weight:700;color:#fff;line-height:1;}
+  .pillar-stats{display:flex;gap:20px;margin-left:auto;text-align:center;align-self:center;}
+  .ps-num{font-size:20px;font-weight:700;color:#fff;line-height:1;}
   .ps-lbl{font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:2px;}
   .r-bar .ps-num{color:var(--charcoal);}
   .r-bar .ps-lbl{color:rgba(28,28,28,0.5);}
@@ -306,7 +306,7 @@
     .o-col{margin-bottom:8px;}
     .unit-row{gap:6px;}
     .unit-row>.unit-label{display:flex !important;flex-direction:row;gap:8px;padding:8px 12px;}
-    .pillar-header-bar{flex-direction:column;padding:16px 18px;gap:12px;text-align:center;}
+    .pillar-header-bar{flex-direction:column;padding:16px 18px;gap:12px;text-align:center;height:auto;}
     .pillar-stats{margin-left:0;gap:20px;}
     .mod-cards-row{flex-wrap:wrap;margin-left:0 !important;}
     .mod-card-full{width:100% !important;min-width:unset !important;max-width:100% !important;min-height:80px !important;}
@@ -430,17 +430,17 @@
       All training is organized around three core areas called <strong>pillars</strong>. These three pillars represent <em>what ResLife does</em> at its core.
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div class="pillar-header-bar w-bar" style="margin-bottom:0;flex-direction:column;text-align:center;padding:24px 16px;">
+      <div class="pillar-header-bar w-bar" style="margin-bottom:0;flex-direction:column;text-align:center;padding:24px 16px;height:auto;">
         <div class="pillar-icon" style="margin:0 auto;"><span class="pi-sq"></span></div>
-        <div><div class="pillar-bar-title" style="font-size:18px;">ResLife Welcomes</div><div class="pillar-bar-sub" style="font-size:14px;font-weight:500;opacity:0.9;margin-top:6px;">Organizational Excellence</div><div class="pillar-bar-sub" style="font-size:11px;margin-top:2px;">Where Belonging Begins</div></div>
+        <div><div class="pillar-bar-title" style="font-size:18px;line-height:1;margin-top:0;">ResLife Welcomes</div><div class="pillar-bar-sub" style="font-size:14px;font-weight:500;opacity:0.9;margin-top:6px;">Organizational Excellence</div><div class="pillar-bar-sub" style="font-size:11px;margin-top:2px;">Where Belonging Begins</div></div>
       </div>
-      <div class="pillar-header-bar c-bar" style="margin-bottom:0;flex-direction:column;text-align:center;padding:24px 16px;">
+      <div class="pillar-header-bar c-bar" style="margin-bottom:0;flex-direction:column;text-align:center;padding:24px 16px;height:auto;">
         <div class="pillar-icon" style="margin:0 auto;"><span class="pi-ci"></span></div>
-        <div><div class="pillar-bar-title" style="font-size:18px;">ResLife Connects</div><div class="pillar-bar-sub" style="font-size:14px;font-weight:500;opacity:0.9;margin-top:6px;">Community Excellence</div><div class="pillar-bar-sub" style="font-size:11px;margin-top:2px;">How Belonging Deepens</div></div>
+        <div><div class="pillar-bar-title" style="font-size:18px;line-height:1;margin-top:0;">ResLife Connects</div><div class="pillar-bar-sub" style="font-size:14px;font-weight:500;opacity:0.9;margin-top:6px;">Community Excellence</div><div class="pillar-bar-sub" style="font-size:11px;margin-top:2px;">How Belonging Deepens</div></div>
       </div>
-      <div class="pillar-header-bar r-bar" style="margin-bottom:0;flex-direction:column;text-align:center;padding:24px 16px;">
+      <div class="pillar-header-bar r-bar" style="margin-bottom:0;flex-direction:column;text-align:center;padding:24px 16px;height:auto;">
         <div class="pillar-icon" style="margin:0 auto;"><span class="pi-tr"></span></div>
-        <div><div class="pillar-bar-title" style="font-size:18px;">ResLife Responds</div><div class="pillar-bar-sub" style="font-size:14px;font-weight:500;opacity:0.9;margin-top:6px;">Support Excellence</div><div class="pillar-bar-sub" style="font-size:11px;margin-top:2px;">How Belonging is Sustained</div></div>
+        <div><div class="pillar-bar-title" style="font-size:18px;line-height:1;margin-top:0;">ResLife Responds</div><div class="pillar-bar-sub" style="font-size:14px;font-weight:500;opacity:0.9;margin-top:6px;">Support Excellence</div><div class="pillar-bar-sub" style="font-size:11px;margin-top:2px;">How Belonging is Sustained</div></div>
       </div>
     </div>
   </div>
@@ -685,7 +685,7 @@
   </div>
 </div>
 <div class="tier-header" style="margin-top:48px;margin-bottom:20px;">
-  <div class="tier-header-line"></div><div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training</span></div><div class="tier-header-line"></div>
+  <div class="tier-header-line"></div><div class="tier-header-label"><span class="tier-badge t2">Unit Training</span></div><div class="tier-header-line"></div>
 </div>
 <div class="t2-wrapper">
   <div class="col-headers" style="margin-bottom:14px;">
@@ -770,7 +770,7 @@
 <div class="pillar-single">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">ResLife Welcomes</div><div class="pillar-bar-sub">Department Training</div></div>
+    <div class="pillar-bar-title">ResLife Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">2</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">2</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">25</div><div class="ps-lbl">Operations</div></div></div>
   </div>
   
@@ -795,11 +795,10 @@
     </div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; ResLife Connects</div><div class="dept-pillar-divider-line"></div></div>
 <div class="pillar-single">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">ResLife Connects</div><div class="pillar-bar-sub">Department Training</div></div>
+    <div class="pillar-bar-title">ResLife Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">2</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">2</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">8</div><div class="ps-lbl">Operations</div></div></div>
   </div>
   
@@ -824,11 +823,10 @@
     </div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; ResLife Responds</div><div class="dept-pillar-divider-line"></div></div>
 <div class="pillar-single">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">ResLife Responds</div><div class="pillar-bar-sub">Department Training</div></div>
+    <div class="pillar-bar-title">ResLife Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">2</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">2</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">12</div><div class="ps-lbl">Operations</div></div></div>
   </div>
   
@@ -863,14 +861,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; AFYE</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; AFYE</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">AFYE Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">AFYE Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -905,12 +903,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-AFYE 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; AFYE Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">AFYE Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">AFYE Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -945,12 +942,11 @@
     <div class="u-cap-card u-cap-c"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Engagement Planning Lab</div><div class="u-cap-meta">C-AFYE 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; AFYE Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">AFYE Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">AFYE Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -994,14 +990,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; CDT</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; CDT</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">CDT Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">CDT Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1036,12 +1032,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-CDT 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; CDT Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">CDT Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">CDT Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1076,12 +1071,11 @@
     <div class="no-cap-notice">No Unit Capstone</div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; CDT Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">CDT Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">CDT Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1125,14 +1119,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; CS</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; CS</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">CS Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">CS Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1167,12 +1161,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-CS 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; CS Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">CS Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">CS Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1207,12 +1200,11 @@
     <div class="no-cap-notice">No Unit Capstone</div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; CS Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">CS Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">CS Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1256,14 +1248,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; DEV</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; DEV</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">DEV Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">DEV Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1298,12 +1290,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-DEV 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; DEV Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">DEV Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">DEV Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1338,12 +1329,11 @@
     <div class="u-cap-card u-cap-c"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Engagement Planning Lab</div><div class="u-cap-meta">C-DEV 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; DEV Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">DEV Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">DEV Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1387,14 +1377,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; FIN</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; FIN</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">FIN Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">FIN Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1429,12 +1419,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-FIN 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; FIN Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">FIN Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">FIN Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1469,12 +1458,11 @@
     <div class="no-cap-notice">No Unit Capstone</div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; FIN Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">FIN Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">FIN Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1518,14 +1506,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; HR</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; HR</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">HR Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">HR Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1560,12 +1548,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-HR 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; HR Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">HR Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">HR Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1600,12 +1587,11 @@
     <div class="no-cap-notice">No Unit Capstone</div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; HR Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">HR Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">HR Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1649,14 +1635,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; LC</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; LC</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">LC Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">LC Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1691,12 +1677,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-LC 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; LC Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">LC Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">LC Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1731,12 +1716,11 @@
     <div class="u-cap-card u-cap-c"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Engagement Planning Lab</div><div class="u-cap-meta">C-LC 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; LC Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">LC Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">LC Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1780,14 +1764,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; LI</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; LI</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">LI Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">LI Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1822,12 +1806,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-LI 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; LI Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">LI Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">LI Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1862,12 +1845,11 @@
     <div class="u-cap-card u-cap-c"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Engagement Planning Lab</div><div class="u-cap-meta">C-LI 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; LI Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">LI Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">LI Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1911,14 +1893,14 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; PEM</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; PEM</span></div>
   <div class="tier-header-line"></div>
 </div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">PEM Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">PEM Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1953,12 +1935,11 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-PEM 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; PEM Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">PEM Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">PEM Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -1993,12 +1974,11 @@
     <div class="u-cap-card u-cap-c"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Engagement Planning Lab</div><div class="u-cap-meta">C-PEM 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; PEM Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">PEM Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">PEM Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -2042,7 +2022,7 @@
 </div>
 <div class="tier-header" style="margin-bottom:24px;">
   <div class="tier-header-line"></div>
-  <div class="tier-header-label"><span class="tier-badge t2">&#127968; Unit Training &middot; RESED</span></div>
+  <div class="tier-header-label"><span class="tier-badge t2">Unit Training &middot; RESED</span></div>
   <div class="tier-header-line"></div>
 </div>
 
@@ -2050,7 +2030,7 @@
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar w-bar">
     <div class="pillar-icon"><span class="pi-sq"></span></div>
-    <div><div class="pillar-bar-title">RESED Welcomes</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">RESED Welcomes</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -2084,13 +2064,12 @@
     <div class="u-cap-card u-cap-w"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Navigating Scenarios</div><div class="u-cap-meta">W-RESED 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9679; RESED Connects</div><div class="dept-pillar-divider-line"></div></div>
 
 <!-- ═══ RESED CONNECTS ═══ -->
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar c-bar">
     <div class="pillar-icon"><span class="pi-ci"></span></div>
-    <div><div class="pillar-bar-title">RESED Connects</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">RESED Connects</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
@@ -2124,13 +2103,12 @@
     <div class="u-cap-card u-cap-c"><div class="u-cap-label-row"><div class="u-cap-label-line"></div><div class="u-cap-label-text">&#10022; Capstone</div><div class="u-cap-label-line"></div></div><div class="u-cap-content"><div class="u-cap-title">CAPSTONE: Engagement Planning Lab</div><div class="u-cap-meta">C-RESED 399 &middot; Live &middot; 90 min</div></div></div>
   </div>
 </div>
-<div class="dept-pillar-divider"><div class="dept-pillar-divider-line"></div><div class="dept-pillar-divider-label">&#9650; RESED Responds</div><div class="dept-pillar-divider-line"></div></div>
 
 <!-- ═══ RESED RESPONDS ═══ -->
 <div class="pillar-single" style="margin-bottom:0;">
   <div class="pillar-header-bar r-bar">
     <div class="pillar-icon"><span class="pi-tr"></span></div>
-    <div><div class="pillar-bar-title">RESED Responds</div><div class="pillar-bar-sub">Unit Training</div></div>
+    <div class="pillar-bar-title">RESED Responds</div>
     <div class="pillar-stats"><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Philosophy</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Roles</div></div><div class="pillar-stat"><div class="ps-num">1</div><div class="ps-lbl">Capstone</div></div></div>
   </div>
   <div class="track-section">
