@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training Overview · UCLA ResLife 2026</title>
+<style>
+@font-face{font-family:'Karbon';src:url('file:///Users/injike/Downloads/Claude_Projects/Karbon-Bold.otf') format('opentype');font-weight:700 900;font-style:normal}
+@font-face{font-family:'Karbon';src:url('file:///Users/injike/Downloads/Claude_Projects/Karbon-Medium.otf') format('opentype');font-weight:300 600;font-style:normal}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Karbon','Trebuchet MS',system-ui,sans-serif;background:#f5f6f8;color:#1C1C1C;-webkit-font-smoothing:antialiased}
+:root{
+  --charcoal:#1C1C1C;--white:#ffffff;--text:#1C1C1C;--muted:#6b7a8d;
+  --border:rgba(0,0,0,0.09);
+  --welcome-blue:#2774AE;--connect-pink:#FF00A5;--respond-yellow:#FFD100;--respond-dark:#7a5800;
+  --section-gap:72px;
+}
+
+/* ── NAV ── */
+.sticky-nav{position:sticky;top:0;z-index:100;background:var(--charcoal);display:flex;align-items:center;gap:0;padding:0 32px;height:52px;border-bottom:2px solid rgba(255,255,255,0.06)}
+.nav-logo{font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-right:28px}
+.nav-tab{font-size:13px;font-weight:700;color:#fff;padding:0 18px;height:52px;display:inline-flex;align-items:center;border-bottom:3px solid #fff;letter-spacing:0.5px;text-decoration:none}
+.nav-tab.inactive{color:rgba(255,255,255,0.45);border-bottom-color:transparent}
+.nav-tab.inactive:hover{color:rgba(255,255,255,0.7)}
+
+/* ── HERO ── */
+.page-header{text-align:center;padding:60px 32px 44px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.headline{font-size:44px;font-weight:300;color:var(--charcoal);line-height:1.12;margin-bottom:14px}
+.headline b{font-weight:700}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.6;max-width:580px;margin:0 auto}
+
+/* ── CONTENT AREA ── */
+.content-area{max-width:900px;margin:0 auto;padding:0 32px 80px}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{display:flex;align-items:center;gap:18px;margin:var(--section-gap) 0 48px}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+/* ─────────────────────────────────────────
+   SECTION 1 · TRAINING ARCHITECTURE
+───────────────────────────────────────── */
+
+/* Tagline callout */
+.arch-callout{background:var(--charcoal);color:#fff;border-radius:14px;padding:28px 36px;margin-bottom:40px;text-align:center}
+.arch-callout-quote{font-size:20px;font-weight:300;line-height:1.5;font-style:italic;color:rgba(255,255,255,0.88)}
+.arch-callout-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-top:10px;letter-spacing:0.3px}
+
+/* Three pillars */
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.pillar-card{border-radius:14px;padding:24px 20px;position:relative;overflow:hidden}
+.pillar-card.w{background:var(--welcome-blue)}
+.pillar-card.c{background:var(--connect-pink)}
+.pillar-card.r{background:var(--respond-yellow)}
+.pc-icon{font-size:22px;margin-bottom:12px;display:block}
+.pc-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px}
+.pillar-card.r .pc-label{color:rgba(0,0,0,0.4)}
+.pc-name{font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.2}
+.pillar-card.r .pc-name{color:var(--charcoal)}
+.pc-tagline{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;font-style:italic}
+.pillar-card.r .pc-tagline{color:rgba(0,0,0,0.5)}
+.pc-badge{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-top:12px;display:block}
+.pillar-card.r .pc-badge{color:rgba(0,0,0,0.3)}
+
+/* PRO table */
+.pro-table-wrap{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:36px}
+.pro-table-head{background:var(--charcoal);padding:14px 24px;display:flex;gap:12px;align-items:center}
+.pro-table-head-title{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.pro-row{display:grid;grid-template-columns:48px 1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
+.pro-row:last-child{border-bottom:none}
+.pro-cell{padding:16px 20px;font-size:14px;color:var(--text);line-height:1.4}
+.pro-cell:first-child{display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;background:#f9f9fb;border-right:1px solid var(--border)}
+.pro-cell-num{font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--muted);display:block;margin-bottom:3px}
+.pro-cell-step{font-size:15px;font-weight:700;color:var(--charcoal)}
+.pro-cell-q{font-size:13px;color:var(--muted);font-style:italic;margin-top:3px}
+.pro-cell-focus{font-size:13px;color:var(--text)}
+
+/* Phase blocks */
+.phases-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px}
+.phase-block{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 22px}
+.phase-num{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.phase-title{font-size:18px;font-weight:700;color:var(--charcoal);margin-bottom:10px}
+.phase-body{font-size:13px;color:var(--muted);line-height:1.65}
+.arch-footer-quote{text-align:center;font-size:14px;color:var(--muted);font-style:italic;margin-top:28px;padding:0 20px;line-height:1.6}
+
+/* ─────────────────────────────────────────
+   SECTION 2 · LED METHOD
+───────────────────────────────────────── */
+.led-intro{font-size:16px;color:var(--muted);line-height:1.65;max-width:680px;margin:0 auto 36px;text-align:center}
+
+.led-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px}
+.led-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px 22px;position:relative}
+.led-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:14px 14px 0 0}
+.led-card.learn::before{background:var(--welcome-blue)}
+.led-card.engage::before{background:var(--connect-pink)}
+.led-card.deepen::before{background:var(--respond-yellow)}
+.led-letter{font-size:36px;font-weight:700;margin-bottom:8px;line-height:1}
+.led-card.learn .led-letter{color:var(--welcome-blue)}
+.led-card.engage .led-letter{color:var(--connect-pink)}
+.led-card.deepen .led-letter{color:var(--respond-dark)}
+.led-phase{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.led-title{font-size:17px;font-weight:700;color:var(--charcoal);margin-bottom:6px}
+.led-goal{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.led-timing{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--muted);background:#f5f6f8;border-radius:5px;padding:3px 9px;margin-bottom:14px}
+.led-list{list-style:none;padding:0}
+.led-list li{font-size:12px;color:var(--text);line-height:1.55;padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start}
+.led-list li:last-child{border-bottom:none}
+.led-list li::before{content:'→';color:var(--muted);flex-shrink:0;margin-top:1px}
+
+.led-why{background:var(--charcoal);border-radius:14px;padding:28px 32px}
+.led-why-title{font-size:15px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+.led-why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.led-why-item{}
+.led-why-label{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px}
+.led-why-text{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6}
+
+/* ─────────────────────────────────────────
+   SECTION 3 · PILLAR GUIDE
+───────────────────────────────────────── */
+.guide-intro{max-width:680px;margin:0 auto 48px;text-align:center;font-size:16px;color:var(--muted);line-height:1.65}
+
+.guide-pillar{margin-bottom:52px}
+.guide-pillar-bar{border-radius:12px;padding:22px 28px;margin-bottom:24px}
+.guide-pillar-bar.w-bar{background:var(--welcome-blue)}
+.guide-pillar-bar.c-bar{background:var(--connect-pink)}
+.guide-pillar-bar.r-bar{background:var(--respond-yellow)}
+.guide-pillar-title{font-size:26px;font-weight:700;color:#fff;margin-bottom:7px}
+.guide-pillar-bar.r-bar .guide-pillar-title{color:var(--charcoal)}
+.guide-pillar-intent{font-size:15px;color:rgba(255,255,255,0.88);line-height:1.55;font-weight:400}
+.guide-pillar-bar.r-bar .guide-pillar-intent{color:rgba(0,0,0,0.58)}
+
+.guide-track{margin-bottom:28px}
+.guide-track-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:9px;border-bottom:1.5px solid var(--border)}
+.track-badge{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;border-radius:6px;font-size:13px;font-weight:700;color:#fff;padding:0 10px}
+.tb-w{background:var(--welcome-blue)}
+.tb-c{background:var(--connect-pink)}
+.tb-r{background:var(--respond-yellow);color:var(--charcoal)}
+.guide-track-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+
+.guide-module{display:flex;gap:16px;margin-bottom:10px;padding:14px 16px;background:#fff;border-radius:10px;border:1px solid var(--border);border-left:3px solid transparent}
+.guide-module.mc-w{border-left-color:var(--welcome-blue)}
+.guide-module.mc-c{border-left-color:var(--connect-pink)}
+.guide-module.mc-r{border-left-color:var(--respond-yellow)}
+
+.guide-module-left{flex-shrink:0;width:52px}
+.guide-module-code{font-size:11px;font-weight:700;line-height:1.3;margin-top:2px}
+.mc-w .guide-module-code{color:var(--welcome-blue)}
+.mc-c .guide-module-code{color:var(--connect-pink)}
+.mc-r .guide-module-code{color:var(--respond-dark)}
+
+.guide-module-right{flex:1}
+.guide-module-name{font-size:15px;font-weight:700;color:var(--charcoal);margin-bottom:5px;line-height:1.3}
+.guide-module-intent{font-size:13px;color:var(--muted);line-height:1.6}
+
+.guide-sub-modules{margin-top:12px;padding-top:10px;border-top:1px dashed var(--border)}
+.guide-sub-item{display:flex;gap:10px;margin-bottom:5px;align-items:flex-start}
+.guide-sub-code{font-size:11px;font-weight:700;flex-shrink:0;width:50px;line-height:1.4}
+.mc-w .guide-sub-code{color:var(--welcome-blue)}
+.mc-c .guide-sub-code{color:var(--connect-pink)}
+.mc-r .guide-sub-code{color:var(--respond-dark)}
+.guide-sub-name{font-size:12px;color:var(--text);font-weight:500;line-height:1.5}
+
+@media(max-width:700px){
+  .headline{font-size:30px}
+  .pillars-grid,.led-grid,.phases-grid,.led-why-grid{grid-template-columns:1fr}
+  .pro-row{grid-template-columns:40px 1fr}
+  .pro-cell:nth-child(3),.pro-cell:nth-child(4){display:none}
+  .content-area{padding:0 16px 48px}
+}
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+  <span class="nav-logo">UCLA ResLife</span>
+  <a class="nav-tab" href="#">Training Overview</a>
+  <a class="nav-tab inactive" href="all_architecture_maps.html">Department Training Map</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">UCLA Residential Life &middot; 2026 Summer Training</div>
+  <h1 class="headline">ResLife <b>Training Overview</b></h1>
+  <p class="hero-sub">The architecture, the method, and the modules — everything staff need to understand how we learn, why it's designed the way it is, and what each module does.</p>
+</div>
+
+<div class="content-area">
+
+<!-- ═══════════════════════════════════════
+     SECTION 1 · TRAINING ARCHITECTURE
+════════════════════════════════════════ -->
+<div class="section-divider">
+  <div class="section-divider-line"></div>
+  <div class="section-tag">Part 1 — Training Architecture</div>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="arch-callout">
+  <div class="arch-callout-quote">"It's not just training. It's preparation to lead."</div>
+  <div class="arch-callout-sub">~800 staff members — student, professional, and faculty-in-residence — share one architecture. Roles differ. The foundation doesn't.</div>
+</div>
+
+<div class="pillars-grid">
+  <div class="pillar-card w">
+    <span class="pc-icon">■</span>
+    <div class="pc-label">Pillar 1</div>
+    <div class="pc-name">ResLife Welcomes</div>
+    <div class="pc-tagline">where belonging begins</div>
+    <span class="pc-badge">Organizational Excellence</span>
+  </div>
+  <div class="pillar-card c">
+    <span class="pc-icon">●</span>
+    <div class="pc-label">Pillar 2</div>
+    <div class="pc-name">ResLife Connects</div>
+    <div class="pc-tagline">how belonging deepens</div>
+    <span class="pc-badge">Community Excellence</span>
+  </div>
+  <div class="pillar-card r">
+    <span class="pc-icon">▲</span>
+    <div class="pc-label">Pillar 3</div>
+    <div class="pc-name">ResLife Responds</div>
+    <div class="pc-tagline">how belonging is sustained</div>
+    <span class="pc-badge">Support Excellence</span>
+  </div>
+</div>
+
+<div class="pro-table-wrap">
+  <div class="pro-table-head">
+    <span class="pro-table-head-title">The PRO Progression — how learning moves within each pillar</span>
+  </div>
+  <div class="pro-row">
+    <div class="pro-cell">P</div>
+    <div class="pro-cell">
+      <span class="pro-cell-num">100-LEVEL</span>
+      <div class="pro-cell-step">Philosophy</div>
+      <div class="pro-cell-q"><em>Why does this matter?</em></div>
+    </div>
+    <div class="pro-cell pro-cell-focus">Purpose behind the work. Staff understand the reason before the how.</div>
+    <div class="pro-cell pro-cell-focus" style="color:var(--muted);font-size:12px">Complete before Roles. These modules anchor everything else in meaning.</div>
+  </div>
+  <div class="pro-row">
+    <div class="pro-cell">R</div>
+    <div class="pro-cell">
+      <span class="pro-cell-num">200-LEVEL</span>
+      <div class="pro-cell-step">Roles</div>
+      <div class="pro-cell-q"><em>Who's involved?</em></div>
+    </div>
+    <div class="pro-cell pro-cell-focus">Your place and responsibilities in the work.</div>
+    <div class="pro-cell pro-cell-focus" style="color:var(--muted);font-size:12px">Complete before Operations. Knowing your role shapes how you execute it.</div>
+  </div>
+  <div class="pro-row">
+    <div class="pro-cell">O</div>
+    <div class="pro-cell">
+      <span class="pro-cell-num">300-LEVEL</span>
+      <div class="pro-cell-step">Operations</div>
+      <div class="pro-cell-q"><em>How do I do this?</em></div>
+    </div>
+    <div class="pro-cell pro-cell-focus">Daily execution — protocols, practices, and decision-making in the field.</div>
+    <div class="pro-cell pro-cell-focus" style="color:var(--muted);font-size:12px">The capstone of each pillar. Practice through scenarios in live calibration sessions.</div>
+  </div>
+</div>
+
+<div class="phases-grid">
+  <div class="phase-block">
+    <div class="phase-num">Phase 1</div>
+    <div class="phase-title">Department Training</div>
+    <div class="phase-body">Everyone learns together before specializing. The shared curriculum covers baseline knowledge across all three pillars — same language, same expectations, same approach. This is where the foundation is built.</div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-num">Phase 2</div>
+    <div class="phase-title">Unit Training</div>
+    <div class="phase-body">Each team then builds role-specific knowledge under each pillar, culminating in a capstone (Unit 399) where staff practice decisions through scenarios. Specialization builds on the shared base.</div>
+  </div>
+</div>
+
+<p class="arch-footer-quote">Department training builds the foundation. Unit training builds the rooms. The architecture holds it all together.</p>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 · THE LED METHOD
+════════════════════════════════════════ -->
+<div class="section-divider">
+  <div class="section-divider-line"></div>
+  <div class="section-tag">Part 2 — The LED Method</div>
+  <div class="section-divider-line"></div>
+</div>
+
+<p class="led-intro">Every live training session at ResLife follows the <strong>Learn → Engage → Deepen</strong> approach — three phases that move participants from foundational knowledge to real-world application to expert insight.</p>
+
+<div class="led-grid">
+  <div class="led-card learn">
+    <div class="led-letter">L</div>
+    <div class="led-phase">Phase 1</div>
+    <div class="led-title">Learn</div>
+    <div class="led-goal">Build foundational knowledge so participants arrive prepared.</div>
+    <div class="led-timing">⏰ Completed 24 hrs before session</div>
+    <ul class="led-list">
+      <li>Articles, readings, and key background concepts</li>
+      <li>Pre-recorded videos — lectures, interviews, case studies</li>
+      <li>Real-world scenarios to analyze in advance</li>
+      <li>Reflection questions or quizzes to focus attention</li>
+    </ul>
+  </div>
+  <div class="led-card engage">
+    <div class="led-letter">E</div>
+    <div class="led-phase">Phase 2</div>
+    <div class="led-title">Engage</div>
+    <div class="led-goal">Reinforce foundational knowledge, align understanding, and set the stage for deeper discussion.</div>
+    <div class="led-timing">🗣️ Facilitator-led live session</div>
+    <ul class="led-list">
+      <li>Welcome &amp; quick recap of pre-work key takeaways</li>
+      <li>Deep dive presentation — expand with real-world examples</li>
+      <li>Interactive elements: polls, knowledge checks, small discussions</li>
+      <li>Build on pre-work rather than repeat it</li>
+    </ul>
+  </div>
+  <div class="led-card deepen">
+    <div class="led-letter">D</div>
+    <div class="led-phase">Phase 3</div>
+    <div class="led-title">Deepen</div>
+    <div class="led-goal">Bring in real-world expertise through a guided panel and open Q&amp;A.</div>
+    <div class="led-timing">🎙️ Expert panel + Q&amp;A</div>
+    <ul class="led-list">
+      <li>Facilitator introduces panelists with brief bios and relevance</li>
+      <li>Guided panel discussion — 4–6 pre-prepared questions</li>
+      <li>Open floor: panelists share insights, challenges, best practices</li>
+      <li>Participant Q&amp;A — facilitator holds one backup question</li>
+      <li>Wrap-up: key insights and a challenge to apply learning</li>
+    </ul>
+  </div>
+</div>
+
+<div class="led-why">
+  <div class="led-why-title">Why the LED Method?</div>
+  <div class="led-why-grid">
+    <div class="led-why-item">
+      <div class="led-why-label">Progressive Learning</div>
+      <div class="led-why-text">Builds from foundational knowledge to application to expert insight — each phase unlocks the next.</div>
+    </div>
+    <div class="led-why-item">
+      <div class="led-why-label">Active Engagement</div>
+      <div class="led-why-text">Participants don't just consume — they interact, apply, and ask meaningful questions at each stage.</div>
+    </div>
+    <div class="led-why-item">
+      <div class="led-why-label">Expert-Driven Insights</div>
+      <div class="led-why-text">Real-world application comes from those with lived experience, not just the curriculum.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3 · PILLAR GUIDE
+════════════════════════════════════════ -->
+<div class="section-divider">
+  <div class="section-divider-line"></div>
+  <div class="section-tag">Part 3 — Pillar Guide</div>
+  <div class="section-divider-line"></div>
+</div>
+
+<p class="guide-intro">Every module in our department training is organized under one of three pillars — Welcomes, Connects, and Responds — and follows the PRO progression: Philosophy first, then Roles, then Operations. Here's the intention behind each pillar and every module within it.</p>
+
+<!-- ═══ WELCOMES ═══ -->
+<div class="guide-pillar">
+  <div class="guide-pillar-bar w-bar">
+    <div class="guide-pillar-title">■ ResLife Welcomes</div>
+    <div class="guide-pillar-intent">The Welcomes pillar is about building the foundation — who we are, who does the work, and how we build and sustain the teams that make residential life possible.</div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-w">P</div>
+      <div class="guide-track-label">Philosophy — Why we Welcome</div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 101</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Why ResLife Welcomes?</div>
+        <div class="guide-module-intent">Establishes the philosophical "why" behind the Welcomes pillar: what it means to create a space where students belong from day one.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 102</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">The Organizational Structure</div>
+        <div class="guide-module-intent">Maps how ResLife is organized across the Hill, UAN, and UAS — who sits where, who reports to whom, and how the department functions as a system.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 103</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Knowing Our Students</div>
+        <div class="guide-module-intent">Builds the empirical foundation for all downstream modules by profiling the students staff will serve: demographics, needs, and residential context.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-w">R</div>
+      <div class="guide-track-label">Roles — Who does the work</div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 201</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Who Powers ResLife?</div>
+        <div class="guide-module-intent">Introduces the staffing model across all three tiers and explains how each role contributes to the department's mission.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 202</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Elevating Every Human Interaction</div>
+        <div class="guide-module-intent">Sets the standard for how staff show up in every interaction with residents — the relational quality behind the work.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 203</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Team Dynamics &amp; Development</div>
+        <div class="guide-module-intent">Covers how high-functioning ResLife teams operate, communicate, and grow together across a training cycle.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 204</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Core Staff Competencies</div>
+        <div class="guide-module-intent">The centerpiece of the Roles track. Maps the professional competencies every staff member needs to thrive, delivered as a three-part series covering supervision, emotional intelligence, and dialogue across differences.</div>
+        <div class="guide-sub-modules mc-w">
+          <div class="guide-sub-item"><div class="guide-sub-code mc-w">W 204A</div><div class="guide-sub-name">Supervision + Navigating Your Supervisor Relationship</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-w">W 204B</div><div class="guide-sub-name">Emotional Intelligence</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-w">W 204C</div><div class="guide-sub-name">Dialogue Across Differences</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-w">O</div>
+      <div class="guide-track-label">Operations — How we build and sustain teams</div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 301</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Recruiting &amp; Selecting Staff</div>
+        <div class="guide-module-intent">The process for identifying, attracting, and selecting the right people for ResLife roles.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 302</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Onboarding Staff</div>
+        <div class="guide-module-intent">How new staff are integrated into ResLife culture, systems, and expectations from day one.</div>
+        <div class="guide-sub-modules mc-w">
+          <div class="guide-sub-item"><div class="guide-sub-code mc-w">W 302A</div><div class="guide-sub-name">Tech Resources</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-w">W 302B</div><div class="guide-sub-name">Finance Resources</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 303</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Developing Staff</div>
+        <div class="guide-module-intent">Ongoing professional development practices that help staff grow throughout their tenure.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 304</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Recognizing Staff</div>
+        <div class="guide-module-intent">The philosophy and practice of recognition as a retention and culture tool.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 305</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Assessing Our Impact</div>
+        <div class="guide-module-intent">How teams measure whether their work is actually making a difference across all three pillars.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 306</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Offboarding Staff</div>
+        <div class="guide-module-intent">The process for ending the employment relationship with care, continuity, and institutional memory in mind.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 307</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Move-in as a Welcome Moment</div>
+        <div class="guide-module-intent">Positions move-in not as a logistics event but as the department's highest-stakes welcome experience.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 308</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">True Bruin WELCOME</div>
+        <div class="guide-module-intent">The ResLife-specific welcome framework and how it translates into daily practice for every staff member.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-w">
+      <div class="guide-module-left"><div class="guide-module-code">W 309</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">AI as a Teammate</div>
+        <div class="guide-module-intent">Introduces staff to how AI tools can support their work — from planning to documentation to communication — without replacing the human judgment the role requires.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONNECTS ═══ -->
+<div class="guide-pillar">
+  <div class="guide-pillar-bar c-bar">
+    <div class="guide-pillar-title">● ResLife Connects</div>
+    <div class="guide-pillar-intent">The Connects pillar is about community — how we build meaningful relationships between residents and create environments where connection is the norm, not the exception.</div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-c">P</div>
+      <div class="guide-track-label">Philosophy — Why we Connect</div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 101</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Why ResLife Connects?</div>
+        <div class="guide-module-intent">The philosophical anchor for the entire pillar: why intentional community-building is a professional responsibility, not an extracurricular.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 102</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">ResLife Connects Model</div>
+        <div class="guide-module-intent">Introduces the operational framework for how connection happens: individual, passive, and active engagement working together as a system.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 103</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Inclusive Engagement Design</div>
+        <div class="guide-module-intent">Establishes that all programming and connection must be designed with inclusion at the center — not added on at the end.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-c">R</div>
+      <div class="guide-track-label">Roles — Who engages the community</div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 201</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Who Engages the Community?</div>
+        <div class="guide-module-intent">Clarifies which roles carry engagement responsibilities across the department and how they coordinate to build community at every level.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-c">O</div>
+      <div class="guide-track-label">Operations — How we build community</div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 302</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Individual Connections</div>
+        <div class="guide-module-intent">The one-on-one relational work between staff and residents that forms the foundation of any healthy community.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 303</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Passive Programming</div>
+        <div class="guide-module-intent">How physical environments and passive resources can create conditions for connection without requiring a structured event.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 304</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Active Programming</div>
+        <div class="guide-module-intent">The philosophy and strategy behind intentional programs that bring residents together around shared experiences.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 305</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Identifying the Need</div>
+        <div class="guide-module-intent">How staff diagnose what a community actually needs before designing any response — the listening step that everything else depends on.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 306</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Securing Approvals</div>
+        <div class="guide-module-intent">The process for getting programs approved through proper institutional channels — doing the right things the right way.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 307</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Designing the Experience</div>
+        <div class="guide-module-intent">How to build a program from the ground up: goals, logistics, learning outcomes, and the details that make it actually work.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 308</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Promoting Your Program</div>
+        <div class="guide-module-intent">Reaching the right residents with the right message at the right time so programs actually get attended — not just planned.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 309</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Facilitating Engagement</div>
+        <div class="guide-module-intent">What great facilitation looks like in the room — holding space, managing energy, and adapting in the moment when things shift.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-c">
+      <div class="guide-module-left"><div class="guide-module-code">C 310</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Evaluating and Improving</div>
+        <div class="guide-module-intent">How staff assess what worked, what didn't, and how to build on it — closing the loop so every program makes the next one better.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESPONDS ═══ -->
+<div class="guide-pillar">
+  <div class="guide-pillar-bar r-bar">
+    <div class="guide-pillar-title">▲ ResLife Responds</div>
+    <div class="guide-pillar-intent">The Responds pillar is about safety and duty — equipping staff with the knowledge, frameworks, and protocols to respond to anything that comes up in a residential community.</div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-r">P</div>
+      <div class="guide-track-label">Philosophy — Why we Respond</div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 101</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Why ResLife Responds?</div>
+        <div class="guide-module-intent">Establishes the philosophical and legal context for why duty and incident response are central to the ResLife role — not just an add-on to the job.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 102</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">The BOARDS Method</div>
+        <div class="guide-module-intent">Introduces the department's structured incident response framework — the organizing logic that sits behind every protocol staff will learn.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 103</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Legal Foundations</div>
+        <div class="guide-module-intent">The legal landscape staff must understand — FERPA, mandatory reporting, liability — before they respond to anything involving a resident.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-r">R</div>
+      <div class="guide-track-label">Roles — Who responds</div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 201</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Who Responds to Incidents?</div>
+        <div class="guide-module-intent">Maps the layered duty structure and clarifies which role is responsible at each tier — so no one is guessing when something happens.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 202</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">The Duty Identity</div>
+        <div class="guide-module-intent">Builds the psychological and professional identity of being on duty — what it means to hold that responsibility with care and clarity, not just follow a checklist.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-track">
+    <div class="guide-track-header">
+      <div class="track-badge tb-r">O</div>
+      <div class="guide-track-label">Operations — How we respond</div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 301</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Coverage &amp; Schedule</div>
+        <div class="guide-module-intent">How duty coverage works across the Hill, UAN, and UAS: scheduling, handoffs, and accountability across every area.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 302</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Equipment &amp; Tools</div>
+        <div class="guide-module-intent">What staff carry on duty, how to use it, and the communication protocols that keep everyone coordinated during a response.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 303</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Breathe &amp; Observe</div>
+        <div class="guide-module-intent">The first step in any response: slowing down enough to read a scene accurately before acting — because how you arrive shapes everything that follows.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 304</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Act / Protocols</div>
+        <div class="guide-module-intent">The action step of BOARDS: how staff move from observation to intervention using established protocols for specific incident types.</div>
+        <div class="guide-sub-modules mc-r">
+          <div class="guide-sub-item"><div class="guide-sub-code mc-r">R 304A</div><div class="guide-sub-name">Assisting Bruins in Crisis</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-r">R 304B</div><div class="guide-sub-name">Active Threat</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-r">R 304C</div><div class="guide-sub-name">Mental Health Emergencies &amp; Suicide Prevention</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-r">R 304D</div><div class="guide-sub-name">Emergency Preparedness</div></div>
+          <div class="guide-sub-item"><div class="guide-sub-code mc-r">R 304E</div><div class="guide-sub-name">HEART &amp; Bystander Intervention</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 305</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Refer / Resources</div>
+        <div class="guide-module-intent">How and when to connect residents to the right campus and community resources after an incident — the referral step that closes the care loop.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 306</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Documentation</div>
+        <div class="guide-module-intent">The standards and practice of incident documentation: accurate, timely, and legally sound reporting that protects residents and the institution.</div>
+      </div>
+    </div>
+    <div class="guide-module mc-r">
+      <div class="guide-module-left"><div class="guide-module-code">R 307</div></div>
+      <div class="guide-module-right">
+        <div class="guide-module-name">Synthesize / Aftercare &amp; Follow-Up</div>
+        <div class="guide-module-intent">The final step of BOARDS: closing the loop, debriefing with the resident, and ensuring nothing falls through the cracks after the immediate response is over.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content-area -->
+</body>
+</html>
