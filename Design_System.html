@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ResLife Design System</title>
+<title>UCLA Residential Life Training System</title>
 <style>
 /* ═══════════════════════════════════════
    MINIMALIST TRAINING DESIGN SYSTEM
@@ -586,14 +586,14 @@ body {
 
   <!-- NAV -->
   <nav class="nav">
-    <div class="nav-top"><span class="nav-brand">ResLife Design System</span></div>
+    <div class="nav-top"><span class="nav-brand">UCLA Residential Life Training System</span></div>
     <div class="nav-links">
       <div class="nav-group">
         <a href="#foundations">Foundations</a>
-        <a href="#moments">Moments</a>
         <a href="#principles">Principles</a>
         <a href="#surfaces">Surfaces</a>
         <a href="#type">Type</a>
+        <a href="#moments">Moments</a>
         <a href="#components">Components</a>
       </div>
       <span class="nav-sep">/</span>
@@ -626,6 +626,7 @@ body {
   </div>
 
   <hr class="divider">
+
 
 
 
@@ -763,7 +764,6 @@ body {
             <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="white"/></svg>
             <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="white"/></svg>
           </div>
-          <span style="font-family:var(--display);font-weight:700;color:white;font-size:var(--t-sm);">ResLife</span>
         </div>
         <p class="caption">Primary: white fills on blue. The default mark. Use on dark surfaces, slide covers, video intros, signage.</p>
       </div>
@@ -774,7 +774,6 @@ body {
             <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--ink)"/></svg>
             <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="var(--ink)"/></svg>
           </div>
-          <span style="font-family:var(--display);font-weight:700;color:var(--ink);font-size:var(--t-sm);">ResLife</span>
         </div>
         <p class="caption">Reverse: ink fills on white. Use on light surfaces, print headers, web footers.</p>
       </div>
@@ -789,7 +788,6 @@ body {
             <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="white" stroke-width="1.5"/></svg>
             <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,22 2,22" fill="none" stroke="white" stroke-width="1.5"/></svg>
           </div>
-          <span style="font-family:var(--display);font-weight:700;color:white;font-size:var(--t-sm);">ResLife</span>
         </div>
         <p class="caption">Outline on blue: lighter presence. Use when the filled mark competes with content — watermarks, background elements, swag where subtlety is needed.</p>
       </div>
@@ -800,7 +798,6 @@ body {
             <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
             <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,22 2,22" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
           </div>
-          <span style="font-family:var(--display);font-weight:700;color:var(--ink);font-size:var(--t-sm);">ResLife</span>
         </div>
         <p class="caption">Outline reverse: ink strokes on white. Use for document footers, letterheads, and anywhere the mark should be present but quiet.</p>
       </div>
@@ -1046,6 +1043,7 @@ body {
   <hr class="divider">
 
 
+
   <!-- ═══════════════════════════════════
        01 — PRINCIPLES
        ═══════════════════════════════════ -->
@@ -1076,11 +1074,177 @@ body {
   <hr class="divider">
 
 
+
   <!-- ═══════════════════════════════════
-       02 — MOMENT SYSTEM
+       02 — SURFACES
+       ═══════════════════════════════════ -->
+  <div class="section" id="surfaces">
+    <p class="label-text mb-1">02</p>
+    <h2 class="heading mb-2">Three surfaces</h2>
+    <p class="body-text mb-3">White for content. Gray for the container it sits in. Black for moments of emphasis. No tints, no gradients, no colored panels.</p>
+
+    <div class="grid-3 mb-3">
+      <div>
+        <div class="swatch" style="background: #FFFFFF;"></div>
+        <p class="font-600 text-sm">White</p>
+        <p class="text-xs text-sub mono">#FFFFFF</p>
+        <p class="caption mt-1">Content lives here. Cards, modals, slides, every readable surface.</p>
+      </div>
+      <div>
+        <div class="swatch" style="background: #F4F4F3; border-color: #E8E8E7;"></div>
+        <p class="font-600 text-sm">Gray</p>
+        <p class="text-xs text-sub mono">#F4F4F3</p>
+        <p class="caption mt-1">The container. Page backgrounds, alternating rows, hover fills.</p>
+      </div>
+      <div>
+        <div class="swatch" style="background: #005587; border-color: #005587;"></div>
+        <p class="font-600 text-sm">Deep Blue</p>
+        <p class="text-xs text-sub mono">#005587</p>
+        <p class="caption mt-1">Emphasis. Cover slides, section breaks, locked states. UCLA Blue as the authority surface.</p>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div>
+        <div class="swatch" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#005587;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <p class="text-xs text-sub">Ink on White &mdash; <span class="mono">7.9 : 1</span> AAA</p>
+      </div>
+      <div>
+        <div class="swatch" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#6F6F6F;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <p class="text-xs text-sub">Sub on White &mdash; <span class="mono">5.0 : 1</span> AA</p>
+      </div>
+      <div>
+        <div class="swatch" style="background:#F4F4F3;border-color:#E8E8E7;display:flex;align-items:center;justify-content:center;color:#6F6F6F;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <p class="text-xs text-sub">Sub on Gray &mdash; <span class="mono">4.6 : 1</span> AA</p>
+      </div>
+    </div>
+
+    <p class="label-text mb-2">Dark surface text &mdash; pre-computed for #005587</p>
+    <div class="grid-3">
+      <div>
+        <div class="swatch" style="background:#005587;border-color:#005587;display:flex;align-items:center;justify-content:center;color:#F1F1F1;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <p class="text-xs text-sub">Dark body #F1F1F1 &mdash; <span class="mono">7.0 : 1</span> AAA</p>
+      </div>
+      <div>
+        <div class="swatch" style="background:#005587;border-color:#005587;display:flex;align-items:center;justify-content:center;color:#C4C4C4;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <p class="text-xs text-sub">Dark sub #C4C4C4 &mdash; <span class="mono">4.5 : 1</span> AA</p>
+      </div>
+      <div>
+        <div class="swatch" style="background:#005587;border-color:#005587;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <p class="text-xs text-sub">White on Blue &mdash; <span class="mono">7.9 : 1</span> AAA</p>
+      </div>
+    </div>
+
+    <!-- When to use the dark surface -->
+    <p class="font-600 mb-2 mt-4">When to use the dark surface</p>
+    <p class="caption mb-3">The dark surface (#005587) is the system's loudest tool. It creates gravity, commands attention, and signals importance. That power disappears if overused. Four situations earn it — everything else stays on white or gray.</p>
+
+    <div class="grid-2 mb-3" style="gap:var(--s-4);">
+      <div>
+        <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-3);margin-bottom:var(--s-1);min-height:80px;display:flex;align-items:flex-end;">
+          <p style="font-family:var(--display);font-size:var(--t-lg);font-weight:700;color:white;line-height:1.1;">Philosophy<br>of Welcomes</p>
+        </div>
+        <p class="font-600 text-sm">Opening slides</p>
+        <p class="caption">The first slide of every deck. Dark surface sets the tone and weight of the topic before any content begins. It tells the audience: this matters.</p>
+      </div>
+      <div>
+        <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-3);margin-bottom:var(--s-1);min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center;">
+          <p style="font-family:var(--display);font-size:var(--t-lg);font-weight:700;color:white;line-height:1.15;">Every person should<br>feel expected.</p>
+        </div>
+        <p class="font-600 text-sm">Closing slides</p>
+        <p class="caption">The last slide mirrors the first. Dark surface bookends the deck. End on a feeling, not a fact. The final words should echo after the screen goes dark.</p>
+      </div>
+      <div>
+        <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-3);margin-bottom:var(--s-1);min-height:80px;display:flex;align-items:center;justify-content:center;">
+          <p style="font-family:var(--display);font-size:2.5rem;font-weight:700;color:white;line-height:1;letter-spacing:-0.03em;">87%</p>
+        </div>
+        <p class="font-600 text-sm">Emotional emphasis</p>
+        <p class="caption">A single powerful statistic, a pivotal quote, or a statement that demands the room's full attention. The dark surface says "stop scrolling — absorb this." Max one per deck section.</p>
+      </div>
+      <div>
+        <div style="display:flex;gap:4px;margin-bottom:var(--s-1);">
+          <div style="flex:2;background:var(--gray);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:var(--sub);">content</p></div>
+          <div style="flex:2;background:var(--gray);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:var(--sub);">content</p></div>
+          <div style="flex:1;background:var(--blue);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:white;font-weight:600;">break</p></div>
+          <div style="flex:2;background:var(--gray);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:var(--sub);">content</p></div>
+        </div>
+        <p class="font-600 text-sm">Key transitions</p>
+        <p class="caption">Between major sections of a training module. The dark surface resets the learner's attention — it's a visual breath before the next block of content. Never back-to-back.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>The budget:</strong> A typical 20-slide deck gets 2–3 dark surfaces: cover, one mid-deck emphasis moment, and closing. That's it. If more than 15% of your deck is dark, you've spent the budget. Pull back.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+
+  <!-- ═══════════════════════════════════
+       03 — TYPOGRAPHY
+       ═══════════════════════════════════ -->
+  <div class="section" id="type">
+
+    <p class="label-text mb-1">03</p>
+    <h2 class="heading mb-2">One typeface, four roles</h2>
+    <p class="body-text mb-3">Karbon across every surface. Bold for display, Medium for subheads, Regular for body, and letterspaced Regular for labels. No secondary typeface. No serif/sans pairing.</p>
+
+    <!-- Specimen -->
+    <div class="type-specimen">
+      <p class="label-text mb-2">Display &mdash; Karbon Bold 700</p>
+      <p style="font-family:var(--display);font-size:var(--t-xl);font-weight:700;line-height:1.1;letter-spacing:-0.02em;">The only job of a<br>slide is to teach.</p>
+    </div>
+
+    <div class="type-specimen">
+      <p class="label-text mb-2">Heading &mdash; Karbon Bold 700</p>
+      <p style="font-family:var(--display);font-size:var(--t-lg);font-weight:700;line-height:1.25;">Section heading at 22 pixels</p>
+    </div>
+
+    <div class="type-specimen">
+      <p class="label-text mb-2">Body &mdash; Karbon Regular 400</p>
+      <p style="font-size:var(--t-base);font-weight:400;line-height:1.65;color:var(--sub);max-width:580px;">Body text at 16px. The BOARDD method gives staff a clear framework: Breathe, Observe, Act, Refer, Document, Debrief. Each step builds on the last and should be practiced until it becomes instinct. This is the voice of the system — calm, clear, unhurried.</p>
+    </div>
+
+    <div class="type-specimen">
+      <p class="label-text mb-2">Caption &mdash; Karbon Regular 400</p>
+      <p class="caption">Module W-101 &middot; Philosophy &middot; Welcomes &middot; Complete &middot; 14px secondary information</p>
+    </div>
+
+    <div class="type-specimen">
+      <p class="label-text mb-2">Label &mdash; Karbon Medium 500, letterspaced</p>
+      <p class="label-text" style="color:var(--sub);">MODULE CODE &nbsp;&middot;&nbsp; STATUS: COMPLETE &nbsp;&middot;&nbsp; TRACK: PHILOSOPHY</p>
+    </div>
+
+    <!-- Scale table -->
+    <table class="table mt-4">
+      <thead>
+        <tr><th>Token</th><th>Size</th><th>Weight</th><th>Role</th><th>Line height</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code class="mono text-xs">t-xs</code></td><td>12px</td><td>500</td><td>Labels, eyebrows, mono tags</td><td>1.4</td></tr>
+        <tr><td><code class="mono text-xs">t-sm</code></td><td>14px</td><td>400</td><td>Captions, card body, table cells</td><td>1.5</td></tr>
+        <tr><td><code class="mono text-xs">t-base</code></td><td>16px</td><td>400</td><td>Body copy, form inputs</td><td>1.65</td></tr>
+        <tr><td><code class="mono text-xs">t-lg</code></td><td>22px</td><td>700</td><td>Section headings</td><td>1.25</td></tr>
+        <tr><td><code class="mono text-xs">t-xl</code></td><td>40px</td><td>700</td><td>Display, cover slides, H1</td><td>1.1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note mt-4">
+      Five sizes. The gap between each step is perceptible at a glance. If you can't tell two sizes apart without measuring, you don't need both.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+
+  <!-- ═══════════════════════════════════
+       04 — MOMENT SYSTEM
        ═══════════════════════════════════ -->
   <div class="section" id="moments">
-    <p class="label-text mb-1">02</p>
+    <p class="label-text mb-1">04</p>
     <h2 class="heading mb-2">The moment system</h2>
     <p class="body-text mb-3">Not everything should feel the same. The system defines three design modes — called <strong>moments</strong> — that control when color, contrast, and scale enter the experience. This is the single most important concept in the system. If your team learns nothing else, they need to learn this.</p>
 
@@ -1603,168 +1767,6 @@ body {
   <hr class="divider">
 
 
-  <!-- ═══════════════════════════════════
-       03 — SURFACES
-       ═══════════════════════════════════ -->
-  <div class="section" id="surfaces">
-    <p class="label-text mb-1">03</p>
-    <h2 class="heading mb-2">Three surfaces</h2>
-    <p class="body-text mb-3">White for content. Gray for the container it sits in. Black for moments of emphasis. No tints, no gradients, no colored panels.</p>
-
-    <div class="grid-3 mb-3">
-      <div>
-        <div class="swatch" style="background: #FFFFFF;"></div>
-        <p class="font-600 text-sm">White</p>
-        <p class="text-xs text-sub mono">#FFFFFF</p>
-        <p class="caption mt-1">Content lives here. Cards, modals, slides, every readable surface.</p>
-      </div>
-      <div>
-        <div class="swatch" style="background: #F4F4F3; border-color: #E8E8E7;"></div>
-        <p class="font-600 text-sm">Gray</p>
-        <p class="text-xs text-sub mono">#F4F4F3</p>
-        <p class="caption mt-1">The container. Page backgrounds, alternating rows, hover fills.</p>
-      </div>
-      <div>
-        <div class="swatch" style="background: #005587; border-color: #005587;"></div>
-        <p class="font-600 text-sm">Deep Blue</p>
-        <p class="text-xs text-sub mono">#005587</p>
-        <p class="caption mt-1">Emphasis. Cover slides, section breaks, locked states. UCLA Blue as the authority surface.</p>
-      </div>
-    </div>
-
-    <div class="grid-3">
-      <div>
-        <div class="swatch" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#005587;font-weight:700;font-size:var(--t-sm);">Aa</div>
-        <p class="text-xs text-sub">Ink on White &mdash; <span class="mono">7.9 : 1</span> AAA</p>
-      </div>
-      <div>
-        <div class="swatch" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#6F6F6F;font-weight:700;font-size:var(--t-sm);">Aa</div>
-        <p class="text-xs text-sub">Sub on White &mdash; <span class="mono">5.0 : 1</span> AA</p>
-      </div>
-      <div>
-        <div class="swatch" style="background:#F4F4F3;border-color:#E8E8E7;display:flex;align-items:center;justify-content:center;color:#6F6F6F;font-weight:700;font-size:var(--t-sm);">Aa</div>
-        <p class="text-xs text-sub">Sub on Gray &mdash; <span class="mono">4.6 : 1</span> AA</p>
-      </div>
-    </div>
-
-    <p class="label-text mb-2">Dark surface text &mdash; pre-computed for #005587</p>
-    <div class="grid-3">
-      <div>
-        <div class="swatch" style="background:#005587;border-color:#005587;display:flex;align-items:center;justify-content:center;color:#F1F1F1;font-weight:700;font-size:var(--t-sm);">Aa</div>
-        <p class="text-xs text-sub">Dark body #F1F1F1 &mdash; <span class="mono">7.0 : 1</span> AAA</p>
-      </div>
-      <div>
-        <div class="swatch" style="background:#005587;border-color:#005587;display:flex;align-items:center;justify-content:center;color:#C4C4C4;font-weight:700;font-size:var(--t-sm);">Aa</div>
-        <p class="text-xs text-sub">Dark sub #C4C4C4 &mdash; <span class="mono">4.5 : 1</span> AA</p>
-      </div>
-      <div>
-        <div class="swatch" style="background:#005587;border-color:#005587;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-weight:700;font-size:var(--t-sm);">Aa</div>
-        <p class="text-xs text-sub">White on Blue &mdash; <span class="mono">7.9 : 1</span> AAA</p>
-      </div>
-    </div>
-
-    <!-- When to use the dark surface -->
-    <p class="font-600 mb-2 mt-4">When to use the dark surface</p>
-    <p class="caption mb-3">The dark surface (#005587) is the system's loudest tool. It creates gravity, commands attention, and signals importance. That power disappears if overused. Four situations earn it — everything else stays on white or gray.</p>
-
-    <div class="grid-2 mb-3" style="gap:var(--s-4);">
-      <div>
-        <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-3);margin-bottom:var(--s-1);min-height:80px;display:flex;align-items:flex-end;">
-          <p style="font-family:var(--display);font-size:var(--t-lg);font-weight:700;color:white;line-height:1.1;">Philosophy<br>of Welcomes</p>
-        </div>
-        <p class="font-600 text-sm">Opening slides</p>
-        <p class="caption">The first slide of every deck. Dark surface sets the tone and weight of the topic before any content begins. It tells the audience: this matters.</p>
-      </div>
-      <div>
-        <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-3);margin-bottom:var(--s-1);min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center;">
-          <p style="font-family:var(--display);font-size:var(--t-lg);font-weight:700;color:white;line-height:1.15;">Every person should<br>feel expected.</p>
-        </div>
-        <p class="font-600 text-sm">Closing slides</p>
-        <p class="caption">The last slide mirrors the first. Dark surface bookends the deck. End on a feeling, not a fact. The final words should echo after the screen goes dark.</p>
-      </div>
-      <div>
-        <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-3);margin-bottom:var(--s-1);min-height:80px;display:flex;align-items:center;justify-content:center;">
-          <p style="font-family:var(--display);font-size:2.5rem;font-weight:700;color:white;line-height:1;letter-spacing:-0.03em;">87%</p>
-        </div>
-        <p class="font-600 text-sm">Emotional emphasis</p>
-        <p class="caption">A single powerful statistic, a pivotal quote, or a statement that demands the room's full attention. The dark surface says "stop scrolling — absorb this." Max one per deck section.</p>
-      </div>
-      <div>
-        <div style="display:flex;gap:4px;margin-bottom:var(--s-1);">
-          <div style="flex:2;background:var(--gray);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:var(--sub);">content</p></div>
-          <div style="flex:2;background:var(--gray);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:var(--sub);">content</p></div>
-          <div style="flex:1;background:var(--blue);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:white;font-weight:600;">break</p></div>
-          <div style="flex:2;background:var(--gray);border-radius:var(--r);padding:var(--s-1);display:flex;align-items:center;justify-content:center;"><p style="font-size:9px;color:var(--sub);">content</p></div>
-        </div>
-        <p class="font-600 text-sm">Key transitions</p>
-        <p class="caption">Between major sections of a training module. The dark surface resets the learner's attention — it's a visual breath before the next block of content. Never back-to-back.</p>
-      </div>
-    </div>
-
-    <div class="note">
-      <strong>The budget:</strong> A typical 20-slide deck gets 2–3 dark surfaces: cover, one mid-deck emphasis moment, and closing. That's it. If more than 15% of your deck is dark, you've spent the budget. Pull back.
-    </div>
-  </div>
-
-  <hr class="divider">
-
-
-  <!-- ═══════════════════════════════════
-       04 — TYPOGRAPHY
-       ═══════════════════════════════════ -->
-  <div class="section" id="type">
-
-    <p class="label-text mb-1">04</p>
-    <h2 class="heading mb-2">One typeface, four roles</h2>
-    <p class="body-text mb-3">Karbon across every surface. Bold for display, Medium for subheads, Regular for body, and letterspaced Regular for labels. No secondary typeface. No serif/sans pairing.</p>
-
-    <!-- Specimen -->
-    <div class="type-specimen">
-      <p class="label-text mb-2">Display &mdash; Karbon Bold 700</p>
-      <p style="font-family:var(--display);font-size:var(--t-xl);font-weight:700;line-height:1.1;letter-spacing:-0.02em;">The only job of a<br>slide is to teach.</p>
-    </div>
-
-    <div class="type-specimen">
-      <p class="label-text mb-2">Heading &mdash; Karbon Bold 700</p>
-      <p style="font-family:var(--display);font-size:var(--t-lg);font-weight:700;line-height:1.25;">Section heading at 22 pixels</p>
-    </div>
-
-    <div class="type-specimen">
-      <p class="label-text mb-2">Body &mdash; Karbon Regular 400</p>
-      <p style="font-size:var(--t-base);font-weight:400;line-height:1.65;color:var(--sub);max-width:580px;">Body text at 16px. The BOARDD method gives staff a clear framework: Breathe, Observe, Act, Refer, Document, Debrief. Each step builds on the last and should be practiced until it becomes instinct. This is the voice of the system — calm, clear, unhurried.</p>
-    </div>
-
-    <div class="type-specimen">
-      <p class="label-text mb-2">Caption &mdash; Karbon Regular 400</p>
-      <p class="caption">Module W-101 &middot; Philosophy &middot; Welcomes &middot; Complete &middot; 14px secondary information</p>
-    </div>
-
-    <div class="type-specimen">
-      <p class="label-text mb-2">Label &mdash; Karbon Medium 500, letterspaced</p>
-      <p class="label-text" style="color:var(--sub);">MODULE CODE &nbsp;&middot;&nbsp; STATUS: COMPLETE &nbsp;&middot;&nbsp; TRACK: PHILOSOPHY</p>
-    </div>
-
-    <!-- Scale table -->
-    <table class="table mt-4">
-      <thead>
-        <tr><th>Token</th><th>Size</th><th>Weight</th><th>Role</th><th>Line height</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><code class="mono text-xs">t-xs</code></td><td>12px</td><td>500</td><td>Labels, eyebrows, mono tags</td><td>1.4</td></tr>
-        <tr><td><code class="mono text-xs">t-sm</code></td><td>14px</td><td>400</td><td>Captions, card body, table cells</td><td>1.5</td></tr>
-        <tr><td><code class="mono text-xs">t-base</code></td><td>16px</td><td>400</td><td>Body copy, form inputs</td><td>1.65</td></tr>
-        <tr><td><code class="mono text-xs">t-lg</code></td><td>22px</td><td>700</td><td>Section headings</td><td>1.25</td></tr>
-        <tr><td><code class="mono text-xs">t-xl</code></td><td>40px</td><td>700</td><td>Display, cover slides, H1</td><td>1.1</td></tr>
-      </tbody>
-    </table>
-
-    <div class="note mt-4">
-      Five sizes. The gap between each step is perceptible at a glance. If you can't tell two sizes apart without measuring, you don't need both.
-    </div>
-  </div>
-
-  <hr class="divider">
-
 
   <!-- ═══════════════════════════════════
        05 — COMPONENTS
@@ -1865,13 +1867,14 @@ body {
   <hr class="divider">
 
 
+
   <!-- ═══════════════════════════════════
        06 — SLIDES
        ═══════════════════════════════════ -->
   <div class="section" id="slides">
     <p class="label-text mb-1">06</p>
     <h2 class="heading mb-2">The slide system</h2>
-    <p class="body-text mb-3">Eleven slide types. Four structural (Cover, Section Divider, Content, Closing) give the deck its skeleton. Seven secondary types (Quote, Data, Image+Text, Activity, Framework, Process, Reflection) turn information into experience.</p>
+    <p class="body-text mb-3">Thirteen slide types. Four structural (Cover, Section Divider, Content, Closing) give the deck its skeleton. Nine experiential types (Quote, Data, four Image+Text variants, Activity, Framework, Process, Reflection) turn information into experience.</p>
 
     <!-- Slide discipline rules -->
     <div style="background:var(--gray);border-radius:var(--r);padding:var(--s-4);margin-bottom:var(--s-4);">
@@ -2133,6 +2136,47 @@ body {
     </div>
     <div class="note mb-3">Photo on top, text on bottom. Use when the image needs more horizontal breathing room — landscapes, wide-angle room shots, group photos. The horizontal split gives the image cinematic weight.</div>
 
+    <!-- 6c. Image + Text Slide — Full-bleed with overlay -->
+    <p class="label-text mb-2">06c &middot; Image + text slide &mdash; full-bleed with overlay</p>
+    <div class="slide-frame mb-2">
+      <div class="slide-content" style="padding:0;position:relative;">
+        <div style="position:absolute;inset:0;background:var(--gray);display:flex;align-items:center;justify-content:center;">
+          <svg width="80" height="56" viewBox="0 0 80 56" style="opacity:0.15;"><rect x="4" y="4" width="72" height="48" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="24" cy="22" r="8" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,44 24,30 40,38 56,24 72,34" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,85,135,0.85) 0%, rgba(0,85,135,0.4) 40%, transparent 70%);"></div>
+        <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:8%;">
+          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.4em;">W-101 &middot; First Impressions</p>
+          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,1.4rem);font-weight:700;line-height:1.15;color:white;">The space speaks before you do</p>
+          <p style="font-size:clamp(0.4rem,0.75vw,0.6rem);color:rgba(255,255,255,0.8);line-height:1.5;margin-top:0.4em;max-width:60%;">A check-in table that's organized and welcoming says everything about who's behind it.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>UCLA Residential Life</span>
+        <span>W-101 &middot; Philosophy of Welcomes</span>
+      </div>
+    </div>
+    <div class="note mb-3">Full-bleed photo with a gradient overlay anchoring text to the bottom. Use for emotional, immersive moments — a community gathering, a residence hall at golden hour, staff in action. The image sets the mood; the text gives it meaning. Keep text in the bottom 40% so it sits on the darkened gradient.</div>
+
+    <!-- 6d. Image + Text Slide — Caption card -->
+    <p class="label-text mb-2">06d &middot; Image + text slide &mdash; caption card</p>
+    <div class="slide-frame mb-2">
+      <div class="slide-content" style="flex-direction:row;padding:0;">
+        <div style="flex:2;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:100%;">
+          <svg width="56" height="48" viewBox="0 0 56 48" style="opacity:0.2;"><rect x="4" y="4" width="48" height="40" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="20" cy="20" r="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,40 22,28 34,36 44,26 52,32" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
+        </div>
+        <div style="flex:1;background:var(--blue);display:flex;flex-direction:column;justify-content:center;padding:6% 6%;">
+          <p style="font-size:clamp(4px,0.6vw,6px);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark-sub);margin-bottom:0.5em;">What we saw</p>
+          <p style="font-family:var(--display);font-size:clamp(0.5rem,1.4vw,1rem);font-weight:700;line-height:1.2;color:white;">Staff greeting every single resident by name.</p>
+          <p style="font-size:clamp(0.35rem,0.6vw,0.5rem);color:var(--dark-sub);line-height:1.5;margin-top:0.5em;">Sproul Hall &middot; Move-In Day 2025</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>UCLA Residential Life</span>
+        <span>W-101 &middot; Philosophy of Welcomes</span>
+      </div>
+    </div>
+    <div class="note mb-3">Photo takes two-thirds, dark caption panel on the right. Use when you want to spotlight a specific moment with editorial commentary — a "what we saw" or "why this matters" format. The dark panel creates visual weight that anchors the story.</div>
+
     <!-- 7. Activity Prompt Slide -->
     <p class="label-text mb-2">07 &middot; Activity prompt slide &mdash; move from passive to active</p>
     <div class="slide-frame mb-2" style="background:var(--gray);">
@@ -2256,7 +2300,10 @@ body {
         <tr><td class="font-600">03</td><td class="font-600">Content</td><td>White</td><td>Deliver information</td><td>Most of your deck</td></tr>
         <tr><td class="font-600">04</td><td class="font-600">Quote</td><td>White</td><td>Create emotion</td><td>Before or after key points</td></tr>
         <tr><td class="font-600">05</td><td class="font-600">Data / Insight</td><td>White</td><td>Build credibility</td><td>Proving why it matters</td></tr>
-        <tr><td class="font-600">06</td><td class="font-600">Image + Text</td><td>White</td><td>Show, not tell</td><td>Environment, behavior, examples</td></tr>
+        <tr><td class="font-600">06a</td><td class="font-600">Image + Text: Vertical</td><td>White</td><td>Show, not tell</td><td>Environment, behavior, examples</td></tr>
+        <tr><td class="font-600">06b</td><td class="font-600">Image + Text: Horizontal</td><td>White</td><td>Cinematic weight</td><td>Landscapes, wide-angle, groups</td></tr>
+        <tr><td class="font-600">06c</td><td class="font-600">Image + Text: Full-bleed</td><td>Photo</td><td>Immerse</td><td>Emotional, atmospheric moments</td></tr>
+        <tr><td class="font-600">06d</td><td class="font-600">Image + Text: Caption</td><td>Photo + Dark</td><td>Spotlight a moment</td><td>"What we saw" editorial format</td></tr>
         <tr><td class="font-600">07</td><td class="font-600">Activity Prompt</td><td>Gray</td><td>Passive &rarr; active</td><td>After content, before reflection</td></tr>
         <tr><td class="font-600">08</td><td class="font-600">Framework / Model</td><td>White</td><td>Explain a system</td><td>PRO model, pillars, phases</td></tr>
         <tr><td class="font-600">09</td><td class="font-600">Process / Sequence</td><td>White</td><td>Show flow</td><td>Timelines, incident response</td></tr>
@@ -2267,6 +2314,7 @@ body {
   </div>
 
   <hr class="divider">
+
 
 
 
@@ -2353,6 +2401,7 @@ body {
           <div class="poster-content" style="justify-content:center;align-items:center;text-align:center;position:relative;">
             <div style="position:absolute;top:12%;right:10%;width:40px;height:40px;border:1.5px solid var(--connects);border-radius:50%;opacity:0.3;"></div>
             <div style="position:absolute;bottom:18%;left:8%;width:24px;height:24px;border:1.5px solid var(--welcomes);opacity:0.25;transform:rotate(12deg);"></div>
+            <svg style="position:absolute;bottom:10%;right:12%;opacity:0.2;" width="28" height="28" viewBox="0 0 24 24"><polygon points="12,2 22,22 2,22" fill="none" stroke="var(--responds-text)" stroke-width="1.5"/></svg>
             <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,1.3rem);font-weight:700;line-height:1.15;color:var(--ink);">We're<br>better<br>together.</p>
             <p style="font-size:clamp(4px,0.6vw,6px);color:var(--sub);margin-top:0.75em;">@uclares</p>
           </div>
@@ -2378,6 +2427,7 @@ body {
   </div>
 
   <hr class="divider">
+
 
 
   <!-- ═══════════════════════════════════
@@ -2457,6 +2507,7 @@ body {
   </div>
 
   <hr class="divider">
+
 
 
   <!-- ═══════════════════════════════════
@@ -2571,6 +2622,7 @@ body {
   <hr class="divider">
 
 
+
   <!-- ═══════════════════════════════════
        10 — PRINT SYSTEM
        ═══════════════════════════════════ -->
@@ -2663,6 +2715,7 @@ body {
   <hr class="divider">
 
 
+
   <!-- ═══════════════════════════════════
        11 — VIDEO SYSTEM
        ═══════════════════════════════════ -->
@@ -2739,6 +2792,7 @@ body {
   </div>
 
   <hr class="divider">
+
 
 
   <!-- ═══════════════════════════════════
@@ -2986,39 +3040,41 @@ body {
   <hr class="divider">
 
 
+
   <!-- ═══════════════════════════════════
        13 — ENVIRONMENTAL SYSTEM
        ═══════════════════════════════════ -->
   <div class="section" id="environment">
     <p class="label-text mb-1">13</p>
     <h2 class="heading mb-2">Environmental / experience system</h2>
-    <p class="body-text mb-3">Six touchpoints. These are the physical artifacts that make the brand tangible — the things people wear, hold, read, and walk past. Same rules apply: Karbon, ink and sub, white and blue surfaces, no decoration that doesn't earn its place.</p>
+    <p class="body-text mb-3">Twelve touchpoints. These are the physical and digital artifacts that make the brand tangible — the things people wear, hold, read, and walk past. Same rules apply: Karbon, ink and sub, white and blue surfaces, no decoration that doesn't earn its place.</p>
 
     <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Touchpoints</p>
 
     <div class="grid-3 mb-3">
       <!-- Name Badge -->
       <div>
-        <div class="badge-frame" style="aspect-ratio:3.375/2.125;padding:8%;">
+        <div class="badge-frame" style="aspect-ratio:2.5/4.5;padding:8%;">
           <div style="height:100%;display:flex;flex-direction:column;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <p style="font-size:clamp(3px,0.45vw,5px);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--sub);">UCLA Residential Life</p>
-              <div style="width:clamp(8px,1.5vw,16px);height:clamp(3px,0.5vw,6px);background:var(--blue);border-radius:1px;"></div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;">
-              <p style="font-family:var(--display);font-size:clamp(0.7rem,2.2vw,1.5rem);font-weight:700;color:var(--ink);">Sarah</p>
+            <div style="width:100%;height:3px;background:var(--blue);border-radius:1px;margin-top:0.5em;"></div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+              <p style="font-family:var(--display);font-size:clamp(1.2rem,3.5vw,2.4rem);font-weight:700;color:var(--ink);line-height:1.05;">Sarah</p>
+              <p style="font-family:var(--display);font-size:clamp(0.5rem,1.4vw,0.9rem);font-weight:600;color:var(--ink);margin-top:0.15em;">Chen</p>
+              <p style="font-size:clamp(3px,0.5vw,5px);color:var(--sub);margin-top:0.3em;">Resident Assistant</p>
+              <p style="font-size:clamp(2px,0.4vw,4px);color:var(--sub);margin-top:0.15em;">she/her</p>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:flex-end;">
-              <div>
-                <p style="font-size:clamp(3px,0.5vw,5px);font-weight:600;color:var(--ink);">Sarah Chen</p>
-                <p style="font-size:clamp(2px,0.4vw,4px);color:var(--sub);">Assistant Director, RESED</p>
-              </div>
-              <p style="font-size:clamp(2px,0.4vw,4px);color:var(--sub);">she/her</p>
+            <div style="display:flex;justify-content:center;gap:4px;padding-bottom:0.25em;">
+              <svg width="8" height="8" viewBox="0 0 24 24"><rect width="24" height="24" rx="1" fill="var(--ink)" opacity="0.3"/></svg>
+              <svg width="8" height="8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--ink)" opacity="0.3"/></svg>
+              <svg width="8" height="8" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="var(--ink)" opacity="0.3"/></svg>
             </div>
           </div>
         </div>
-        <p class="font-600 text-sm mt-2">Name badge</p>
-        <p class="caption">First name dominant — that's what people read in conversation. Full name and title at bottom. Blue accent bar, not a full header.</p>
+        <p class="font-600 text-sm mt-2">Name badge <span class="caption" style="font-weight:400;">(2.5″W × 4.5″H)</span></p>
+        <p class="caption">Portrait orientation. First name extra-large and centered — readable across a room. Last name directly below, then position title. Blue bar separates brand from identity. Shapes as a subtle footer watermark.</p>
       </div>
 
       <!-- Signage -->
@@ -3077,12 +3133,130 @@ body {
       </div>
     </div>
 
+    <!-- Row 3: Door Tag, Zoom Background, Envelope -->
+    <div class="grid-3 mb-3">
+      <!-- Door Tag -->
+      <div>
+        <div class="badge-frame" style="aspect-ratio:3/4;padding:10%;display:flex;flex-direction:column;background:var(--white);">
+          <div style="width:100%;height:3px;background:var(--welcomes);border-radius:1px;margin-bottom:0.75em;"></div>
+          <p style="font-family:var(--display);font-size:clamp(0.6rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);line-height:1.1;">Maria</p>
+          <p style="font-size:clamp(3px,0.5vw,5px);color:var(--sub);margin-top:0.3em;">Room 412</p>
+          <div style="flex:1;"></div>
+          <div style="display:flex;gap:3px;">
+            <svg width="8" height="8" viewBox="0 0 24 24"><rect width="24" height="24" rx="1" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity="0.15"/></svg>
+            <svg width="8" height="8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity="0.15"/></svg>
+            <svg width="8" height="8" viewBox="0 0 24 24"><polygon points="12,2 22,22 2,22" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity="0.15"/></svg>
+          </div>
+        </div>
+        <p class="font-600 text-sm mt-2">Door tag</p>
+        <p class="caption">Name dominant. Room number as wayfinding. Pillar color bar at top signals the resident's community or floor theme. White surface for a personal, welcoming feel.</p>
+      </div>
+
+      <!-- Zoom Background -->
+      <div>
+        <div class="badge-frame" style="aspect-ratio:16/9;background:var(--blue);padding:8%;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+            <div>
+              <p style="font-size:clamp(3px,0.5vw,5px);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;color:var(--dark-sub);">UCLA Residential Life</p>
+            </div>
+            <div style="display:flex;gap:4px;">
+              <svg width="10" height="10" viewBox="0 0 24 24"><rect width="24" height="24" rx="1" fill="white" opacity="0.08"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="white" opacity="0.08"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="white" opacity="0.08"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="font-600 text-sm mt-2">Zoom / virtual background</p>
+        <p class="caption">Mostly empty — the person IS the content. Brand line and shapes anchored to the bottom edge so they don't compete with the speaker's face.</p>
+      </div>
+
+      <!-- Custom Envelope -->
+      <div>
+        <div class="badge-frame" style="aspect-ratio:9.5/4.125;padding:6% 8%;display:flex;flex-direction:column;justify-content:space-between;background:var(--white);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div style="display:flex;align-items:center;gap:4px;">
+              <div style="display:flex;gap:2px;">
+                <svg width="6" height="6" viewBox="0 0 24 24"><rect width="24" height="24" rx="1" fill="var(--ink)" opacity="0.2"/></svg>
+                <svg width="6" height="6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--ink)" opacity="0.2"/></svg>
+                <svg width="6" height="6" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="var(--ink)" opacity="0.2"/></svg>
+              </div>
+              <p style="font-size:clamp(2px,0.35vw,4px);font-weight:600;color:var(--ink);letter-spacing:0.05em;">UCLA Residential Life</p>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+            <div>
+              <p style="font-size:clamp(3px,0.5vw,5px);font-weight:600;color:var(--ink);">Sarah Chen</p>
+              <p style="font-size:clamp(2px,0.35vw,3px);color:var(--sub);">360 De Neve Drive</p>
+              <p style="font-size:clamp(2px,0.35vw,3px);color:var(--sub);">Los Angeles, CA 90095</p>
+            </div>
+            <div style="width:clamp(16px,3vw,32px);height:clamp(12px,2vw,24px);border:1px solid var(--line);border-radius:1px;display:flex;align-items:center;justify-content:center;">
+              <p style="font-size:clamp(2px,0.3vw,3px);color:var(--line);">stamp</p>
+            </div>
+          </div>
+        </div>
+        <p class="font-600 text-sm mt-2">Custom envelope <span class="caption" style="font-weight:400;">(#10 — 9.5″ × 4.125″)</span></p>
+        <p class="caption">Shape trio + brand name top-left as return address block. Recipient info bottom-left. Minimal — the envelope carries the system without shouting it.</p>
+      </div>
+    </div>
+
+    <!-- Row 4: Email Signature, Certificate, Welcome Packet -->
+    <div class="grid-3 mb-3">
+      <!-- Email Signature -->
+      <div>
+        <div class="badge-frame" style="aspect-ratio:3/1;padding:6% 8%;display:flex;align-items:center;gap:6%;background:var(--white);">
+          <div style="width:2px;height:60%;background:var(--blue);border-radius:1px;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <p style="font-family:var(--display);font-size:clamp(4px,0.6vw,7px);font-weight:700;color:var(--ink);">Sarah Chen</p>
+            <p style="font-size:clamp(2px,0.35vw,4px);color:var(--sub);margin-top:0.1em;">Assistant Director, RESED</p>
+            <p style="font-size:clamp(2px,0.35vw,4px);color:var(--sub);">UCLA Residential Life</p>
+            <p style="font-size:clamp(2px,0.3vw,3px);color:var(--welcomes);margin-top:0.2em;">schen@reslife.ucla.edu</p>
+          </div>
+        </div>
+        <p class="font-600 text-sm mt-2">Email signature</p>
+        <p class="caption">Blue vertical rule as the only brand element. Name, title, department, contact. No logos, no social icons, no inspirational quotes. Clean signal.</p>
+      </div>
+
+      <!-- Training Certificate -->
+      <div>
+        <div class="badge-frame" style="aspect-ratio:11/8.5;padding:8%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--white);">
+          <p style="font-size:clamp(2px,0.35vw,3px);letter-spacing:0.15em;text-transform:uppercase;font-weight:500;color:var(--sub);margin-bottom:0.3em;">UCLA Residential Life</p>
+          <div style="width:40%;height:2px;background:var(--blue);border-radius:1px;margin-bottom:0.6em;"></div>
+          <p style="font-family:var(--display);font-size:clamp(0.5rem,1.5vw,1rem);font-weight:700;color:var(--ink);line-height:1.15;">Certificate of<br>Completion</p>
+          <p style="font-size:clamp(3px,0.45vw,5px);color:var(--sub);margin-top:0.5em;">Awarded to <span style="font-weight:600;color:var(--ink);">Sarah Chen</span></p>
+          <p style="font-size:clamp(2px,0.35vw,3px);color:var(--sub);margin-top:0.2em;">Welcomes &middot; Summer 2026</p>
+          <div style="display:flex;gap:3px;margin-top:0.8em;">
+            <svg width="6" height="6" viewBox="0 0 24 24"><rect width="24" height="24" rx="1" fill="var(--ink)" opacity="0.12"/></svg>
+            <svg width="6" height="6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--ink)" opacity="0.12"/></svg>
+            <svg width="6" height="6" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="var(--ink)" opacity="0.12"/></svg>
+          </div>
+        </div>
+        <p class="font-600 text-sm mt-2">Training certificate</p>
+        <p class="caption">Centered, formal, minimal. Blue bar separates brand from content. Pillar name and season as completion context. No decorative borders — the whitespace is the frame.</p>
+      </div>
+
+      <!-- Welcome Packet / Folder -->
+      <div>
+        <div class="badge-frame" style="aspect-ratio:8.5/11;background:var(--blue);padding:10%;display:flex;flex-direction:column;justify-content:flex-end;">
+          <p style="font-family:var(--display);font-size:clamp(0.6rem,1.8vw,1.2rem);font-weight:700;color:white;line-height:1.15;">Welcome<br>Home.</p>
+          <p style="font-size:clamp(3px,0.45vw,4px);color:var(--dark-sub);margin-top:0.5em;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">UCLA Residential Life &middot; 2026</p>
+          <div style="display:flex;gap:4px;margin-top:0.8em;">
+            <svg width="8" height="8" viewBox="0 0 24 24"><rect width="24" height="24" rx="1" fill="white" opacity="0.1"/></svg>
+            <svg width="8" height="8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="white" opacity="0.1"/></svg>
+            <svg width="8" height="8" viewBox="0 0 24 24"><polygon points="12,1 23,23 1,23" fill="white" opacity="0.1"/></svg>
+          </div>
+        </div>
+        <p class="font-600 text-sm mt-2">Welcome packet / folder</p>
+        <p class="caption">Dark cover, message-driven. "Welcome Home" is the emotional hook. Brand and year at bottom. The folder itself becomes a branded moment before it's even opened.</p>
+      </div>
+    </div>
+
     <div class="note">
-      <strong>Rules:</strong> Name badges prioritize first name (readable in conversation). Signage uses dark surface for contrast in any lighting. Room branding uses gray for physical warmth. Booth displays use dark surface to command attention. Swag carries one message, not many — a tote bag is a campaign poster. Every physical artifact should look like it belongs to the same system as the slides and the website.
+      <strong>Rules:</strong> Name badges prioritize first name (readable across a room). Signage uses dark surface for contrast in any lighting. Room branding uses gray for physical warmth. Booth displays use dark surface to command attention. Swag carries one message, not many — a tote bag is a campaign poster. Door tags use pillar color bars to connect individual spaces to the larger system. Envelopes use the shape trio as a quiet return-address mark. Email signatures are text-only — no logos, no clutter. Virtual backgrounds stay mostly empty because the person is the content. Certificates are formal but minimal — whitespace is the frame. Every physical artifact should look like it belongs to the same system as the slides and the website.
     </div>
   </div>
 
   <hr class="divider">
+
 
 
   <!-- ═══════════════════════════════════
@@ -3304,6 +3478,7 @@ body {
   </div>
 
   <hr class="divider">
+
 
 
   <!-- ═══════════════════════════════════
