@@ -441,6 +441,7 @@ body {
 
   /* Grids → single column */
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .pro-grid, .led-grid { grid-template-columns: 1fr !important; }
 
   /* Hero */
   .dark { padding: var(--s-3); border-radius: var(--r); }
@@ -454,12 +455,6 @@ body {
   .nav-group { flex-wrap: wrap; gap: var(--s-1); }
   .nav-sep { display: none; }
 
-  /* PRO progression */
-  .grid-2[style*="gap:var(--s-6)"] { gap: var(--s-4); }
-
-  /* LED boxes */
-  .grid-3[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr; }
-
   /* Phase cards */
   .phase-card { padding: var(--s-3); }
   .phase-number { font-size: 2.5rem; }
@@ -472,8 +467,11 @@ body {
 @media (max-width: 480px) {
   .page { padding: 0 var(--s-2); }
   .display { font-size: 1.5rem; }
+  .heading { font-size: 1.1rem; }
   .stat-item { flex: 1 1 100%; }
   .dark { border-radius: 0; margin-left: calc(var(--s-2) * -1); margin-right: calc(var(--s-2) * -1); }
+  .nav-brand { font-size: var(--t-sm); }
+  .nav-links a { font-size: var(--t-xs); }
 }
 
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
@@ -598,10 +596,10 @@ body {
         <h2 class="heading" style="font-size:2rem;line-height:1.1;letter-spacing:-0.015em;">
           <strong>P</strong>hilosophy.<br><strong>R</strong>oles.<br><strong>O</strong>perations.
         </h2>
-        <p class="body-text mt-3" style="white-space:nowrap;">Within each pillar, learning follows three steps — always in that order. Why before who. Who before how.</p>
+        <p class="body-text mt-3">Within each pillar, learning follows three steps — always in that order. Why before who. Who before how.</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;margin-top:var(--s-3);">
+      <div class="pro-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;margin-top:var(--s-3);">
 
         <!-- P -->
         <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
@@ -714,7 +712,7 @@ body {
     <p class="body-text mb-4">Three phases that move participants from foundational knowledge to real-world application to expert insight. Every live training session at ResLife follows this approach.</p>
 
     <!-- LED cards — three columns, same height -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;">
+    <div class="led-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;">
 
       <!-- L -->
       <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-4);display:flex;flex-direction:column;">
