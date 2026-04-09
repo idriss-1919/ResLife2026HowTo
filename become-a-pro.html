@@ -591,28 +591,25 @@ body {
        PRO PROGRESSION
   ═══════════════════════════════════════ -->
   <section class="section" id="pro">
-    <div class="grid-2" style="gap:var(--s-6);align-items:start;">
+    <div>
 
       <div>
         <p class="label-text mb-2">The progression</p>
         <h2 class="heading" style="font-size:2rem;line-height:1.1;letter-spacing:-0.015em;">
           <strong>P</strong>hilosophy.<br><strong>R</strong>oles.<br><strong>O</strong>perations.
         </h2>
-        <p class="body-text mt-3">Within each pillar, learning follows three steps — always in that order. Why before who. Who before how.</p>
-        <div class="note mt-4">
-          <p>Every module sits somewhere in the <strong>PRO</strong>gression. The 100s build the <em>why</em>. The 200s define <em>who</em>. The 300s teach <em>how</em>.</p>
-        </div>
+        <p class="body-text mt-3" style="white-space:nowrap;">Within each pillar, learning follows three steps — always in that order. Why before who. Who before how.</p>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:var(--s-2);">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;margin-top:var(--s-3);">
 
         <!-- P -->
-        <div style="display:flex;align-items:stretch;gap:var(--s-3);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
+        <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
           <div style="background:var(--blue);color:var(--white);width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:var(--s-2) 0;">
             <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;">P</span>
             <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">100s</span>
           </div>
-          <div style="padding:var(--s-2) var(--s-2) var(--s-2) 0;display:flex;flex-direction:column;justify-content:center;gap:2px;">
+          <div style="padding:var(--s-2);display:flex;flex-direction:column;justify-content:center;gap:2px;">
             <p style="font-weight:600;font-size:var(--t-sm);color:var(--ink);">Philosophy</p>
             <p style="font-size:var(--t-xs);color:var(--sub);font-style:italic;">Why does this matter?</p>
             <p style="font-size:var(--t-xs);color:var(--sub);">Purpose behind the work</p>
@@ -620,12 +617,12 @@ body {
         </div>
 
         <!-- R -->
-        <div style="display:flex;align-items:stretch;gap:var(--s-3);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
+        <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
           <div style="background:var(--blue);color:var(--white);width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:var(--s-2) 0;">
             <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;">R</span>
             <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">200s</span>
           </div>
-          <div style="padding:var(--s-2) var(--s-2) var(--s-2) 0;display:flex;flex-direction:column;justify-content:center;gap:2px;">
+          <div style="padding:var(--s-2);display:flex;flex-direction:column;justify-content:center;gap:2px;">
             <p style="font-weight:600;font-size:var(--t-sm);color:var(--ink);">Roles</p>
             <p style="font-size:var(--t-xs);color:var(--sub);font-style:italic;">Who's involved?</p>
             <p style="font-size:var(--t-xs);color:var(--sub);">Your place and responsibilities</p>
@@ -633,18 +630,22 @@ body {
         </div>
 
         <!-- O -->
-        <div style="display:flex;align-items:stretch;gap:var(--s-3);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
+        <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
           <div style="background:var(--blue);color:var(--white);width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:var(--s-2) 0;">
             <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;">O</span>
             <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">300s</span>
           </div>
-          <div style="padding:var(--s-2) var(--s-2) var(--s-2) 0;display:flex;flex-direction:column;justify-content:center;gap:2px;">
+          <div style="padding:var(--s-2);display:flex;flex-direction:column;justify-content:center;gap:2px;">
             <p style="font-weight:600;font-size:var(--t-sm);color:var(--ink);">Operations</p>
             <p style="font-size:var(--t-xs);color:var(--sub);font-style:italic;">How do I do this?</p>
             <p style="font-size:var(--t-xs);color:var(--sub);">Daily execution</p>
           </div>
         </div>
 
+      </div>
+
+      <div class="note mt-4">
+        <p>Every module sits somewhere in the <strong>PRO</strong>gression. The 100s build the <em>why</em>. The 200s define <em>who</em>. The 300s teach <em>how</em>.</p>
       </div>
 
     </div>
@@ -756,12 +757,8 @@ body {
 
     <!-- WELCOMES -->
     <div id="welcomes" style="margin-bottom:var(--s-4);">
-      <div class="flex-between mb-3">
-        <div class="flex" style="gap:var(--s-2);">
-          <span class="pillar-tag pillar-welcomes">■ ResLife Welcomes</span>
-          <span class="label-text">Organizational Excellence</span>
-        </div>
-        <span class="caption" style="font-style:italic;">Where belonging begins</span>
+      <div class="mb-3">
+        <span class="pillar-tag pillar-welcomes">■ ResLife Welcomes</span>
       </div>
 
       <div class="grid-3" style="gap:var(--s-2);align-items:stretch;">
@@ -812,12 +809,8 @@ body {
 
     <!-- CONNECTS -->
     <div id="connects" style="margin-bottom:var(--s-4);">
-      <div class="flex-between mb-3">
-        <div class="flex" style="gap:var(--s-2);">
-          <span class="pillar-tag pillar-connects">● ResLife Connects</span>
-          <span class="label-text">Community Excellence</span>
-        </div>
-        <span class="caption" style="font-style:italic;">How belonging deepens</span>
+      <div class="mb-3">
+        <span class="pillar-tag pillar-connects">● ResLife Connects</span>
       </div>
 
       <div class="grid-3" style="gap:var(--s-2);align-items:stretch;">
@@ -860,12 +853,8 @@ body {
 
     <!-- RESPONDS -->
     <div id="responds">
-      <div class="flex-between mb-3">
-        <div class="flex" style="gap:var(--s-2);">
-          <span class="pillar-tag pillar-tag-responds">▲ ResLife Responds</span>
-          <span class="label-text">Support Excellence</span>
-        </div>
-        <span class="caption" style="font-style:italic;">How belonging is sustained</span>
+      <div class="mb-3">
+        <span class="pillar-tag pillar-tag-responds">▲ ResLife Responds</span>
       </div>
 
       <div class="grid-3" style="gap:var(--s-2);align-items:stretch;">
