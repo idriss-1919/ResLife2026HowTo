@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCLA Residential Life — Department Report: Fall 2025 & Winter 2026</title>
+<style>
+  :root {
+    --blue-deep: #003B5C;
+    --blue-mid: #005587;
+    --blue-light: #2774AE;
+    --gold: #FFD100;
+    --gold-dark: #C69500;
+    --gray-light: #F5F7FA;
+    --gray-mid: #E2E8F0;
+    --gray-dark: #6B7280;
+    --text: #1A202C;
+    --white: #FFFFFF;
+    --fall-color: #B45309;
+    --fall-bg: #FFFBEB;
+    --fall-border: #FCD34D;
+    --winter-color: #1D4ED8;
+    --winter-bg: #EFF6FF;
+    --winter-border: #93C5FD;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--gray-light);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── MOBILE BASE ── */
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 60%, var(--blue-light) 100%);
+    color: var(--white);
+    padding: 32px 20px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-content { position: relative; max-width: 1100px; margin: 0 auto; }
+  .header-eyebrow {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  }
+  .header-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; line-height: 1.25; }
+  .header-subtitle { font-size: 15px; opacity: 0.85; margin-bottom: 22px; }
+  .header-quarters {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .quarter-badge {
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .quarter-badge.fall { background: rgba(255,209,0,0.2); color: var(--gold); border: 1px solid rgba(255,209,0,0.4); }
+  .quarter-badge.winter { background: rgba(255,255,255,0.15); color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+
+  /* ── LAYOUT ── */
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* ── EXEC SUMMARY ── */
+  .exec-summary {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    padding: 24px 20px;
+    margin-bottom: 28px;
+    border-top: 4px solid var(--gold);
+  }
+  .exec-summary h2 { font-size: 20px; color: var(--blue-deep); margin-bottom: 14px; }
+  .exec-summary p { color: #374151; margin-bottom: 12px; font-size: 14px; }
+
+  .theme-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px; margin-top: 20px;
+  }
+  .theme-card {
+    background: var(--gray-light); border-radius: 8px; padding: 14px;
+    border-left: 3px solid var(--blue-light);
+  }
+  .theme-card h4 { font-size: 12px; color: var(--blue-mid); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .theme-card p { font-size: 13px; color: #374151; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 12px; margin-bottom: 28px;
+  }
+  .stat-box {
+    background: var(--white); border-radius: 10px; padding: 16px 12px;
+    text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .stat-box .number { font-size: 22px; font-weight: 700; color: var(--blue-mid); }
+  .stat-box .label { font-size: 11px; color: var(--gray-dark); margin-top: 3px; line-height: 1.3; }
+
+  /* ── UNIT SECTION ── */
+  .unit-section {
+    background: var(--white); border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 24px; overflow: hidden;
+  }
+  .unit-header {
+    background: var(--blue-deep); color: var(--white);
+    padding: 16px 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .unit-icon { font-size: 24px; flex-shrink: 0; }
+  .unit-title-block {}
+  .unit-name { font-size: 17px; font-weight: 700; line-height: 1.3; }
+  .unit-period { font-size: 11px; opacity: 0.7; margin-top: 2px; }
+
+  /* Quarter accordion on mobile */
+  .quarters-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .quarter-col {
+    padding: 20px 18px;
+    border-right: 1px solid var(--gray-mid);
+  }
+  .quarter-col:last-child { border-right: none; }
+
+  .q-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
+  }
+  .q-label.fall { background: var(--fall-bg); color: var(--fall-color); border: 1px solid var(--fall-border); }
+  .q-label.winter { background: var(--winter-bg); color: var(--winter-color); border: 1px solid var(--winter-border); }
+
+  .q-highlights { list-style: none; }
+  .q-highlights li {
+    position: relative; padding-left: 15px; margin-bottom: 8px;
+    font-size: 13px; color: #374151; line-height: 1.5;
+  }
+  .q-highlights li::before {
+    content: '▸'; position: absolute; left: 0; color: var(--blue-light); font-size: 10px; top: 3px;
+  }
+  .q-highlights li strong { color: var(--blue-deep); }
+
+  .metric-row {
+    display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px;
+  }
+  .metric-chip {
+    background: var(--gray-light); border-radius: 6px; padding: 5px 10px;
+    font-size: 13px; color: var(--blue-deep); font-weight: 600;
+    border: 1px solid var(--gray-mid);
+  }
+  .metric-chip span { font-weight: 400; color: var(--gray-dark); font-size: 10px; display: block; }
+
+  .staff-list { margin-top: 14px; border-top: 1px solid var(--gray-mid); padding-top: 12px; }
+  .staff-list h5 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 8px; }
+  .staff-list ul { list-style: none; }
+  .staff-list ul li { font-size: 13px; color: #374151; margin-bottom: 3px; }
+  .staff-tag {
+    display: inline-block; background: #EDE9FE; color: #5B21B6;
+    font-size: 10px; padding: 1px 6px; border-radius: 10px; margin-left: 4px;
+  }
+  .staff-tag.new { background: #D1FAE5; color: #065F46; }
+  .staff-tag.departed { background: #FEE2E2; color: #991B1B; }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px;
+    padding: 11px 14px; font-size: 13px; color: #92400E; margin-bottom: 12px;
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    text-align: center; padding: 24px 16px; color: var(--gray-dark); font-size: 13px;
+    border-top: 1px solid var(--gray-mid); margin-top: 16px;
+  }
+  .report-footer strong { color: var(--blue-deep); }
+
+  /* ── NAV ── */
+  .unit-nav {
+    background: var(--white); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    padding: 16px; margin-bottom: 24px;
+  }
+  .unit-nav h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 10px; }
+  .nav-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .nav-pills a {
+    display: inline-block; padding: 7px 13px; background: var(--gray-light);
+    color: var(--blue-mid); text-decoration: none; border-radius: 20px;
+    font-size: 12px; font-weight: 500; border: 1px solid var(--gray-mid);
+    transition: all 0.15s; -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .nav-pills a:hover, .nav-pills a:active { background: var(--blue-mid); color: var(--white); }
+
+  h3.section-heading {
+    font-size: 14px; color: var(--blue-deep); margin-bottom: 10px; font-weight: 600;
+  }
+
+  .divider { border: none; border-top: 1px solid var(--gray-mid); margin: 12px 0; }
+
+  /* ═══════════════════════════════
+     RESPONSIVE BREAKPOINTS
+  ═══════════════════════════════ */
+
+  /* Tablet: 2-col stats, wider header */
+  @media (min-width: 600px) {
+    .site-header { padding: 40px 32px 36px; }
+    .header-title { font-size: 32px; }
+    .page-body { padding: 32px 24px 72px; }
+    .stats-strip { grid-template-columns: repeat(4, 1fr); }
+    .stat-box .number { font-size: 26px; }
+    .unit-nav { padding: 20px; }
+    .unit-header { padding: 18px 24px; }
+    .unit-name { font-size: 18px; }
+    .quarter-col { padding: 22px 22px; }
+    .exec-summary { padding: 28px 24px; }
+  }
+
+  /* Desktop */
+  @media (min-width: 900px) {
+    .site-header { padding: 48px 40px 40px; }
+    .header-title { font-size: 36px; }
+    .page-body { padding: 40px 24px 80px; }
+    .stats-strip { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat-box .number { font-size: 28px; }
+    .stat-box .label { font-size: 12px; }
+    .exec-summary { padding: 36px; }
+    .exec-summary h2 { font-size: 22px; }
+    .exec-summary p { font-size: 15px; }
+    .unit-header { padding: 20px 28px; }
+    .unit-icon { font-size: 28px; }
+    .unit-name { font-size: 20px; }
+    .quarter-col { padding: 24px 28px; }
+    .q-highlights li { font-size: 14px; }
+    .unit-nav { padding: 20px 24px; }
+  }
+
+  /* Mobile-only: stack quarters vertically */
+  @media (max-width: 599px) {
+    .quarters-grid { grid-template-columns: 1fr; }
+    .quarter-col { border-right: none; border-bottom: 1px solid var(--gray-mid); }
+    .quarter-col:last-child { border-bottom: none; }
+    .theme-grid { grid-template-columns: 1fr; }
+    .header-quarters { flex-direction: column; gap: 8px; }
+    .quarter-badge { width: fit-content; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <div class="header-content">
+    <div class="header-eyebrow">UCLA Residential Life · Academic Year 2025–2026</div>
+    <h1 class="header-title">Department Quarterly Report</h1>
+    <p class="header-subtitle">Combined summary across all nine units — Fall 2025 &amp; Winter 2026</p>
+    <div class="header-quarters">
+      <span class="quarter-badge fall">🍂 Fall 2025 · Published Dec 15, 2025</span>
+      <span class="quarter-badge winter">❄️ Winter 2026 · Published Mar 23, 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ BODY ═══════════ -->
+<div class="page-body">
+
+  <!-- NAV -->
+  <nav class="unit-nav">
+    <h3>Jump to Unit</h3>
+    <div class="nav-pills">
+      <a href="#afye">Academics &amp; FYE</a>
+      <a href="#central">Central Services</a>
+      <a href="#conduct">Conduct</a>
+      <a href="#finance">Finance</a>
+      <a href="#li">Leadership &amp; Involvement</a>
+      <a href="#lc">Learning Centers</a>
+      <a href="#od">Org Development</a>
+      <a href="#pem">Program &amp; Event Mgmt</a>
+      <a href="#resed">Residential Education</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ EXECUTIVE SUMMARY ═══════════ -->
+  <section class="exec-summary">
+    <h2>Executive Summary</h2>
+    <p>
+      This report synthesizes quarterly reports from all nine UCLA Residential Life units for Fall 2025 and Winter 2026 — the first two quarters of the 2025–2026 academic year. Together, these quarters represent the department's full operational arc from Move-In through the end of winter academics, covering more than 19,000 residents on and around the Hill.
+    </p>
+    <p>
+      Fall 2025 was defined by a historic scale of opening operations, record programming attendance, new technology system launches (SmartSuite), significant staffing transitions, and foundational infrastructure work (The Den construction, Six Peak project). Winter 2026 shifted toward sustained service delivery under heightened complexity: incident volumes hit record highs in Residential Education, financial throughput grew double digits, and multiple units navigated AD-level vacancies while maintaining program quality.
+    </p>
+
+    <div class="theme-grid">
+      <div class="theme-card">
+        <h4>Staffing Transitions</h4>
+        <p>Multiple AD vacancies across Conduct and AFYE; Finance lost Ryan Chen; L&I onboarded new LDC Mina Santamaria; LLC Coordinator transitioned from Ella Hokanson to Danielle Espinosa.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Technology Modernization</h4>
+        <p>SmartSuite fully launched in Finance and Residential Education for duty logging; digital systems improving workflow across Central Services and Conduct units.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Record-Setting Scale</h4>
+        <p>19,886 residents moved in during Fall; Learning Centers hit 7,000+ visits in Fall; 1,020 RA applications received in Winter; Finance 29.7% transaction increase in Fall.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Community Safety &amp; Response</h4>
+        <p>CORE co-response launched; Saxon flood + Hedrick vandalism displaced 56 residents in Winter; Conduct managing higher complexity cases despite lower volume; UCPD weekly sync established.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Student Engagement</h4>
+        <p>10,000+ Westwood Block Party; 700+ Noche de Cultura; 425 Winter In-Service; FAB set record proposal volumes across both quarters; PEM delivered 50+ programs in Fall alone.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Capital &amp; Infrastructure</h4>
+        <p>The Den completed in Winter 2026 after multi-quarter build-out; Six Peak secured 396 beds; 205 Hub received new décor; Makerspace expansion drove $27,700 in student savings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KEY NUMBERS ═══ -->
+  <div class="stats-strip">
+    <div class="stat-box"><div class="number">19,886</div><div class="label">Residents Moved In (Fall)</div></div>
+    <div class="stat-box"><div class="number">10,000+</div><div class="label">New Students Welcomed</div></div>
+    <div class="stat-box"><div class="number">7,068</div><div class="label">Learning Center Visits (Fall)</div></div>
+    <div class="stat-box"><div class="number">$278K+</div><div class="label">Finance POs Processed (Fall)</div></div>
+    <div class="stat-box"><div class="number">1,020</div><div class="label">RA Applications (Winter)</div></div>
+    <div class="stat-box"><div class="number">672</div><div class="label">Duty Incidents — Record (Winter)</div></div>
+    <div class="stat-box"><div class="number">425</div><div class="label">Students at Winter In-Service</div></div>
+    <div class="stat-box"><div class="number">9</div><div class="label">Units Reporting</div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       UNIT 1 — ACADEMICS & FIRST YEAR EXPERIENCE
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="afye">
+    <div class="unit-header">
+      <div class="unit-icon">🎓</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Academics &amp; First Year Experience</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <!-- FALL -->
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <h3 class="section-heading">Move-In &amp; True Bruin Welcome</h3>
+        <ul class="q-highlights">
+          <li>Moved in <strong>19,886 residents</strong> — 15,255 onto the Hill</li>
+          <li>Welcomed <strong>10,000+ new students</strong> into residential communities</li>
+          <li>Advanced FYE outcomes of <strong>Connection, Awareness, and Belonging</strong></li>
+          <li>Widespread media coverage: UCLA Newsroom (7 stories), KTTV (3 segments featuring RAs, FYE Coordinator, and Chef Joey Martin)</li>
+          <li>Chancellor Frenk toured the Hill during Move-In, recording his signature address from campus</li>
+          <li>UCLA Volunteer Day celebrated — Bruins serving across Los Angeles</li>
+        </ul>
+
+        <div class="staff-list">
+          <h5>Professional Staff</h5>
+          <ul>
+            <li>Abby Johnson — Associate Director, Academics &amp; FYE</li>
+            <li>Korina Pilkington — Interim Assistant Director</li>
+            <li>Kyra Polo — FYE Coordinator</li>
+            <li>Sam Papagno — FYE Coordinator</li>
+            <li>Ella Hokanson — LLC Coordinator <span class="staff-tag departed">Departed Oct '25</span></li>
+            <li>Sandhya Andrews — MSA Intern</li>
+          </ul>
+          <ul style="margin-top:8px">
+            <li>17 Faculty in Residence · 10 Study Hall Proctors · 13 Community Space Proctors · 18 CDIs · 7 PM Interns</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- WINTER -->
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <h3 class="section-heading">Programs, Academic Support &amp; Common Experience</h3>
+        <div class="metric-row">
+          <div class="metric-chip">3,038<span>Event Attendees</span></div>
+          <div class="metric-chip">4,351<span>Study Space Users</span></div>
+          <div class="metric-chip">5<span>LLC Signature Events</span></div>
+          <div class="metric-chip">3<span>Fiat Lux Partnerships</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Camp Cozy: <strong>113 attendees</strong> — LEGO wellness reflection activity</li>
+          <li>Taco Tuesday, first-year field trips, and large-scale LLC signature experiences</li>
+          <li>Common Experience advanced through title distribution and Fiat Lux seminar partnerships</li>
+          <li>Residence Life Connects collaborations brought CE theme into halls</li>
+          <li>Finals study spaces and late-night study hall operations sustained through exams</li>
+          <li>First-year focus groups launched to inform spring priorities</li>
+        </ul>
+
+        <div class="staff-list">
+          <h5>Professional Staff</h5>
+          <ul>
+            <li>Abby Johnson — Associate Director, Academics &amp; FYE</li>
+            <li>Korina Pilkington — Interim Assistant Director</li>
+            <li>Kyra Polo — FYE Coordinator</li>
+            <li>Sam Papagno — FYE Coordinator</li>
+            <li>Danielle Espinosa — LLC Coordinator <span class="staff-tag new">New</span></li>
+            <li>Sandhya Andrews — Graduate Student Intern</li>
+          </ul>
+          <ul style="margin-top:8px">
+            <li>17 FIR · 10 Study Hall Proctors · 12 Community Space Proctors · 18 CDIs · 8 PM Interns</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 2 — CENTRAL SERVICES
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="central">
+    <div class="unit-header">
+      <div class="unit-icon">🏢</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Central Services</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">112<span>Poster Requests</span></div>
+          <div class="metric-chip">478<span>Posters Fulfilled</span></div>
+          <div class="metric-chip">81<span>Supply Requests</span></div>
+          <div class="metric-chip">25<span>Compost Requests</span></div>
+          <div class="metric-chip">176<span>Name Tags</span></div>
+          <div class="metric-chip">200+<span>Packages Handled</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>The Den renovation project reached <strong>95% completion</strong> by end of fall</li>
+          <li>13 total staff: 11 Community Office Assistants + 2 professional staff</li>
+          <li>4 new hires onboarding in January 2026</li>
+          <li>Sustained high-volume package, supply, and poster fulfillment through opening rush</li>
+        </ul>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <div class="metric-row">
+          <div class="metric-chip">110<span>Poster Requests</span></div>
+          <div class="metric-chip">385<span>Posters Fulfilled</span></div>
+          <div class="metric-chip">47<span>Supply Requests</span></div>
+          <div class="metric-chip">58<span>Compost Requests</span></div>
+          <div class="metric-chip">184<span>Name Tags</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li><strong>The Den officially completed</strong> — multi-quarter construction project finished</li>
+          <li>205 Hub received <strong>new décor</strong> refresh this quarter</li>
+          <li>Deputy system transition preparation underway for upcoming change</li>
+          <li>Compost requests up significantly (58 vs 25 in fall) — growing sustainability engagement</li>
+          <li>4 new COAs settled into roles after January onboarding</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 3 — CONDUCT
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="conduct">
+    <div class="unit-header">
+      <div class="unit-icon">⚖️</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Conduct Unit</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <ul class="q-highlights">
+          <li>Heavy Incident Report volume — fall quarter characterized by elevated case load</li>
+          <li><strong>AD vacancy</strong> opened in October 2025 — position vacated and search initiated</li>
+          <li>Football Mitigation protocols implemented for game-day management</li>
+          <li>Weekly inter-unit meetings established: UCPD, CAE, CRT, and CMT coordination cadence</li>
+          <li>Cross-departmental collaboration emphasized for complex and escalated cases</li>
+        </ul>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <ul class="q-highlights">
+          <li>Report <strong>volume down</strong> from fall, but <strong>case complexity increased</strong> significantly</li>
+          <li>UCOP guidance compliance protocols implemented and tracked</li>
+          <li>"Week at a Glance" emails introduced to improve team communication</li>
+          <li>UAS property protocols finalized and operationalized</li>
+          <li><strong>AD search ongoing</strong> — position remains vacant through winter quarter</li>
+          <li>Unit maintained operational stability despite leadership vacancy</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 4 — FINANCE
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="finance">
+    <div class="unit-header">
+      <div class="unit-icon">💰</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Finance</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">163<span>Purchase Orders</span></div>
+          <div class="metric-chip">$224,170<span>PO Total Value</span></div>
+          <div class="metric-chip">217<span>Reimbursements</span></div>
+          <div class="metric-chip">$54,177<span>Reimbursement Value</span></div>
+          <div class="metric-chip">+29.7%<span>Transaction Volume ↑</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Hill Treasurers processed <strong>1,173 transactions / $174,609</strong></li>
+          <li><strong>SmartSuite migration completed</strong> — finance workflows modernized</li>
+          <li>29.7% year-over-year increase in total transaction volume</li>
+          <li>Total fall financial throughput: <strong>~$278K</strong> in POs + reimbursements</li>
+        </ul>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <div class="metric-row">
+          <div class="metric-chip">+10.4%<span>vs Winter '25</span></div>
+          <div class="metric-chip">1,172<span>Hill Treasurer Txns</span></div>
+          <div class="metric-chip">$174,302<span>Hill Treasurer Total</span></div>
+          <div class="metric-chip">-13.7%<span>Hill Treasurers ↓</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Overall department spend up <strong>10.4%</strong> compared to Winter 2025</li>
+          <li>Hill Treasurer volume essentially flat (1,172 vs 1,173) — down 13.7% in dollar value</li>
+          <li><strong>Ryan Chen departed</strong> from finance team this quarter</li>
+          <li>SmartSuite running smoothly after fall launch</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 5 — LEADERSHIP & INVOLVEMENT
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="li">
+    <div class="unit-header">
+      <div class="unit-icon">🌟</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Leadership &amp; Involvement</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">34<span>FAB Proposals</span></div>
+          <div class="metric-chip">27<span>Proposals Seen</span></div>
+          <div class="metric-chip">$24,999<span>FAB Allocated</span></div>
+          <div class="metric-chip">20<span>Programming Board Students</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Record-attendance events across the hill — multiple programs exceeded expectations</li>
+          <li>FAB: 34 proposals submitted, 27 reviewed, $24,999 allocated to student programming</li>
+          <li>Programming Board grew to <strong>20 active student members</strong></li>
+          <li><strong>LDC vacancy</strong> — Curtis Wong departed August 2025; position open fall quarter</li>
+          <li>Team maintained programming momentum despite leadership gap</li>
+        </ul>
+        <div class="staff-list">
+          <h5>Staff</h5>
+          <ul>
+            <li>Mike McCormack — Associate Director (8 yrs 7 mo)</li>
+            <li>Wayne Nichols — LDC (2 yrs 5 mo)</li>
+            <li>Brian Lovato — MSA Intern</li>
+            <li><em>LDC position vacant (Curtis Wong departed Aug '25)</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <ul class="q-highlights">
+          <li><strong>500+ resident concerns</strong> elevated through Policy Review Board and Winter Quarter Town Hall</li>
+          <li>FAB hit <strong>record-setting proposal volume</strong> this winter</li>
+          <li>Birthday Bashes program <strong>revitalized</strong> — high participation across halls</li>
+          <li>Camp Cozy hosted in partnership with AFYE and RISE Center</li>
+          <li>New LDC <strong>Mina Santamaria</strong> hired — came from UCSB</li>
+        </ul>
+        <div class="staff-list">
+          <h5>Staff</h5>
+          <ul>
+            <li>Mike McCormack — Associate Director</li>
+            <li>Wayne Nichols — LDC</li>
+            <li>Brian Lovato — MSA Intern</li>
+            <li>Mina Santamaria — LDC <span class="staff-tag new">New Hire</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 6 — LEARNING CENTERS
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="lc">
+    <div class="unit-header">
+      <div class="unit-icon">📚</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Learning Centers</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">7,068<span>Total Visits</span></div>
+          <div class="metric-chip">24<span>Workshops Held</span></div>
+        </div>
+        <h3 class="section-heading">By Location</h3>
+        <ul class="q-highlights">
+          <li><strong>De Neve:</strong> 2,141 visits · 264 studio reservations</li>
+          <li><strong>Eclipse:</strong> 3,477 visits</li>
+          <li><strong>Makerspace:</strong> 4,109 visits · 12,000 hours of 3D printing</li>
+          <li><strong>Sunset:</strong> 1,385 visits</li>
+        </ul>
+        <p style="font-size:13px;color:var(--gray-dark);margin-top:10px">Note: Location visit counts may overlap with total; Makerspace figures tracked separately.</p>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <h3 class="section-heading">By Location</h3>
+        <ul class="q-highlights">
+          <li><strong>Makerspace:</strong> 4,647 unique users · 14 max-capacity workshops · 112 graduation sashes produced → <strong>$27,700 in student savings</strong></li>
+          <li><strong>Sunset:</strong> 2,224 check-ins · 2 large programs with 300+ attendees each</li>
+          <li><strong>Eclipse:</strong> 2,697 check-ins</li>
+          <li><strong>De Neve:</strong> 218 kit checkouts · 2 Concerts on the Hill hosted</li>
+        </ul>
+        <div class="note-box">
+          💡 Makerspace graduation sash project generated an estimated <strong>$27,700 in student savings</strong> — a standout program outcome for Winter.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 7 — ORGANIZATIONAL DEVELOPMENT
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="od">
+    <div class="unit-header">
+      <div class="unit-icon">🏅</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Organizational Development</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">200+<span>Blue &amp; Gold Awardees</span></div>
+          <div class="metric-chip">424<span>In-Service Attendees</span></div>
+          <div class="metric-chip">7<span>New Committees</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li><strong>200+ Blue &amp; Gold Award</strong> recipients recognized this fall</li>
+          <li>Fall In-Service drew <strong>424 student staff attendees</strong></li>
+          <li>New <strong>7-committee structure</strong> launched for increased staff governance</li>
+          <li>P&amp;CC (Planning &amp; Curriculum Committee) process formally launched</li>
+          <li>2 open staff vacancies during the quarter</li>
+        </ul>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <div class="metric-row">
+          <div class="metric-chip">67<span>Staff — Day of Service</span></div>
+          <div class="metric-chip">167.5<span>Volunteer Hours</span></div>
+          <div class="metric-chip">35,000+<span>Lbs Collected</span></div>
+          <div class="metric-chip">425<span>Winter In-Service (71.2%)</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Day of Service: 67 staff members, 167.5 hours, 35,000+ lbs of goods collected</li>
+          <li>Winter In-Service: <strong>425 students (71.2% attendance rate)</strong></li>
+          <li>Rate Your Experience survey ran Feb 18 – Mar 20</li>
+          <li>ResLife Reconnects / Reunion event planned for spring</li>
+          <li>2 staff vacancies continue from fall quarter</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 8 — PROGRAM & EVENT MANAGEMENT
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="pem">
+    <div class="unit-header">
+      <div class="unit-icon">🎪</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Program &amp; Event Management</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">50+<span>Large Programs</span></div>
+          <div class="metric-chip">10,000+<span>Westwood Block Party</span></div>
+          <div class="metric-chip">5,800<span>Meet the Hill</span></div>
+          <div class="metric-chip">1,400<span>Haunted Hill</span></div>
+          <div class="metric-chip">389<span>GE Lecture Hours</span></div>
+          <div class="metric-chip">46<span>Publicity Requests</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Westwood Block Party: <strong>10,000+ attendees</strong> — one of the largest events of the year</li>
+          <li>Meet the Hill drew <strong>5,800 participants</strong>; Haunted Hill 1,400</li>
+          <li><strong>0 safety incidents</strong> across all major fall events</li>
+          <li>389 hours of GE lecture/event support provided to campus</li>
+          <li>46 publicity design requests fulfilled</li>
+        </ul>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <div class="metric-row">
+          <div class="metric-chip">~2,400<span>Student Hours</span></div>
+          <div class="metric-chip">19<span>FAB Events</span></div>
+          <div class="metric-chip">25<span>Hill Events</span></div>
+          <div class="metric-chip">6<span>LLC Events</span></div>
+          <div class="metric-chip">700+<span>Noche de Cultura</span></div>
+          <div class="metric-chip">38<span>Publicity Requests</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li>Noche de Cultura: <strong>700+ attendees</strong> — standout cultural celebration</li>
+          <li>~2,400 student staff hours invested across all events</li>
+          <li>19 FAB-funded events, 25 Hill events, 6 LLC events supported</li>
+          <li>25+ repairs completed in-house, saving <strong>$1,580</strong> in vendor costs</li>
+          <li>38 publicity requests fulfilled</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       UNIT 9 — RESIDENTIAL EDUCATION
+  ═══════════════════════════════════════ -->
+  <section class="unit-section" id="resed">
+    <div class="unit-header">
+      <div class="unit-icon">🏠</div>
+      <div class="unit-title-block">
+        <div class="unit-name">Residential Education</div>
+        <div class="unit-period">Academic Year 2025–2026 · Two Quarters</div>
+      </div>
+    </div>
+    <div class="quarters-grid">
+
+      <div class="quarter-col">
+        <div class="q-label fall">🍂 Fall 2025</div>
+        <div class="metric-row">
+          <div class="metric-chip">940<span>Duty Calls (+13% YoY)</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li><strong>940 duty calls</strong> — up 13% year-over-year from fall '24</li>
+          <li><strong>CORE Co-Response</strong> program officially launched this quarter</li>
+          <li><strong>RL Connects</strong> fully launched across all residential communities</li>
+          <li><strong>SmartSuite Duty Log</strong> implemented — replacing previous system</li>
+          <li>Six Peak secured <strong>396 beds</strong> for the upcoming academic year</li>
+        </ul>
+      </div>
+
+      <div class="quarter-col">
+        <div class="q-label winter">❄️ Winter 2026</div>
+        <div class="metric-row">
+          <div class="metric-chip">672<span>Duty Incidents (Record)</span></div>
+          <div class="metric-chip">1,461<span>Incident Reports</span></div>
+          <div class="metric-chip">2,130<span>Residents Involved</span></div>
+          <div class="metric-chip">56<span>Residents Displaced</span></div>
+          <div class="metric-chip">1,020<span>RA Applications</span></div>
+          <div class="metric-chip">162<span>RAs Selected</span></div>
+          <div class="metric-chip">441<span>Bruin Love Fest Attendees</span></div>
+        </div>
+        <ul class="q-highlights">
+          <li><strong>Record 672 duty incidents</strong> — highest single-quarter total</li>
+          <li>Saxon flood + Hedrick Hall vandalism: <strong>56 residents displaced</strong></li>
+          <li>1,461 incident reports filed involving 2,130 residents</li>
+          <li><strong>Aftercare Protocol</strong> introduced to support students after critical incidents</li>
+          <li>RA Selection: <strong>1,020 applications → 162 selected</strong> for the following year</li>
+          <li>UAN P-SAM expansion implemented across additional buildings</li>
+          <li>Bruin Love Fest: <strong>441 attendees</strong></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <div class="report-footer">
+    <p><strong>UCLA Residential Life — Department Report</strong></p>
+    <p style="margin-top:6px">Compiled April 2026 · Covers Fall 2025 (published Dec 15, 2025) and Winter 2026 (published Mar 23, 2026)</p>
+    <p style="margin-top:4px">Data sourced from unit-level quarterly reports in the ResLife Patterns &amp; Reports database</p>
+  </div>
+
+</div><!-- /page-body -->
+</body>
+</html>
