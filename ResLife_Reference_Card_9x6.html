@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResLife Staff Reference Card — 9×6 Double-Sided</title>
+<style>
+
+/* ─── SYSTEM TOKENS ──────────────────────── */
+@font-face { font-family:'Karbon'; src:local('Karbon Bold');                    font-weight:700; }
+@font-face { font-family:'Karbon'; src:local('Karbon Semibold');                font-weight:600; }
+@font-face { font-family:'Karbon'; src:local('Karbon Medium');                  font-weight:500; }
+@font-face { font-family:'Karbon'; src:local('Karbon Regular'),local('Karbon'); font-weight:400; }
+
+:root {
+  --white:         #FFFFFF;
+  --gray:          #F4F4F3;
+  --blue:          #005587;
+  --ink:           #005587;
+  --sub:           #333333;
+  --line:          #E0E0E0;
+  --dark-body:     #F1F1F1;
+  --dark-sub:      #D4D4D4;
+  --welcomes:      #2774AE;
+  --connects:      #D900A5;
+  --responds:      #FFD100;
+  --responds-text: #8C7200;
+  --r: 3px;
+  --ff: 'Karbon', system-ui, -apple-system, sans-serif;
+
+  /* ─── PHOTO ZONE URLS ────────────────────────────
+     Swap each url('') for your image path, e.g.:
+       url('photos/mission-photo.jpg')
+     ─────────────────────────────────────────────── */
+  --photo-right:     url("DSC00013-3 (1).jpg");  /* Side A upper-right: UCLA sunset campus */
+  --photo-welcomes:  url('');  /* Side A pillar: welcome desk / move-in day     */
+  --photo-connects:  url('');  /* Side A pillar: study lounge / community event */
+  --photo-responds:  url('');  /* Side A pillar: RA rounds / 1-on-1 moment      */
+  --photo-strip:     url('');  /* Side B strip: wide campus / The Hill aerial   */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration:0ms !important; }
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { -webkit-font-smoothing:antialiased; }
+
+/* ─── SCREEN SHELL ───────────────────────── */
+body {
+  font-family: var(--ff);
+  background: #DDDDE0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  color: var(--ink);
+}
+.instructions {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.8;
+}
+.instructions code { background: rgba(0,0,0,0.08); padding: 1px 5px; border-radius: 3px; font-size: 10px; }
+.cards-spread { display:flex; flex-direction:column; gap:32px; align-items:center; }
+.card-wrap    { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.card-label   { font-size:10px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#999; }
+
+/* ─── CARD FACE — 9:6 landscape ──────────── */
+.card-face {
+  width: 720px;
+  height: 480px;
+  background: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════
+   SIDE A — FRONT
+   ┌─────────────────────────────────────────┐
+   │ HEADER (full width)                     │  34px
+   ├────────────────┬────────────────────────┤
+   │ Our North Star │ [Photo zone]           │
+   │                ├────────────────────────┤  125px
+   │                │ Our Mission (blue)     │
+   ├────────────────┴────────────────────────┤
+   │ Our Three Pillars: How We Deliver…      │  22px
+   ├──────────────┬──────────────┬───────────┤
+   │  Welcomes    │  Connects    │  Responds │  219px
+   └──────────────┴──────────────┴───────────┘
+   ════════════════════════════════════════════ */
+
+/* ── Header ── */
+.a-header {
+  background: var(--blue);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.a-brand  { font-weight:700; font-size:13px; color:var(--white); letter-spacing:0.01em; }
+.a-meta   { font-size:9px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--dark-sub); }
+
+/* ── Upper row — photo fills full width, North Star sits on top ── */
+.a-upper {
+  height: 130px;
+  display: flex;
+  flex-shrink: 0;
+  position: relative;
+  background-color: #F4F4F3;
+  background-image:
+    linear-gradient(to right, #FFFFFF 0%, #FFFFFF 28%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 70%),
+    var(--photo-right);
+  background-size: cover;
+  background-position: center 40%;
+}
+
+/* Left — Our North Star: white-to-transparent gradient protects text */
+.a-north-star {
+  width: 235px;
+  flex-shrink: 0;
+  padding: 13px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  position: relative;
+  z-index: 1;
+}
+.a-ns-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--sub);
+}
+.a-ns-headline {
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.a-ns-body {
+  font-size: 9px;
+  color: var(--sub);
+  line-height: 1.55;
+  margin-top: -4px;
+}
+
+/* PHOTO ZONE 1 — full-height right block, blends left into North Star
+   Set --photo-right in :root to activate. Crops to upper third of photo
+   (golden sky) and fades left-to-white so North Star text stays readable. */
+.a-photo-right {
+  flex: 1;
+  /* photo now lives on .a-upper — this is just a spacer */
+}
+
+/* ── Mission strip — full width, blue ──────────────────
+   Two-column layout inside:
+     Left: label + mission statement
+     Right: belonging sub-text
+   ────────────────────────────────────────────────────── */
+.a-mission-strip {
+  height: 52px;
+  background: var(--blue);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--line);
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.a-mission-main { display:flex; flex-direction:column; gap:3px; }
+.a-mission-aside { padding-top: 2px; }
+.a-mission-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dark-sub);
+}
+.a-mission-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+.a-mission-sub {
+  font-size: 9px;
+  color: var(--dark-sub);
+  line-height: 1.55;
+}
+
+
+/* ── Pillars section label ── */
+.a-pillars-label {
+  height: 34px;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.a-pillars-title {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--sub);
+}
+.a-pillars-sub {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--sub);
+}
+
+/* ── Three pillar columns ── */
+.a-pillars {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 8px;
+  background: var(--white);
+  overflow: hidden;
+}
+.pillar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #C8C8C8;
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.pillar-cap {
+  padding: 9px 12px 7px;
+  flex-shrink: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.pillar-num  { font-size:6.5px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--sub); opacity:0.7; margin-bottom:2px; }
+.pillar-name { font-size:16px; font-weight:700; line-height:1.2; letter-spacing:-0.01em; }
+.pillar-prefix { display:block; font-size:9px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--sub); margin-bottom:2px; }
+.pillar-word { display:inline; }
+.pillar-sub  { font-size:9px; color:var(--sub); margin-top:2px; font-style:italic; }
+
+/* PHOTO ZONES 2-4 — pillar strips
+   Recommended: 186×50px candid moment per pillar.
+   Set --photo-welcomes / --photo-connects / --photo-responds in :root. */
+.pillar-photo {
+  width: 100%;
+  height: 62px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center 40%;
+  background-color: #F4F4F3;
+  border-top: 1px dashed #C8C8C8;
+  border-bottom: 1px dashed #C8C8C8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.pillar-photo::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none'%3E%3Crect x='0.5' y='2.5' width='17' height='11' rx='1.5' stroke='%23AAAAAA' stroke-width='1'/%3E%3Ccircle cx='9' cy='8' r='2.5' stroke='%23AAAAAA' stroke-width='1'/%3E%3Cpath d='M6 2.5 L7 0.5 L11 0.5 L12 2.5' stroke='%23AAAAAA' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.6;
+}
+.pillar-photo::after {
+  content: 'Add photo';
+  font-family: var(--ff);
+  font-size: 7.5px;
+  font-weight: 500;
+  color: #AAAAAA;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Pillar photos — color-washed single frame per pillar */
+.pillar-w .pillar-photo {
+  background-image:
+    linear-gradient(rgba(39,116,174,0.22), rgba(39,116,174,0.22)),
+    url('Reference_card_Photos/JDV07572.JPG');
+  background-size: cover;
+  background-position: center 45%;
+  border-top: none;
+  border-bottom: none;
+}
+.pillar-c .pillar-photo {
+  background-image:
+    linear-gradient(rgba(217,0,165,0.18), rgba(217,0,165,0.18)),
+    url('Reference_card_Photos/JDV01581.JPG');
+  background-size: cover;
+  background-position: center 42%;
+  border-top: none;
+  border-bottom: none;
+}
+.pillar-r .pillar-photo {
+  background-image:
+    linear-gradient(rgba(255,209,0,0.22), rgba(255,209,0,0.22)),
+    url('Reference_card_Photos/JDV01767.JPG');
+  background-size: cover;
+  background-position: center 58%;
+  border-top: none;
+  border-bottom: none;
+}
+
+/* Hide placeholder icons and text now that photos are set */
+.pillar-w .pillar-photo::before,
+.pillar-w .pillar-photo::after,
+.pillar-c .pillar-photo::before,
+.pillar-c .pillar-photo::after,
+.pillar-r .pillar-photo::before,
+.pillar-r .pillar-photo::after {
+  display: none;
+}
+
+.pillar-body {
+  padding: 10px 12px 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  background: var(--white);
+  overflow: hidden;
+}
+.pillar-desc {
+  font-size: 9px;
+  color: var(--sub);
+  line-height: 1.5;
+  flex: 1;
+}
+.pillar-q {
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  padding-left: 7px;
+}
+.pillar-w .pillar-q { border-left:2px solid var(--welcomes); }
+.pillar-c .pillar-q { border-left:2px solid var(--connects); }
+.pillar-r .pillar-q { border-left:2px solid var(--responds); }
+
+.a-footer {
+  height: 24px;
+  background: var(--white);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  font-size: 9px;
+  color: var(--sub);
+  letter-spacing: 0.03em;
+}
+
+
+/* ════════════════════════════════════════════
+   SIDE B — BACK (unchanged)
+   Header | photo strip | 3 columns | stats
+   ════════════════════════════════════════════ */
+
+.b-header {
+  background: var(--blue);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.b-brand { font-weight:700; font-size:13px; color:var(--white); }
+.b-meta  { font-size:9px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--dark-sub); }
+
+/* PHOTO ZONE 5 — film strip (5 frames) */
+.b-film-strip {
+  height: 70px;
+  flex-shrink: 0;
+  display: flex;
+  overflow: hidden;
+  border-top: 2px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
+  box-shadow: inset 0 4px 10px rgba(0,0,0,0.08),
+              inset 0 -4px 10px rgba(0,0,0,0.08);
+}
+.film-frame {
+  flex: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.film-frame:not(:last-child) {
+  border-right: 2px solid var(--white);
+}
+
+.b-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 240px 220px 1fr;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+.b-col {
+  padding: 12px 14px;
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.b-col:last-child { border-right: none; }
+
+.b-section-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+.b-vision-box {
+  background: var(--blue);
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.b-vision-label   { font-size:9px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--dark-sub); margin-bottom:5px; }
+.b-vision-text    { font-size:11px; font-weight:700; color:var(--white); line-height:1.35; margin-bottom:4px; }
+.b-vision-caption { font-size:9px; color:var(--dark-sub); line-height:1.5; }
+.b-values-label   { font-size:9px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--sub); margin-bottom:3px; }
+.b-values-intro   { font-size:9px; font-weight:400; color:var(--sub); line-height:1.4; margin-bottom:5px; }
+.b-values-intro-sub { font-size:9px; font-weight:400; color:var(--sub); line-height:1.4; margin-bottom:5px; }
+
+.value-row { display:flex; align-items:flex-start; gap:6px; padding:4px 0; border-bottom:1px solid var(--gray); }
+.value-row:last-child { border-bottom:none; }
+.v-letter { font-size:13px; font-weight:700; color:var(--ink); line-height:1; width:13px; flex-shrink:0; padding-top:1px; }
+.v-name   { font-size:10px; font-weight:700; color:var(--ink); line-height:1.2; }
+.v-def    { font-size:9px; color:var(--sub); margin-top:1px; line-height:1.35; }
+.b-values-note { margin-top:auto; font-size:7px; color:var(--sub); font-style:italic; line-height:1.4; padding-top:5px; border-top:1px solid var(--line); }
+
+/* Shared row grid for priorities + commitments alignment */
+.b-col:nth-child(2),
+.b-col:nth-child(3) {
+  display: grid;
+  grid-template-rows: auto 1fr 1fr 1fr 1fr;
+}
+
+.pri-item { display:flex; gap:7px; align-items:flex-start; padding:5px 0; border-bottom:1px solid var(--gray); min-height:0; overflow:hidden; }
+.pri-item:last-child { border-bottom:none; }
+.pri-num   { font-size:8px; font-weight:500; color:var(--sub); letter-spacing:0.04em; flex-shrink:0; padding-top:1px; width:15px; }
+.pri-title { font-size:10px; font-weight:700; color:var(--ink); line-height:1.25; }
+.pri-desc  { font-size:9px; color:var(--sub); margin-top:2px; line-height:1.4; }
+
+.com-item  { display:flex; gap:7px; align-items:flex-start; padding:5px 0; border-bottom:1px solid var(--gray); min-height:0; overflow:hidden; }
+.com-item:last-child { border-bottom:none; }
+.com-num   { font-size:8px; font-weight:500; color:var(--sub); letter-spacing:0.04em; flex-shrink:0; padding-top:1px; width:15px; }
+.com-title { font-size:10px; font-weight:700; color:var(--ink); line-height:1.25; }
+.com-desc  { font-size:9px; color:var(--sub); margin-top:2px; line-height:1.4; }
+
+.b-stats {
+  background: var(--blue);
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 6px;
+}
+.b-stat      { text-align:center; }
+.b-stat-num  { font-size:16px; font-weight:700; color:var(--white); line-height:1; letter-spacing:-0.01em; }
+.b-stat-label{ font-size:9px; color:var(--dark-sub); margin-top:2px; line-height:1.3; }
+.b-stat-div  { width:1px; height:22px; background:rgba(255,255,255,0.15); flex-shrink:0; }
+.b-stat-cta  { text-align:center; }
+.b-stat-cta-label { font-size:8px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--dark-sub); margin-bottom:3px; }
+.b-stat-cta-text  { font-size:13px; font-weight:700; color:var(--white); line-height:1.2; letter-spacing:-0.01em; }
+
+/* ─── PRINT ──────────────────────────────── */
+@media print {
+  @page { size: 9in 6in landscape; margin: 0; }
+  body { background:white; padding:0; display:block; }
+  .instructions { display:none; }
+  .cards-spread  { display:block; }
+  .card-label    { display:none; }
+  .card-wrap     { display:block; }
+  .card-face {
+    width:7in; height:5in;
+    border-radius:0; box-shadow:none;
+    page-break-after:always; break-after:page;
+  }
+  .card-face:last-child { page-break-after:auto; break-after:auto; }
+  .a-header, .a-photo-right, .a-mission-strip,
+  .pillar-photo,
+  .b-header, .b-film-strip, .film-frame, .b-stats,
+  .pillar-w .pillar-cap,
+  .pillar-c .pillar-cap,
+  .pillar-r .pillar-cap {
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="cards-spread">
+
+  <!-- ══════════════════════════════
+       SIDE A — FRONT
+       ══════════════════════════════ -->
+  <div class="card-wrap">
+    <div class="card-face">
+
+      <!-- Header -->
+      <div class="a-header">
+        <span class="a-brand">UCLA Residential Life</span>
+        <span class="a-meta">North Star &nbsp;·&nbsp; Mission &nbsp;·&nbsp; Pillars</span>
+      </div>
+
+      <!-- Upper row: North Star (left) | Photo full-height (right) -->
+      <div class="a-upper">
+
+        <!-- Left: Our North Star -->
+        <div class="a-north-star">
+          <p class="a-ns-label">★ &nbsp;Our North Star</p>
+          <h2 class="a-ns-headline">Building Connections.<br>Creating Communities.</h2>
+          <p class="a-ns-body">Our work is grounded in the "Build and Create" approach. It's our shared method for cultivating belonging. Community does not happen by accident; it is created through intentional connection.</p>
+        </div>
+
+        <!-- PHOTO ZONE 1: full-height right block -->
+        <div class="a-photo-right"></div>
+
+      </div>
+
+      <!-- Mission strip: full-width blue band -->
+      <div class="a-mission-strip">
+        <div class="a-mission-main">
+          <p class="a-mission-label">Our Mission</p>
+          <p class="a-mission-text">We lead residential communities where every resident feels welcomed, connected, and supported.</p>
+        </div>
+      </div>
+
+      <!-- Pillars section label -->
+      <div class="a-pillars-label">
+        <span class="a-pillars-title">Our Three Pillars</span>
+        <span class="a-pillars-sub">This is how we deliver on our mission.</span>
+      </div>
+
+      <!-- Three pillar columns -->
+      <div class="a-pillars">
+
+        <div class="pillar pillar-w">
+          <div class="pillar-cap">
+            <p class="pillar-name"><span class="pillar-prefix">ResLife</span><span class="pillar-word">Welcomes <svg width="8" height="8" viewBox="0 0 11 11" style="display:inline-block;vertical-align:middle;margin-left:3px;"><rect x="0" y="0" width="11" height="11" fill="#2774AE"/></svg></span></p>
+            <p class="pillar-sub">Where belonging begins.</p>
+          </div>
+          <!-- PHOTO ZONE 2: Welcomes moment -->
+          <div class="pillar-photo"></div>
+          <div class="pillar-body">
+            <p class="pillar-desc">We create a strong, intentional foundation that shapes what becomes possible for every individual.</p>
+            <p class="pillar-q">"Do I feel seen, welcomed, and included?"</p>
+          </div>
+        </div>
+
+        <div class="pillar pillar-c">
+          <div class="pillar-cap">
+            <p class="pillar-name"><span class="pillar-prefix">ResLife</span><span class="pillar-word">Connects <svg width="8" height="8" viewBox="0 0 11 11" style="display:inline-block;vertical-align:middle;margin-left:3px;"><circle cx="5.5" cy="5.5" r="5.5" fill="#D900A5"/></svg></span></p>
+            <p class="pillar-sub">How belonging deepens.</p>
+          </div>
+          <!-- PHOTO ZONE 3: Connects moment -->
+          <div class="pillar-photo"></div>
+          <div class="pillar-body">
+            <p class="pillar-desc">We turn everyday moments into meaningful relationships that transform spaces into communities.</p>
+            <p class="pillar-q">"Do I feel connected to people here?"</p>
+          </div>
+        </div>
+
+        <div class="pillar pillar-r">
+          <div class="pillar-cap">
+            <p class="pillar-name"><span class="pillar-prefix">ResLife</span><span class="pillar-word">Responds <svg width="8" height="8" viewBox="0 0 11 11" style="display:inline-block;vertical-align:middle;margin-left:3px;"><polygon points="5.5,0 11,11 0,11" fill="#FFD100"/></svg></span></p>
+            <p class="pillar-sub">How belonging is sustained.</p>
+          </div>
+          <!-- PHOTO ZONE 4: Responds moment -->
+          <div class="pillar-photo"></div>
+          <div class="pillar-body">
+            <p class="pillar-desc">We respond to conflict, crisis, and accountability with compassion, professionalism, and follow-through.</p>
+            <p class="pillar-q">"If I need help, will someone be there?"</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Shared footer strip -->
+      <div class="a-footer">
+        <span>reslife.ucla.edu</span>
+        <span>hello@orl.ucla.edu</span>
+      </div>
+
+    </div>
+    <p class="card-label">Side A — Front</p>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       SIDE B — BACK
+       ══════════════════════════════ -->
+  <div class="card-wrap">
+    <div class="card-face">
+
+      <div class="b-header">
+        <span class="b-brand">UCLA Residential Life</span>
+        <span class="b-meta">Vision · Values · Priorities · Commitments</span>
+      </div>
+
+      <!-- PHOTO ZONE 5: full-width strip -->
+      <!-- Film strip: 5 frames — Welcome Week · arm-in-arm · Noche de Cultura · lounge · RAs -->
+      <div class="b-film-strip">
+        <div class="film-frame" style="background-image:url('Reference_card_Photos/JDV00659.JPG'); background-position:center 35%;"></div>
+        <div class="film-frame" style="background-image:url('Reference_card_Photos/JDV07714_1 (2).JPG'); background-position:center 100%;"></div>
+        <div class="film-frame" style="background-image:url('Reference_card_Photos/JDV09259.JPG'); background-position:center 78%;"></div>
+        <div class="film-frame" style="background-image:url('Reference_card_Photos/JDV00655.JPG'); background-position:center 65%;"></div>
+        <div class="film-frame" style="background-image:url('Reference_card_Photos/JDV05567.JPG'); background-position:center 28%;"></div>
+      </div>
+
+      <div class="b-body">
+
+        <!-- Col 1: Vision + Values -->
+        <div class="b-col">
+          <div class="b-vision-box">
+            <p class="b-vision-label">Our Vision</p>
+            <p class="b-vision-text">We empower every student to thrive — personally, academically, and beyond UCLA.</p>
+            <p class="b-vision-caption">Belonging is the foundation. Thriving is the goal.</p>
+          </div>
+
+          <p class="b-values-label">Our Values</p>
+          <p class="b-values-intro">We RAISE the bar.</p>
+          <div class="value-row">
+            <span class="v-letter">R</span>
+            <div><p class="v-name">Respect</p><p class="v-def">Make every person feel valued, heard, and included.</p></div>
+          </div>
+          <div class="value-row">
+            <span class="v-letter">A</span>
+            <div><p class="v-name">Accountability</p><p class="v-def">Take ownership of our actions and commitments.</p></div>
+          </div>
+          <div class="value-row">
+            <span class="v-letter">I</span>
+            <div><p class="v-name">Integrity</p><p class="v-def">Uphold the highest standards in all interactions.</p></div>
+          </div>
+          <div class="value-row">
+            <span class="v-letter">S</span>
+            <div><p class="v-name">Service</p><p class="v-def">Uplift others and make a positive impact.</p></div>
+          </div>
+          <div class="value-row">
+            <span class="v-letter">E</span>
+            <div><p class="v-name">Excellence</p><p class="v-def">Innovate, improve, and strive for our best.</p></div>
+          </div>
+        </div>
+
+        <!-- Col 2: Priorities -->
+        <div class="b-col">
+          <p class="b-section-label">Our Priorities</p>
+          <div class="pri-item">
+            <span class="pri-num">01</span>
+            <div>
+              <p class="pri-title">Wellness First</p>
+              <p class="pri-desc">Sustainable communities require sustainable staff.</p>
+            </div>
+          </div>
+          <div class="pri-item">
+            <span class="pri-num">02</span>
+            <div>
+              <p class="pri-title">Strength in Partners</p>
+              <p class="pri-desc">Complex challenges require shared ownership.</p>
+            </div>
+          </div>
+          <div class="pri-item">
+            <span class="pri-num">03</span>
+            <div>
+              <p class="pri-title">Innovation with Insight</p>
+              <p class="pri-desc">Using data and creativity to evolve our work.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 3: Commitments -->
+        <div class="b-col">
+          <p class="b-section-label">Our Commitments</p>
+          <div class="com-item">
+            <span class="com-num">01</span>
+            <div>
+              <p class="com-title">Practice Kindness.</p>
+              <p class="com-desc">Lead with care, dignity, and respect, especially in moments of stress or disagreement.</p>
+            </div>
+          </div>
+          <div class="com-item">
+            <span class="com-num">02</span>
+            <div>
+              <p class="com-title">Focus on Your Sphere.</p>
+              <p class="com-desc">Direct energy toward actions you can shape. Small choices create meaningful impact.</p>
+            </div>
+          </div>
+          <div class="com-item">
+            <span class="com-num">03</span>
+            <div>
+              <p class="com-title">Be Part of the Solution.</p>
+              <p class="com-desc">Approach issues with curiosity and responsibility. Ask: What's needed right now, and how can I contribute?</p>
+            </div>
+          </div>
+          <div class="com-item">
+            <span class="com-num">04</span>
+            <div>
+              <p class="com-title">Why Tomorrow? Start Now.</p>
+              <p class="com-desc">Act with intention: draft the outline, ask the question, take the next small action.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="b-stats">
+        <div class="b-stat"><p class="b-stat-num">26,000+</p><p class="b-stat-label">Residents</p></div>
+        <div class="b-stat-div"></div>
+        <div class="b-stat"><p class="b-stat-num">700+</p><p class="b-stat-label">Student Team Members</p></div>
+        <div class="b-stat-div"></div>
+        <div class="b-stat"><p class="b-stat-num">100+</p><p class="b-stat-label">Professional Team Members</p></div>
+        <div class="b-stat-div"></div>
+        <div class="b-stat"><p class="b-stat-num">18</p><p class="b-stat-label">Faculty-in-Residence</p></div>
+        <div class="b-stat-div"></div>
+        <div class="b-stat"><p class="b-stat-num">10</p><p class="b-stat-label">Interconnected Units</p></div>
+        <div class="b-stat-div" style="height:32px;"></div>
+        <div class="b-stat-cta">
+          <p class="b-stat-cta-label">Your role</p>
+          <p class="b-stat-cta-text">Bring this to life.</p>
+        </div>
+      </div>
+
+    </div>
+    <p class="card-label">Side B — Back</p>
+  </div>
+
+</div>
+</body>
+</html>
