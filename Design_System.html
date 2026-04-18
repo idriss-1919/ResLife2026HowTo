@@ -23,7 +23,7 @@
 
   /* TEXT — two values (WCAG AA on both surfaces) */
   --ink:    #005587;          /*  7.9:1 white,  7.2:1 gray — AAA */
-  --sub:    #6F6F6F;          /*  5.0:1 white,  4.6:1 gray — AA  */
+  --sub:    #595959;          /*  7.0:1 white,  6.4:1 gray — AAA */
 
   /* BORDER — one value */
   --line:   #E0E0E0;
@@ -34,12 +34,13 @@
   --label:   'Karbon', system-ui, sans-serif;
   --mono:    'Karbon', 'SF Mono', 'Courier New', monospace;
 
-  /* SCALE — five sizes */
+  /* SCALE — six sizes */
   --t-xs:   0.75rem;    /* 12px — labels */
   --t-sm:   0.875rem;   /* 14px — captions, metadata */
   --t-base: 1rem;       /* 16px — body */
   --t-lg:   1.375rem;   /* 22px — subheadings */
-  --t-xl:   2.5rem;     /* 40px — display */
+  --t-2xl:  1.875rem;   /* 30px — hero subheads, featured stats, large callouts */
+  --t-xl:   2.5rem;     /* 40px — display, cover slides, H1 */
 
   /* SPACING — 8px base */
   --s-1: 0.5rem;    /* 8 */
@@ -50,8 +51,11 @@
   --s-6: 4rem;      /* 64 */
   --s-7: 6rem;      /* 96 */
 
-  /* RADIUS — one value */
-  --r: 4px;
+  /* RADIUS — three values, mapped to component scale */
+  --r:    4px;   /* kept for backward compat — equals --r-sm */
+  --r-sm: 4px;   /* Small: tags, chips, inline badges, progress bars */
+  --r-md: 8px;   /* Medium: cards, buttons, inputs, notes, module containers */
+  --r-lg: 16px;  /* Large: modals, drawers, full-bleed panels, poster frames */
 
   /* TRANSITION — one definition */
   --ease: 150ms ease-out;
@@ -66,6 +70,21 @@
   --connects-dark:  #D900A5;  /* Same value — kept for compat */
   --responds:       #FFD100;  /* Responds bg w/ ink text — 5.4:1 (AA) */
   --responds-text:  #8C7200;  /* Responds as text on white — 4.6:1 (AA) */
+
+  /* PILLAR TIER 2 — interactive accent (full saturation, interactive contexts) */
+  --welcomes-interactive:  #2774AE;  /* Links, active nav, progress fill, focus rings */
+  --connects-interactive:  #D900A5;  /* Links, active nav, progress fill, focus rings */
+  --responds-interactive:  #8C7200;  /* Responds text token — gold can't carry small interactive elements */
+
+  /* PILLAR TIER 3 — tonal wash (ambient belonging, container backgrounds) */
+  --welcomes-wash:  #EAF1F8;  /* #2774AE at ~8% on white — for pillar-scoped containers */
+  --connects-wash:  #FCEAF7;  /* #D900A5 at ~8% on white — for pillar-scoped containers */
+  --responds-wash:  #FFFAE5;  /* #FFD100 at ~8% on white — for pillar-scoped containers */
+
+  /* PILLAR WASH BORDERS — slightly deeper tint for wash container edges */
+  --welcomes-wash-border: #C8DCED;
+  --connects-wash-border: #F2C4E8;
+  --responds-wash-border: #F0E09A;
 
   /* SEMANTIC (data visualization only) */
   --success:    #1A7F37;
@@ -143,7 +162,7 @@ body {
 /* 1. Card — text with a border */
 .card {
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
   padding: var(--s-3);
   background: var(--white);
 }
@@ -174,7 +193,7 @@ body {
   font-size: var(--t-sm);
   font-weight: 600;
   border: 1px solid var(--ink);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
   background: var(--ink);
   color: var(--white);
   cursor: pointer;
@@ -194,7 +213,7 @@ body {
   padding: 2px 10px;
   font-size: var(--t-xs);
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: var(--r-sm);
   background: var(--gray);
   color: var(--sub);
   letter-spacing: 0.02em;
@@ -247,13 +266,14 @@ body {
   font-size: var(--t-sm);
   color: var(--sub);
   line-height: 1.65;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
 }
 
 /* 7. Slide — the teaching surface */
 .slide-frame {
   aspect-ratio: 16/9;
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
   overflow: hidden;
   position: relative;
   background: var(--white);
@@ -264,7 +284,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 12% 10%;
+  padding: 10% 10%;
 }
 .slide-eyebrow {
   font-size: clamp(6px, 1vw, 10px);
@@ -289,26 +309,6 @@ body {
   max-width: 55%;
   margin-top: 0.75em;
 }
-.slide-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0 10%;
-  height: 14%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--gray);
-}
-.slide-footer span {
-  font-size: clamp(5px, 0.75vw, 8px);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sub);
-  font-weight: 500;
-}
-
 /* 8. Nav — two-row grouped layout */
 .nav {
   padding: var(--s-2) 0;
@@ -371,11 +371,124 @@ body {
 }
 .pillar-tag-responds { background: var(--responds); color: var(--ink); }
 
+/* ─── PILLAR TIER 2 — INTERACTIVE ACCENT ─── */
+/* Use within pillar-scoped contexts: links, focus rings, active states, progress */
+.pillar-welcomes-link { color: var(--welcomes-interactive); text-decoration: underline; }
+.pillar-connects-link { color: var(--connects-interactive); text-decoration: underline; }
+.pillar-responds-link { color: var(--responds-interactive); text-decoration: underline; }
+
+.pillar-welcomes-link:hover { opacity: 0.8; }
+.pillar-connects-link:hover { opacity: 0.8; }
+.pillar-responds-link:hover { opacity: 0.8; }
+
+/* Pillar focus rings — swap the default --ink ring for pillar color when inside a pillar context */
+.pillar-context-welcomes :focus-visible { outline-color: var(--welcomes); }
+.pillar-context-connects :focus-visible { outline-color: var(--connects); }
+.pillar-context-responds :focus-visible { outline-color: var(--responds-text); }
+
+/* Pillar progress fills */
+.progress-fill-welcomes { background: var(--welcomes); }
+.progress-fill-connects { background: var(--connects); }
+.progress-fill-responds { background: var(--responds); }
+
+/* Pillar active nav indicator — left border on active nav item */
+.nav-item-welcomes-active {
+  border-left: 2px solid var(--welcomes);
+  padding-left: calc(var(--s-2) - 2px);
+  color: var(--welcomes) !important;
+}
+.nav-item-connects-active {
+  border-left: 2px solid var(--connects);
+  padding-left: calc(var(--s-2) - 2px);
+  color: var(--connects) !important;
+}
+.nav-item-responds-active {
+  border-left: 2px solid var(--responds-text);
+  padding-left: calc(var(--s-2) - 2px);
+  color: var(--responds-text) !important;
+}
+
+/* Pillar left-border card accent */
+.card-border-welcomes {
+  border-left: 3px solid var(--welcomes);
+}
+.card-border-connects {
+  border-left: 3px solid var(--connects);
+}
+.card-border-responds {
+  border-left: 3px solid var(--responds);
+  /* Gold border at thin width needs boundary — pair with standard 1px wrapper */
+}
+
+/* Pillar top-bar accent (module card header) */
+.card-bar-welcomes::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--welcomes);
+  margin: calc(-1 * var(--s-3)) calc(-1 * var(--s-3)) var(--s-2);
+  border-radius: var(--r) var(--r) 0 0;
+}
+.card-bar-connects::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--connects);
+  margin: calc(-1 * var(--s-3)) calc(-1 * var(--s-3)) var(--s-2);
+  border-radius: var(--r) var(--r) 0 0;
+}
+.card-bar-responds::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--responds);
+  margin: calc(-1 * var(--s-3)) calc(-1 * var(--s-3)) var(--s-2);
+  border-radius: var(--r) var(--r) 0 0;
+}
+
+/* ─── PILLAR TIER 3 — TONAL WASH ─── */
+/* Ambient belonging — container backgrounds, section rooms, print covers */
+.wash-welcomes {
+  background: var(--welcomes-wash);
+  border: 1px solid var(--welcomes-wash-border);
+  border-radius: var(--r);
+}
+.wash-connects {
+  background: var(--connects-wash);
+  border: 1px solid var(--connects-wash-border);
+  border-radius: var(--r);
+}
+.wash-responds {
+  background: var(--responds-wash);
+  border: 1px solid var(--responds-wash-border);
+  border-radius: var(--r);
+}
+
+/* Wash with left accent stripe — the most common wash pattern */
+.wash-welcomes-accented {
+  background: var(--welcomes-wash);
+  border: 1px solid var(--welcomes-wash-border);
+  border-left: 3px solid var(--welcomes);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+.wash-connects-accented {
+  background: var(--connects-wash);
+  border: 1px solid var(--connects-wash-border);
+  border-left: 3px solid var(--connects);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+.wash-responds-accented {
+  background: var(--responds-wash);
+  border: 1px solid var(--responds-wash-border);
+  border-left: 3px solid var(--responds);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+
 /* ─── DARK SURFACE (emphasis moments) ─── */
 .dark {
   background: var(--blue);
   color: var(--white);
-  border-radius: var(--r);
+  border-radius: var(--r-lg);
   padding: var(--s-5);
 }
 .dark .body-text { color: var(--dark-body); max-width: 100%; }
@@ -431,7 +544,7 @@ body {
 .poster-frame {
   aspect-ratio: 3/4;
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-lg);
   overflow: hidden;
   position: relative;
   background: var(--white);
@@ -447,7 +560,7 @@ body {
 /* ─── SOCIAL FRAME ─── */
 .social-frame {
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
   overflow: hidden;
   position: relative;
   background: var(--white);
@@ -466,7 +579,7 @@ body {
 /* ─── BROWSER FRAME ─── */
 .browser-frame {
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
   overflow: hidden;
   background: var(--white);
 }
@@ -503,7 +616,7 @@ body {
 .print-frame {
   aspect-ratio: 8.5/11;
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-lg);
   overflow: hidden;
   position: relative;
   background: var(--white);
@@ -521,7 +634,7 @@ body {
 .video-frame {
   aspect-ratio: 16/9;
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
   overflow: hidden;
   position: relative;
   background: #1a1a1a;
@@ -534,7 +647,7 @@ body {
 /* ─── BADGE / ENV FRAME ─── */
 .badge-frame {
   border: 1px solid var(--line);
-  border-radius: var(--r);
+  border-radius: var(--r-sm);
   overflow: hidden;
   position: relative;
   background: var(--white);
@@ -594,6 +707,7 @@ body {
         <a href="#surfaces">Surfaces</a>
         <a href="#type">Type</a>
         <a href="#moments">Moments</a>
+        <a href="#pillar-tiers">Pillar Tiers</a>
         <a href="#components">Components</a>
       </div>
       <span class="nav-sep">/</span>
@@ -686,9 +800,9 @@ body {
       </div>
       <div>
         <p class="text-xs text-sub mb-1">Text — secondary</p>
-        <div class="swatch" style="background:#6F6F6F;border-color:#6F6F6F;display:flex;align-items:center;justify-content:center;"><span style="color:white;font-weight:700;font-size:var(--t-sm);">Aa</span></div>
+        <div class="swatch" style="background:#595959;border-color:#595959;display:flex;align-items:center;justify-content:center;"><span style="color:white;font-weight:700;font-size:var(--t-sm);">Aa</span></div>
         <p class="font-600 text-sm">Sub</p>
-        <p class="text-xs text-sub mono">#6F6F6F &middot; 5.0:1 on white (AA)</p>
+        <p class="text-xs text-sub mono">#595959 &middot; 7.0:1 on white (AAA)</p>
       </div>
       <div>
         <p class="text-xs text-sub mb-1">Border</p>
@@ -865,6 +979,34 @@ body {
     </div>
     <p class="caption mb-3">8px base. Seven steps. Whitespace is the primary visual element. When in doubt, add more space — never less.</p>
 
+    <p class="font-600 mb-2">Border radius scale</p>
+    <div style="display:flex;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-2);align-items:flex-end;">
+      <div style="text-align:center;">
+        <div style="width:64px;height:40px;border:1.5px solid var(--ink);border-radius:var(--r-sm);opacity:0.6;margin-bottom:var(--s-1);"></div>
+        <p class="font-600 text-xs mono">--r-sm</p>
+        <p class="text-xs text-sub">4px</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:56px;border:1.5px solid var(--ink);border-radius:var(--r-md);opacity:0.6;margin-bottom:var(--s-1);"></div>
+        <p class="font-600 text-xs mono">--r-md</p>
+        <p class="text-xs text-sub">8px</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:120px;height:80px;border:1.5px solid var(--ink);border-radius:var(--r-lg);opacity:0.6;margin-bottom:var(--s-1);"></div>
+        <p class="font-600 text-xs mono">--r-lg</p>
+        <p class="text-xs text-sub">16px</p>
+      </div>
+    </div>
+    <table class="table mb-3">
+      <thead><tr><th>Token</th><th>Value</th><th>Mapped to</th></tr></thead>
+      <tbody>
+        <tr><td class="mono text-xs">--r-sm</td><td>4px</td><td class="text-sm" style="color:var(--sub);">Tags, chips, inline badges, progress bars, pillar tags</td></tr>
+        <tr><td class="mono text-xs">--r-md</td><td>8px</td><td class="text-sm" style="color:var(--sub);">Cards, buttons, inputs, notes, slide frames, callouts</td></tr>
+        <tr><td class="mono text-xs">--r-lg</td><td>16px</td><td class="text-sm" style="color:var(--sub);">Modals, drawers, full-bleed panels, poster &amp; print frames, dark surfaces</td></tr>
+      </tbody>
+    </table>
+    <div class="note mb-3">Radius scales with component size. A small tag at 4px looks right. That same 4px on a full-screen modal looks pinched. The rule: the larger the surface, the larger the corner. Never mix radius values within a single nested container — the inner element should always use a radius ≤ the outer element's.</div>
+
     <p class="font-600 mb-2">Alignment rules</p>
     <div class="note mb-3">
       Left-aligned by default. Center-aligned only for campaign moments (posters, closing slides, swag). Right-aligned never. Every element on a surface aligns to the same left edge. If two things don't share an edge, one of them is in the wrong place.
@@ -1006,7 +1148,76 @@ body {
     </div>
 
     <div class="note">
-      <strong>Rules:</strong> Always outline, never filled. 1.5px stroke at every size. --ink on light surfaces, --dark-body on dark. Minimum 16px. Always pair with a text label — icons never carry meaning alone.
+      <strong>Rules:</strong> Always outline, never filled. Stroke weight scales with icon size — see the stroke scale table below. --ink on light surfaces, --dark-body on dark. Minimum rendered size: 16px. Always pair with a text label — icons never carry meaning alone.
+    </div>
+
+    <p class="font-600 mb-2 mt-4">Stroke scale — weight relative to rendered size</p>
+    <p class="caption mb-2">A 1.5px stroke at 16px is proportionally heavy (9.4% of icon width). The same stroke at 48px is thin (3.1%). Stroke weight must scale to stay optically consistent. Three tiers, three weights.</p>
+    <table class="table mb-3">
+      <thead>
+        <tr><th>Tier</th><th>Rendered size</th><th>Stroke weight</th><th>Proportional weight</th><th>Use</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="font-600">Tier 1 — System</td>
+          <td>16–24px</td>
+          <td><code class="mono text-xs">1.5px</code></td>
+          <td class="text-sm" style="color:var(--sub);">~7–9% — reads bold, precise</td>
+          <td class="text-sm" style="color:var(--sub);">Interface controls, navigation, labels</td>
+        </tr>
+        <tr>
+          <td class="font-600">Tier 2 — Content</td>
+          <td>24–40px</td>
+          <td><code class="mono text-xs">1.5px</code></td>
+          <td class="text-sm" style="color:var(--sub);">~4–6% — balanced, legible</td>
+          <td class="text-sm" style="color:var(--sub);">Slide anchors, handout headers, poster accents</td>
+        </tr>
+        <tr>
+          <td class="font-600">Tier 2 — Large</td>
+          <td>40–64px</td>
+          <td><code class="mono text-xs">1px</code></td>
+          <td class="text-sm" style="color:var(--sub);">~2–3% — light, structural</td>
+          <td class="text-sm" style="color:var(--sub);">Hero icons, environmental large-format</td>
+        </tr>
+        <tr>
+          <td class="font-600">Tier 3 — Domain</td>
+          <td>24–48px</td>
+          <td><code class="mono text-xs">1.5px</code></td>
+          <td class="text-sm" style="color:var(--sub);">~3–6% — consistent with Tier 2</td>
+          <td class="text-sm" style="color:var(--sub);">ResLife-specific concepts, domain wayfinding</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="font-600 mb-2">Stroke comparison — same icon at three sizes</p>
+    <div style="display:flex;align-items:flex-end;gap:var(--s-5);margin-bottom:var(--s-3);">
+      <div style="text-align:center;">
+        <!-- House at 24px, stroke 1.5px -->
+        <svg width="24" height="24" viewBox="0 0 32 32"><path d="M6 16L16 7l10 9" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15v10h14V15" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 25v-6h6v6" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="text-xs text-sub mono mt-1">24px · 1.5px</p>
+        <p class="text-xs text-sub">Tier 1–2</p>
+      </div>
+      <div style="text-align:center;">
+        <!-- House at 40px, stroke 1.5px — note this is the crossover point -->
+        <svg width="40" height="40" viewBox="0 0 32 32"><path d="M6 16L16 7l10 9" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15v10h14V15" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 25v-6h6v6" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="text-xs text-sub mono mt-1">40px · 1.5px</p>
+        <p class="text-xs text-sub" style="color:var(--responds-text);">Too thin ↓</p>
+      </div>
+      <div style="text-align:center;">
+        <!-- House at 40px, stroke 1px — correct for large -->
+        <svg width="40" height="40" viewBox="0 0 32 32"><path d="M6 16L16 7l10 9" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15v10h14V15" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 25v-6h6v6" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="text-xs text-sub mono mt-1">40px · 1px</p>
+        <p class="text-xs text-sub" style="color:var(--welcomes);">Correct ✓</p>
+      </div>
+      <div style="text-align:center;">
+        <!-- House at 56px, stroke 1px — hero scale -->
+        <svg width="56" height="56" viewBox="0 0 32 32"><path d="M6 16L16 7l10 9" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15v10h14V15" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 25v-6h6v6" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="text-xs text-sub mono mt-1">56px · 1px</p>
+        <p class="text-xs text-sub">Hero scale</p>
+      </div>
+    </div>
+    <div class="note">
+      The crossover point is 40px. Below 40px, use 1.5px. At 40px and above, drop to 1px. The visual weight stays optically consistent across the full size range. When in doubt: render at the intended size and ask whether the stroke looks like it belongs to the same family as the 24px version.
     </div>
 
     <!-- ─── ACCESSIBILITY ─── -->
@@ -1110,11 +1321,11 @@ body {
         <p class="text-xs text-sub">Ink on White &mdash; <span class="mono">7.9 : 1</span> AAA</p>
       </div>
       <div>
-        <div class="swatch" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#6F6F6F;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <div class="swatch" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#595959;font-weight:700;font-size:var(--t-sm);">Aa</div>
         <p class="text-xs text-sub">Sub on White &mdash; <span class="mono">5.0 : 1</span> AA</p>
       </div>
       <div>
-        <div class="swatch" style="background:#F4F4F3;border-color:#E8E8E7;display:flex;align-items:center;justify-content:center;color:#6F6F6F;font-weight:700;font-size:var(--t-sm);">Aa</div>
+        <div class="swatch" style="background:#F4F4F3;border-color:#E8E8E7;display:flex;align-items:center;justify-content:center;color:#595959;font-weight:700;font-size:var(--t-sm);">Aa</div>
         <p class="text-xs text-sub">Sub on Gray &mdash; <span class="mono">4.6 : 1</span> AA</p>
       </div>
     </div>
@@ -1203,6 +1414,12 @@ body {
     </div>
 
     <div class="type-specimen">
+      <p class="label-text mb-2">Hero subhead &mdash; Karbon Bold 700 &nbsp;<span style="background:var(--blue);color:#fff;padding:2px 8px;border-radius:2px;font-size:10px;">NEW</span></p>
+      <p style="font-family:var(--display);font-size:var(--t-2xl);font-weight:700;line-height:1.15;">87% of residents feel welcome.</p>
+      <p class="caption mt-2">30px — the gap-filler. Hero stats, featured callouts, secondary slide titles. Too big to be a heading, too calm to be display.</p>
+    </div>
+
+    <div class="type-specimen">
       <p class="label-text mb-2">Body &mdash; Karbon Regular 400</p>
       <p style="font-size:var(--t-base);font-weight:400;line-height:1.65;color:var(--sub);max-width:580px;">Body text at 16px. The BOARDD method gives staff a clear framework: Breathe, Observe, Act, Refer, Document, Debrief. Each step builds on the last and should be practiced until it becomes instinct. This is the voice of the system — calm, clear, unhurried.</p>
     </div>
@@ -1227,12 +1444,13 @@ body {
         <tr><td><code class="mono text-xs">t-sm</code></td><td>14px</td><td>400</td><td>Captions, card body, table cells</td><td>1.5</td></tr>
         <tr><td><code class="mono text-xs">t-base</code></td><td>16px</td><td>400</td><td>Body copy, form inputs</td><td>1.65</td></tr>
         <tr><td><code class="mono text-xs">t-lg</code></td><td>22px</td><td>700</td><td>Section headings</td><td>1.25</td></tr>
+        <tr><td><code class="mono text-xs">t-2xl</code></td><td>30px</td><td>700</td><td>Hero subheads, featured stats, large callouts, slide secondary title</td><td>1.15</td></tr>
         <tr><td><code class="mono text-xs">t-xl</code></td><td>40px</td><td>700</td><td>Display, cover slides, H1</td><td>1.1</td></tr>
       </tbody>
     </table>
 
     <div class="note mt-4">
-      Five sizes. The gap between each step is perceptible at a glance. If you can't tell two sizes apart without measuring, you don't need both.
+      Six sizes. Five was correct in constraint — but the 22px→40px jump was too wide. <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:2px 6px;border-radius:2px;">t-2xl</code> at 30px fills the gap. Use it for hero subheads, featured statistics, and slide callouts where a section heading (22px) is too quiet and a full display (40px) is too loud. The gap between each remaining step is perceptible at a glance.
     </div>
   </div>
 
@@ -1769,6 +1987,329 @@ body {
 
 
   <!-- ═══════════════════════════════════
+       04B — PILLAR COLOR TIERS
+       ═══════════════════════════════════ -->
+  <div class="section" id="pillar-tiers">
+    <p class="label-text mb-1">04B</p>
+    <h2 class="heading mb-2">Pillar color — three tiers</h2>
+    <p class="body-text mb-4">Pillar colors do more than identify a training domain. Used across three tiers, they carry meaning at every scale — from a full-bleed cover slide to a quiet background wash on a workbook page. The rule is the same at every tier: color identifies context, it doesn't decorate content.</p>
+
+    <!-- Tier overview -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-3);margin-bottom:var(--s-5);">
+      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-3);">
+        <div style="display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-2);">
+          <div style="width:32px;height:32px;border-radius:var(--r);background:var(--welcomes);flex-shrink:0;"></div>
+          <p class="font-600">Tier 1 — Full saturation</p>
+        </div>
+        <p class="caption">Identity moments. Full pillar color floods a background or fills a bold element. The domain is unmistakable. Covers, section breaks, activity prompts, gate slides, environmental signage.</p>
+        <p class="text-xs text-sub mt-2" style="font-style:italic;">~15% of surfaces</p>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-3);">
+        <div style="display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-2);">
+          <div style="width:32px;height:4px;border-radius:2px;background:var(--connects);flex-shrink:0;"></div>
+          <p class="font-600">Tier 2 — Interactive accent</p>
+        </div>
+        <p class="caption">Functional signal. Pillar color appears on interactive elements within a pillar-scoped context: links, progress fills, focus rings, left-border accents, active nav indicators. Thin, precise, purposeful.</p>
+        <p class="text-xs text-sub mt-2" style="font-style:italic;">Active UI elements only</p>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-3);">
+        <div style="display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-2);">
+          <div style="width:32px;height:32px;border-radius:var(--r);background:var(--welcomes-wash);border:1px solid var(--welcomes-wash-border);flex-shrink:0;"></div>
+          <p class="font-600">Tier 3 — Tonal wash</p>
+        </div>
+        <p class="caption">Ambient belonging. A very light tint — 8% pillar color on white — applied to container backgrounds, section wrappers, and print covers. The learner feels which domain they're in without being told explicitly.</p>
+        <p class="text-xs text-sub mt-2" style="font-style:italic;">Containers &amp; print</p>
+      </div>
+    </div>
+
+    <!-- ─── TIER 1 DEMO ─── -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Tier 1 — Full saturation</p>
+
+    <p class="font-600 mb-2">Slide covers &amp; section breaks</p>
+    <div class="grid-3 mb-4">
+      <div>
+        <div class="slide-frame" style="margin-bottom:var(--s-1);">
+          <div class="slide-content" style="background:var(--welcomes);padding:10%;">
+            <p style="font-size:clamp(5px,0.8vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:white;opacity:0.85;margin-bottom:0.75em;">Welcomes</p>
+            <p style="font-family:var(--display);font-size:clamp(0.8rem,2.5vw,1.8rem);font-weight:700;color:white;line-height:1.1;">Belonging starts here.</p>
+          </div>
+        </div>
+        <p class="caption">Welcomes blue (#2774AE) floods the surface. White text, eyebrow label.</p>
+      </div>
+      <div>
+        <div class="slide-frame" style="margin-bottom:var(--s-1);">
+          <div class="slide-content" style="background:var(--connects);padding:10%;">
+            <p style="font-size:clamp(5px,0.8vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:white;opacity:0.85;margin-bottom:0.75em;">Connects</p>
+            <p style="font-family:var(--display);font-size:clamp(0.8rem,2.5vw,1.8rem);font-weight:700;color:white;line-height:1.1;">Your turn to share.</p>
+          </div>
+        </div>
+        <p class="caption">Connects magenta (#D900A5) signals interaction and energy.</p>
+      </div>
+      <div>
+        <div class="slide-frame" style="margin-bottom:var(--s-1);">
+          <div class="slide-content" style="background:var(--responds);padding:10%;">
+            <p style="font-size:clamp(5px,0.8vw,8px);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:0.75em;">Gate — Responds</p>
+            <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,1.4rem);font-weight:700;color:var(--ink);line-height:1.2;">Do not proceed until cleared.</p>
+          </div>
+        </div>
+        <p class="caption">Responds gold (#FFD100) with --ink text. Always ink on gold — never white.</p>
+      </div>
+    </div>
+
+    <p class="font-600 mb-2">Full-bleed print &amp; environmental</p>
+    <div class="grid-3 mb-5">
+      <div>
+        <div style="background:var(--welcomes);border-radius:var(--r);padding:var(--s-4);text-align:center;margin-bottom:var(--s-1);">
+          <p style="font-family:var(--display);font-size:var(--t-xl);font-weight:700;color:white;line-height:1;letter-spacing:-0.02em;">W</p>
+          <p style="font-weight:600;color:white;font-size:var(--t-sm);margin-top:var(--s-1);">Welcomes</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:4px;">Training Track</p>
+        </div>
+        <p class="caption">Workbook cover, packet spine, signage background.</p>
+      </div>
+      <div>
+        <div style="background:var(--connects);border-radius:var(--r);padding:var(--s-4);text-align:center;margin-bottom:var(--s-1);">
+          <p style="font-family:var(--display);font-size:var(--t-xl);font-weight:700;color:white;line-height:1;letter-spacing:-0.02em;">C</p>
+          <p style="font-weight:600;color:white;font-size:var(--t-sm);margin-top:var(--s-1);">Connects</p>
+          <p style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:4px;">Training Track</p>
+        </div>
+        <p class="caption">Social post background, event poster, swag item color.</p>
+      </div>
+      <div>
+        <div style="background:var(--responds);border-radius:var(--r);padding:var(--s-4);text-align:center;margin-bottom:var(--s-1);">
+          <p style="font-family:var(--display);font-size:var(--t-xl);font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em;">R</p>
+          <p style="font-weight:600;color:var(--ink);font-size:var(--t-sm);margin-top:var(--s-1);">Responds</p>
+          <p style="font-size:10px;color:var(--ink);opacity:0.6;margin-top:4px;">Training Track</p>
+        </div>
+        <p class="caption">Emergency signage, protocol handout cover, alert poster.</p>
+      </div>
+    </div>
+
+    <!-- ─── TIER 2 DEMO ─── -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Tier 2 — Interactive accent</p>
+    <p class="body-text mb-3">Full saturation applied to interactive elements — left borders, progress fills, links, and focus rings — within a pillar-scoped context. Color signals something to do or something active, not just something to look at.</p>
+
+    <p class="font-600 mb-2">Module cards with pillar accents</p>
+    <div class="grid-3 mb-4">
+
+      <!-- Welcomes module card -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="height:4px;background:var(--welcomes);"></div>
+        <div style="padding:var(--s-3);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s-1);">
+            <span class="pillar-tag" style="background:var(--welcomes);">Welcomes</span>
+            <span class="tag">Philosophy</span>
+          </div>
+          <p class="card-title">W-101: First Day Experience</p>
+          <p class="card-body">How to make every new resident feel expected before they arrive.</p>
+          <div style="margin-top:var(--s-2);">
+            <div class="progress-track"><div class="progress-fill progress-fill-welcomes" style="width:72%;"></div></div>
+            <p style="font-size:10px;color:var(--sub);margin-top:4px;">72% complete</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connects module card -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="height:4px;background:var(--connects);"></div>
+        <div style="padding:var(--s-3);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s-1);">
+            <span class="pillar-tag" style="background:var(--connects);">Connects</span>
+            <span class="tag">Roles</span>
+          </div>
+          <p class="card-title">C-201: Community Programs</p>
+          <p class="card-body">Design and facilitate programs that build authentic community.</p>
+          <div style="margin-top:var(--s-2);">
+            <div class="progress-track"><div class="progress-fill progress-fill-connects" style="width:45%;"></div></div>
+            <p style="font-size:10px;color:var(--sub);margin-top:4px;">45% complete</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responds module card -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="height:4px;background:var(--responds);border-bottom:1px solid var(--responds-wash-border);"></div>
+        <div style="padding:var(--s-3);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s-1);">
+            <span class="pillar-tag pillar-tag-responds">Responds</span>
+            <span class="tag">Operations</span>
+          </div>
+          <p class="card-title">R-301: Crisis Response</p>
+          <p class="card-body">Recognize, stabilize, and refer. The BOARDD method in practice.</p>
+          <div style="margin-top:var(--s-2);">
+            <div class="progress-track"><div class="progress-fill progress-fill-responds" style="width:20%;"></div></div>
+            <p style="font-size:10px;color:var(--sub);margin-top:4px;">20% complete</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="font-600 mb-2">Left-border interactive callouts</p>
+    <div style="display:flex;flex-direction:column;gap:var(--s-2);margin-bottom:var(--s-4);">
+      <div class="card card-border-welcomes">
+        <p class="font-600 text-sm" style="color:var(--welcomes);">Welcomes — Reflection prompt</p>
+        <p class="card-body mt-1">Think about your own first day as a UCLA student. What made you feel like you belonged — or didn't?</p>
+      </div>
+      <div class="card card-border-connects">
+        <p class="font-600 text-sm" style="color:var(--connects);">Connects — Discussion prompt</p>
+        <p class="card-body mt-1">With your floor team, name one program you could run this quarter that you've never tried before.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--responds);padding-left:calc(var(--s-3) - 2px);">
+        <div style="display:flex;align-items:center;gap:var(--s-1);margin-bottom:4px;">
+          <svg width="14" height="14" viewBox="0 0 32 32"><path d="M16 4L3 28h26z" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="14" x2="16" y2="20" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="24" r="1" fill="var(--ink)"/></svg>
+          <p class="font-600 text-sm">Responds — Protocol note</p>
+        </div>
+        <p class="card-body">Always call UCPD before contacting any outside agency. Document the call time and officer name immediately.</p>
+      </div>
+    </div>
+
+    <p class="font-600 mb-2">Active navigation states</p>
+    <div class="grid-3 mb-5">
+      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-3);">
+        <p class="text-xs text-sub mb-2">Welcomes context</p>
+        <div style="display:flex;flex-direction:column;gap:2px;" class="pillar-context-welcomes">
+          <a href="#" class="nav-item-welcomes-active" style="display:block;font-size:var(--t-xs);font-weight:500;text-decoration:none;padding:var(--s-1) var(--s-2);">W-101: First Day</a>
+          <a href="#" style="display:block;font-size:var(--t-xs);color:var(--sub);text-decoration:none;padding:var(--s-1) var(--s-2);">W-102: Floor Culture</a>
+          <a href="#" style="display:block;font-size:var(--t-xs);color:var(--sub);text-decoration:none;padding:var(--s-1) var(--s-2);">W-103: Move-In</a>
+        </div>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-3);">
+        <p class="text-xs text-sub mb-2">Connects context</p>
+        <div style="display:flex;flex-direction:column;gap:2px;" class="pillar-context-connects">
+          <a href="#" style="display:block;font-size:var(--t-xs);color:var(--sub);text-decoration:none;padding:var(--s-1) var(--s-2);">C-201: Programs</a>
+          <a href="#" class="nav-item-connects-active" style="display:block;font-size:var(--t-xs);font-weight:500;text-decoration:none;padding:var(--s-1) var(--s-2);">C-202: Facilitation</a>
+          <a href="#" style="display:block;font-size:var(--t-xs);color:var(--sub);text-decoration:none;padding:var(--s-1) var(--s-2);">C-203: Community</a>
+        </div>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-3);">
+        <p class="text-xs text-sub mb-2">Responds context</p>
+        <div style="display:flex;flex-direction:column;gap:2px;" class="pillar-context-responds">
+          <a href="#" style="display:block;font-size:var(--t-xs);color:var(--sub);text-decoration:none;padding:var(--s-1) var(--s-2);">R-301: Crisis</a>
+          <a href="#" style="display:block;font-size:var(--t-xs);color:var(--sub);text-decoration:none;padding:var(--s-1) var(--s-2);">R-302: BOARDD</a>
+          <a href="#" class="nav-item-responds-active" style="display:block;font-size:var(--t-xs);font-weight:500;text-decoration:none;padding:var(--s-1) var(--s-2);">R-303: Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── TIER 3 DEMO ─── -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Tier 3 — Tonal wash</p>
+    <p class="body-text mb-3">At 8% opacity on white, pillar colors become rooms. The learner doesn't consciously register the color — they feel the domain. Use for section wrappers, workbook page backgrounds, sidebar callouts, and print document covers where the full pillar color would overpower the content.</p>
+
+    <p class="font-600 mb-2">Wash containers — ambient domain signal</p>
+    <div class="grid-3 mb-4">
+      <div class="wash-welcomes" style="padding:var(--s-3);">
+        <p class="label-text mb-2" style="color:var(--welcomes);">Welcomes section</p>
+        <p class="font-600 mb-1">Understanding Belonging</p>
+        <p class="caption">Belonging is not a feeling that appears after a good experience. It is a condition you design before someone arrives. This section covers how to build that condition intentionally.</p>
+        <div style="margin-top:var(--s-2);">
+          <div class="progress-track"><div class="progress-fill progress-fill-welcomes" style="width:60%;"></div></div>
+        </div>
+      </div>
+      <div class="wash-connects" style="padding:var(--s-3);">
+        <p class="label-text mb-2" style="color:var(--connects);">Connects section</p>
+        <p class="font-600 mb-1">Building Authentic Community</p>
+        <p class="caption">Community doesn't happen because people share a hallway. It happens because someone built a reason for them to interact. This section covers that design work.</p>
+        <div style="margin-top:var(--s-2);">
+          <div class="progress-track"><div class="progress-fill progress-fill-connects" style="width:35%;"></div></div>
+        </div>
+      </div>
+      <div class="wash-responds" style="padding:var(--s-3);">
+        <p class="label-text mb-2" style="color:var(--responds-text);">Responds section</p>
+        <p class="font-600 mb-1">Crisis Response Fundamentals</p>
+        <p class="caption">Every crisis will test your instincts before it tests your training. This section teaches you to slow down when it matters most — and why the BOARDD method exists.</p>
+        <div style="margin-top:var(--s-2);">
+          <div class="progress-track"><div class="progress-fill progress-fill-responds" style="width:15%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="font-600 mb-2">Wash + accent stripe — the most common pattern</p>
+    <div style="display:flex;flex-direction:column;gap:var(--s-2);margin-bottom:var(--s-4);">
+      <div class="wash-welcomes-accented" style="padding:var(--s-3);">
+        <p class="font-600 text-sm" style="color:var(--welcomes);">Key concept — Welcomes</p>
+        <p class="caption mt-1">Designed belonging is the deliberate act of creating conditions where every resident feels expected, valued, and capable of belonging before they've earned it.</p>
+      </div>
+      <div class="wash-connects-accented" style="padding:var(--s-3);">
+        <p class="font-600 text-sm" style="color:var(--connects);">Key concept — Connects</p>
+        <p class="caption mt-1">Connection is not spontaneous. It is facilitated. Your role is to engineer the conditions — space, time, format — where authentic interaction becomes likely.</p>
+      </div>
+      <div class="wash-responds-accented" style="padding:var(--s-3);">
+        <p class="font-600 text-sm" style="color:var(--responds-text);">Key concept — Responds</p>
+        <p class="caption mt-1">The first two minutes of a crisis response determine the next two hours. Breathe first. Everything else follows from a calm, grounded presence.</p>
+      </div>
+    </div>
+
+    <p class="font-600 mb-2">Wash in print — workbook pages &amp; handouts</p>
+    <div class="grid-3 mb-5">
+      <div class="print-frame" style="aspect-ratio:auto;height:200px;border:none;box-shadow:none;overflow:hidden;">
+        <div style="background:var(--welcomes-wash);border:1px solid var(--welcomes-wash-border);border-radius:var(--r);height:100%;padding:var(--s-3);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:var(--s-1);margin-bottom:var(--s-2);">
+            <div style="width:3px;height:20px;background:var(--welcomes);border-radius:2px;flex-shrink:0;"></div>
+            <p style="font-size:10px;font-weight:600;color:var(--welcomes);letter-spacing:0.08em;text-transform:uppercase;">Welcomes Workbook</p>
+          </div>
+          <p class="font-600 text-sm mb-1">Reflection activity</p>
+          <p style="font-size:10px;color:var(--sub);line-height:1.5;flex:1;">Describe one moment in your own UCLA journey when you felt like you truly belonged. What made that moment possible?</p>
+          <div style="height:32px;border-bottom:1px solid var(--welcomes-wash-border);margin-top:var(--s-1);"></div>
+          <div style="height:32px;border-bottom:1px solid var(--welcomes-wash-border);margin-top:var(--s-1);"></div>
+        </div>
+      </div>
+      <div class="print-frame" style="aspect-ratio:auto;height:200px;border:none;box-shadow:none;overflow:hidden;">
+        <div style="background:var(--connects-wash);border:1px solid var(--connects-wash-border);border-radius:var(--r);height:100%;padding:var(--s-3);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:var(--s-1);margin-bottom:var(--s-2);">
+            <div style="width:3px;height:20px;background:var(--connects);border-radius:2px;flex-shrink:0;"></div>
+            <p style="font-size:10px;font-weight:600;color:var(--connects);letter-spacing:0.08em;text-transform:uppercase;">Connects Workbook</p>
+          </div>
+          <p class="font-600 text-sm mb-1">Planning activity</p>
+          <p style="font-size:10px;color:var(--sub);line-height:1.5;flex:1;">Name one program you could run this quarter that would connect residents who wouldn't normally interact. What is the format?</p>
+          <div style="height:32px;border-bottom:1px solid var(--connects-wash-border);margin-top:var(--s-1);"></div>
+          <div style="height:32px;border-bottom:1px solid var(--connects-wash-border);margin-top:var(--s-1);"></div>
+        </div>
+      </div>
+      <div class="print-frame" style="aspect-ratio:auto;height:200px;border:none;box-shadow:none;overflow:hidden;">
+        <div style="background:var(--responds-wash);border:1px solid var(--responds-wash-border);border-radius:var(--r);height:100%;padding:var(--s-3);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:var(--s-1);margin-bottom:var(--s-2);">
+            <div style="width:3px;height:20px;background:var(--responds);border-radius:2px;flex-shrink:0;"></div>
+            <p style="font-size:10px;font-weight:600;color:var(--responds-text);letter-spacing:0.08em;text-transform:uppercase;">Responds Workbook</p>
+          </div>
+          <p class="font-600 text-sm mb-1">Protocol checklist</p>
+          <p style="font-size:10px;color:var(--sub);line-height:1.5;flex:1;">Walk through the BOARDD steps from memory. Which one do you instinctively skip? Write it here and explain why.</p>
+          <div style="height:32px;border-bottom:1px solid var(--responds-wash-border);margin-top:var(--s-1);"></div>
+          <div style="height:32px;border-bottom:1px solid var(--responds-wash-border);margin-top:var(--s-1);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Token reference -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Token reference — all pillar tiers</p>
+    <table class="table mb-3">
+      <thead>
+        <tr><th>Token</th><th>Value</th><th>Tier</th><th>Use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono text-xs">--welcomes</td><td class="mono text-xs">#2774AE</td><td><span class="tag">T1</span></td><td class="text-sm" style="color:var(--sub);">Covers, section headers, full-bleed surfaces</td></tr>
+        <tr><td class="mono text-xs">--connects</td><td class="mono text-xs">#D900A5</td><td><span class="tag">T1</span></td><td class="text-sm" style="color:var(--sub);">Activity slides, social content, event materials</td></tr>
+        <tr><td class="mono text-xs">--responds</td><td class="mono text-xs">#FFD100</td><td><span class="tag">T1</span></td><td class="text-sm" style="color:var(--sub);">Gate slides, alerts, emergency signage (ink text only)</td></tr>
+        <tr><td class="mono text-xs">--welcomes-interactive</td><td class="mono text-xs">#2774AE</td><td><span class="tag">T2</span></td><td class="text-sm" style="color:var(--sub);">Links, progress fills, left borders, focus rings</td></tr>
+        <tr><td class="mono text-xs">--connects-interactive</td><td class="mono text-xs">#D900A5</td><td><span class="tag">T2</span></td><td class="text-sm" style="color:var(--sub);">Links, progress fills, left borders, focus rings</td></tr>
+        <tr><td class="mono text-xs">--responds-interactive</td><td class="mono text-xs">#8C7200</td><td><span class="tag">T2</span></td><td class="text-sm" style="color:var(--sub);">Text links only — gold cannot carry small interactive elements</td></tr>
+        <tr><td class="mono text-xs">--welcomes-wash</td><td class="mono text-xs">#EAF1F8</td><td><span class="tag">T3</span></td><td class="text-sm" style="color:var(--sub);">Section wrappers, workbook backgrounds, sidebar callouts</td></tr>
+        <tr><td class="mono text-xs">--connects-wash</td><td class="mono text-xs">#FCEAF7</td><td><span class="tag">T3</span></td><td class="text-sm" style="color:var(--sub);">Section wrappers, workbook backgrounds, sidebar callouts</td></tr>
+        <tr><td class="mono text-xs">--responds-wash</td><td class="mono text-xs">#FFFAE5</td><td><span class="tag">T3</span></td><td class="text-sm" style="color:var(--sub);">Section wrappers, workbook backgrounds, sidebar callouts</td></tr>
+        <tr><td class="mono text-xs">--welcomes-wash-border</td><td class="mono text-xs">#C8DCED</td><td><span class="tag">T3</span></td><td class="text-sm" style="color:var(--sub);">Container edges on wash backgrounds</td></tr>
+        <tr><td class="mono text-xs">--connects-wash-border</td><td class="mono text-xs">#F2C4E8</td><td><span class="tag">T3</span></td><td class="text-sm" style="color:var(--sub);">Container edges on wash backgrounds</td></tr>
+        <tr><td class="mono text-xs">--responds-wash-border</td><td class="mono text-xs">#F0E09A</td><td><span class="tag">T3</span></td><td class="text-sm" style="color:var(--sub);">Container edges on wash backgrounds</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>The co-existence rule:</strong> All three pillar washes (T3) can appear on the same page simultaneously — their saturation is too low to compete. Two or more T1 (full saturation) pillar colors on the same surface will vibrate — never place them side by side. T2 interactive accents follow the same rule: only one pillar's interactive color should be active within a single view.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+
+  <!-- ═══════════════════════════════════
        05 — COMPONENTS
        ═══════════════════════════════════ -->
   <div class="section" id="components">
@@ -1874,175 +2415,230 @@ body {
   <div class="section" id="slides">
     <p class="label-text mb-1">06</p>
     <h2 class="heading mb-2">The slide system</h2>
-    <p class="body-text mb-3">Thirteen slide types. Four structural (Cover, Section Divider, Content, Closing) give the deck its skeleton. Nine experiential types (Quote, Data, four Image+Text variants, Activity, Framework, Process, Reflection) turn information into experience.</p>
+    <p class="body-text mb-3">Fourteen slide types. Four structural (Cover, Section Divider, Content, Closing) give the deck its skeleton. Ten experiential types (Quote, Data, four Image+Text variants, Activity, Framework, Process, Activate Reflection, Synthesize Reflection) turn information into experience. No footers — every surface is given entirely to content.</p>
 
-    <!-- Slide discipline rules -->
-    <div style="background:var(--gray);border-radius:var(--r);padding:var(--s-4);margin-bottom:var(--s-4);">
-      <p class="font-600 mb-2">Slide discipline — the non-negotiables</p>
-      <div class="grid-2" style="gap:var(--s-4);margin-bottom:var(--s-4);">
-        <div>
-          <p class="font-600 text-sm mb-1">One message per slide</p>
-          <p class="caption">If you need two points, make two slides. Every slide should be describable in a single sentence. If you catch yourself saying "and also..." — split it.</p>
-        </div>
-        <div>
-          <p class="font-600 text-sm mb-1">No bullet points. Ever.</p>
-          <p class="caption">Bullets are a crutch that signal the content hasn't been designed. If you have a list, use a Process slide, a Framework slide, or separate each item onto its own Content slide. The audience reads ahead on bullet slides — they stop listening.</p>
-        </div>
-        <div>
-          <p class="font-600 text-sm mb-1">Title: max 8–12 words, max 2 lines</p>
-          <p class="caption">If your title wraps to a third line, it's not a title — it's a paragraph. Cut it. The title is a promise, not a summary.</p>
-        </div>
-        <div>
-          <p class="font-600 text-sm mb-1">Body: max 2 lines, max 30 words</p>
-          <p class="caption">The body supports the title — it doesn't repeat it or expand into an essay. Two lines. If you need more, you need another slide.</p>
+    <!-- ANATOMY -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Slide anatomy</p>
+    <p class="body-text mb-3">Every slide uses the same three zones in the same order. The zones are not equally weighted — the title is always the dominant element.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s-5);margin-bottom:var(--s-5);">
+      <div>
+        <div class="slide-frame" style="position:relative;">
+          <div class="slide-content" style="justify-content:flex-start;gap:0;">
+            <div style="border:1.5px dashed var(--welcomes);border-radius:3px;margin-bottom:2%;width:100%;padding:2% 4%;display:flex;align-items:center;justify-content:space-between;">
+              <p style="font-size:clamp(4px,0.65vw,7px);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--welcomes);">A — Eyebrow</p>
+              <p style="font-size:clamp(4px,0.65vw,7px);color:var(--welcomes);font-style:italic;">module · section</p>
+            </div>
+            <div style="border:1.5px dashed var(--ink);border-radius:3px;padding:3% 4%;margin-bottom:2%;width:100%;">
+              <p style="font-size:clamp(4px,0.6vw,6px);font-weight:600;color:var(--ink);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">B — Title (dominant)</p>
+              <p style="font-family:var(--display);font-size:clamp(0.6rem,1.8vw,1.3rem);font-weight:700;line-height:1.1;color:var(--ink);">Max 8–12 words.<br>Max 2 lines.</p>
+            </div>
+            <div style="border:1.5px dashed var(--sub);border-radius:3px;padding:3% 4%;width:100%;">
+              <p style="font-size:clamp(4px,0.6vw,6px);font-weight:600;color:var(--sub);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">C — Body (optional)</p>
+              <p style="font-size:clamp(0.35rem,0.75vw,0.6rem);color:var(--sub);line-height:1.6;">One supporting sentence. Context, not repetition. If absent, the title carries everything — that is valid and often better.</p>
+            </div>
+          </div>
         </div>
       </div>
+      <div style="display:flex;flex-direction:column;gap:var(--s-3);">
+        <div><p class="font-600 text-sm" style="color:var(--welcomes);">A — Eyebrow</p><p class="caption mt-1">Module code, pillar, section number. One line maximum. Always letterspaced uppercase. Metadata, not content. Optional on Closing, Quote, and Section Divider slides.</p></div>
+        <div><p class="font-600 text-sm">B — Title</p><p class="caption mt-1">The only mandatory zone. Font: Karbon Bold at <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-xl</code> (40px) for Cover; <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-2xl</code> (30px) for Section Dividers, Activity, Reflection, and Closing; <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-lg</code> (22px) for Content, Quote, Framework, Process.</p></div>
+        <div><p class="font-600 text-sm" style="color:var(--sub);">C — Body</p><p class="caption mt-1">One to two sentences. 30 words maximum. Never on Section Divider, Quote, or Closing. When in doubt, delete it — the title is enough more often than you think.</p></div>
+      </div>
+    </div>
 
+    <!-- DISCIPLINE -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Slide discipline — the non-negotiables</p>
+    <div style="background:var(--gray);border-radius:var(--r-md);padding:var(--s-4);margin-bottom:var(--s-4);">
+      <div class="grid-2" style="gap:var(--s-4);margin-bottom:var(--s-4);">
+        <div><p class="font-600 text-sm mb-1">One message per slide</p><p class="caption">If you need two points, make two slides. Every slide should be describable in a single sentence. "And also..." means split it.</p></div>
+        <div><p class="font-600 text-sm mb-1">No bullet points. Ever.</p><p class="caption">Bullets signal the content hasn't been designed. Use a Process slide, a Framework slide, or separate each item onto its own Content slide.</p></div>
+        <div><p class="font-600 text-sm mb-1">Title: max 8–12 words, max 2 lines</p><p class="caption">Third-line wrap means it's a paragraph, not a title. Cut it. The title is a promise, not a summary.</p></div>
+        <div><p class="font-600 text-sm mb-1">Body: max 2 lines, max 30 words</p><p class="caption">The body supports the title — it doesn't expand into an essay. Two lines. More means another slide.</p></div>
+        <div><p class="font-600 text-sm mb-1">One visual OR one idea — never both heavy</p><p class="caption">Photo + three lines of text → remove two lines. The visual and the idea compete. One wins, one should yield.</p></div>
+        <div><p class="font-600 text-sm mb-1">The squint test</p><p class="caption">Squint from arm's length. You should identify the hierarchy instantly: headline, body, action. If everything blurs to the same weight, redesign.</p></div>
+      </div>
       <p class="font-600 text-sm mb-2">Word limits by slide type</p>
       <table class="table" style="margin-bottom:var(--s-3);">
-        <thead>
-          <tr><th>Type</th><th>Title</th><th>Body</th><th>Total max</th></tr>
-        </thead>
+        <thead><tr><th>Type</th><th>Title</th><th>Body</th><th>Total max</th></tr></thead>
         <tbody>
           <tr><td class="font-600">Cover</td><td>4–6 words</td><td>1 short subtitle</td><td>12 words</td></tr>
           <tr><td class="font-600">Section Divider</td><td>2–5 words</td><td>None</td><td>5 words</td></tr>
           <tr><td class="font-600">Content</td><td>6–10 words</td><td>1–2 sentences</td><td>40 words</td></tr>
           <tr><td class="font-600">Quote</td><td>The quote itself</td><td>Attribution only</td><td>25 words</td></tr>
           <tr><td class="font-600">Data</td><td>1 number</td><td>Context line</td><td>15 words + number</td></tr>
-          <tr><td class="font-600">Activity</td><td>Action prompt</td><td>2–3 steps</td><td>30 words</td></tr>
-          <tr><td class="font-600">Reflection</td><td>1 question</td><td>Brief instruction</td><td>20 words</td></tr>
-          <tr><td class="font-600">Closing</td><td>Takeaway line</td><td>Module code</td><td>10 words</td></tr>
+          <tr><td class="font-600">Activity</td><td>Action prompt</td><td>2–3 steps, one line each</td><td>30 words</td></tr>
+          <tr><td class="font-600">Activate Reflection</td><td>1 question</td><td>Brief framing</td><td>20 words</td></tr>
+          <tr><td class="font-600">Synthesize Reflection</td><td>1 question</td><td>Brief instruction</td><td>20 words</td></tr>
+          <tr><td class="font-600">Closing</td><td>Takeaway line</td><td>None</td><td>10 words</td></tr>
         </tbody>
       </table>
-
-      <div class="grid-2" style="gap:var(--s-4);">
-        <div>
-          <p class="font-600 text-sm mb-1">One visual OR one idea — never both heavy</p>
-          <p class="caption">A slide can carry a strong visual (photo, diagram, chart) or a strong idea (headline + body). When both compete for attention, neither wins. If your slide has a photo and three lines of text, remove two lines.</p>
-        </div>
-        <div>
-          <p class="font-600 text-sm mb-1">The squint test</p>
-          <p class="caption">Squint at the slide from arm's length. You should be able to identify the hierarchy instantly: what's the headline? Where's the body? What's the action? If everything blurs into the same weight, the slide needs to be redesigned.</p>
-        </div>
-        <div>
-          <p class="font-600 text-sm mb-1">No bullet lists. If you must, max 3 items.</p>
-          <p class="caption">Lists of 4+ items are a sign you haven't designed the content. Break each item into its own slide, or use a Process/Sequence layout. If absolutely necessary (steps, instructions), cap at 3 items — and each item gets one line max.</p>
-        </div>
-        <div>
-          <p class="font-600 text-sm mb-1">Max 1 visual element per slide</p>
-          <p class="caption">One photo, or one chart, or one diagram, or one icon. Never two. The visual is the anchor — if there are two, the eye bounces and neither lands. If you need two visuals, you need two slides.</p>
-        </div>
-      </div>
-
-      <!-- 60-second guide -->
-      <div style="margin-top:var(--s-4);background:var(--white);border:2px solid var(--ink);border-radius:var(--r);padding:var(--s-4);">
-        <p class="font-600 mb-2" style="text-align:center;">If you remember nothing else</p>
-        <p style="text-align:center;font-family:var(--display);font-size:var(--t-lg);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:var(--s-3);">How to build a slide in 60 seconds</p>
+      <div style="background:var(--white);border:2px solid var(--ink);border-radius:var(--r-md);padding:var(--s-4);">
+        <p class="font-600 mb-2" style="text-align:center;">How to build a slide in 60 seconds</p>
         <div style="display:flex;gap:var(--s-4);justify-content:center;">
-          <div style="text-align:center;flex:1;">
-            <p style="font-family:var(--display);font-size:2.5rem;font-weight:700;color:var(--ink);line-height:1;">1</p>
-            <p class="font-600 text-sm" style="margin-top:var(--s-1);">Pick ONE idea</p>
-            <p class="caption">What's the single thing the learner should take away?</p>
-          </div>
-          <div style="text-align:center;flex:1;">
-            <p style="font-family:var(--display);font-size:2.5rem;font-weight:700;color:var(--ink);line-height:1;">2</p>
-            <p class="font-600 text-sm" style="margin-top:var(--s-1);">Write ≤12 words</p>
-            <p class="caption">That's your title. If it needs more, you have two ideas.</p>
-          </div>
-          <div style="text-align:center;flex:1;">
-            <p style="font-family:var(--display);font-size:2.5rem;font-weight:700;color:var(--ink);line-height:1;">3</p>
-            <p class="font-600 text-sm" style="margin-top:var(--s-1);">Add 1 sentence</p>
-            <p class="caption">One supporting line. Context, not explanation.</p>
-          </div>
-          <div style="text-align:center;flex:1;">
-            <p style="font-family:var(--display);font-size:2.5rem;font-weight:700;color:var(--ink);line-height:1;">4</p>
-            <p class="font-600 text-sm" style="margin-top:var(--s-1);">Stop.</p>
-            <p class="caption">You're done. Resist the urge to add more.</p>
-          </div>
+          <div style="text-align:center;flex:1;"><p style="font-family:var(--display);font-size:var(--t-2xl);font-weight:700;color:var(--ink);line-height:1;">1</p><p class="font-600 text-sm mt-1">Pick ONE idea</p><p class="caption">Single takeaway?</p></div>
+          <div style="text-align:center;flex:1;"><p style="font-family:var(--display);font-size:var(--t-2xl);font-weight:700;color:var(--ink);line-height:1;">2</p><p class="font-600 text-sm mt-1">Write ≤12 words</p><p class="caption">That is your title.</p></div>
+          <div style="text-align:center;flex:1;"><p style="font-family:var(--display);font-size:var(--t-2xl);font-weight:700;color:var(--ink);line-height:1;">3</p><p class="font-600 text-sm mt-1">Add 1 sentence</p><p class="caption">Context, not explanation.</p></div>
+          <div style="text-align:center;flex:1;"><p style="font-family:var(--display);font-size:var(--t-2xl);font-weight:700;color:var(--ink);line-height:1;">4</p><p class="font-600 text-sm mt-1">Stop.</p><p class="caption">Resist adding more.</p></div>
         </div>
       </div>
     </div>
 
-    <!-- ─── PRIMARY: STRUCTURAL ─── -->
-    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Primary &mdash; structural slides</p>
-
-    <!-- 1. Cover slide -->
-    <p class="label-text mb-2">01 &middot; Cover slide &mdash; set tone, establish importance</p>
-    <div class="slide-frame mb-2" style="background:var(--blue);">
-      <div class="slide-content" style="justify-content:flex-end;padding-bottom:18%;">
-        <p style="font-size:clamp(6px,1vw,10px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark-sub);margin-bottom:0.75em;">W-101 &middot; Welcomes &middot; Philosophy</p>
-        <p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1.08;color:white;letter-spacing:-0.015em;">Philosophy<br>of Welcomes</p>
-        <p style="font-size:clamp(0.5rem,1vw,0.8rem);color:var(--dark-sub);line-height:1.6;max-width:50%;margin-top:0.75em;">Why welcoming staff well is the foundation of everything we do.</p>
+    <!-- SEQUENCING -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Sequencing rules — what follows what</p>
+    <div class="grid-2 mb-4" style="gap:var(--s-4);">
+      <div>
+        <p class="font-600 mb-2">The standard module arc</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--blue);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:white;min-width:24px;">01</span><span style="font-size:var(--t-xs);font-weight:600;color:white;">Cover</span><span style="font-size:10px;color:rgba(255,255,255,0.6);margin-left:auto;">dark surface</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--welcomes-wash);border:1px solid var(--welcomes-wash-border);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:var(--ink);min-width:24px;">02</span><span style="font-size:var(--t-xs);font-weight:600;color:var(--ink);">Activate Reflection</span><span style="font-size:10px;color:var(--sub);margin-left:auto;">prime learner</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--white);border:1px solid var(--line);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:var(--ink);min-width:24px;">03</span><span style="font-size:var(--t-xs);font-weight:600;color:var(--ink);">Content ×3–5</span><span style="font-size:10px;color:var(--sub);margin-left:auto;">white surface</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--connects);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:white;min-width:24px;">04</span><span style="font-size:var(--t-xs);font-weight:600;color:white;">Activity</span><span style="font-size:10px;color:rgba(255,255,255,0.7);margin-left:auto;">pillar color</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--gray);border:1px solid var(--line);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:var(--ink);min-width:24px;">05</span><span style="font-size:var(--t-xs);font-weight:600;color:var(--ink);">Section Divider</span><span style="font-size:10px;color:var(--sub);margin-left:auto;">gray reset</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--white);border:1px solid var(--line);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:var(--ink);min-width:24px;">06</span><span style="font-size:var(--t-xs);font-weight:600;color:var(--ink);">Content ×3–5</span><span style="font-size:10px;color:var(--sub);margin-left:auto;">white surface</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--responds-wash);border:1px solid var(--responds-wash-border);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:var(--ink);min-width:24px;">07</span><span style="font-size:var(--t-xs);font-weight:600;color:var(--ink);">Synthesize Reflection</span><span style="font-size:10px;color:var(--sub);margin-left:auto;">consolidate</span></div>
+          <div style="display:flex;align-items:center;gap:var(--s-2);padding:var(--s-1) var(--s-2);background:var(--blue);border-radius:var(--r-sm);"><span style="font-size:10px;font-weight:700;color:white;min-width:24px;">08</span><span style="font-size:var(--t-xs);font-weight:600;color:white;">Closing</span><span style="font-size:10px;color:rgba(255,255,255,0.6);margin-left:auto;">dark surface</span></div>
+        </div>
       </div>
-      <div class="slide-footer" style="border-color:rgba(255,255,255,.1);">
-        <span style="color:var(--dark-sub);">UCLA Residential Life</span>
-        <span style="color:var(--dark-sub);">2026 Summer Training</span>
+      <div>
+        <p class="font-600 mb-2">What never follows what</p>
+        <table class="table">
+          <thead><tr><th>Sequence to avoid</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td class="font-600 text-sm">Cover → Content</td><td class="text-sm" style="color:var(--sub);">No soft landing. Always put an Activate Reflection or Section Divider between them.</td></tr>
+            <tr><td class="font-600 text-sm">Divider → Divider</td><td class="text-sm" style="color:var(--sub);">Double reset with no content. Learners lose the thread entirely.</td></tr>
+            <tr><td class="font-600 text-sm">Data → Data</td><td class="text-sm" style="color:var(--sub);">Numbers need context to land. Separate with Content or Quote.</td></tr>
+            <tr><td class="font-600 text-sm">Activity → Closing</td><td class="text-sm" style="color:var(--sub);">Learner is mid-motion. Always add Synthesize Reflection first.</td></tr>
+            <tr><td class="font-600 text-sm">Dark → Dark</td><td class="text-sm" style="color:var(--sub);">Two emphasis surfaces cancel each other out.</td></tr>
+            <tr><td class="font-600 text-sm">Quote → Quote</td><td class="text-sm" style="color:var(--sub);">Consecutive quotes become wallpaper. One per section.</td></tr>
+            <tr><td class="font-600 text-sm">Synthesize → Activity</td><td class="text-sm" style="color:var(--sub);">Reflection closes. Activity opens. Wrong order, both lose meaning.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="note mb-3">First impression moment. Dark surface, big title, optional subtitle. Minimal design. The audience should feel the weight of the topic before any content begins.</div>
 
-    <!-- 2. Section Divider -->
-    <p class="label-text mb-2">02 &middot; Section divider &mdash; reset attention, signal transition</p>
+    <!-- NARRATION -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Slide surface vs. narration — division of labor</p>
+    <div class="grid-2 mb-4" style="gap:var(--s-4);">
+      <div>
+        <p class="font-600 mb-2">Slide surface carries</p>
+        <div style="display:flex;flex-direction:column;gap:var(--s-1);">
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--welcomes)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">The single claim or idea — what the slide is about</p></div>
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--welcomes)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">The key phrase, number, or visual the learner retains</p></div>
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--welcomes)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">Framework labels, step names, model components</p></div>
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--welcomes)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">Activity prompts and reflection questions verbatim</p></div>
+        </div>
+      </div>
+      <div>
+        <p class="font-600 mb-2">Narration carries</p>
+        <div style="display:flex;flex-direction:column;gap:var(--s-1);">
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--connects)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">The explanation, context, and reasoning behind the claim</p></div>
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--connects)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">Stories, examples, and anecdotes that make the idea human</p></div>
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--connects)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">Transitions between slides and sections</p></div>
+          <div style="display:flex;gap:var(--s-1);"><svg width="14" height="14" viewBox="0 0 32 32" style="flex-shrink:0;margin-top:2px;"><polyline points="6,16 13,23 26,10" fill="none" stroke="var(--connects)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="caption">Anything requiring more than 2 lines on the slide surface</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="note mb-5"><strong>The test:</strong> Mute the narration — can you still understand the slide? If yes, the slide has too much on it. Close your eyes during the narration — can you still follow the content? If yes, the narration has too much. They should depend on each other.</div>
+
+    <!-- STRUCTURAL SLIDES -->
+    <p class="label-text mb-3" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Primary — structural slides</p>
+
+    <p class="label-text mb-2">01 · Cover — set tone, establish importance</p>
+    <div class="slide-frame mb-2" style="background:var(--blue);">
+      <div class="slide-content" style="justify-content:flex-end;padding-bottom:14%;">
+        <p style="font-size:clamp(6px,1vw,10px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark-sub);margin-bottom:0.75em;">W-101 · Welcomes · Philosophy</p>
+        <p style="font-family:var(--display);font-size:clamp(1.4rem,4.5vw,3rem);font-weight:700;line-height:1.05;color:white;letter-spacing:-0.02em;">Philosophy<br>of Welcomes</p>
+        <p style="font-size:clamp(0.5rem,1vw,0.8rem);color:var(--dark-sub);line-height:1.6;max-width:55%;margin-top:0.75em;">Why welcoming staff well is the foundation of everything we do.</p>
+      </div>
+    </div>
+    <div class="note mb-4">Dark surface. Title at <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-xl</code> (40px). Bottom-anchored — the title lands with gravity rather than floating. <strong>Never</strong> follows another dark-surface slide. Always followed by Activate Reflection or Section Divider.</div>
+
+    <p class="label-text mb-2">02 · Section divider — reset attention</p>
     <div class="slide-frame mb-2" style="background:var(--gray);">
       <div class="slide-content">
-        <p class="slide-eyebrow">Part 03</p>
-        <p class="slide-title" style="font-size:clamp(1.2rem,4.5vw,3rem);">Understanding<br>Your Role</p>
-      </div>
-      <div class="slide-footer" style="border-color:var(--line);">
-        <span>UCLA Residential Life</span>
+        <p style="font-size:clamp(6px,1vw,10px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">Part 03</p>
+        <p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,var(--t-2xl));font-weight:700;line-height:1.1;color:var(--ink);letter-spacing:-0.015em;">Understanding<br>Your Role</p>
       </div>
     </div>
-    <div class="note mb-3">Few words only. High whitespace. Gray surface distinguishes it from content slides without using emphasis-level dark. Creates rhythm in the deck.</div>
+    <div class="note mb-4">Gray surface. Title at <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-2xl</code> (30px). Eyebrow shows section number. <strong>Never</strong> back-to-back. <strong>Never</strong> directly after a Cover.</div>
 
-    <!-- 3. Content Slide -->
-    <p class="label-text mb-2">03 &middot; Content slide &mdash; deliver information</p>
-    <div class="slide-frame mb-2">
-      <div class="slide-content">
-        <p class="slide-eyebrow">W-101 &middot; Part 02</p>
-        <p class="slide-title">Why the first<br>48 hours matter</p>
-        <p class="slide-body">Research shows that new staff form lasting impressions of organizational culture within their first two days. The welcome experience sets the tone for engagement, retention, and job satisfaction across the entire year.</p>
+    <p class="label-text mb-2">03 · Content slide — four variants</p>
+    <p class="caption mb-3">80% of a module deck is Content slides. Four variants cover every production case.</p>
+    <div class="grid-2 mb-2" style="gap:var(--s-3);">
+      <div>
+        <p class="text-xs text-sub mb-1">03a — Standard (title + body)</p>
+        <div class="slide-frame">
+          <div class="slide-content">
+            <p style="font-size:clamp(5px,0.8vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 · Part 02</p>
+            <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,var(--t-lg));font-weight:700;line-height:1.15;color:var(--ink);">Why the first<br>48 hours matter</p>
+            <p style="font-size:clamp(0.4rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;max-width:65%;margin-top:0.6em;">New staff form lasting impressions of organizational culture within their first two days.</p>
+          </div>
+        </div>
       </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
+      <div>
+        <p class="text-xs text-sub mb-1">03b — Title only (let it breathe)</p>
+        <div class="slide-frame">
+          <div class="slide-content" style="justify-content:center;align-items:flex-start;">
+            <p style="font-size:clamp(5px,0.8vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 · The insight</p>
+            <p style="font-family:var(--display);font-size:clamp(0.9rem,2.8vw,var(--t-2xl));font-weight:700;line-height:1.15;color:var(--ink);">Belonging is designed,<br>not discovered.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs text-sub mb-1">03c — Title + icon anchor</p>
+        <div class="slide-frame">
+          <div class="slide-content" style="flex-direction:row;align-items:center;gap:8%;">
+            <svg width="56" height="56" viewBox="0 0 32 32" style="min-width:56px;opacity:0.8;"><path d="M16 4l10 4v8c0 6-4 10-10 13-6-3-10-7-10-13V8z" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <p style="font-size:clamp(5px,0.8vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 · Core principle</p>
+              <p style="font-family:var(--display);font-size:clamp(0.6rem,1.8vw,var(--t-lg));font-weight:700;line-height:1.15;color:var(--ink);">Safety is felt before<br>it is formally taught</p>
+              <p style="font-size:clamp(0.35rem,0.7vw,0.6rem);color:var(--sub);line-height:1.6;margin-top:0.5em;">Psychological safety precedes all learning. If someone doesn't feel safe, no amount of content will land.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs text-sub mb-1">03d — Content + stat panel</p>
+        <div class="slide-frame">
+          <div class="slide-content" style="flex-direction:row;padding:0;">
+            <div style="flex:3;display:flex;flex-direction:column;justify-content:center;padding:8% 6%;">
+              <p style="font-size:clamp(5px,0.8vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 · Evidence</p>
+              <p style="font-family:var(--display);font-size:clamp(0.6rem,1.8vw,var(--t-lg));font-weight:700;line-height:1.15;color:var(--ink);">The 48-hour window<br>changes everything</p>
+              <p style="font-size:clamp(0.35rem,0.7vw,0.6rem);color:var(--sub);line-height:1.6;margin-top:0.5em;">Staff who receive a structured welcome are 31% more likely to stay through the academic year.</p>
+            </div>
+            <div style="flex:1;background:var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6%;text-align:center;">
+              <p style="font-family:var(--display);font-size:clamp(1rem,3vw,2rem);font-weight:700;color:white;line-height:1;">31%</p>
+              <p style="font-size:clamp(0.3rem,0.55vw,0.5rem);color:var(--dark-sub);margin-top:0.4em;line-height:1.4;">more likely to stay</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="note mb-3">Your default slide. White surface, clear hierarchy: eyebrow, title, body. One idea per slide. If you need a second point, make a second slide.</div>
+    <div class="note mb-4">All four are Content slides. 03a is the default. 03b is for ideas strong enough to stand alone. 03c is for framework concepts that benefit from a visual anchor. 03d is for content with a single corroborating statistic.</div>
 
-    <!-- ─── SECONDARY: EXPERIENTIAL ─── -->
-    <p class="label-text mb-3 mt-5" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Secondary &mdash; experiential slides</p>
+    <!-- EXPERIENTIAL SLIDES -->
+    <p class="label-text mb-3 mt-5" style="border-bottom:1px solid var(--line);padding-bottom:var(--s-1);">Secondary — experiential slides</p>
 
-    <!-- 4. Quote Slide -->
-    <p class="label-text mb-2">04 &middot; Quote slide &mdash; create emotion or reflection</p>
+    <p class="label-text mb-2">04 · Quote — create emotion</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="justify-content:center;padding:12% 10%;">
-        <p style="font-family:var(--display);font-size:clamp(0.9rem,3vw,2rem);font-weight:700;line-height:1.2;color:var(--ink);max-width:80%;">&ldquo;People will forget what you said, people will forget what you did, but people will never forget how you made them feel.&rdquo;</p>
+        <p style="font-family:var(--display);font-size:clamp(0.9rem,3vw,2rem);font-weight:700;line-height:1.2;color:var(--ink);max-width:80%;">&ldquo;People will forget what you said, but they will never forget how you made them feel.&rdquo;</p>
         <p style="font-size:clamp(0.5rem,0.9vw,0.75rem);color:var(--sub);margin-top:1em;font-weight:500;">Maya Angelou</p>
       </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
-      </div>
     </div>
-    <div class="note mb-3">One strong idea. Large text. No clutter. Use this to slow people down — to create a moment of stillness between information-dense content slides.</div>
+    <div class="note mb-4">One strong idea. Large text. White surface. Use to slow people down between information-dense content. One Quote per section maximum. Never two Quotes consecutively.</div>
 
-    <!-- 5. Data / Insight Slide -->
-    <p class="label-text mb-2">05a &middot; Data / insight slide &mdash; single stat, left-aligned</p>
+    <p class="label-text mb-2">05a · Data — single stat, left-aligned</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="align-items:flex-start;">
-        <p class="slide-eyebrow">W-101 &middot; The evidence</p>
-        <p style="font-family:var(--display);font-size:clamp(2rem,7vw,4.5rem);font-weight:700;line-height:1;color:var(--ink);letter-spacing:-0.03em;">72%</p>
-        <p style="font-size:clamp(0.55rem,1.1vw,0.85rem);color:var(--sub);line-height:1.6;max-width:55%;margin-top:0.5em;">of new staff who report a strong welcome experience remain in their position through the full academic year.</p>
-      </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
+        <p style="font-size:clamp(6px,1vw,10px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.4em;">W-101 · The evidence</p>
+        <p style="font-family:var(--display);font-size:clamp(2.5rem,8vw,5.5rem);font-weight:700;line-height:1;color:var(--ink);letter-spacing:-0.03em;">72%</p>
+        <p style="font-size:clamp(0.55rem,1.1vw,0.85rem);color:var(--sub);line-height:1.6;max-width:55%;margin-top:0.5em;">of new staff who report a strong welcome experience remain through the full academic year.</p>
       </div>
     </div>
-    <div class="note mb-3">One key number, visually dominant, left-aligned. Minimal explanation below. The number does the talking.</div>
+    <div class="note mb-3">The number occupies the top third of the slide. Much larger than any heading — this is display scale. Context beneath, never beside. One number per slide. Never stack two data slides.</div>
 
-    <!-- 5b. Data Slide — Centered Comparison -->
-    <p class="label-text mb-2">05b &middot; Data / insight slide &mdash; before &amp; after comparison</p>
+    <p class="label-text mb-2">05b · Data — before &amp; after comparison</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="flex-direction:row;padding:0;">
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8%;border-right:1px solid var(--line);">
@@ -2056,264 +2652,170 @@ body {
           <p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--sub);margin-top:0.4em;text-align:center;">retention rate<br>with structured welcome</p>
         </div>
       </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
-      </div>
     </div>
-    <div class="note mb-3">Two numbers side by side, split by a center divider. &ldquo;Before&rdquo; in sub color, &ldquo;After&rdquo; in ink — the contrast tells the story. Use for showing impact, change, or progress.</div>
+    <div class="note mb-3">Before in <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--sub</code>, After in <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--ink</code> — the contrast tells the story without a label. For showing impact or change over time.</div>
 
-    <!-- 5c. Data Slide — Dark surface with stacked stats -->
-    <p class="label-text mb-2">05c &middot; Data / insight slide &mdash; dark surface, stacked stats</p>
+    <p class="label-text mb-2">05c · Data — dark surface, stacked stats</p>
     <div class="slide-frame mb-2" style="background:var(--blue);">
       <div class="slide-content" style="justify-content:center;align-items:flex-start;">
-        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark-sub);margin-bottom:1em;">W-101 &middot; By the numbers</p>
+        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark-sub);margin-bottom:1em;">W-101 · By the numbers</p>
         <div style="display:flex;gap:clamp(12px,3vw,40px);">
-          <div>
-            <p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1;color:white;letter-spacing:-0.02em;">3,200</p>
-            <p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--dark-sub);margin-top:0.3em;">new residents<br>welcomed annually</p>
-          </div>
-          <div>
-            <p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1;color:white;letter-spacing:-0.02em;">48</p>
-            <p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--dark-sub);margin-top:0.3em;">critical hours<br>for first impressions</p>
-          </div>
-          <div>
-            <p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1;color:white;letter-spacing:-0.02em;">92%</p>
-            <p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--dark-sub);margin-top:0.3em;">satisfaction when<br>welcome is structured</p>
-          </div>
+          <div><p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1;color:white;letter-spacing:-0.02em;">3,200</p><p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--dark-sub);margin-top:0.3em;">new residents<br>welcomed annually</p></div>
+          <div><p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1;color:white;letter-spacing:-0.02em;">48</p><p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--dark-sub);margin-top:0.3em;">critical hours<br>for first impressions</p></div>
+          <div><p style="font-family:var(--display);font-size:clamp(1.2rem,4vw,2.8rem);font-weight:700;line-height:1;color:white;letter-spacing:-0.02em;">92%</p><p style="font-size:clamp(0.4rem,0.8vw,0.65rem);color:var(--dark-sub);margin-top:0.3em;">satisfaction when<br>welcome is structured</p></div>
         </div>
       </div>
-      <div class="slide-footer" style="border-color:rgba(255,255,255,.08);">
-        <span style="color:var(--dark-sub);">UCLA Residential Life</span>
-        <span style="color:var(--dark-sub);">W-101 &middot; Philosophy of Welcomes</span>
-      </div>
     </div>
-    <div class="note mb-3">Three stats side by side on the dark surface. Use when you have multiple data points that together tell a bigger story. Dark surface gives the numbers gravitas — save this for your strongest evidence.</div>
+    <div class="note mb-4">Three stats together tell a bigger story. Dark surface gives the numbers gravitas — save for your strongest evidence. Never follows another dark-surface slide.</div>
 
-    <!-- 6. Image + Text Slide -->
-    <p class="label-text mb-2">06a &middot; Image + text slide &mdash; vertical split (left / right)</p>
+    <p class="label-text mb-2">06a · Image + text — vertical split</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="flex-direction:row;padding:0;">
-        <div style="flex:1;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:100%;">
-          <div style="text-align:center;padding:var(--s-3);">
-            <svg width="48" height="48" viewBox="0 0 48 48" style="opacity:0.3;"><rect x="4" y="8" width="40" height="28" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="16" cy="20" r="4" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,32 18,24 26,30 34,22 40,28" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
-            <p style="font-size:clamp(5px,0.7vw,7px);color:var(--sub);margin-top:0.5em;text-transform:uppercase;letter-spacing:0.1em;">Image area</p>
-          </div>
+        <div style="flex:1;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:100%;"><div style="text-align:center;padding:var(--s-3);"><svg width="48" height="48" viewBox="0 0 48 48" style="opacity:0.3;"><rect x="4" y="8" width="40" height="28" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="16" cy="20" r="4" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,32 18,24 26,30 34,22 40,28" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg><p style="font-size:clamp(5px,0.7vw,7px);color:var(--sub);margin-top:0.5em;text-transform:uppercase;letter-spacing:0.1em;">Image area</p></div></div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:8%;">
+          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 · Environment</p>
+          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,var(--t-lg));font-weight:700;line-height:1.15;color:var(--ink);">The welcome table sets the first impression</p>
+          <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.5em;">A clean, organized check-in space tells staff: we were ready for you.</p>
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:8% 8%;">
-          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 &middot; Environment</p>
-          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,1.4rem);font-weight:700;line-height:1.15;color:var(--ink);">The welcome table sets the first impression</p>
-          <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.5em;">A clean, well-organized check-in space tells staff: we were ready for you. We planned for this. You matter to us.</p>
-        </div>
-      </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
       </div>
     </div>
-    <div class="note mb-3">Photo on the left, short text on the right. Helps people see the concept. Use for environment, behavior, and concrete examples of abstract ideas.</div>
+    <div class="note mb-3">Photo left, text right. Use for environment, behavior, and concrete examples of abstract ideas.</div>
 
-    <!-- 6b. Image + Text Slide — Horizontal Split -->
-    <p class="label-text mb-2">06b &middot; Image + text slide &mdash; horizontal split (top / bottom)</p>
+    <p class="label-text mb-2">06b · Image + text — horizontal split</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="flex-direction:column;padding:0;">
-        <div style="flex:1;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:50%;">
-          <div style="text-align:center;">
-            <svg width="56" height="40" viewBox="0 0 56 40" style="opacity:0.3;"><rect x="4" y="4" width="48" height="32" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="18" cy="18" r="5" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,32 20,22 30,28 40,18 52,26" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
-            <p style="font-size:clamp(5px,0.7vw,7px);color:var(--sub);margin-top:0.3em;text-transform:uppercase;letter-spacing:0.1em;">Photo area &mdash; top half</p>
-          </div>
-        </div>
+        <div style="flex:1;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:50%;"><div style="text-align:center;"><svg width="56" height="40" viewBox="0 0 56 40" style="opacity:0.3;"><rect x="4" y="4" width="48" height="32" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="18" cy="18" r="5" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,32 20,22 30,28 40,18 52,26" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg></div></div>
         <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:4% 10%;min-height:50%;border-top:1px solid var(--line);">
-          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.4em;">W-101 &middot; The Space</p>
-          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,1.4rem);font-weight:700;line-height:1.15;color:var(--ink);">A well-prepared room says everything</p>
-          <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.5;margin-top:0.4em;max-width:70%;">Before a single word is spoken, the physical space communicates whether you were expected or an afterthought.</p>
+          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.4em;">W-101 · The Space</p>
+          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,var(--t-lg));font-weight:700;line-height:1.15;color:var(--ink);">A well-prepared room says everything</p>
         </div>
-      </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
       </div>
     </div>
-    <div class="note mb-3">Photo on top, text on bottom. Use when the image needs more horizontal breathing room — landscapes, wide-angle room shots, group photos. The horizontal split gives the image cinematic weight.</div>
+    <div class="note mb-3">Photo top, text bottom. Wide-angle shots, landscapes, group photos. Horizontal gives the image cinematic weight.</div>
 
-    <!-- 6c. Image + Text Slide — Full-bleed with overlay -->
-    <p class="label-text mb-2">06c &middot; Image + text slide &mdash; full-bleed with overlay</p>
+    <p class="label-text mb-2">06c · Image + text — full-bleed with overlay</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="padding:0;position:relative;">
-        <div style="position:absolute;inset:0;background:var(--gray);display:flex;align-items:center;justify-content:center;">
-          <svg width="80" height="56" viewBox="0 0 80 56" style="opacity:0.15;"><rect x="4" y="4" width="72" height="48" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="24" cy="22" r="8" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,44 24,30 40,38 56,24 72,34" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
-        </div>
+        <div style="position:absolute;inset:0;background:var(--gray);display:flex;align-items:center;justify-content:center;"><svg width="80" height="56" viewBox="0 0 80 56" style="opacity:0.15;"><rect x="4" y="4" width="72" height="48" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="24" cy="22" r="8" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,44 24,30 40,38 56,24 72,34" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg></div>
         <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,85,135,0.85) 0%, rgba(0,85,135,0.4) 40%, transparent 70%);"></div>
         <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:8%;">
-          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.4em;">W-101 &middot; First Impressions</p>
-          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,1.4rem);font-weight:700;line-height:1.15;color:white;">The space speaks before you do</p>
-          <p style="font-size:clamp(0.4rem,0.75vw,0.6rem);color:rgba(255,255,255,0.8);line-height:1.5;margin-top:0.4em;max-width:60%;">A check-in table that's organized and welcoming says everything about who's behind it.</p>
+          <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.4em;">W-101 · First Impressions</p>
+          <p style="font-family:var(--display);font-size:clamp(0.7rem,2vw,var(--t-lg));font-weight:700;line-height:1.15;color:white;">The space speaks before you do</p>
+          <p style="font-size:clamp(0.4rem,0.75vw,0.6rem);color:rgba(255,255,255,0.8);line-height:1.5;margin-top:0.4em;max-width:60%;">A check-in table that is organized and welcoming says everything about who is behind it.</p>
         </div>
       </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
-      </div>
     </div>
-    <div class="note mb-3">Full-bleed photo with a gradient overlay anchoring text to the bottom. Use for emotional, immersive moments — a community gathering, a residence hall at golden hour, staff in action. The image sets the mood; the text gives it meaning. Keep text in the bottom 40% so it sits on the darkened gradient.</div>
+    <div class="note mb-3">Full-bleed photo, gradient overlay, text in the bottom 40% only. Never place text over an unmasked portion of the photo.</div>
 
-    <!-- 6d. Image + Text Slide — Caption card -->
-    <p class="label-text mb-2">06d &middot; Image + text slide &mdash; caption card</p>
+    <p class="label-text mb-2">06d · Image + text — caption card</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="flex-direction:row;padding:0;">
-        <div style="flex:2;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:100%;">
-          <svg width="56" height="48" viewBox="0 0 56 48" style="opacity:0.2;"><rect x="4" y="4" width="48" height="40" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="20" cy="20" r="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,40 22,28 34,36 44,26 52,32" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg>
-        </div>
-        <div style="flex:1;background:var(--blue);display:flex;flex-direction:column;justify-content:center;padding:6% 6%;">
+        <div style="flex:2;background:var(--gray);display:flex;align-items:center;justify-content:center;min-height:100%;"><svg width="56" height="48" viewBox="0 0 56 48" style="opacity:0.2;"><rect x="4" y="4" width="48" height="40" rx="2" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="20" cy="20" r="6" fill="none" stroke="var(--ink)" stroke-width="1.5"/><polyline points="8,40 22,28 34,36 44,26 52,32" fill="none" stroke="var(--ink)" stroke-width="1.5"/></svg></div>
+        <div style="flex:1;background:var(--blue);display:flex;flex-direction:column;justify-content:center;padding:6%;">
           <p style="font-size:clamp(4px,0.6vw,6px);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark-sub);margin-bottom:0.5em;">What we saw</p>
-          <p style="font-family:var(--display);font-size:clamp(0.5rem,1.4vw,1rem);font-weight:700;line-height:1.2;color:white;">Staff greeting every single resident by name.</p>
-          <p style="font-size:clamp(0.35rem,0.6vw,0.5rem);color:var(--dark-sub);line-height:1.5;margin-top:0.5em;">Sproul Hall &middot; Move-In Day 2025</p>
+          <p style="font-family:var(--display);font-size:clamp(0.5rem,1.4vw,1rem);font-weight:700;line-height:1.2;color:white;">Staff greeting every resident by name.</p>
+          <p style="font-size:clamp(0.35rem,0.6vw,0.5rem);color:var(--dark-sub);line-height:1.5;margin-top:0.5em;">Sproul Hall · Move-In Day 2025</p>
         </div>
       </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
-      </div>
     </div>
-    <div class="note mb-3">Photo takes two-thirds, dark caption panel on the right. Use when you want to spotlight a specific moment with editorial commentary — a "what we saw" or "why this matters" format. The dark panel creates visual weight that anchors the story.</div>
+    <div class="note mb-4">Two-thirds photo, one-third dark caption panel. Editorial — "what we saw" or "why this matters." The dark panel anchors the story.</div>
 
-    <!-- 7. Activity Prompt Slide -->
-    <p class="label-text mb-2">07 &middot; Activity prompt slide &mdash; move from passive to active</p>
-    <div class="slide-frame mb-2" style="background:var(--gray);">
+    <p class="label-text mb-2">07 · Activity — move from passive to active</p>
+    <div class="slide-frame mb-2" style="background:var(--connects);">
       <div class="slide-content" style="align-items:flex-start;">
-        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">Activity</p>
-        <p style="font-family:var(--display);font-size:clamp(0.9rem,3vw,2rem);font-weight:700;line-height:1.15;color:var(--ink);">Pair & Share:<br>Your Welcome Story</p>
-        <div style="margin-top:1em;font-size:clamp(0.45rem,0.9vw,0.75rem);color:var(--sub);line-height:1.8;">
-          <p>1. Think of a time you were welcomed into a new role or community.</p>
+        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:0.5em;">Activity · Connects</p>
+        <p style="font-family:var(--display);font-size:clamp(0.9rem,2.8vw,var(--t-2xl));font-weight:700;line-height:1.1;color:white;">Pair &amp; Share:<br>Your Welcome Story</p>
+        <div style="margin-top:0.9em;font-size:clamp(0.45rem,0.9vw,0.75rem);color:rgba(255,255,255,0.9);line-height:1.9;">
+          <p>1. Think of a time you were welcomed into a new role.</p>
           <p>2. What made it feel genuine? What fell flat?</p>
-          <p>3. Share with your partner &mdash; 2 minutes each.</p>
+          <p>3. Share with your partner — 2 minutes each.</p>
         </div>
       </div>
-      <div class="slide-footer" style="border-color:var(--line);">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
-      </div>
     </div>
-    <div class="note mb-3">Clear prompt. Two to three guiding questions. Visually simple — gray surface signals &ldquo;this is your turn.&rdquo; The slide steps back so the learner steps forward.</div>
+    <div class="note mb-4"><strong>Activity slides always use the module's pillar color at full saturation</strong> — Welcomes blue, Connects magenta, or Responds gold. Gray is for Section Dividers (structural resets), not Activity slides (participatory energy). If a Responds module contains an activity, use Responds gold with --ink text. Max 3 numbered steps, one line each.</div>
 
-    <!-- 8. Framework / Model Slide -->
-    <p class="label-text mb-2">08 &middot; Framework / model slide &mdash; explain a system</p>
+    <p class="label-text mb-2">08 · Framework / model — explain a system</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="align-items:flex-start;">
-        <p class="slide-eyebrow">The PRO Model</p>
-        <div style="display:flex;gap:clamp(8px,2vw,24px);margin-top:0.75em;width:100%;">
-          <div style="flex:1;border:1px solid var(--line);border-radius:var(--r);padding:clamp(6px,1.5vw,16px);">
-            <p style="font-family:var(--display);font-size:clamp(0.65rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);margin-bottom:0.3em;">Philosophy</p>
-            <p style="font-size:clamp(0.4rem,0.7vw,0.6rem);color:var(--sub);line-height:1.5;">Why we do<br>what we do</p>
-          </div>
-          <div style="flex:1;border:1px solid var(--line);border-radius:var(--r);padding:clamp(6px,1.5vw,16px);">
-            <p style="font-family:var(--display);font-size:clamp(0.65rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);margin-bottom:0.3em;">Roles</p>
-            <p style="font-size:clamp(0.4rem,0.7vw,0.6rem);color:var(--sub);line-height:1.5;">Who does<br>what</p>
-          </div>
-          <div style="flex:1;border:1px solid var(--line);border-radius:var(--r);padding:clamp(6px,1.5vw,16px);">
-            <p style="font-family:var(--display);font-size:clamp(0.65rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);margin-bottom:0.3em;">Operations</p>
-            <p style="font-size:clamp(0.4rem,0.7vw,0.6rem);color:var(--sub);line-height:1.5;">How we<br>execute</p>
-          </div>
+        <p style="font-size:clamp(6px,1vw,10px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.6em;">The PRO Model</p>
+        <div style="display:flex;gap:clamp(8px,2vw,24px);width:100%;">
+          <div style="flex:1;border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(6px,1.5vw,16px);"><p style="font-family:var(--display);font-size:clamp(0.65rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);margin-bottom:0.3em;">Philosophy</p><p style="font-size:clamp(0.4rem,0.7vw,0.6rem);color:var(--sub);line-height:1.5;">Why we do<br>what we do</p></div>
+          <div style="flex:1;border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(6px,1.5vw,16px);"><p style="font-family:var(--display);font-size:clamp(0.65rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);margin-bottom:0.3em;">Roles</p><p style="font-size:clamp(0.4rem,0.7vw,0.6rem);color:var(--sub);line-height:1.5;">Who does<br>what</p></div>
+          <div style="flex:1;border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(6px,1.5vw,16px);"><p style="font-family:var(--display);font-size:clamp(0.65rem,1.8vw,1.2rem);font-weight:700;color:var(--ink);margin-bottom:0.3em;">Operations</p><p style="font-size:clamp(0.4rem,0.7vw,0.6rem);color:var(--sub);line-height:1.5;">How we<br>execute</p></div>
         </div>
-        <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.75em;max-width:70%;">Every module moves through these three levels. Philosophy grounds the &ldquo;why.&rdquo; Roles define &ldquo;who.&rdquo; Operations teach &ldquo;how.&rdquo;</p>
-      </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
+        <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.75em;max-width:70%;">Every module moves through these three levels. Philosophy grounds the "why." Roles define "who." Operations teach "how."</p>
       </div>
     </div>
-    <div class="note mb-3">Diagram or structure with labels and relationships. Use for the PRO model, pillar framework, training phases, or any system the learner needs to internalize as a whole.</div>
+    <div class="note mb-4">Outline diagrams only — 1px stroke, no fills, --r-md on components. Max 3 components per row. If the model has more than 3 parts, use two Framework slides or a Process slide.</div>
 
-    <!-- 9. Process / Sequence Slide -->
-    <p class="label-text mb-2">09 &middot; Process / sequence slide &mdash; show flow over time</p>
+    <p class="label-text mb-2">09 · Process / sequence — show flow over time</p>
     <div class="slide-frame mb-2">
       <div class="slide-content" style="align-items:flex-start;">
-        <p class="slide-eyebrow">W-101 &middot; The Welcome Timeline</p>
-        <p style="font-family:var(--display);font-size:clamp(0.75rem,2vw,1.4rem);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:0.75em;">Four phases of onboarding</p>
+        <p style="font-size:clamp(6px,1vw,10px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.5em;">W-101 · The Welcome Timeline</p>
+        <p style="font-family:var(--display);font-size:clamp(0.75rem,2vw,var(--t-lg));font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:0.75em;">Four phases of onboarding</p>
         <div style="display:flex;align-items:center;gap:clamp(4px,0.8vw,10px);width:100%;">
-          <div style="flex:1;background:var(--gray);border-radius:var(--r);padding:clamp(5px,1vw,12px);text-align:center;">
-            <p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Prepare</p>
-            <p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Before arrival</p>
-          </div>
+          <div style="flex:1;background:var(--gray);border-radius:var(--r-sm);padding:clamp(5px,1vw,12px);text-align:center;"><p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Prepare</p><p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Before arrival</p></div>
           <span style="font-size:clamp(0.5rem,1vw,0.8rem);color:var(--sub);">&rarr;</span>
-          <div style="flex:1;background:var(--gray);border-radius:var(--r);padding:clamp(5px,1vw,12px);text-align:center;">
-            <p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Welcome</p>
-            <p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Day 1&ndash;2</p>
-          </div>
+          <div style="flex:1;background:var(--gray);border-radius:var(--r-sm);padding:clamp(5px,1vw,12px);text-align:center;"><p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Welcome</p><p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Day 1–2</p></div>
           <span style="font-size:clamp(0.5rem,1vw,0.8rem);color:var(--sub);">&rarr;</span>
-          <div style="flex:1;background:var(--gray);border-radius:var(--r);padding:clamp(5px,1vw,12px);text-align:center;">
-            <p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Orient</p>
-            <p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Week 1&ndash;2</p>
-          </div>
+          <div style="flex:1;background:var(--gray);border-radius:var(--r-sm);padding:clamp(5px,1vw,12px);text-align:center;"><p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Orient</p><p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Week 1–2</p></div>
           <span style="font-size:clamp(0.5rem,1vw,0.8rem);color:var(--sub);">&rarr;</span>
-          <div style="flex:1;background:var(--gray);border-radius:var(--r);padding:clamp(5px,1vw,12px);text-align:center;">
-            <p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Sustain</p>
-            <p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Ongoing</p>
-          </div>
+          <div style="flex:1;background:var(--gray);border-radius:var(--r-sm);padding:clamp(5px,1vw,12px);text-align:center;"><p style="font-weight:700;font-size:clamp(0.5rem,1.2vw,0.85rem);color:var(--ink);">Sustain</p><p style="font-size:clamp(0.35rem,0.6vw,0.55rem);color:var(--sub);margin-top:0.25em;">Ongoing</p></div>
         </div>
       </div>
-      <div class="slide-footer">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
+    </div>
+    <div class="note mb-4">Steps use --r-sm (small components in a row). Max 5 steps. If longer, split across two Process slides labeled "Part 1 of 2."</div>
+
+    <p class="label-text mb-2">10a · Activate Reflection — prime before content</p>
+    <div class="slide-frame mb-2" style="background:var(--welcomes-wash);border:1px solid var(--welcomes-wash-border);">
+      <div class="slide-content" style="align-items:flex-start;">
+        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--welcomes);margin-bottom:0.5em;">Before we begin</p>
+        <p style="font-family:var(--display);font-size:clamp(0.85rem,2.5vw,var(--t-2xl));font-weight:700;line-height:1.2;color:var(--ink);">Think of one person who made you feel<br>truly welcome somewhere.</p>
+        <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.75em;max-width:65%;">Hold that person in mind. We will come back to them. You do not need to share yet — just notice what made that feeling possible.</p>
       </div>
     </div>
-    <div class="note mb-3">Steps with arrows or progression. Use for training flow, incident response sequences, engagement lifecycles — any concept where order matters.</div>
+    <div class="note mb-4"><strong>Always after Cover, before first Content slide.</strong> Surfaces prior experience — not to teach, but to prime. Uses the module's pillar tonal wash (<code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--welcomes-wash</code>, <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--connects-wash</code>, or <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--responds-wash</code>). Never gray.</div>
 
-    <!-- 10. Reflection Slide -->
-    <p class="label-text mb-2">10 &middot; Reflection slide &mdash; internalize learning</p>
-    <div class="slide-frame mb-2" style="background:var(--gray);">
+    <p class="label-text mb-2">10b · Synthesize Reflection — internalize after content</p>
+    <div class="slide-frame mb-2" style="background:var(--responds-wash);border:1px solid var(--responds-wash-border);">
       <div class="slide-content" style="align-items:center;text-align:center;">
-        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--sub);margin-bottom:0.75em;">Reflect</p>
-        <p style="font-family:var(--display);font-size:clamp(0.85rem,2.5vw,1.8rem);font-weight:700;line-height:1.25;color:var(--ink);">What will you do differently<br>in the first 48 hours?</p>
-        <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.75em;max-width:60%;">Take 60 seconds. Write one specific action you can take during move-in to make a new staff member feel genuinely welcomed.</p>
-      </div>
-      <div class="slide-footer" style="border-color:var(--line);">
-        <span>UCLA Residential Life</span>
-        <span>W-101 &middot; Philosophy of Welcomes</span>
+        <p style="font-size:clamp(5px,0.75vw,8px);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--responds-text);margin-bottom:0.75em;">Reflect · 60 seconds</p>
+        <p style="font-family:var(--display);font-size:clamp(0.85rem,2.5vw,var(--t-2xl));font-weight:700;line-height:1.2;color:var(--ink);">What will you do differently<br>in the first 48 hours?</p>
+        <p style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:var(--sub);line-height:1.6;margin-top:0.75em;max-width:60%;">Write one specific action you can take during move-in to make a new staff member feel genuinely expected.</p>
       </div>
     </div>
-    <div class="note mb-3">Often missed — but powerful. A prompt that asks &ldquo;what stood out?&rdquo; or &ldquo;what will you do differently?&rdquo; gives learners space to internalize before moving on.</div>
+    <div class="note mb-4"><strong>Always before Closing or Section Divider.</strong> Consolidation — connects what was just taught to what the learner will actually do. Centered layout (the learner turns inward). Same tonal wash as Activate. <strong>Never</strong> followed directly by Activity. Always followed by Closing or Section Divider.</div>
 
-    <!-- 11. Closing Slide -->
-    <p class="label-text mb-2">11 &middot; Closing slide &mdash; land the message</p>
+    <p class="label-text mb-2">11 · Closing — land the message</p>
     <div class="slide-frame mb-2" style="background:var(--blue);">
       <div class="slide-content" style="align-items:center;text-align:center;">
-        <p style="font-family:var(--display);font-size:clamp(0.85rem,2.5vw,1.8rem);font-weight:700;color:white;line-height:1.25;">Every person who walks in<br>should feel expected.</p>
-        <p style="font-size:clamp(0.5rem,1vw,0.78rem);color:var(--dark-sub);margin-top:0.75em;">W-101 &middot; Philosophy of Welcomes</p>
-      </div>
-      <div class="slide-footer" style="border-color:rgba(255,255,255,.08);">
-        <span style="color:var(--dark-sub);">UCLA Residential Life</span>
-        <span style="color:var(--dark-sub);">2026 Summer Training</span>
+        <p style="font-family:var(--display);font-size:clamp(0.9rem,3vw,var(--t-2xl));font-weight:700;color:white;line-height:1.2;letter-spacing:-0.015em;">Every person who walks in<br>should feel expected.</p>
+        <p style="font-size:clamp(0.5rem,1vw,0.78rem);color:var(--dark-sub);margin-top:0.85em;">W-101 · Philosophy of Welcomes</p>
       </div>
     </div>
-    <div class="note mb-3">Summary or emotional takeaway. Dark surface bookends with the cover slide. End on a feeling, not a fact. The last slide should echo after the screen goes dark.</div>
+    <div class="note mb-4">Dark surface mirrors the Cover — bookends the deck. Title at <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-2xl</code> (30px) — slightly softer than the Cover's <code style="font-family:var(--mono);font-size:var(--t-xs);background:var(--gray);padding:1px 5px;border-radius:3px;">--t-xl</code>. Centered. End on a feeling, not a fact. No body text. No calls to action. <strong>Always preceded by Synthesize Reflection. Never preceded directly by Activity.</strong></div>
 
-    <!-- Slide type reference -->
+    <!-- QUICK REFERENCE TABLE -->
     <p class="label-text mb-2 mt-4">Quick reference</p>
     <table class="table">
-      <thead>
-        <tr><th>#</th><th>Type</th><th>Surface</th><th>Purpose</th><th>When</th></tr>
-      </thead>
+      <thead><tr><th>#</th><th>Type</th><th>Surface</th><th>Title size</th><th>Purpose</th><th>Sequence rule</th></tr></thead>
       <tbody>
-        <tr><td class="font-600">01</td><td class="font-600">Cover</td><td>Dark</td><td>Set tone</td><td>Start of presentation</td></tr>
-        <tr><td class="font-600">02</td><td class="font-600">Section Divider</td><td>Gray</td><td>Reset attention</td><td>New phase or topic</td></tr>
-        <tr><td class="font-600">03</td><td class="font-600">Content</td><td>White</td><td>Deliver information</td><td>Most of your deck</td></tr>
-        <tr><td class="font-600">04</td><td class="font-600">Quote</td><td>White</td><td>Create emotion</td><td>Before or after key points</td></tr>
-        <tr><td class="font-600">05</td><td class="font-600">Data / Insight</td><td>White</td><td>Build credibility</td><td>Proving why it matters</td></tr>
-        <tr><td class="font-600">06a</td><td class="font-600">Image + Text: Vertical</td><td>White</td><td>Show, not tell</td><td>Environment, behavior, examples</td></tr>
-        <tr><td class="font-600">06b</td><td class="font-600">Image + Text: Horizontal</td><td>White</td><td>Cinematic weight</td><td>Landscapes, wide-angle, groups</td></tr>
-        <tr><td class="font-600">06c</td><td class="font-600">Image + Text: Full-bleed</td><td>Photo</td><td>Immerse</td><td>Emotional, atmospheric moments</td></tr>
-        <tr><td class="font-600">06d</td><td class="font-600">Image + Text: Caption</td><td>Photo + Dark</td><td>Spotlight a moment</td><td>"What we saw" editorial format</td></tr>
-        <tr><td class="font-600">07</td><td class="font-600">Activity Prompt</td><td>Gray</td><td>Passive &rarr; active</td><td>After content, before reflection</td></tr>
-        <tr><td class="font-600">08</td><td class="font-600">Framework / Model</td><td>White</td><td>Explain a system</td><td>PRO model, pillars, phases</td></tr>
-        <tr><td class="font-600">09</td><td class="font-600">Process / Sequence</td><td>White</td><td>Show flow</td><td>Timelines, incident response</td></tr>
-        <tr><td class="font-600">10</td><td class="font-600">Reflection</td><td>Gray</td><td>Internalize</td><td>End of section or module</td></tr>
-        <tr><td class="font-600">11</td><td class="font-600">Closing</td><td>Dark</td><td>Land the message</td><td>End of presentation</td></tr>
+        <tr><td class="font-600">01</td><td class="font-600">Cover</td><td>Dark (#005587)</td><td>--t-xl (40px)</td><td>Set tone</td><td>Always first. Never after dark surface.</td></tr>
+        <tr><td class="font-600">02</td><td class="font-600">Section Divider</td><td>Gray (#F4F4F3)</td><td>--t-2xl (30px)</td><td>Reset attention</td><td>Never back-to-back. Never after Cover.</td></tr>
+        <tr><td class="font-600">03</td><td class="font-600">Content ×4 variants</td><td>White</td><td>--t-lg (22px)</td><td>Deliver one idea</td><td>Default type. Never data→data without context.</td></tr>
+        <tr><td class="font-600">04</td><td class="font-600">Quote</td><td>White</td><td>--t-2xl (30px)</td><td>Create emotion</td><td>One per section. Never quote→quote.</td></tr>
+        <tr><td class="font-600">05</td><td class="font-600">Data ×3 variants</td><td>White or Dark</td><td>Display hero #</td><td>Build credibility</td><td>Never two data slides consecutively.</td></tr>
+        <tr><td class="font-600">06</td><td class="font-600">Image + Text ×4</td><td>White / Photo</td><td>--t-lg (22px)</td><td>Show, not tell</td><td>One visual per slide, always.</td></tr>
+        <tr><td class="font-600">07</td><td class="font-600">Activity</td><td>Pillar color (T1)</td><td>--t-2xl (30px)</td><td>Passive → active</td><td>Never before content. Never before Closing.</td></tr>
+        <tr><td class="font-600">08</td><td class="font-600">Framework / Model</td><td>White</td><td>--t-lg (22px)</td><td>Explain a system</td><td>Max 3 components per row.</td></tr>
+        <tr><td class="font-600">09</td><td class="font-600">Process / Sequence</td><td>White</td><td>--t-lg (22px)</td><td>Show flow</td><td>Max 5 steps. Split if longer.</td></tr>
+        <tr><td class="font-600">10a</td><td class="font-600">Activate Reflection</td><td>Pillar wash (T3)</td><td>--t-2xl (30px)</td><td>Prime learner</td><td>Always after Cover, before first Content.</td></tr>
+        <tr><td class="font-600">10b</td><td class="font-600">Synthesize Reflection</td><td>Pillar wash (T3)</td><td>--t-2xl (30px)</td><td>Internalize</td><td>Always before Closing or Divider.</td></tr>
+        <tr><td class="font-600">11</td><td class="font-600">Closing</td><td>Dark (#005587)</td><td>--t-2xl (30px)</td><td>Land the message</td><td>Always last. Always after Synthesize Reflection.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <hr class="divider">
 
 
 
@@ -3499,7 +4001,7 @@ body {
 
   /* TEXT — two values, WCAG AA on every surface */
   --ink:    #005587;          /*  7.9:1 white,  7.2:1 gray — AAA */
-  --sub:    #6F6F6F;          /*  5.0:1 white,  4.6:1 gray — AA  */
+  --sub:    #595959;          /*  7.0:1 white,  6.4:1 gray — AAA */
 
   /* DARK SURFACE TEXT */
   --dark-body: #F1F1F1;       /* on #005587 — 7.0:1 AAA  */
