@@ -1,914 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Become a PRO — ResLife 2026 Training Overview</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Framework · UCLA ResLife 2026 Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family:'Karbon'; src:local('Karbon Bold');      font-weight:700; font-style:normal; }
+  @font-face { font-family:'Karbon'; src:local('Karbon Semibold');  font-weight:600; font-style:normal; }
+  @font-face { font-family:'Karbon'; src:local('Karbon Medium');    font-weight:500; font-style:normal; }
+  @font-face { font-family:'Karbon'; src:local('Karbon Regular'),local('Karbon'); font-weight:400; font-style:normal; }
 
-/* ═══════════════════════════════════════
-   MINIMALIST TRAINING DESIGN SYSTEM
-   One idea per surface. Typography first.
-   ═══════════════════════════════════════ */
+  :root{
+    /* SURFACES */
+    --white:#FFFFFF;
+    --gray:#F4F4F3;
+    --blue:#005587;
 
-@font-face { font-family: 'Karbon'; src: local('Karbon Bold'); font-weight: 700; font-style: normal; }
-@font-face { font-family: 'Karbon'; src: local('Karbon Semibold'); font-weight: 600; font-style: normal; }
-@font-face { font-family: 'Karbon'; src: local('Karbon Medium'); font-weight: 500; font-style: normal; }
-@font-face { font-family: 'Karbon'; src: local('Karbon Regular'), local('Karbon'); font-weight: 400; font-style: normal; }
+    /* TEXT */
+    --ink:#005587;
+    --sub:#595959;
 
-:root {
-  --white:  #FFFFFF;
-  --gray:   #F4F4F3;
-  --blue:   #005587;
+    /* BORDER */
+    --line:#E0E0E0;
 
-  --ink:    #005587;
-  --sub:    #595959;
+    /* PILLARS */
+    --welcomes:#2774AE;
+    --connects:#D900A5;
+    --responds:#FFD100;
+    --responds-text:#8C7200;
 
-  --line:   #E0E0E0;
+    /* DARK SURFACE TEXT */
+    --dark-body:#F1F1F1;
+    --dark-sub:#C4C4C4;
 
-  --display: 'Karbon', Georgia, serif;
-  --body:    'Karbon', system-ui, -apple-system, sans-serif;
-  --label:   'Karbon', system-ui, sans-serif;
+    /* TYPE */
+    --display:'Karbon', system-ui, -apple-system, sans-serif;
+    --body:'Karbon', system-ui, -apple-system, sans-serif;
+    --label:'Karbon', system-ui, sans-serif;
 
-  --t-xs:   0.75rem;
-  --t-sm:   0.875rem;
-  --t-base: 1rem;
-  --t-lg:   1.375rem;
-  --t-xl:   2.5rem;
+    /* SCALE */
+    --t-xs:0.75rem;    /* 12 */
+    --t-sm:0.875rem;   /* 14 */
+    --t-base:1rem;     /* 16 */
+    --t-lg:1.375rem;   /* 22 */
+    --t-2xl:1.875rem;  /* 30 */
+    --t-xl:2.5rem;     /* 40 */
 
-  --s-1: 0.5rem;
-  --s-2: 1rem;
-  --s-3: 1.5rem;
-  --s-4: 2rem;
-  --s-5: 3rem;
-  --s-6: 4rem;
-  --s-7: 6rem;
+    /* RADIUS */
+    --r-sm:4px;
+    --r-md:8px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{
+    font-family:var(--body);
+    font-weight:400;
+    font-size:var(--t-base);
+    line-height:1.6;
+    color:var(--ink);
+    background:var(--white);
+  }
+  .page{
+    max-width:1040px;
+    margin:0 auto;
+    padding:56px 56px 40px;
+  }
 
-  --r: 4px;
-  --ease: 150ms ease-out;
+  /* ===== HEADER ===== */
+  .hdr{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:44px;
+  }
+  .hdr-left .eyebrow{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .hdr-left h1{
+    font-family:var(--display);
+    font-size:var(--t-xl);
+    line-height:1.1;
+    color:var(--ink);
+    margin:0;
+    font-weight:700;
+    letter-spacing:-.02em;
+  }
+  .hdr-tag{
+    font-family:var(--display);
+    font-size:var(--t-base);
+    color:var(--sub);
+    font-weight:400;
+    font-style:italic;
+    margin-top:8px;
+    line-height:1.4;
+  }
+  .hdr-right{
+    text-align:right;
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:500;
+    line-height:1.7;
+    padding-top:8px;
+  }
 
-  --dark-body:  #F1F1F1;
-  --dark-sub:   #D4D4D4;
+  /* ===== SECTION ===== */
+  section{margin-bottom:48px}
+  .sec-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:18px;
+  }
+  .sec-title{
+    font-family:var(--display);
+    font-size:var(--t-lg);
+    color:var(--ink);
+    font-weight:700;
+    margin:0;
+    line-height:1.25;
+  }
+  .sec-label{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:500;
+  }
+  .sec-sub{
+    color:var(--sub);
+    font-size:var(--t-base);
+    line-height:1.65;
+    margin:-6px 0 18px;
+    max-width:720px;
+  }
 
-  --welcomes:      #2774AE;
-  --connects:      #D900A5;
-  --responds:      #FFD100;
-  --responds-text: #8C7200;
-}
+  /* ===== GRIDS ===== */
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
-}
+  /* ===== PILLAR CARDS (Three Pillars) ===== */
+  .pillars-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .pillar{
+    padding:34px 30px 36px;
+    position:relative;
+    min-height:320px;
+    display:flex;
+    flex-direction:column;
+  }
+  .pillar.w{background:var(--welcomes);color:#fff}
+  .pillar.c{background:var(--connects);color:#fff}
+  .pillar.r{background:var(--responds);color:#111}
+  .pillar h3{
+    font-family:var(--display);
+    font-size:var(--t-xl);
+    line-height:1.05;
+    margin:0 0 14px;
+    font-weight:700;
+    letter-spacing:-.02em;
+  }
+  .pillar .tagline{
+    font-size:var(--t-base);
+    font-weight:500;
+    margin:0 0 22px;
+    line-height:1.5;
+  }
+  .pillar .cat{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:600;
+    margin:0 0 12px;
+  }
+  .pillar.w .cat, .pillar.c .cat{color:var(--dark-body)}
+  .pillar.r .cat{color:var(--responds-text)}
+  .pillar p{
+    margin:0;
+    font-size:var(--t-sm);
+    line-height:1.6;
+  }
+  .pillar.w p, .pillar.c p{color:var(--dark-body)}
+  .pillar.r p{color:#1a1a1a}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  /* ===== PRO BLOCKS ===== */
+  .pro{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--r-md);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .pro .bar{
+    background:var(--blue);
+    color:var(--white);
+    padding:14px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .pro .letter{
+    font-family:var(--display);
+    font-size:var(--t-lg);
+    font-weight:700;
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .pro .level{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    color:var(--dark-sub);
+    font-weight:500;
+    text-transform:uppercase;
+  }
+  .pro .body{
+    padding:16px 18px 20px;
+  }
+  .pro h4{
+    margin:0 0 4px;
+    font-family:var(--display);
+    font-size:var(--t-base);
+    font-weight:600;
+    color:var(--ink);
+  }
+  .pro .q{
+    font-style:italic;
+    font-size:var(--t-sm);
+    color:var(--sub);
+    margin:0 0 10px;
+    line-height:1.5;
+  }
+  .pro p{
+    margin:0;
+    font-size:var(--t-sm);
+    line-height:1.6;
+    color:var(--sub);
+  }
 
-body {
-  font-family: var(--body);
-  font-weight: 400;
-  font-size: var(--t-base);
-  line-height: 1.6;
-  color: var(--ink);
-  background: var(--white);
-}
+  /* ===== PHASE CARDS ===== */
+  .phase{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--r-md);
+    padding:22px 22px 22px;
+    position:relative;
+    overflow:hidden;
+  }
+  .phase .big-num{
+    position:absolute;
+    right:14px;
+    bottom:-10px;
+    font-family:var(--display);
+    font-size:96px;
+    font-weight:700;
+    color:#EDEFF2;
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .phase .ph-label{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .phase h3{
+    font-family:var(--display);
+    font-size:var(--t-lg);
+    color:var(--ink);
+    margin:0 0 8px;
+    font-weight:700;
+    line-height:1.25;
+  }
+  .phase p{
+    margin:0 0 14px;
+    font-size:var(--t-base);
+    color:var(--sub);
+    line-height:1.65;
+    max-width:90%;
+    position:relative;
+    z-index:1;
+  }
 
-/* ─── LAYOUT ─── */
-.page        { max-width: 960px; margin: 0 auto; padding: 0 var(--s-4); }
-.section     { margin-bottom: var(--s-5); }
-.divider     { border: none; border-top: 1px solid var(--line); margin: var(--s-4) 0; }
+  /* ===== PRINCIPLE BANNER ===== */
+  .principle{
+    background:var(--blue);
+    color:#fff;
+    border-radius:4px;
+    padding:20px 22px;
+    margin:28px 0 40px;
+  }
+  .principle .q{
+    font-size:17px;
+    font-weight:700;
+    margin:0 0 4px;
+    letter-spacing:-.005em;
+  }
+  .principle .lbl{
+    font-size:10.5px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.7);
+    font-weight:600;
+  }
 
-/* ─── TYPE ─── */
-.display {
-  font-family: var(--display);
-  font-size: var(--t-xl);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-.heading {
-  font-family: var(--display);
-  font-size: var(--t-lg);
-  font-weight: 700;
-  line-height: 1.25;
-  color: var(--ink);
-}
-.body-text {
-  font-size: var(--t-base);
-  font-weight: 400;
-  line-height: 1.65;
-  color: var(--sub);
-  max-width: 600px;
-}
-.label-text {
-  font-family: var(--label);
-  font-size: var(--t-xs);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sub);
-}
-.caption {
-  font-size: var(--t-sm);
-  color: var(--sub);
-  line-height: 1.5;
-}
+  /* ===== LED METHOD ===== */
+  .led-banner{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin:8px 0 22px;
+  }
+  .led-banner .l{flex:1;height:1px;background:var(--line)}
+  .led-banner .t{
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:700;
+  }
+  /* LED : three Moment surfaces from the design system.
+     Base (white)  >  Pillar (gray, calm mid-surface)  >  Emphasis (blue) */
+  .led-card{
+    border-radius:var(--r-md);
+    padding:22px 22px 24px;
+    position:relative;
+    min-height:340px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  /* Base : L */
+  .led-card.base{
+    background:var(--white);
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  /* Pillar (mid) : E */
+  .led-card.mid{
+    background:var(--gray);
+    border:1px solid var(--gray);
+    color:var(--ink);
+  }
+  /* Emphasis : D */
+  .led-card.emphasis{
+    background:var(--blue);
+    border:1px solid var(--blue);
+    color:var(--dark-body);
+  }
 
-/* ─── CARD ─── */
-.card {
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  padding: var(--s-3);
-  background: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  box-sizing: border-box;
-}
-.card-title {
-  font-weight: 600;
-  font-size: var(--t-base);
-  margin-bottom: var(--s-1);
-}
-.card-body {
-  font-size: var(--t-sm);
-  color: var(--sub);
-  line-height: 1.6;
-}
+  .led-card .letter{
+    font-family:var(--display);
+    font-size:var(--t-xl);
+    font-weight:700;
+    line-height:1;
+    letter-spacing:-.02em;
+    margin:4px 0 14px;
+    color:var(--ink);
+  }
+  .led-card.emphasis .letter{color:var(--white)}
 
-/* ─── BUTTON ─── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 1.25rem;
-  font-family: var(--body);
-  font-size: var(--t-sm);
-  font-weight: 600;
-  border: 1px solid var(--ink);
-  border-radius: var(--r);
-  background: var(--ink);
-  color: var(--white);
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity var(--ease);
-}
-.btn:hover { opacity: 0.8; }
-.btn-ghost {
-  background: transparent;
-  color: var(--ink);
-}
-.btn-ghost:hover { background: var(--gray); opacity: 1; }
+  .led-card h4{
+    margin:0 0 10px;
+    font-family:var(--display);
+    font-size:var(--t-lg);
+    font-weight:700;
+    line-height:1.25;
+    color:var(--ink);
+  }
+  .led-card.emphasis h4{color:var(--white)}
 
-/* ─── TAG ─── */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 10px;
-  font-size: var(--t-xs);
-  font-weight: 600;
-  border-radius: 999px;
-  background: var(--gray);
-  color: var(--sub);
-  letter-spacing: 0.02em;
-}
+  .led-card .desc{
+    margin:0 0 16px;
+    font-size:var(--t-base);
+    line-height:1.65;
+    color:var(--sub);
+  }
+  .led-card.emphasis .desc{color:var(--dark-body)}
 
-/* ─── PROGRESS ─── */
-.progress-track {
-  height: 4px;
-  background: var(--gray);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--ink);
-  border-radius: 2px;
-}
+  .pill{
+    display:inline-block;
+    font-size:var(--t-xs);
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:var(--r-sm);
+    margin-bottom:14px;
+    align-self:flex-start;
+    letter-spacing:.02em;
+  }
+  .led-card.base .pill{background:#EAF1F8;color:var(--blue)}
+  .led-card.mid  .pill{background:var(--white);color:var(--blue);border:1px solid var(--line)}
+  .led-card.emphasis .pill{background:rgba(255,255,255,.12);color:var(--white);border:1px solid rgba(255,255,255,.25)}
 
-/* ─── TABLE ─── */
-.table { width: 100%; border-collapse: collapse; }
-.table th {
-  text-align: left;
-  font-size: var(--t-xs);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--sub);
-  padding: var(--s-1) 0;
-  border-bottom: 1px solid var(--line);
-}
-.table td {
-  padding: var(--s-2) 0;
-  font-size: var(--t-sm);
-  color: var(--ink);
-  border-bottom: 1px solid var(--gray);
-  vertical-align: top;
-}
-.table tr:last-child td { border-bottom: none; }
+  .led-list{
+    list-style:none;
+    padding:14px 0 0;
+    margin:0;
+    border-top:1px solid var(--line);
+  }
+  .led-card.mid .led-list{border-top-color:#DCDCDB}
+  .led-card.emphasis .led-list{border-top-color:rgba(255,255,255,.18)}
 
-/* ─── NOTE ─── */
-.note {
-  border-left: 2px solid var(--line);
-  padding: var(--s-2) var(--s-3);
-  font-size: var(--t-sm);
-  color: var(--sub);
-  line-height: 1.65;
-}
+  .led-list li{
+    font-size:var(--t-sm);
+    color:var(--sub);
+    padding:7px 0;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    line-height:1.5;
+  }
+  .led-card.emphasis .led-list li{color:var(--dark-body)}
 
-/* ─── PILLAR UTILITIES ─── */
-.pillar-welcomes { background: var(--welcomes); }
-.pillar-connects { background: var(--connects); }
-.pillar-responds { background: var(--responds); }
-.pillar-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 12px;
-  font-size: var(--t-xs);
-  font-weight: 600;
-  border-radius: 999px;
-  color: white;
-  letter-spacing: 0.03em;
-}
-.pillar-tag-responds { background: var(--responds); color: var(--ink); }
+  .led-list li::before{
+    content:"→";
+    color:#9aa3ae;
+    font-weight:500;
+  }
+  .led-card.emphasis .led-list li::before{color:var(--dark-sub)}
 
-/* ─── DARK SURFACE ─── */
-.dark {
-  background: var(--blue);
-  color: var(--white);
-  border-radius: var(--r);
-  padding: var(--s-4) var(--s-5);
-}
-.dark .body-text { color: var(--dark-body); max-width: 100%; }
-.dark .label-text { color: var(--dark-sub); }
-.dark .caption { color: var(--dark-sub); }
+  /* ===== FOOTER ===== */
+  footer{
+    margin-top:56px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:500;
+  }
+  .marks{display:flex;gap:10px;align-items:center}
+  .marks .sq{width:12px;height:12px;background:var(--welcomes)}
+  .marks .ci{width:12px;height:12px;background:var(--connects);border-radius:50%}
+  .marks .tr{
+    width:0;height:0;
+    border-left:7px solid transparent;
+    border-right:7px solid transparent;
+    border-bottom:12px solid var(--responds);
+  }
 
-/* ─── NAV ─── */
-.nav {
-  padding: var(--s-2) 0;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: var(--s-5);
-}
-.nav-brand {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: var(--t-base);
-  color: var(--ink);
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: var(--s-1);
-  flex-wrap: wrap;
-  margin-top: var(--s-1);
-}
-.nav-group { display: flex; gap: var(--s-2); flex-wrap: wrap; }
-.nav-sep { color: var(--line); font-size: var(--t-sm); margin: 0 var(--s-1); }
-.nav a {
-  font-size: var(--t-xs);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--sub);
-  text-decoration: none;
-  transition: color var(--ease);
-  white-space: nowrap;
-}
-.nav a:hover { color: var(--ink); }
+  /* ===== DOC NAV (pages) ===== */
+  .doc-nav{
+    max-width:1040px;
+    margin:0 auto;
+    padding:28px 56px 0;
+    display:flex;
+    gap:4px;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-btn{
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--sub);
+    padding:12px 16px;
+    border-bottom:2px solid transparent;
+    margin-bottom:-1px;
+    transition:color 150ms ease-out, border-color 150ms ease-out;
+  }
+  .nav-btn:hover{color:var(--ink)}
+  .nav-btn.active{
+    color:var(--ink);
+    font-weight:600;
+    border-bottom-color:var(--ink);
+  }
+  .doc-page{display:none}
+  .doc-page.active{display:block}
 
-/* ─── GRIDS ─── */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); align-items: stretch; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s-3); align-items: stretch; }
-.grid-2 > *, .grid-3 > * { min-height: 0; }
-.flex { display: flex; align-items: center; gap: var(--s-2); }
-.flex-between { display: flex; align-items: center; justify-content: space-between; }
-.mt-1 { margin-top: var(--s-1); } .mt-2 { margin-top: var(--s-2); }
-.mt-3 { margin-top: var(--s-3); } .mt-4 { margin-top: var(--s-4); }
-.mt-5 { margin-top: var(--s-5); }
-.mb-1 { margin-bottom: var(--s-1); } .mb-2 { margin-bottom: var(--s-2); }
-.mb-3 { margin-bottom: var(--s-3); }
-.w-full { width: 100%; }
-.text-sub { color: var(--sub); }
-.text-sm { font-size: var(--t-sm); }
-.text-xs { font-size: var(--t-xs); }
-.font-600 { font-weight: 600; }
+  /* ===== MODULE INDEX (page 2) =====
+     Uses CSS subgrid so the header row and each P / R / O track row
+     align horizontally across all three pillar columns. */
+  .columns{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-template-rows:auto auto auto auto;
+    column-gap:20px;
+    row-gap:0;
+    align-items:start;
+  }
+  .pillar-col{
+    display:grid;
+    grid-template-rows:subgrid;
+    grid-row:span 4;
+    border:1px solid var(--line);
+    border-radius:var(--r-md);
+    overflow:hidden;
+    background:var(--white);
+  }
+  .col-header{
+    padding:20px 22px 22px;
+    color:var(--white);
+  }
+  .pillar-col.w .col-header{background:var(--welcomes)}
+  .pillar-col.c .col-header{background:var(--connects)}
+  .pillar-col.r .col-header{background:var(--responds);color:var(--ink)}
+  .col-header h3{
+    font-family:var(--display);
+    font-size:var(--t-lg);
+    font-weight:700;
+    margin:0 0 4px;
+    line-height:1.2;
+  }
+  .col-sub{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:500;
+    opacity:.88;
+    display:block;
+  }
+  .col-count{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:500;
+    opacity:.72;
+    display:block;
+    margin-top:4px;
+  }
+  .track-group{
+    padding:14px 22px 18px;
+    border-top:1px solid var(--line);
+  }
+  .track-group:first-of-type{border-top:none}
+  .track-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin:6px 0 10px;
+  }
+  .t-letter{
+    font-family:var(--display);
+    font-size:var(--t-lg);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .t-name{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:600;
+  }
+  .mod-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+  }
+  .mod-list li{
+    padding:7px 0;
+    border-bottom:1px dotted var(--line);
+    font-size:var(--t-sm);
+    line-height:1.45;
+    color:var(--ink);
+  }
+  .mod-list li:last-child{border-bottom:none}
+  .mod-list li.sub-mod{
+    padding-left:22px;
+  }
+  .mod-code{
+    font-family:var(--label);
+    font-size:var(--t-xs);
+    letter-spacing:.06em;
+    color:var(--sub);
+    font-weight:600;
+    margin-right:6px;
+  }
+  .mod-name{font-weight:500}
+  .mod-meta{
+    display:block;
+    font-family:var(--label);
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--sub);
+    font-weight:500;
+    margin-top:2px;
+    opacity:.8;
+  }
 
-/* ─── PAGE-SPECIFIC ─── */
+  /* =========================================
+     RESPONSIVE
+     Breakpoints:
+       900  : tablet · module-index collapses
+       760  : tablet portrait / large phone · everything stacks
+       480  : small phone · tighter padding + type
+     ========================================= */
 
-/* Step circle */
-.step-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1.5px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: var(--t-sm);
-  color: var(--ink);
-  flex-shrink: 0;
-}
+  /* Tablet : module index stacks into single column */
+  @media (max-width:900px){
+    .columns{
+      grid-template-columns:1fr;
+      grid-template-rows:none;
+      gap:16px;
+    }
+    .pillar-col{
+      display:block;
+      grid-row:auto;
+      grid-template-rows:none;
+    }
+  }
 
-/* LED phase letter */
-.led-letter {
-  font-family: var(--display);
-  font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  opacity: 0.18;
-  position: absolute;
-  right: var(--s-3);
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  user-select: none;
-}
+  /* Tablet portrait / large phone */
+  @media (max-width:760px){
+    .page{padding:32px 22px 32px}
+    .doc-nav{
+      padding:22px 22px 0;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      flex-wrap:nowrap;
+      scrollbar-width:none;
+    }
+    .doc-nav::-webkit-scrollbar{display:none}
+    .nav-btn{white-space:nowrap;padding:14px 14px}
 
-/* Pillar accent bar */
-.pillar-bar {
-  height: 3px;
-  border-radius: 2px;
-  margin-bottom: var(--s-3);
-}
+    .grid-3,.grid-2,.pillars-grid{grid-template-columns:1fr}
 
-/* Module chip */
-.module-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 4px 10px;
-  font-size: var(--t-xs);
-  font-weight: 500;
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  color: var(--sub);
-  background: var(--white);
-  letter-spacing: 0.02em;
-}
-.module-chip-code {
-  font-weight: 700;
-  color: var(--ink);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-}
+    .hdr{flex-direction:column;gap:10px;padding-bottom:22px;margin-bottom:36px}
+    .hdr-right{text-align:left}
+    .hdr-left h1{font-size:36px}
+    .hdr-tag{font-size:15px}
 
-/* PRO badge */
-.pro-badge {
-  display: inline-flex;
-  padding: 2px 8px;
-  border-radius: var(--r);
-  font-family: var(--label);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.pro-p { background: rgba(0, 85, 135, 0.08); color: var(--ink); }
-.pro-r { background: rgba(0, 85, 135, 0.14); color: var(--ink); }
-.pro-o { background: rgba(0, 85, 135, 0.22); color: var(--ink); }
+    section{margin-bottom:40px}
+    .sec-head{flex-direction:column;gap:6px;align-items:flex-start;margin-bottom:14px}
+    .sec-title{font-size:22px}
+    .sec-sub{margin-top:0;margin-bottom:16px}
 
-/* Phase card */
-.phase-card {
-  background: var(--gray);
-  border-radius: var(--r);
-  padding: var(--s-4);
-  position: relative;
-}
-.phase-number {
-  font-family: var(--display);
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--ink);
-  opacity: 0.07;
-  position: absolute;
-  top: var(--s-3);
-  right: var(--s-3);
-  letter-spacing: -0.04em;
-  user-select: none;
-}
+    .pillar{min-height:auto;padding:28px 24px 30px}
+    .pillar h3{font-size:32px}
+    .pillar .tagline{margin-bottom:18px}
 
-/* Stat block */
-.stat-block {
-  display: flex;
-  gap: var(--s-4);
-  padding: var(--s-3) 0;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  margin: var(--s-3) 0;
-}
-.stat-item { flex: 1; }
-.stat-num {
-  font-family: var(--display);
-  font-size: 2.25rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--white);
-}
-.stat-label {
-  font-size: var(--t-xs);
-  color: var(--dark-sub);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 0.3rem;
-}
-.stat-sep {
-  width: 1px;
-  background: rgba(255,255,255,0.15);
-  align-self: stretch;
-}
+    .pro .body{padding:14px 16px 18px}
 
-/* Footer */
-.footer {
-  border-top: 1px solid var(--line);
-  padding: var(--s-4) 0 var(--s-5);
-  margin-top: var(--s-7);
-}
+    .phase{padding:20px}
+    .phase .big-num{font-size:72px;right:10px}
+    .phase h3{font-size:20px}
+    .phase p{max-width:100%}
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .page { padding: 0 var(--s-2); }
-  .section { margin-bottom: var(--s-5); }
-  .divider { margin: var(--s-4) 0; }
-  .display { font-size: 1.75rem; }
-  .heading { font-size: 1.2rem; }
-  .body-text { max-width: 100%; }
+    .led-card{min-height:auto;padding:20px 20px 22px}
+    .led-card .letter{font-size:34px}
+    .led-card h4{font-size:20px}
 
-  /* Grids → single column */
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
-  .pro-grid, .led-grid { grid-template-columns: 1fr !important; }
+    .principle{padding:18px 20px}
+    .principle .q{font-size:15px}
 
-  /* Hero */
-  .dark { padding: var(--s-3); border-radius: var(--r); }
-  .stat-block { flex-direction: row; flex-wrap: wrap; gap: var(--s-3); padding: var(--s-2) 0; margin: var(--s-2) 0; }
-  .stat-item { flex: 1 1 40%; }
-  .stat-sep { display: none; }
-  .stat-num { font-size: 1.5rem; }
+    .col-header{padding:18px 20px 20px}
+    .col-header h3{font-size:20px}
+    .track-group{padding:12px 20px 16px}
+    .mod-list li.sub-mod{padding-left:18px}
 
-  /* Nav */
-  .nav-links { flex-direction: column; align-items: flex-start; gap: var(--s-1); }
-  .nav-group { flex-wrap: wrap; gap: var(--s-1); }
-  .nav-sep { display: none; }
+    footer{flex-direction:column;gap:12px;align-items:flex-start;margin-top:40px}
+  }
 
-  /* Phase cards */
-  .phase-card { padding: var(--s-3); }
-  .phase-number { font-size: 2.5rem; }
+  /* Small phone */
+  @media (max-width:480px){
+    .page{padding:24px 18px 28px}
+    .doc-nav{padding:18px 18px 0}
 
-  /* Footer */
-  .footer { padding: var(--s-3) 0; }
-  .flex-between { flex-direction: column; align-items: flex-start; gap: var(--s-1); }
-}
+    .hdr{padding-bottom:18px;margin-bottom:28px}
+    .hdr-left .eyebrow{font-size:11px}
+    .hdr-left h1{font-size:30px;letter-spacing:-.01em}
+    .hdr-tag{font-size:13.5px;margin-top:6px}
 
-@media (max-width: 480px) {
-  .page { padding: 0 var(--s-2); }
-  .display { font-size: 1.5rem; }
-  .heading { font-size: 1.1rem; }
-  .stat-item { flex: 1 1 100%; }
-  .dark { border-radius: 0; margin-left: calc(var(--s-2) * -1); margin-right: calc(var(--s-2) * -1); }
-  .nav-brand { font-size: var(--t-sm); }
-  .nav-links a { font-size: var(--t-xs); }
-}
+    section{margin-bottom:32px}
+    .sec-title{font-size:20px}
+    .sec-sub{font-size:15px}
 
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .pillar{padding:24px 20px 26px}
+    .pillar h3{font-size:28px}
+    .pillar .tagline{font-size:15px}
+    .pillar p{font-size:13.5px}
 
+    .pro .bar{padding:12px 14px}
+    .pro .body{padding:12px 14px 16px}
+    .pro h4{font-size:15px}
+
+    .phase{padding:18px}
+    .phase .big-num{font-size:60px;right:8px;bottom:-6px}
+    .phase h3{font-size:19px}
+    .phase p{font-size:15px}
+
+    .led-card{padding:18px 18px 20px}
+    .led-card .letter{font-size:30px;margin:2px 0 10px}
+    .led-card h4{font-size:19px}
+    .led-card .desc{font-size:15px}
+    .led-list li{font-size:13.5px}
+
+    .col-header{padding:16px 18px 18px}
+    .col-header h3{font-size:19px}
+    .col-sub,.col-count{font-size:11px}
+    .track-group{padding:10px 18px 14px}
+    .t-letter{font-size:20px}
+    .mod-list li{font-size:13.5px;padding:6px 0}
+    .mod-list li.sub-mod{padding-left:16px}
+  }
+
+  /* Hide motion for reduced-motion users */
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important}
+  }
 </style>
 </head>
 <body>
 
+<!-- DOC NAVIGATION -->
+<nav class="doc-nav" aria-label="Document pages">
+  <button class="nav-btn active" data-page="1">01 · Framework</button>
+  <button class="nav-btn" data-page="2">02 · Module Index</button>
+</nav>
+
+<!-- ============ PAGE 1 — FRAMEWORK ============ -->
+<div class="doc-page active" id="page-1">
 <div class="page">
 
-  <!-- ─── NAV ─── -->
-  <nav class="nav">
-    <div class="nav-brand">UCLA Residential Life</div>
-    <div class="nav-links">
-      <div class="nav-group">
-        <a href="#architecture">Become a PRO</a>
-        <a href="#pro">PRO Model</a>
-        <a href="#phases">Phases</a>
-        <a href="#led">LED Method</a>
-        <a href="#pillars">Pillars</a>
-      </div>
-      <span class="nav-sep">/</span>
-      <div class="nav-group">
-        <a href="#welcomes">Welcomes</a>
-        <a href="#connects">Connects</a>
-        <a href="#responds">Responds</a>
-      </div>
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="eyebrow">UCLA Residential Life Training Architecture</div>
+      <h1>Become a PRO</h1>
+      <div class="hdr-tag">Prepared to lead.</div>
     </div>
-  </nav>
+  </header>
 
-
-  <!-- ═══════════════════════════════════════
-       HERO — DARK SURFACE
-  ═══════════════════════════════════════ -->
-  <section class="section">
-    <div class="dark" id="architecture">
-      <p class="label-text" style="color:var(--dark-sub);margin-bottom:var(--s-2);">ResLife 2026 — Summer Training</p>
-      <h1 class="display" style="color:var(--white);max-width:16ch;">Become a PRO.</h1>
-      <p class="body-text mt-3" style="color:var(--dark-body);max-width:52ch;line-height:1.7;">
-        It's not just training. It's preparation to lead.
-      </p>
-
-      <div class="stat-block">
-        <div class="stat-item">
-          <div class="stat-num">~800</div>
-          <div class="stat-label">Staff members</div>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Pillars</div>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Learning Steps</div>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Phases</div>
-        </div>
+  <!-- SECTION 1: THREE PILLARS -->
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title">Three pillars</h2>
+    </div>
+    <p class="sec-sub">All training falls under one of these.</p>
+    <div class="pillars-grid">
+      <div class="pillar w">
+        <h3>ResLife<br>Welcomes</h3>
+        <div class="tagline">How belonging begins.</div>
+        <div class="cat">Organizational Excellence</div>
+        <p>The intentional foundation that shapes what becomes possible for every individual.</p>
       </div>
-
+      <div class="pillar c">
+        <h3>ResLife<br>Connects</h3>
+        <div class="tagline">How belonging deepens.</div>
+        <div class="cat">Community Excellence</div>
+        <p>Everyday moments turned into connections that transform spaces into communities.</p>
+      </div>
+      <div class="pillar r">
+        <h3>ResLife<br>Responds</h3>
+        <div class="tagline">How belonging is sustained.</div>
+        <div class="cat">Support Excellence</div>
+        <p>The frameworks to respond to anything, from routine situations to complex crises.</p>
+      </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════
-       THREE PILLARS
-  ═══════════════════════════════════════ -->
-  <section class="section" id="pillars">
-    <div class="mb-3">
-      <p class="label-text mb-2">All training falls under one of these</p>
-      <h2 class="heading">Three pillars</h2>
+  <!-- SECTION 2: THE PROGRESSION -->
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title">The PROgression</h2>
     </div>
-
+    <p class="sec-sub">Within each pillar, learning follows three steps, always in that order. Why before who. Who before how.</p>
     <div class="grid-3">
-
-      <!-- Welcomes -->
-      <div class="card" style="border-top:3px solid var(--welcomes);">
-        <div class="flex mb-2" style="gap:var(--s-1);">
-          <span class="pillar-tag pillar-welcomes" style="font-size:10px;">■ Welcomes</span>
+      <div class="pro">
+        <div class="bar">
+          <div class="letter">P</div>
         </div>
-        <h3 class="card-title">Organizational Excellence</h3>
-        <p class="card-body" style="flex:1;">Where belonging begins. Building the teams, systems, and culture that make residential life possible.</p>
-      </div>
-
-      <!-- Connects -->
-      <div class="card" style="border-top:3px solid var(--connects);">
-        <div class="flex mb-2" style="gap:var(--s-1);">
-          <span class="pillar-tag pillar-connects" style="font-size:10px;">● Connects</span>
+        <div class="body">
+          <h4>Philosophy</h4>
+          <div class="q">Why does this matter?</div>
+          <p>Start with purpose. Every 100-series builds the philosophical foundation first.</p>
         </div>
-        <h3 class="card-title">Community Excellence</h3>
-        <p class="card-body" style="flex:1;">How belonging deepens. Building environments where connection is the norm, not the exception.</p>
       </div>
-
-      <!-- Responds -->
-      <div class="card" style="border-top:3px solid var(--responds);">
-        <div class="flex mb-2" style="gap:var(--s-1);">
-          <span class="pillar-tag pillar-tag-responds" style="font-size:10px;">▲ Responds</span>
+      <div class="pro">
+        <div class="bar">
+          <div class="letter">R</div>
         </div>
-        <h3 class="card-title">Support Excellence</h3>
-        <p class="card-body" style="flex:1;">How belonging is sustained. Equipping staff with the knowledge and frameworks to respond to anything.</p>
+        <div class="body">
+          <h4>Roles</h4>
+          <div class="q">Who's involved?</div>
+          <p>Locate yourself. Every 200-series defines where you fit and what's yours to carry.</p>
+        </div>
       </div>
-
+      <div class="pro">
+        <div class="bar">
+          <div class="letter">O</div>
+        </div>
+        <div class="body">
+          <h4>Operations</h4>
+          <div class="q">How do I do this?</div>
+          <p>Apply it. Every 300-series turns philosophy and role clarity into daily execution.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-
-  <hr class="divider">
-
-
-  <!-- ═══════════════════════════════════════
-       PRO PROGRESSION
-  ═══════════════════════════════════════ -->
-  <section class="section" id="pro">
-    <div>
-
-      <div>
-        <p class="label-text mb-2">The progression</p>
-        <h2 class="heading" style="font-size:2rem;line-height:1.1;letter-spacing:-0.015em;">
-          <strong>P</strong>hilosophy.<br><strong>R</strong>oles.<br><strong>O</strong>perations.
-        </h2>
-        <p class="body-text mt-3">Within each pillar, learning follows three steps — always in that order. Why before who. Who before how.</p>
-      </div>
-
-      <div class="pro-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;margin-top:var(--s-3);">
-
-        <!-- P -->
-        <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
-          <div style="background:var(--blue);color:var(--white);width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:var(--s-2) 0;">
-            <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;">P</span>
-            <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">100s</span>
-          </div>
-          <div style="padding:var(--s-2);display:flex;flex-direction:column;justify-content:center;gap:2px;">
-            <p style="font-weight:600;font-size:var(--t-sm);color:var(--ink);">Philosophy</p>
-            <p style="font-size:var(--t-xs);color:var(--sub);font-style:italic;">Why does this matter?</p>
-            <p style="font-size:var(--t-xs);color:var(--sub);">Purpose behind the work</p>
-          </div>
-        </div>
-
-        <!-- R -->
-        <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
-          <div style="background:var(--blue);color:var(--white);width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:var(--s-2) 0;">
-            <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;">R</span>
-            <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">200s</span>
-          </div>
-          <div style="padding:var(--s-2);display:flex;flex-direction:column;justify-content:center;gap:2px;">
-            <p style="font-weight:600;font-size:var(--t-sm);color:var(--ink);">Roles</p>
-            <p style="font-size:var(--t-xs);color:var(--sub);font-style:italic;">Who's involved?</p>
-            <p style="font-size:var(--t-xs);color:var(--sub);">Your place and responsibilities</p>
-          </div>
-        </div>
-
-        <!-- O -->
-        <div style="display:flex;align-items:stretch;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;">
-          <div style="background:var(--blue);color:var(--white);width:56px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:var(--s-2) 0;">
-            <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;">O</span>
-            <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">300s</span>
-          </div>
-          <div style="padding:var(--s-2);display:flex;flex-direction:column;justify-content:center;gap:2px;">
-            <p style="font-weight:600;font-size:var(--t-sm);color:var(--ink);">Operations</p>
-            <p style="font-size:var(--t-xs);color:var(--sub);font-style:italic;">How do I do this?</p>
-            <p style="font-size:var(--t-xs);color:var(--sub);">Daily execution</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="note mt-4">
-        <p>Every module sits somewhere in the <strong>PRO</strong>gression. The 100s build the <em>why</em>. The 200s define <em>who</em>. The 300s teach <em>how</em>.</p>
-      </div>
-
+  <!-- SECTION 3: TRAINING STRUCTURE -->
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title">Two training phases</h2>
     </div>
-  </section>
-
-
-  <hr class="divider">
-
-
-  <!-- ═══════════════════════════════════════
-       TWO TRAINING PHASES
-  ═══════════════════════════════════════ -->
-  <section class="section" id="phases">
-    <p class="label-text mb-2">Training structure</p>
-    <h2 class="heading mb-3">Two phases.</h2>
-
+    <p class="sec-sub">Department training builds the foundation. Unit training builds the rooms.</p>
     <div class="grid-2">
-
-      <div class="phase-card">
-        <span class="phase-number">1</span>
-        <p class="label-text mb-2">Phase one</p>
-        <h3 style="font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:var(--s-2);">Department Training</h3>
-        <p class="caption" style="line-height:1.7;">Everyone learns together before specializing. Same language, same expectations, same approach — across all three pillars. This is where the foundation is built.</p>
-        <div style="margin-top:var(--s-3);">
-          <div class="progress-track" style="margin-bottom:var(--s-1);">
-            <div class="progress-fill" style="width:100%;"></div>
-          </div>
-          <p class="text-xs text-sub">All staff · Shared baseline across Welcomes · Connects · Responds</p>
-
-        </div>
+      <div class="phase">
+        <div class="big-num">1</div>
+        <div class="ph-label">Phase One</div>
+        <h3>Department Training</h3>
+        <p>Everyone learns together before specializing. Same language, same expectations, same approach across all three pillars. This is where the foundation is built.</p>
       </div>
-
-      <div class="phase-card">
-        <span class="phase-number">2</span>
-        <p class="label-text mb-2">Phase two</p>
-        <h3 style="font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:var(--s-2);">Unit Training</h3>
-        <p class="caption" style="line-height:1.7;">Each team builds role-specific knowledge under each pillar, culminating in a capstone (Unit 399) where staff practice decisions through real-world scenarios.</p>
-        <div style="margin-top:var(--s-3);">
-          <div class="progress-track" style="margin-bottom:var(--s-1);">
-            <div class="progress-fill" style="width:100%;"></div>
-          </div>
-          <p class="text-xs text-sub">Role-specific · Specialization builds on the shared base · Capstone: Unit 399</p>
-        </div>
+      <div class="phase">
+        <div class="big-num">2</div>
+        <div class="ph-label">Phase Two</div>
+        <h3>Unit Training</h3>
+        <p>Each team builds role-specific knowledge under each pillar, culminating in a capstone (Unit 399) where staff practice decisions through real-world scenarios.</p>
       </div>
-
-    </div>
-
-    <div class="note mt-4" style="border-left-color:var(--blue);">
-      <p>"Department training builds the foundation. Unit training builds the rooms. The architecture holds it all together."</p>
-    </div>
-  </section>
-
-
-  <hr class="divider">
-
-
-  <!-- ═══════════════════════════════════════
-       LED METHOD
-  ═══════════════════════════════════════ -->
-  <section class="section" id="led">
-    <div class="mb-3">
-      <p class="label-text mb-2">How every session runs</p>
-      <h2 class="heading">The LED Method</h2>
-    </div>
-
-    <p class="body-text mb-4">Three phases that move participants from foundational knowledge to real-world application to expert insight. Every live training session at ResLife follows this approach.</p>
-
-    <!-- LED cards — three columns, same height -->
-    <div class="led-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-2);align-items:stretch;">
-
-      <!-- L -->
-      <div style="background:var(--blue);border-radius:var(--r);padding:var(--s-4);display:flex;flex-direction:column;">
-        <div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--white);line-height:1;">L</div>
-        <div style="font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--dark-sub);margin-top:2px;margin-bottom:var(--s-3);">Learn</div>
-        <p style="font-family:var(--display);font-size:0.95rem;font-weight:600;color:var(--white);margin-bottom:var(--s-2);">Self-paced pre-work — completed 24 hours before the session</p>
-        <p style="font-size:var(--t-sm);color:var(--dark-body);line-height:1.6;flex:1;">Articles, readings, and pre-recorded videos covering key concepts. Real-world scenarios and reflection questions to arrive prepared.</p>
-      </div>
-
-      <!-- E -->
-      <div style="background:var(--gray);border-radius:var(--r);padding:var(--s-4);display:flex;flex-direction:column;">
-        <div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1;">E</div>
-        <div style="font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sub);margin-top:2px;margin-bottom:var(--s-3);">Engage</div>
-        <p style="font-family:var(--display);font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:var(--s-2);">Facilitator-led live session — reinforce, align, and set the stage</p>
-        <p style="font-size:var(--t-sm);color:var(--sub);line-height:1.6;flex:1;">Welcome and recap, then a deep-dive with real-world examples. Polls, knowledge checks, and small group discussion — building on pre-work, not repeating it.</p>
-      </div>
-
-      <!-- D -->
-      <div style="border:1px solid var(--line);border-radius:var(--r);padding:var(--s-4);display:flex;flex-direction:column;">
-        <div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1;">D</div>
-        <div style="font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sub);margin-top:2px;margin-bottom:var(--s-3);">Deepen</div>
-        <p style="font-family:var(--display);font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:var(--s-2);">Expert panel + open Q&amp;A — real-world insight beyond the curriculum</p>
-        <p style="font-size:var(--t-sm);color:var(--sub);line-height:1.6;flex:1;">Guided panel discussion with 4–6 pre-prepared questions, then open Q&amp;A. Wrap-up summarizes key insights and issues a challenge to apply learning.</p>
-      </div>
-
     </div>
 
   </section>
 
-
-  <hr class="divider">
-
-
-  <!-- ═══════════════════════════════════════
-       PILLAR GUIDE — ALL THREE
-  ═══════════════════════════════════════ -->
-  <section class="section">
-    <p class="label-text mb-2">Pillar guide</p>
-    <h2 class="heading mb-4">What's covered in each pillar</h2>
-
-    <!-- WELCOMES -->
-    <div id="welcomes" style="margin-bottom:var(--s-4);">
-      <div class="mb-3">
-        <span class="pillar-tag pillar-welcomes">■ ResLife Welcomes</span>
-      </div>
-
-      <div class="grid-3" style="gap:var(--s-2);align-items:stretch;">
-        <div class="card" style="border-left:3px solid var(--welcomes);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-p">P — Philosophy</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">W 101</strong> · Why ResLife Welcomes?</li>
-            <li class="caption"><strong style="color:var(--ink);">W 102</strong> · The Organizational Structure</li>
-            <li class="caption"><strong style="color:var(--ink);">W 103</strong> · Knowing Our Students</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:3px solid var(--welcomes);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-r">R — Roles</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">W 201</strong> · Who Powers ResLife?</li>
-            <li class="caption"><strong style="color:var(--ink);">W 202</strong> · Elevating Every Human Interaction</li>
-            <li class="caption"><strong style="color:var(--ink);">W 203</strong> · Team Dynamics & Development</li>
-            <li class="caption"><strong style="color:var(--ink);">W 204</strong> · Core Staff Competencies</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">W 204A</strong> · Supervision & Your Supervisor Relationship</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">W 204B</strong> · Emotional Intelligence</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">W 204C</strong> · Dialogue Across Differences</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">W 204D</strong> · AI as a Teammate</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:3px solid var(--welcomes);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-o">O — Operations</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">W 301</strong> · Recruiting & Selecting Staff</li>
-            <li class="caption"><strong style="color:var(--ink);">W 302</strong> · Onboarding Staff</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">W 302A</strong> · Tech Resources</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">W 302B</strong> · Finance Resources</li>
-            <li class="caption"><strong style="color:var(--ink);">W 303</strong> · Developing Staff</li>
-            <li class="caption"><strong style="color:var(--ink);">W 304</strong> · Recognizing Staff</li>
-            <li class="caption"><strong style="color:var(--ink);">W 305</strong> · Assessing Our Impact</li>
-            <li class="caption"><strong style="color:var(--ink);">W 306</strong> · Offboarding Staff</li>
-            <li class="caption"><strong style="color:var(--ink);">W 307</strong> · Move-In as a Welcome Moment</li>
-            <li class="caption"><strong style="color:var(--ink);">W 308</strong> · True Bruin Welcome</li>
-          </ul>
-        </div>
-      </div>
+  <!-- SECTION 4: LED METHOD -->
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title">The LED Method</h2>
     </div>
-
-    <!-- CONNECTS -->
-    <div id="connects" style="margin-bottom:var(--s-4);">
-      <div class="mb-3">
-        <span class="pillar-tag pillar-connects">● ResLife Connects</span>
+    <p class="sec-sub">Three stages that move participants from foundational knowledge to expert insight.</p>
+    <div class="grid-3">
+      <div class="led-card base">
+        <div class="letter">L</div>
+        <h4>Learn</h4>
+        <p class="desc">Build foundational knowledge so participants arrive prepared.</p>
+        <span class="pill">Completed 24 hrs before</span>
+        <ul class="led-list">
+          <li>Articles and readings</li>
+          <li>Pre-recorded videos</li>
+          <li>Real-world scenarios</li>
+        </ul>
       </div>
-
-      <div class="grid-3" style="gap:var(--s-2);align-items:stretch;">
-        <div class="card" style="border-left:3px solid var(--connects);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-p">P — Philosophy</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">C 101</strong> · Why ResLife Connects?</li>
-            <li class="caption"><strong style="color:var(--ink);">C 102</strong> · ResLife Connects Model</li>
-            <li class="caption"><strong style="color:var(--ink);">C 103</strong> · Inclusive Engagement Design</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:3px solid var(--connects);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-r">R — Roles</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">C 201</strong> · Who Engages the Community?</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:3px solid var(--connects);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-o">O — Operations</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">C 301</strong> · Individual Connections</li>
-            <li class="caption"><strong style="color:var(--ink);">C 302</strong> · Passive Programming</li>
-            <li class="caption"><strong style="color:var(--ink);">C 303</strong> · Active Programming</li>
-            <li class="caption"><strong style="color:var(--ink);">C 304</strong> · Identifying the Need</li>
-            <li class="caption"><strong style="color:var(--ink);">C 305</strong> · Securing Approvals</li>
-            <li class="caption"><strong style="color:var(--ink);">C 306</strong> · Designing the Experience</li>
-            <li class="caption"><strong style="color:var(--ink);">C 307</strong> · Promoting Your Program</li>
-            <li class="caption"><strong style="color:var(--ink);">C 308</strong> · Facilitating Engagement</li>
-            <li class="caption"><strong style="color:var(--ink);">C 309</strong> · Evaluating and Improving</li>
-          </ul>
-        </div>
+      <div class="led-card mid">
+        <div class="letter">E</div>
+        <h4>Engage</h4>
+        <p class="desc">Reinforce foundational knowledge and align understanding.</p>
+        <span class="pill">Facilitator-led live session</span>
+        <ul class="led-list">
+          <li>Learn recap</li>
+          <li>Deep dive presentation</li>
+          <li>Interactive polls, small discussions</li>
+        </ul>
       </div>
-    </div>
-
-    <!-- RESPONDS -->
-    <div id="responds">
-      <div class="mb-3">
-        <span class="pillar-tag pillar-tag-responds">▲ ResLife Responds</span>
-      </div>
-
-      <div class="grid-3" style="gap:var(--s-2);align-items:stretch;">
-        <div class="card" style="border-left:3px solid var(--responds);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-p">P — Philosophy</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">R 101</strong> · Why ResLife Responds?</li>
-            <li class="caption"><strong style="color:var(--ink);">R 102</strong> · The BOARDS Method</li>
-            <li class="caption"><strong style="color:var(--ink);">R 103</strong> · Legal and Compliance Framework</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:3px solid var(--responds);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-r">R — Roles</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">R 201</strong> · Who Responds to Incidents?</li>
-            <li class="caption"><strong style="color:var(--ink);">R 202</strong> · The Duty Identity</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:3px solid var(--responds);">
-          <div style="margin-bottom:var(--s-2);">
-            <span class="pro-badge pro-o">O — Operations</span>
-          </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-height:0;">
-            <li class="caption"><strong style="color:var(--ink);">R 301</strong> · Coverage & Schedule</li>
-            <li class="caption"><strong style="color:var(--ink);">R 302</strong> · Equipment & Tools</li>
-            <li class="caption"><strong style="color:var(--ink);">R 303</strong> · Breathe & Observe</li>
-            <li class="caption"><strong style="color:var(--ink);">R 304</strong> · Act / Protocols</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">R 304A</strong> · Assisting Bruins in Crisis</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">R 304B</strong> · Active Threat Response</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">R 304C</strong> · Mental Health & Suicide Prevention</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">R 304D</strong> · Emergency Preparedness</li>
-            <li class="caption" style="padding-left:var(--s-3);"><strong style="color:var(--ink);">R 304E</strong> · HEART & Bystander Intervention</li>
-            <li class="caption"><strong style="color:var(--ink);">R 305</strong> · Refer / Resources</li>
-            <li class="caption"><strong style="color:var(--ink);">R 306</strong> · Incident Reporting &amp; Documentation</li>
-            <li class="caption"><strong style="color:var(--ink);">R 307</strong> · Synthesize / Aftercare & Follow-Up</li>
-          </ul>
-        </div>
+      <div class="led-card emphasis">
+        <div class="letter">D</div>
+        <h4>Deepen</h4>
+        <p class="desc">Bring in real-world expertise through a guided panel.</p>
+        <span class="pill">Expert panel + Q&amp;A</span>
+        <ul class="led-list">
+          <li>Facilitator introduces panelists</li>
+          <li>Guided panel discussion</li>
+          <li>Participant Q&amp;A</li>
+        </ul>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════ -->
-  <footer class="footer">
-    <div class="flex-between">
-      <p class="font-600 text-sm">UCLA Residential Life</p>
-      <p class="caption">ResLife 2026 — Summer Training Overview</p>
+  <!-- FOOTER -->
+  <footer>
+    <div>reslife.ucla.edu / onboarding</div>
+    <div class="marks">
+      <span class="sq"></span>
+      <span class="ci"></span>
+      <span class="tr"></span>
     </div>
   </footer>
 
-</div><!-- /page -->
+</div>
+</div><!-- /page-1 -->
+
+<!-- ============ PAGE 2 · MODULE INDEX ============ -->
+<div class="doc-page" id="page-2">
+<div class="page">
+
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="eyebrow">UCLA Residential Life Training Architecture</div>
+      <h1>Department Training Modules</h1>
+      <div class="hdr-tag">Every Department Core module, organized by pillar and PRO track.</div>
+    </div>
+  </header>
+
+  <div class="columns">
+
+    <!-- WELCOMES COLUMN -->
+    <div class="pillar-col w">
+      <div class="col-header">
+        <h3>ResLife Welcomes</h3>
+        <div class="col-sub">Organizational Excellence</div>
+        <div class="col-count">21 modules</div>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">P</span><span class="t-name">Philosophy</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">W 101</span><span class="mod-name">Why ResLife Welcomes?</span></li>
+          <li><span class="mod-code">W 102</span><span class="mod-name">The Organizational Structure</span></li>
+          <li><span class="mod-code">W 103</span><span class="mod-name">Knowing Our Students</span></li>
+        </ul>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">R</span><span class="t-name">Roles</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">W 201</span><span class="mod-name">Who Powers ResLife?</span></li>
+          <li><span class="mod-code">W 202</span><span class="mod-name">Elevating Every Human Interaction</span></li>
+          <li><span class="mod-code">W 203</span><span class="mod-name">Team Dynamics &amp; Development</span></li>
+          <li><span class="mod-code">W 204</span><span class="mod-name">Core Staff Competencies</span></li>
+          <li class="sub-mod"><span class="mod-code">W 204A</span><span class="mod-name">Supervision + Supervisor Relationship</span></li>
+          <li class="sub-mod"><span class="mod-code">W 204B</span><span class="mod-name">Emotional Intelligence</span></li>
+          <li class="sub-mod"><span class="mod-code">W 204C</span><span class="mod-name">Dialogue Across Difference</span></li>
+          <li class="sub-mod"><span class="mod-code">W 204D</span><span class="mod-name">AI as a Teammate</span></li>
+        </ul>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">O</span><span class="t-name">Operations</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">W 301</span><span class="mod-name">Recruiting &amp; Selecting Staff</span></li>
+          <li><span class="mod-code">W 302</span><span class="mod-name">Onboarding Staff</span></li>
+          <li class="sub-mod"><span class="mod-code">W 302A</span><span class="mod-name">Tech Onboarding</span></li>
+          <li class="sub-mod"><span class="mod-code">W 302B</span><span class="mod-name">Finance Onboarding</span></li>
+          <li><span class="mod-code">W 303</span><span class="mod-name">Developing Staff</span></li>
+          <li><span class="mod-code">W 304</span><span class="mod-name">Recognizing Staff</span></li>
+          <li><span class="mod-code">W 305</span><span class="mod-name">Assessing Our Impact</span></li>
+          <li><span class="mod-code">W 306</span><span class="mod-name">Offboarding Staff</span></li>
+          <li><span class="mod-code">W 307</span><span class="mod-name">Move-in as a Welcome Moment</span></li>
+          <li><span class="mod-code">W 308</span><span class="mod-name">True Bruin Welcome</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONNECTS COLUMN -->
+    <div class="pillar-col c">
+      <div class="col-header">
+        <h3>ResLife Connects</h3>
+        <div class="col-sub">Community Excellence</div>
+        <div class="col-count">13 modules</div>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">P</span><span class="t-name">Philosophy</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">C 101</span><span class="mod-name">Why ResLife Connects?</span></li>
+          <li><span class="mod-code">C 102</span><span class="mod-name">ResLife Connects Model</span></li>
+          <li><span class="mod-code">C 103</span><span class="mod-name">Inclusive Engagement Design</span></li>
+        </ul>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">R</span><span class="t-name">Roles</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">C 201</span><span class="mod-name">Who Engages the Community?</span></li>
+        </ul>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">O</span><span class="t-name">Operations</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">C 301</span><span class="mod-name">Individual Connections</span></li>
+          <li><span class="mod-code">C 302</span><span class="mod-name">Passive Programming</span></li>
+          <li><span class="mod-code">C 303</span><span class="mod-name">Active Programming</span></li>
+          <li><span class="mod-code">C 304</span><span class="mod-name">Identifying the Need</span></li>
+          <li><span class="mod-code">C 305</span><span class="mod-name">Securing Approvals</span></li>
+          <li><span class="mod-code">C 306</span><span class="mod-name">Designing the Experience</span></li>
+          <li><span class="mod-code">C 307</span><span class="mod-name">Promoting Your Program</span></li>
+          <li><span class="mod-code">C 308</span><span class="mod-name">Facilitating Engagement</span></li>
+          <li><span class="mod-code">C 309</span><span class="mod-name">Evaluating and Improving</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RESPONDS COLUMN -->
+    <div class="pillar-col r">
+      <div class="col-header">
+        <h3>ResLife Responds</h3>
+        <div class="col-sub">Support Excellence</div>
+        <div class="col-count">17 modules</div>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">P</span><span class="t-name">Philosophy</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">R 101</span><span class="mod-name">Why ResLife Responds?</span></li>
+          <li><span class="mod-code">R 102</span><span class="mod-name">The BOARDS Method</span></li>
+          <li><span class="mod-code">R 103</span><span class="mod-name">Legal &amp; Compliance Framework</span></li>
+        </ul>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">R</span><span class="t-name">Roles</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">R 201</span><span class="mod-name">Who Responds to Incidents?</span></li>
+          <li><span class="mod-code">R 202</span><span class="mod-name">The Duty Identity</span></li>
+        </ul>
+      </div>
+
+      <div class="track-group">
+        <div class="track-head"><span class="t-letter">O</span><span class="t-name">Operations</span></div>
+        <ul class="mod-list">
+          <li><span class="mod-code">R 301</span><span class="mod-name">Coverage &amp; Schedule</span></li>
+          <li><span class="mod-code">R 302</span><span class="mod-name">Equipment &amp; Tools</span></li>
+          <li><span class="mod-code">R 303</span><span class="mod-name">Breathe &amp; Observe</span></li>
+          <li><span class="mod-code">R 304</span><span class="mod-name">Act (Protocols)</span></li>
+          <li class="sub-mod"><span class="mod-code">R 304A</span><span class="mod-name">Assisting Bruins in Crisis</span></li>
+          <li class="sub-mod"><span class="mod-code">R 304B</span><span class="mod-name">Active Threat</span></li>
+          <li class="sub-mod"><span class="mod-code">R 304C</span><span class="mod-name">Mental Health &amp; Suicide Prevention</span></li>
+          <li class="sub-mod"><span class="mod-code">R 304D</span><span class="mod-name">Emergency Preparedness</span></li>
+          <li class="sub-mod"><span class="mod-code">R 304E</span><span class="mod-name">HEART &amp; Bystander Intervention</span></li>
+          <li><span class="mod-code">R 305</span><span class="mod-name">Refer (Resources)</span></li>
+          <li><span class="mod-code">R 306</span><span class="mod-name">Documentation</span></li>
+          <li><span class="mod-code">R 307</span><span class="mod-name">Synthesize (Aftercare &amp; Follow-Up)</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /columns -->
+
+  <footer>
+    <div>reslife.ucla.edu / onboarding</div>
+    <div class="marks">
+      <span class="sq"></span>
+      <span class="ci"></span>
+      <span class="tr"></span>
+    </div>
+  </footer>
+
+</div>
+</div><!-- /page-2 -->
+
+<script>
+  (function(){
+    var btns = document.querySelectorAll('.nav-btn');
+    var pages = document.querySelectorAll('.doc-page');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){x.classList.remove('active')});
+        pages.forEach(function(p){p.classList.remove('active')});
+        b.classList.add('active');
+        var pg = document.getElementById('page-' + b.dataset.page);
+        if(pg) pg.classList.add('active');
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    });
+  })();
+</script>
+
 </body>
 </html>
