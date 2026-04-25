@@ -166,6 +166,13 @@
     .brand { display: none; }
     .tab { padding: 12px 12px; font-size: 12.5px; }
   }
+
+  @media (max-width: 480px) {
+    .tab-bar { padding: 0 8px; }
+    .tab { padding: 11px 8px; font-size: 11.5px; gap: 6px; }
+    .tab .pillar-icon, .tab .pillar-icon svg { width: 14px; height: 14px; }
+    .tab-group-sep { margin: 8px 4px; }
+  }
 </style>
 </head>
 <body>
@@ -2410,8 +2417,19 @@
     max-width: 620px;
   }
 
+  .section-source {
+    margin-top: 14px;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    font-weight: 500;
+  }
+
   @media (max-width: 720px) {
     .section-head h2 { font-size: 26px; }
+    .section-source { font-size: 11px; }
   }
 
   .diagram { display: flex; flex-direction: column; align-items: center; }
@@ -3046,6 +3064,7 @@
       <div class=&quot;eyebrow&quot;>WHERE IT HAPPENS</div>
       <h2>Where Response Happens</h2>
       <p>Three communities. One shared responsibility to respond with care and consistency.</p>
+      <div class=&quot;section-source&quot;>Reporting period: 9/25/23 – 6/13/25</div>
     </div>
 
     <div class=&quot;where-grid&quot;>
@@ -3056,7 +3075,7 @@
         <div class=&quot;cadence-num&quot;>24/7</div>
         <div class=&quot;cadence-label&quot;>All Undergraduate residents</div>
         <div class=&quot;place-detail&quot;>
-          <strong>Case Volume (2023-2024 + 2024-2025)</strong><br>
+          <strong>Incident Reports: 6,087</strong><br>
           Daytime (7a–8p): <strong>47%</strong><br>
           Late night (8p–1a): <strong>41%</strong><br>
           Overnight (1a–7a): <strong>12%</strong><br>
@@ -3070,7 +3089,7 @@
         <div class=&quot;cadence-num&quot;>24/7</div>
         <div class=&quot;cadence-label&quot;>Upper-division &amp;amp; graduate residents</div>
         <div class=&quot;place-detail&quot;>
-          <strong>Case Volume (2023-2024 + 2024-2025)</strong><br>
+          <strong>Incident Reports: 2,186</strong><br>
           Daytime (7a–8p): <strong>49%</strong><br>
           Late night (8p–1a): <strong>43%</strong><br>
           Overnight (1a–7a): <strong>8%</strong><br>
@@ -3084,7 +3103,7 @@
         <div class=&quot;cadence-num&quot;>24/7</div>
         <div class=&quot;cadence-label&quot;>Graduate students &amp;amp; students with families</div>
         <div class=&quot;place-detail&quot;>
-          <strong>Case Volume (2023-2024 + 2024-2025)</strong><br>
+          <strong>Incident Reports: 479</strong><br>
           Daytime (7a–6p): <strong>37%</strong><br>
           Late night (6p–1a): <strong>52%</strong><br>
           Overnight (1a–7a): <strong>11%</strong><br>
@@ -5911,6 +5930,9 @@
           var active = t.dataset.tab === name;
           t.classList.toggle('active', active);
           t.setAttribute('aria-selected', active ? 'true' : 'false');
+          if (active && t.scrollIntoView) {
+            try { t.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }); } catch (e) {}
+          }
         });
         frames.forEach(function (f) {
           f.classList.toggle('active', f.dataset.frame === name);
