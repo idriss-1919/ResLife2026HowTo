@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Training Catalog · Department + RESED · ResLife 2026</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 @font-face{
   font-family:'Karbon';
   src:url('file:///Users/injike/Downloads/Claude_Projects/Karbon-Bold.otf') format('opentype');
@@ -34,11 +36,13 @@
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
 body{
-  font-family:'Karbon','Trebuchet MS',system-ui,-apple-system,sans-serif;
+  font-family:'Karbon','Inter','Trebuchet MS',system-ui,-apple-system,sans-serif;
   background:var(--bg);
   color:var(--ink);
   font-weight:500;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
 }
 
 .page{
@@ -274,20 +278,20 @@ body{
   line-height:1.35;
 }
 .mod-item .code{
-  font-weight:500;
+  font-weight:600;
   color:var(--charcoal);
   font-size:12.5px;
   letter-spacing:0.01em;
   white-space:nowrap;
 }
 .mod-item .name{
-  font-weight:500;
+  font-weight:600;
   text-decoration:none;
   cursor:pointer;
   transition:opacity 0.15s;
   color:var(--charcoal);
 }
-.mod-item.unit .name{ color:#374151; }
+.mod-item.unit .name{ color:#374151; font-weight:500; }
 .mod-item .name:hover{ opacity:0.6; }
 
 /* RESED items get a slightly different code style */
@@ -295,6 +299,7 @@ body{
   font-size:11px;
   letter-spacing:0;
   color:#374151;
+  font-weight:600;
 }
 
 /* Sub-group label inside a track */
