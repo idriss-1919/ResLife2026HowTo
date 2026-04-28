@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Catalog · Department + RESED · ResLife 2026</title>
+<style>
+@font-face{
+  font-family:'Karbon';
+  src:url('file:///Users/injike/Downloads/Claude_Projects/Karbon-Bold.otf') format('opentype');
+  font-weight:700; font-style:normal;
+}
+@font-face{
+  font-family:'Karbon';
+  src:url('file:///Users/injike/Downloads/Claude_Projects/Karbon-Medium.otf') format('opentype');
+  font-weight:500; font-style:normal;
+}
+
+:root{
+  --charcoal:#1C1C1C;
+  --ink:#161616;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --border-soft:#eef0f3;
+  --bg:#ffffff;
+  --welcome:#2774AE;
+  --welcome-soft:#2774AE;
+  --connect:#FF00A5;
+  --connect-soft:#FF00A5;
+  --respond:#FFD100;
+  --respond-ink:#7a5800;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:'Karbon','Trebuchet MS',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-weight:500;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{
+  max-width:1180px;
+  margin:0 auto;
+  padding:64px 48px 80px;
+}
+
+/* ------- HEADER ------- */
+.eyebrow{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--charcoal);
+  margin-bottom:20px;
+}
+.headline{
+  font-size:54px;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.05;
+  color:var(--welcome);
+  margin:0 0 22px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+}
+.headline .pill{
+  display:inline-block;
+  background:var(--welcome);
+  color:#fff;
+  padding:6px 22px 10px;
+  border-radius:14px;
+  margin:0 6px 0 8px;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-0.01em;
+}
+.headline .period{
+  color:var(--welcome);
+  font-weight:700;
+}
+.subtitle{
+  font-size:15px;
+  font-weight:500;
+  color:var(--muted);
+  max-width:680px;
+  margin:0;
+  line-height:1.5;
+}
+
+/* ------- TABS ------- */
+.tabs{
+  display:flex;
+  gap:8px;
+  margin:34px 0 28px;
+  border-bottom:1px solid var(--border);
+}
+.tab{
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  font-family:inherit;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  padding:14px 18px;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px;
+  transition:color 0.15s, border-color 0.15s;
+}
+.tab:hover{ color:var(--ink); }
+.tab.active{
+  color:var(--ink);
+  border-bottom-color:var(--ink);
+}
+.tab .tab-count{
+  font-size:10px;
+  color:var(--muted);
+  margin-left:6px;
+  font-weight:500;
+}
+.tab.active .tab-count{ color:var(--ink); }
+
+/* ------- DIVIDER ------- */
+.section-divider{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin:18px 0 28px;
+  color:var(--muted);
+}
+.section-divider::before,
+.section-divider::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--border);
+}
+.section-divider .label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* ------- TAB PANELS ------- */
+.tab-panel{ display:none; }
+.tab-panel.active{ display:block; }
+
+/* ------- THREE COLUMN GRID ------- */
+.pillar-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-template-rows: auto auto auto auto; /* head + P + R + O */
+  gap:24px;
+  align-items:stretch;
+}
+.pillar-card{
+  display:grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:#fff;
+  overflow:hidden;
+}
+/* Make .pillar-body transparent to grid so tracks align as direct rows */
+.pillar-body{
+  display:contents;
+}
+
+/* ------- PILLAR HEADER ------- */
+.pillar-head{
+  padding:28px 26px 22px;
+  color:#fff;
+}
+.pillar-head.welcomes{ background:var(--welcome); }
+.pillar-head.connects{ background:var(--connect); }
+.pillar-head.responds{ background:var(--respond); color:var(--respond-ink); }
+
+.pillar-name{
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:-0.01em;
+  margin:0 0 14px;
+  line-height:1.1;
+}
+.pillar-eyebrow{
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  opacity:0.92;
+  margin-bottom:14px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,0.45);
+}
+.pillar-head.responds .pillar-eyebrow{
+  border-bottom-color:rgba(0,0,0,0.18);
+}
+.pillar-count{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  opacity:0.95;
+}
+
+/* ------- TRACK SECTION ------- */
+.track{
+  padding:18px 22px 14px;
+  border-bottom:1px dashed var(--border-soft);
+  border-left:1px solid transparent;
+  border-right:1px solid transparent;
+}
+.track:last-child{
+  border-bottom:none;
+  padding-bottom:22px;
+}
+.track-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+.track-letter{
+  width:18px; height:18px;
+  border-radius:3px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  color:var(--ink);
+  font-weight:900;
+  font-size:13px;
+  line-height:1;
+}
+.welcomes-col .track-letter{ color:var(--welcome); }
+.connects-col .track-letter{ color:var(--connect); }
+.responds-col .track-letter{ color:var(--respond-ink); }
+.track-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--charcoal);
+}
+
+/* ------- MODULE LIST ------- */
+.mod-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.mod-item{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  align-items:start;
+  gap:10px;
+  padding:6px 0;
+  font-size:13px;
+  line-height:1.35;
+}
+.mod-item .code{
+  font-weight:500;
+  color:var(--charcoal);
+  font-size:12.5px;
+  letter-spacing:0.01em;
+  white-space:nowrap;
+}
+.mod-item .name{
+  font-weight:500;
+  text-decoration:none;
+  cursor:pointer;
+  transition:opacity 0.15s;
+  color:var(--charcoal);
+}
+.mod-item.unit .name{ color:#374151; }
+.mod-item .name:hover{ opacity:0.6; }
+
+/* RESED items get a slightly different code style */
+.mod-item.unit .code{
+  font-size:11px;
+  letter-spacing:0;
+  color:#374151;
+}
+
+/* Sub-group label inside a track */
+.subgroup-label{
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.subgroup-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--border-soft);
+}
+
+/* Two-column side-by-side layout within a track (All Modules tab) */
+.track-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:8px;
+  align-items:start;
+}
+.track-split .col-group{
+  min-width:0;
+}
+.track-split .mod-item{
+  grid-template-columns:auto 1fr;
+  font-size:12px;
+  padding:5px 0;
+}
+.track-split .mod-item .code{
+  font-size:11.5px;
+  padding-right:4px;
+}
+.track-split .mod-item.unit .code{
+  font-size:10.5px;
+}
+@media (max-width:900px){
+  .track-split{ grid-template-columns:1fr; gap:10px; }
+}
+
+/* ------- FOOTER ------- */
+.page-foot{
+  margin-top:60px;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.06em;
+  color:var(--muted);
+  text-align:center;
+  text-transform:uppercase;
+}
+
+/* ------- RESPONSIVE ------- */
+@media (max-width:1024px){
+  .pillar-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    grid-auto-rows:auto;
+  }
+  .pillar-card{
+    display:flex;
+    flex-direction:column;
+    grid-row:auto;
+    grid-template-rows:none;
+  }
+  .pillar-body{ display:block; padding:0; }
+  .page{ padding:48px 28px 60px; }
+  .headline{ font-size:40px; }
+}
+@media (max-width:560px){
+  .headline{ font-size:30px; }
+  .headline .pill{ padding:4px 14px 6px; border-radius:10px; }
+  .page{ padding:36px 18px 48px; }
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- HEADER -->
+  <div class="eyebrow">Training Catalog · UCLA ResLife · 2026</div>
+  <h1 class="headline">
+    <span>Every module,</span>
+    <span class="pill">organized</span>
+    <span class="period">.</span>
+  </h1>
+  <p class="subtitle" id="subtitle">39 Department Core modules across three pillars and three tracks: Philosophy, Roles, Operations.</p>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" data-tab="department" onclick="showTab('department')">
+      Department Core <span class="tab-count">39</span>
+    </button>
+    <button class="tab" data-tab="resed" onclick="showTab('resed')">
+      Residential Education <span class="tab-count">42</span>
+    </button>
+    <button class="tab" data-tab="all" onclick="showTab('all')">
+      All Modules <span class="tab-count">81</span>
+    </button>
+  </div>
+
+  <div class="section-divider">
+    <span class="label">By Pillar · By Track</span>
+  </div>
+
+  <!-- ============== DEPARTMENT CORE ============== -->
+  <div class="tab-panel active" id="panel-department">
+    <div class="pillar-grid">
+
+      <!-- Welcomes -->
+      <div class="pillar-card welcomes-col">
+        <div class="pillar-head welcomes">
+          <h2 class="pillar-name">ResLife Welcomes</h2>
+          <div class="pillar-eyebrow">Organizational Excellence</div>
+          <div class="pillar-count">20 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">W 101</span><span class="name">Why ResLife Welcomes?</span></li>
+              <li class="mod-item"><span class="code">W 102</span><span class="name">The Organizational Structure</span></li>
+              <li class="mod-item"><span class="code">W 103</span><span class="name">Knowing Our Students</span></li>
+              <li class="mod-item"><span class="code">W 104</span><span class="name">Inclusive Excellence Framework</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">W 201</span><span class="name">Who Powers ResLife?</span></li>
+              <li class="mod-item"><span class="code">W 202</span><span class="name">Elevating Every Human Interaction</span></li>
+              <li class="mod-item"><span class="code">W 203</span><span class="name">Team Dynamics &amp; Development</span></li>
+              <li class="mod-item"><span class="code">W 204</span><span class="name">Emotional Intelligence</span></li>
+              <li class="mod-item"><span class="code">W 205</span><span class="name">Dialogue Across Difference</span></li>
+              <li class="mod-item"><span class="code">W 206</span><span class="name">AI as a Teammate</span></li>
+              <li class="mod-item"><span class="code">W 207</span><span class="name">Supervision</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">W 301</span><span class="name">Recruiting &amp; Selecting Staff</span></li>
+              <li class="mod-item"><span class="code">W 302</span><span class="name">Tech Onboarding</span></li>
+              <li class="mod-item"><span class="code">W 303</span><span class="name">Finance Onboarding</span></li>
+              <li class="mod-item"><span class="code">W 304</span><span class="name">Developing Staff</span></li>
+              <li class="mod-item"><span class="code">W 305</span><span class="name">Recognizing Staff</span></li>
+              <li class="mod-item"><span class="code">W 306</span><span class="name">Assessing Our Impact</span></li>
+              <li class="mod-item"><span class="code">W 307</span><span class="name">Offboarding Staff</span></li>
+              <li class="mod-item"><span class="code">W 308</span><span class="name">Move-In as a Welcome Moment</span></li>
+              <li class="mod-item"><span class="code">W 309</span><span class="name">True Bruin Welcome</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Connects -->
+      <div class="pillar-card connects-col">
+        <div class="pillar-head connects">
+          <h2 class="pillar-name">ResLife Connects</h2>
+          <div class="pillar-eyebrow">Community Excellence</div>
+          <div class="pillar-count">10 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">C 101</span><span class="name">Why ResLife Connects?</span></li>
+              <li class="mod-item"><span class="code">C 102</span><span class="name">The Engagement Model</span></li>
+              <li class="mod-item"><span class="code">C 103</span><span class="name">Inclusive Engagement Design Framework</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">C 201</span><span class="name">Who Engages the Community?</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">C 301</span><span class="name">Individual Connections</span></li>
+              <li class="mod-item"><span class="code">C 302</span><span class="name">Group Connections</span></li>
+              <li class="mod-item"><span class="code">C 303</span><span class="name">Identify the Need</span></li>
+              <li class="mod-item"><span class="code">C 304</span><span class="name">Design the Experience</span></li>
+              <li class="mod-item"><span class="code">C 305</span><span class="name">Execute with Presence</span></li>
+              <li class="mod-item"><span class="code">C 306</span><span class="name">Assess the Outcome</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Responds -->
+      <div class="pillar-card responds-col">
+        <div class="pillar-head responds">
+          <h2 class="pillar-name">ResLife Responds</h2>
+          <div class="pillar-eyebrow">Support Excellence</div>
+          <div class="pillar-count">9 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">R 101</span><span class="name">Why ResLife Responds?</span></li>
+              <li class="mod-item"><span class="code">R 102</span><span class="name">The BOARDS Method</span></li>
+              <li class="mod-item"><span class="code">R 103</span><span class="name">Legal &amp; Compliance Framework</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">R 201</span><span class="name">Who Responds to Incidents?</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <ul class="mod-list">
+              <li class="mod-item"><span class="code">R 301</span><span class="name">Assisting Bruins in Crisis</span></li>
+              <li class="mod-item"><span class="code">R 302</span><span class="name">Mental Health &amp; Suicide Prevention</span></li>
+              <li class="mod-item"><span class="code">R 303</span><span class="name">HEART &amp; Bystander Intervention</span></li>
+              <li class="mod-item"><span class="code">R 304</span><span class="name">Emergency Preparedness</span></li>
+              <li class="mod-item"><span class="code">R 305</span><span class="name">Active Threat</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============== RESED ============== -->
+  <div class="tab-panel" id="panel-resed">
+    <div class="pillar-grid">
+
+      <!-- Welcomes RESED -->
+      <div class="pillar-card welcomes-col">
+        <div class="pillar-head welcomes">
+          <h2 class="pillar-name">ResLife Welcomes</h2>
+          <div class="pillar-eyebrow">Organizational Excellence · RESED</div>
+          <div class="pillar-count">13 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">W-RESED-101</span><span class="name">Why ResEd Welcomes?</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-102</span><span class="name">The Org Structure</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-103</span><span class="name">Knowing Our Residents</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">W-RESED-201</span><span class="name">Who Powers ResED?</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-202</span><span class="name">Team Dynamics &amp; Development</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-203</span><span class="name">Elevating the Residential Student Experience</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-204</span><span class="name">Residential Staff Core Competencies</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">W-RESED-302</span><span class="name">Onboarding Staff</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-303</span><span class="name">Developing Staff</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-304</span><span class="name">Recognizing Staff</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-305</span><span class="name">Assessing Our Impact</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-306</span><span class="name">Preparing Residential Communities for Move-In</span></li>
+              <li class="mod-item unit"><span class="code">W-RESED-399</span><span class="name">Capstone · Welcomes Scenarios</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Connects RESED -->
+      <div class="pillar-card connects-col">
+        <div class="pillar-head connects">
+          <h2 class="pillar-name">ResLife Connects</h2>
+          <div class="pillar-eyebrow">Community Excellence · RESED</div>
+          <div class="pillar-count">12 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">C-RESED-101</span><span class="name">Why ResEd Connects?</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-102</span><span class="name">ResEd Connects Model</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-103</span><span class="name">Designing Inclusive Residential Experiences</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">C-RESED-201</span><span class="name">Who Engages the Community?</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">C-RESED-301</span><span class="name">Building Individual Resident Connections</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-302</span><span class="name">Passive Programming</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-303</span><span class="name">Active Programming</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-304</span><span class="name">Identifying Residential Community Needs</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-305</span><span class="name">Designing Residential Community Experiences</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-306</span><span class="name">Facilitating Engagement in Residential Communities</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-307</span><span class="name">Evaluating and Improving Residential Experiences</span></li>
+              <li class="mod-item unit"><span class="code">C-RESED-399</span><span class="name">Capstone · Engagement Planning Lab</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Responds RESED -->
+      <div class="pillar-card responds-col">
+        <div class="pillar-head responds">
+          <h2 class="pillar-name">ResLife Responds</h2>
+          <div class="pillar-eyebrow">Support Excellence · RESED</div>
+          <div class="pillar-count">17 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">R-RESED-101</span><span class="name">What is Duty?</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-102</span><span class="name">#DutyWisdom</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">R-RESED-201</span><span class="name">Who Responds to Incidents?</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-202</span><span class="name">Duty Identity</span></li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <ul class="mod-list">
+              <li class="mod-item unit"><span class="code">R-RESED-301</span><span class="name">Coverage &amp; Schedule</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-302</span><span class="name">Equipment and Tools</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-303</span><span class="name">Breathe and Observe</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-304</span><span class="name">Act · Protocols</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-305</span><span class="name">Refer · Resources</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-306</span><span class="name">Documentation</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-307</span><span class="name">Synthesize · Aftercare &amp; Follow-Up</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-308</span><span class="name">Living With Roommates</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-309</span><span class="name">Title IX</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-310</span><span class="name">CARE &amp; SMRTC</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-311</span><span class="name">Title VI</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-398</span><span class="name">Capstone · RESPOND (The Game)</span></li>
+              <li class="mod-item unit"><span class="code">R-RESED-399</span><span class="name">Capstone · Behind Closed Doors</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============== ALL MODULES (Combined) ============== -->
+  <div class="tab-panel" id="panel-all">
+    <div class="pillar-grid">
+
+      <!-- Welcomes Combined -->
+      <div class="pillar-card welcomes-col">
+        <div class="pillar-head welcomes">
+          <h2 class="pillar-name">ResLife Welcomes</h2>
+          <div class="pillar-eyebrow">Organizational Excellence</div>
+          <div class="pillar-count">33 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">W 101</span><span class="name">Why ResLife Welcomes?</span></li>
+                  <li class="mod-item"><span class="code">W 102</span><span class="name">The Organizational Structure</span></li>
+                  <li class="mod-item"><span class="code">W 103</span><span class="name">Knowing Our Students</span></li>
+                  <li class="mod-item"><span class="code">W 104</span><span class="name">Inclusive Excellence Framework</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">W-RESED-101</span><span class="name">Why ResEd Welcomes?</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-102</span><span class="name">The Org Structure</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-103</span><span class="name">Knowing Our Residents</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">W 201</span><span class="name">Who Powers ResLife?</span></li>
+                  <li class="mod-item"><span class="code">W 202</span><span class="name">Elevating Every Human Interaction</span></li>
+                  <li class="mod-item"><span class="code">W 203</span><span class="name">Team Dynamics &amp; Development</span></li>
+                  <li class="mod-item"><span class="code">W 204</span><span class="name">Emotional Intelligence</span></li>
+                  <li class="mod-item"><span class="code">W 205</span><span class="name">Dialogue Across Difference</span></li>
+                  <li class="mod-item"><span class="code">W 206</span><span class="name">AI as a Teammate</span></li>
+                  <li class="mod-item"><span class="code">W 207</span><span class="name">Supervision</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">W-RESED-201</span><span class="name">Who Powers ResED?</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-202</span><span class="name">Team Dynamics &amp; Development</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-203</span><span class="name">Elevating the Residential Student Experience</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-204</span><span class="name">Residential Staff Core Competencies</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">W 301</span><span class="name">Recruiting &amp; Selecting Staff</span></li>
+                  <li class="mod-item"><span class="code">W 302</span><span class="name">Tech Onboarding</span></li>
+                  <li class="mod-item"><span class="code">W 303</span><span class="name">Finance Onboarding</span></li>
+                  <li class="mod-item"><span class="code">W 304</span><span class="name">Developing Staff</span></li>
+                  <li class="mod-item"><span class="code">W 305</span><span class="name">Recognizing Staff</span></li>
+                  <li class="mod-item"><span class="code">W 306</span><span class="name">Assessing Our Impact</span></li>
+                  <li class="mod-item"><span class="code">W 307</span><span class="name">Offboarding Staff</span></li>
+                  <li class="mod-item"><span class="code">W 308</span><span class="name">Move-In as a Welcome Moment</span></li>
+                  <li class="mod-item"><span class="code">W 309</span><span class="name">True Bruin Welcome</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">W-RESED-302</span><span class="name">Onboarding Staff</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-303</span><span class="name">Developing Staff</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-304</span><span class="name">Recognizing Staff</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-305</span><span class="name">Assessing Our Impact</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-306</span><span class="name">Preparing Residential Communities for Move-In</span></li>
+                  <li class="mod-item unit"><span class="code">W-RESED-399</span><span class="name">Capstone · Welcomes Scenarios</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Connects Combined -->
+      <div class="pillar-card connects-col">
+        <div class="pillar-head connects">
+          <h2 class="pillar-name">ResLife Connects</h2>
+          <div class="pillar-eyebrow">Community Excellence</div>
+          <div class="pillar-count">22 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">C 101</span><span class="name">Why ResLife Connects?</span></li>
+                  <li class="mod-item"><span class="code">C 102</span><span class="name">The Engagement Model</span></li>
+                  <li class="mod-item"><span class="code">C 103</span><span class="name">Inclusive Engagement Design Framework</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">C-RESED-101</span><span class="name">Why ResEd Connects?</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-102</span><span class="name">ResEd Connects Model</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-103</span><span class="name">Designing Inclusive Residential Experiences</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">C 201</span><span class="name">Who Engages the Community?</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">C-RESED-201</span><span class="name">Who Engages the Community?</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">C 301</span><span class="name">Individual Connections</span></li>
+                  <li class="mod-item"><span class="code">C 302</span><span class="name">Group Connections</span></li>
+                  <li class="mod-item"><span class="code">C 303</span><span class="name">Identify the Need</span></li>
+                  <li class="mod-item"><span class="code">C 304</span><span class="name">Design the Experience</span></li>
+                  <li class="mod-item"><span class="code">C 305</span><span class="name">Execute with Presence</span></li>
+                  <li class="mod-item"><span class="code">C 306</span><span class="name">Assess the Outcome</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">C-RESED-301</span><span class="name">Building Individual Resident Connections</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-302</span><span class="name">Passive Programming</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-303</span><span class="name">Active Programming</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-304</span><span class="name">Identifying Residential Community Needs</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-305</span><span class="name">Designing Residential Community Experiences</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-306</span><span class="name">Facilitating Engagement in Residential Communities</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-307</span><span class="name">Evaluating and Improving Residential Experiences</span></li>
+                  <li class="mod-item unit"><span class="code">C-RESED-399</span><span class="name">Capstone · Engagement Planning Lab</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Responds Combined -->
+      <div class="pillar-card responds-col">
+        <div class="pillar-head responds">
+          <h2 class="pillar-name">ResLife Responds</h2>
+          <div class="pillar-eyebrow">Support Excellence</div>
+          <div class="pillar-count">26 Modules</div>
+        </div>
+        <div class="pillar-body">
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">P</span><span class="track-label">Philosophy</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">R 101</span><span class="name">Why ResLife Responds?</span></li>
+                  <li class="mod-item"><span class="code">R 102</span><span class="name">The BOARDS Method</span></li>
+                  <li class="mod-item"><span class="code">R 103</span><span class="name">Legal &amp; Compliance Framework</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">R-RESED-101</span><span class="name">What is Duty?</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-102</span><span class="name">#DutyWisdom</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">R</span><span class="track-label">Roles</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">R 201</span><span class="name">Who Responds to Incidents?</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">R-RESED-201</span><span class="name">Who Responds to Incidents?</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-202</span><span class="name">Duty Identity</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track">
+            <div class="track-head"><span class="track-letter">O</span><span class="track-label">Operations</span></div>
+            <div class="track-split">
+              <div class="col-group">
+                <div class="subgroup-label">Department</div>
+                <ul class="mod-list">
+                  <li class="mod-item"><span class="code">R 301</span><span class="name">Assisting Bruins in Crisis</span></li>
+                  <li class="mod-item"><span class="code">R 302</span><span class="name">Mental Health &amp; Suicide Prevention</span></li>
+                  <li class="mod-item"><span class="code">R 303</span><span class="name">HEART &amp; Bystander Intervention</span></li>
+                  <li class="mod-item"><span class="code">R 304</span><span class="name">Emergency Preparedness</span></li>
+                  <li class="mod-item"><span class="code">R 305</span><span class="name">Active Threat</span></li>
+                </ul>
+              </div>
+              <div class="col-group">
+                <div class="subgroup-label">RESED</div>
+                <ul class="mod-list">
+                  <li class="mod-item unit"><span class="code">R-RESED-301</span><span class="name">Coverage &amp; Schedule</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-302</span><span class="name">Equipment and Tools</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-303</span><span class="name">Breathe and Observe</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-304</span><span class="name">Act · Protocols</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-305</span><span class="name">Refer · Resources</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-306</span><span class="name">Documentation</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-307</span><span class="name">Synthesize · Aftercare &amp; Follow-Up</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-308</span><span class="name">Living With Roommates</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-309</span><span class="name">Title IX</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-310</span><span class="name">CARE &amp; SMRTC</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-311</span><span class="name">Title VI</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-398</span><span class="name">Capstone · RESPOND (The Game)</span></li>
+                  <li class="mod-item unit"><span class="code">R-RESED-399</span><span class="name">Capstone · Behind Closed Doors</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-foot">UCLA Residential Life · 2026 Summer Training · Catalog View</div>
+
+</main>
+
+<script>
+  const tabSubtitles = {
+    department: '39 Department Core modules across three pillars and three tracks: Philosophy, Roles, Operations.',
+    resed: '42 Residential Education modules across three pillars and three tracks: Philosophy, Roles, Operations.',
+    all: '81 modules total — 39 Department Core plus 42 Residential Education — across three pillars and three tracks.'
+  };
+  function showTab(id){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    const panel=document.getElementById('panel-'+id); if(panel) panel.classList.add('active');
+    const btn=document.querySelector('.tab[data-tab="'+id+'"]'); if(btn) btn.classList.add('active');
+    const sub=document.getElementById('subtitle'); if(sub && tabSubtitles[id]) sub.textContent=tabSubtitles[id];
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+</script>
+
+</body>
+</html>
