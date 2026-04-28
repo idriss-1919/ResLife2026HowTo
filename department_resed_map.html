@@ -68,13 +68,18 @@ body{
   align-items:center;
   gap:6px;
 }
+.headline .pill-group{
+  display:inline-flex;
+  align-items:center;
+  white-space:nowrap;
+}
 .headline .pill{
   display:inline-block;
   background:var(--welcome);
   color:#fff;
   padding:6px 22px 10px;
   border-radius:14px;
-  margin:0 6px 0 8px;
+  margin:0 4px 0 6px;
   font-weight:700;
   line-height:1;
   letter-spacing:-0.01em;
@@ -352,6 +357,8 @@ body{
 }
 
 /* ------- RESPONSIVE ------- */
+
+/* Tablet & below: collapse pillar grid to one column */
 @media (max-width:1024px){
   .pillar-grid{
     grid-template-columns:1fr;
@@ -368,10 +375,78 @@ body{
   .page{ padding:48px 28px 60px; }
   .headline{ font-size:40px; }
 }
+
+/* Larger phones / small tablets */
+@media (max-width:768px){
+  .page{ padding:40px 22px 56px; }
+  .headline{ font-size:36px; }
+
+  /* Make tabs horizontally scrollable so they never overflow */
+  .tabs{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    flex-wrap:nowrap;
+    margin:28px 0 22px;
+  }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    padding:12px 14px;
+    font-size:12px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  /* Track split (All Modules) goes single-column earlier */
+  .track-split{ grid-template-columns:1fr; gap:14px; }
+}
+
+/* Phones */
 @media (max-width:560px){
-  .headline{ font-size:30px; }
-  .headline .pill{ padding:4px 14px 6px; border-radius:10px; }
-  .page{ padding:36px 18px 48px; }
+  .page{ padding:32px 16px 44px; }
+  .eyebrow{ font-size:10px; margin-bottom:14px; }
+  .headline{ font-size:28px; gap:4px; line-height:1.1; }
+  .headline .pill{ padding:4px 12px 6px; border-radius:8px; margin:0 4px; }
+  .subtitle{ font-size:13.5px; line-height:1.5; }
+
+  .tab{ padding:10px 12px; font-size:11px; letter-spacing:0.05em; }
+  .tab .tab-count{ font-size:9px; margin-left:4px; }
+
+  .section-divider{ margin:14px 0 20px; gap:12px; }
+  .section-divider .label{ font-size:10px; letter-spacing:0.16em; }
+
+  .pillar-head{ padding:22px 20px 18px; }
+  .pillar-name{ font-size:20px; }
+  .pillar-eyebrow{ font-size:10px; padding-bottom:12px; margin-bottom:12px; letter-spacing:0.16em; }
+  .pillar-count{ font-size:10px; letter-spacing:0.14em; }
+
+  .track{ padding:16px 18px 12px; }
+  .track:last-child{ padding-bottom:18px; }
+  .track-head{ gap:8px; }
+  .track-label{ font-size:10px; letter-spacing:0.14em; }
+
+  .mod-item{
+    grid-template-columns:auto 1fr;
+    gap:8px;
+    font-size:13px;
+    padding:5px 0;
+  }
+  .mod-item .code{ font-size:12px; padding-right:2px; }
+  .mod-item.unit .code{ font-size:11px; }
+  .subgroup-label{ font-size:9px; letter-spacing:0.16em; }
+
+  .page-foot{ font-size:10px; margin-top:48px; padding-top:18px; }
+}
+
+/* Very narrow phones */
+@media (max-width:400px){
+  .page{ padding:26px 14px 36px; }
+  .headline{ font-size:24px; }
+  .headline .pill{ padding:3px 10px 5px; }
+  .pillar-name{ font-size:18px; }
+  .pillar-head{ padding:20px 18px 16px; }
+  .track{ padding:14px 16px 10px; }
+  .tab{ padding:9px 10px; font-size:10.5px; }
 }
 </style>
 </head>
@@ -383,8 +458,7 @@ body{
   <div class="eyebrow">Training Catalog · UCLA ResLife · 2026</div>
   <h1 class="headline">
     <span>Every module,</span>
-    <span class="pill">organized</span>
-    <span class="period">.</span>
+    <span class="pill-group"><span class="pill">organized</span><span class="period">.</span></span>
   </h1>
   <p class="subtitle" id="subtitle">39 Department Core modules across three pillars and three tracks: Philosophy, Roles, Operations.</p>
 
