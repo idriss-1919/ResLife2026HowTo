@@ -216,11 +216,60 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
 .page-footer a{color:var(--ink);text-decoration:none;font-weight:500}
 .page-footer .right{margin-left:auto}
 
+/* MOBILE — narrow viewports */
+@media (max-width: 768px){
+  body{padding:0;background:var(--white)}
+  .page-canvas{
+    width:100%;
+    max-width:100%;
+    padding:28px 20px;
+    box-shadow:none;
+  }
+  .hero-title{font-size:26px;line-height:1.2}
+  .hero-eyebrow{font-size:10px;letter-spacing:.16em}
+  .lede h2{font-size:20px;line-height:1.25}
+  .lede p,.lede p+p{font-size:13px}
+  .section-head{margin:32px 0 14px;gap:10px}
+  .section-name{font-size:16px;line-height:1.3}
+  .role-grid{grid-template-columns:1fr;gap:12px}
+  .role-card{padding:20px 22px}
+  .role-num{font-size:28px;top:20px;right:20px}
+  .role-title{font-size:16px;padding-right:44px}
+  .role-tag{font-size:12px;padding-right:44px}
+  .role-list li{font-size:12px;line-height:1.6}
+  .pill{font-size:12px;padding:6px 12px;white-space:normal}
+  .pill-cluster{gap:6px}
+  .expect-list li{font-size:12.5px;padding-left:32px}
+  .expect-list li::before{width:22px;height:22px;font-size:10.5px}
+  .gain-list li{font-size:13px}
+  .train-block{padding:18px 20px}
+  .train-intro{font-size:12.5px}
+  .closing{margin-top:32px;padding:26px 22px}
+  .closing-eyebrow{font-size:10px;letter-spacing:.18em}
+  .closing-title{font-size:21px;line-height:1.25}
+  .closing-body{font-size:13.5px}
+  .closing-pillar{font-size:12.5px}
+  .closing-final{font-size:13px}
+  .page-footer{flex-direction:column;align-items:flex-start;gap:6px;margin-top:32px}
+  .page-footer .right{margin-left:0}
+}
+
+/* VERY NARROW — small phones */
+@media (max-width: 380px){
+  .page-canvas{padding:24px 16px}
+  .hero-title{font-size:24px}
+  .role-card{padding:18px 18px}
+  .role-num{font-size:24px;top:16px;right:16px}
+  .role-title{padding-right:38px}
+  .role-tag{padding-right:38px}
+  .closing{padding:22px 18px}
+}
+
 @media print{
   @page{size:8.5in 11in;margin:0}
   html,body{background:#FFF!important;padding:0!important;margin:0!important}
   body{display:block}
-  .page-canvas{box-shadow:none!important;padding:32px 40px}
+  .page-canvas{box-shadow:none!important;padding:32px 40px;width:8.5in;max-width:8.5in}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .role-card,.about-core,.train-block,.closing{break-inside:avoid}
   .section-head{break-inside:avoid}
