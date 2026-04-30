@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCLA ResLife · Apartment Resident Assistant (ARA) · UAS</title>
+<style>
+@font-face { font-family: 'Karbon'; src: local('Karbon Bold');     font-weight: 700; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Semibold'); font-weight: 600; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Medium');   font-weight: 500; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Regular'), local('Karbon'); font-weight: 400; }
+
+:root{
+  --ink:#0A2540;
+  --ink-2:#1A2B3C;
+  --sub:#5A6573;
+  --line:#C4D5E1;
+  --line-2:#E5ECF1;
+  --accent:#2774AE;
+  --highlight:#FFD100;
+  --gold-bg:#FFFCEC;
+  --gold-border:#D4A017;
+  --gold-text:#8C7200;
+  --white:#FFFFFF;
+  --bg:#FFFFFF;
+  --r-md:8px;--r-lg:12px;
+  --ff:'Karbon', system-ui, -apple-system, sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px}
+.page-canvas{width:8.5in;background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.06);padding:48px 56px;display:flex;flex-direction:column}
+
+/* HERO */
+.hero{margin-bottom:8px}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--sub);margin-bottom:14px}
+.hero-title{font-size:32px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.hl{background:var(--highlight);padding:0 .15em;border-radius:2px}
+.hero-sub{font-size:13.5px;color:var(--sub);line-height:1.55;max-width:640px}
+.hero-sub strong{color:var(--ink);font-weight:700}
+
+/* SECTION HEADER */
+.section-head{display:flex;align-items:center;gap:12px;margin:42px 0 18px}
+.section-num{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:8px 14px;border-radius:4px;flex-shrink:0}
+.section-name{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.005em;line-height:1.2}
+
+/* LEDE */
+.lede{margin-bottom:22px}
+.lede h2{font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-.015em;line-height:1.2;margin-bottom:10px}
+.lede p{font-size:13px;color:var(--sub);line-height:1.6;max-width:640px}
+.lede p + p{margin-top:8px}
+
+/* ABOUT — gold core callout */
+.about-core{
+  margin:8px 0 16px;
+  padding:18px 22px;
+  background:var(--gold-bg);
+  border:1px solid var(--gold-border);
+  border-left:4px solid var(--gold-border);
+  border-radius:var(--r-md);
+}
+.about-core-label{
+  font-size:9.5px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-text);margin-bottom:8px;
+}
+.about-core-list{list-style:none;padding:0;margin:0}
+.about-core-list li{
+  font-size:13px;color:var(--ink);line-height:1.55;font-weight:600;
+  padding-left:22px;position:relative;
+}
+.about-core-list li + li{margin-top:6px}
+.about-core-list li::before{
+  content:'';position:absolute;left:0;top:8px;
+  width:8px;height:8px;border-radius:50%;background:var(--gold-border);
+}
+
+/* ROLE GRID — What You'll Do (2x2 numbered cards) */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px}
+.role-card{
+  border:1px solid var(--line);border-radius:var(--r-md);
+  padding:24px 26px;background:var(--white);
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.role-num{
+  position:absolute;top:24px;right:24px;
+  font-size:34px;font-weight:700;color:var(--line);
+  letter-spacing:-.02em;line-height:.85;font-variant-numeric:tabular-nums;
+}
+.role-eyebrow{
+  font-size:9.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--sub);margin-bottom:8px;
+}
+.role-title{
+  font-size:18px;font-weight:700;color:var(--ink);
+  letter-spacing:-.01em;line-height:1.2;margin-bottom:8px;
+  padding-right:60px;
+}
+.role-tag{
+  font-size:12.5px;color:var(--sub);
+  line-height:1.55;margin-bottom:12px;
+  padding-right:60px;
+}
+.role-divider{
+  border:none;border-top:1px solid var(--line-2);
+  margin:6px 0 14px;
+}
+.role-list{list-style:none;padding:0;margin:0}
+.role-list li{
+  font-size:12px;color:var(--ink);
+  line-height:1.65;padding-left:22px;position:relative;
+}
+.role-list li + li{margin-top:1px}
+.role-list li::before{
+  content:'→';position:absolute;left:0;top:0;
+  color:var(--accent);font-weight:700;
+}
+
+/* PILL CLUSTER (Looking For + Gain) */
+.pill-cluster{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.pill{
+  display:inline-block;
+  font-size:12.5px;font-weight:600;color:var(--ink);
+  padding:7px 14px;border-radius:999px;background:var(--white);
+  border:1px solid var(--accent);letter-spacing:0;line-height:1.4;
+  white-space:nowrap;box-sizing:border-box;
+}
+
+/* NUMBERED EXPECTATIONS */
+.expect-list{list-style:none;counter-reset:exp;padding:0;margin:0 0 14px}
+.expect-list li{
+  counter-increment:exp;
+  font-size:13px;color:var(--ink);line-height:1.6;
+  padding-left:36px;position:relative;
+}
+.expect-list li + li{margin-top:10px}
+.expect-list li::before{
+  content:counter(exp);
+  position:absolute;left:0;top:1px;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--ink);color:var(--white);
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.expect-list li strong{color:var(--ink);font-weight:700}
+
+/* TRAINING TWO-PART BLOCK */
+.train-block{
+  border:1px solid var(--line);border-radius:var(--r-md);
+  padding:22px 24px;background:var(--white);
+}
+.train-intro{font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:14px}
+.train-intro strong{color:var(--ink);font-weight:700}
+.train-divider{border:none;border-top:1px solid var(--line-2);margin:6px 0 14px}
+.train-skills-label{
+  font-size:9.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--sub);margin-bottom:8px;
+}
+
+/* GAIN ARROW LIST */
+.gain-list{list-style:none;padding:0;margin:0}
+.gain-list li{
+  font-size:13px;color:var(--ink);line-height:1.7;
+  padding-left:22px;position:relative;font-weight:500;
+}
+.gain-list li::before{
+  content:'→';position:absolute;left:0;top:0;
+  color:var(--accent);font-weight:700;
+}
+
+/* CLOSING BLOCK — Why This Role Matters */
+.closing{
+  margin-top:50px;padding:36px 40px;
+  border:1px solid var(--gold-border);border-radius:var(--r-lg);
+  background:var(--gold-bg);
+  position:relative;
+}
+.closing::before{
+  content:'';position:absolute;top:0;left:24px;right:24px;
+  height:4px;background:var(--highlight);border-radius:0 0 4px 4px;
+}
+.closing-eyebrow{
+  font-size:10.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-text);margin-bottom:10px;
+}
+.closing-title{
+  font-size:26px;font-weight:700;color:var(--ink);
+  letter-spacing:-.015em;line-height:1.2;margin-bottom:14px;
+}
+.closing-body{
+  font-size:14px;color:var(--ink);line-height:1.6;
+  margin-bottom:18px;max-width:600px;
+}
+.closing-body strong{font-weight:700}
+.closing-pillars{
+  display:flex;flex-direction:column;gap:6px;margin-bottom:18px;
+}
+.closing-pillar{
+  font-size:13px;color:var(--ink);line-height:1.5;
+  padding-left:24px;position:relative;font-weight:600;
+}
+.closing-pillar::before{
+  content:'';position:absolute;left:0;top:9px;
+  width:10px;height:2px;background:var(--gold-border);
+}
+.closing-final{
+  font-size:14px;color:var(--ink);line-height:1.55;
+  font-style:italic;
+  padding-top:14px;border-top:1px solid var(--gold-border);
+}
+.closing-final .hl{font-style:normal}
+
+/* FOOTER */
+.page-footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;font-size:11.5px;color:var(--sub)}
+.page-footer a{color:var(--ink);text-decoration:none;font-weight:500}
+.page-footer .right{margin-left:auto}
+
+@media print{
+  @page{size:8.5in 11in;margin:0}
+  html,body{background:#FFF!important;padding:0!important;margin:0!important}
+  body{display:block}
+  .page-canvas{box-shadow:none!important;padding:32px 40px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .role-card,.about-core,.train-block,.closing{break-inside:avoid}
+  .section-head{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page-canvas">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">UCLA Residential Life · Position Description</div>
+  <h1 class="hero-title">Apartment Resident Assistant <span class="hl">(ARA)</span></h1>
+</header>
+
+<!-- SECTION 1 -->
+<div class="section-head"><span class="section-name">What this role is about</span></div>
+
+<div class="lede">
+  <h2>More than a title. A way of showing up.</h2>
+  <p>The ARA is a live-in student leader in University Apartments South (UAS) who helps create a welcoming, connected, and supportive community. This role blends community builder, crisis and emergency responder, institutional representative, and team member. Each conversation, duty shift, and program is an opportunity to make UAS feel like home.</p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section-head"><span class="section-name">What you'll do</span></div>
+
+<div class="lede">
+  <p>Four core responsibilities: community, response, standards, and operations. Together they shape every week of the role.</p>
+</div>
+
+<div class="role-grid">
+
+  <article class="role-card">
+    <div class="role-num">01</div>
+<h3 class="role-title">Build community</h3>
+    <p class="role-tag">Create an environment where residents feel they belong.</p>
+    <hr class="role-divider">
+    <ul class="role-list">
+      <li>Welcome residents and set clear community expectations</li>
+      <li>Plan and implement weekly community-building programs and engagement</li>
+      <li>Create virtual connection spaces (bulletin boards, Slack, GroupMe)</li>
+      <li>Facilitate roommate discussions, agreements, and conflict resolution</li>
+      <li>Build relationships so residents feel known, connected, and supported</li>
+    </ul>
+  </article>
+
+  <article class="role-card">
+    <div class="role-num">02</div>
+<h3 class="role-title">Support &amp; respond</h3>
+    <p class="role-tag">Be part of the team residents rely on when things come up.</p>
+    <hr class="role-divider">
+    <ul class="role-list">
+      <li>Participate weekly in a scheduled duty rotation with defined shifts</li>
+      <li>Respond to incidents (lockouts, wellness concerns, emergencies)</li>
+      <li>Assess situations: act, refer, or escalate as appropriate</li>
+      <li>Connect residents to appropriate campus resources</li>
+      <li>Support follow-up after incidents with professional staff</li>
+      <li>Contribute to a coordinated, timely, thoughtful response system</li>
+    </ul>
+  </article>
+
+  <article class="role-card">
+    <div class="role-num">03</div>
+<h3 class="role-title">Uphold community standards</h3>
+    <p class="role-tag">Maintain a safe, respectful, and accountable living environment.</p>
+    <hr class="role-divider">
+    <ul class="role-list">
+      <li>Know, uphold, and enforce university and housing policies</li>
+      <li>Address policy violations and community concerns appropriately</li>
+      <li>Document incidents accurately and on time</li>
+      <li>Maintain confidentiality and professionalism</li>
+      <li>Balance care and accountability in all interactions</li>
+    </ul>
+  </article>
+
+  <article class="role-card">
+    <div class="role-num">04</div>
+<h3 class="role-title">Help things run smoothly</h3>
+    <p class="role-tag">Support the day-to-day operations of the community.</p>
+    <hr class="role-divider">
+    <ul class="role-list">
+      <li>Attend weekly staff and biweekly supervisor meetings</li>
+      <li>Support move-in, welcome efforts, and community transitions</li>
+      <li>Follow up on common concerns (maintenance, noise, policy)</li>
+      <li>Help residents navigate systems and know who to contact</li>
+      <li>Complete administrative tasks, reports, and communications as expected</li>
+    </ul>
+  </article>
+
+</div>
+
+<!-- SECTION 3 -->
+<div class="section-head"><span class="section-name">What we're looking for</span></div>
+
+<div class="lede">
+  <p>Traits, not credentials. The strongest ARAs share a few qualities, and we'll help you build the rest.</p>
+</div>
+
+<div class="pill-cluster">
+  <span class="pill">Genuine care for people &amp; community</span>
+  <span class="pill">Strong communication &amp; listening</span>
+  <span class="pill">Reliability &amp; follow-through</span>
+  <span class="pill">Time management</span>
+  <span class="pill">Sound judgment</span>
+  <span class="pill">Willingness to learn &amp; grow</span>
+  <span class="pill">Represents UCLA &amp; ResLife values</span>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section-head"><span class="section-name">Role expectations &amp; accountability</span></div>
+
+<div class="lede">
+  <p>The ARA role carries priority commitments. You'll have clear schedules, expectations, and support, and we'll expect consistent follow-through in return.</p>
+</div>
+
+<ol class="expect-list">
+  <li>This role carries priority commitments and responsibility.</li>
+  <li>Outside commitments must be approved and not conflict with ARA responsibilities.</li>
+  <li>You are expected to be a positive role model, both on and off duty.</li>
+  <li>While not on call 24/7, you remain a visible and influential presence.</li>
+  <li>You will have clear duty schedules, expectations, and support systems.</li>
+  <li>You are expected to document, communicate, and follow through consistently.</li>
+</ol>
+
+<!-- SECTION 5 -->
+<div class="section-head"><span class="section-name">Training &amp; development</span></div>
+
+<div class="lede">
+  <p>You'll be set up to succeed and supported through the year.</p>
+</div>
+
+<div class="train-block">
+  <p class="train-intro" style="margin-bottom:0">Participate in <strong>mandatory summer training</strong> and ongoing development throughout the year. Each training cycle pairs operational protocol with personal growth so you can lead with confidence.</p>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section-head"><span class="section-name">What you'll gain</span></div>
+
+<div class="lede">
+  <p>The skills and experiences you'll carry well past the role.</p>
+</div>
+
+<ul class="gain-list">
+  <li>Leadership and communication that translate across any path</li>
+  <li>Real-world experience navigating complex and dynamic situations</li>
+  <li>Meaningful relationships built with residents and staff</li>
+  <li>Confidence in decision-making and crisis response</li>
+  <li>The ability to build and sustain community</li>
+  <li>Skills in conflict mediation and resolution</li>
+  <li>Experience upholding and applying policy with integrity</li>
+  <li>A strong foundation in teamwork and collaboration</li>
+  <li>A meaningful opportunity to impact others' lives</li>
+</ul>
+
+<!-- CLOSING — Why This Role Matters -->
+<div class="closing">
+  <div class="closing-eyebrow">Why this role matters</div>
+  <h2 class="closing-title">More than programs or duty shifts.</h2>
+  <p class="closing-body">This role is the connective tissue of UAS. It's the difference between a place where residents live and a place where they belong.</p>
+  <div class="closing-pillars">
+    <div class="closing-pillar">Creating spaces where people feel they belong</div>
+    <div class="closing-pillar">Supporting residents through important moments</div>
+    <div class="closing-pillar">Building a community rooted in care, accountability, and connection</div>
+  </div>
+  <p class="closing-final">You help create the experience people <span class="hl">remember</span>, and the environment where they succeed.</p>
+</div>
+
+<footer class="page-footer">
+  <a href="mailto:hello@orl.ucla.edu">hello@orl.ucla.edu</a>
+  <a href="https://reslife.ucla.edu" class="right">reslife.ucla.edu</a>
+</footer>
+
+</div>
+</body></html>
