@@ -21,11 +21,9 @@
   --welcomes:       #2774AE;
   --welcomes-tint:  #E8F1F8;
   --welcomes-hover: #1B5582;
-
   --connects:       #D900A5;
   --connects-tint:  #FCE6F5;
   --connects-hover: #A6007F;
-
   --responds:       #FFD100;
   --responds-tint:  #FEF8E7;
   --responds-hover: #6B5700;
@@ -61,7 +59,6 @@
   --space-9: 96px; --space-10: 128px;
 
   /* Radius */
-  --radius-none: 0;
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
@@ -71,11 +68,17 @@
   --page-max-width: 1120px;
   --prose-max-width: 720px;
 
-  /* Page pillar context (default = navy/neutral) */
-  --pillar-primary: var(--navy);
-  --pillar-tint:    var(--navy-tint);
-  --pillar-hover:   var(--navy);
+  /* Page pillar — this page is a Responds-pillar document. */
+  --pillar-primary: var(--responds);
+  --pillar-tint:    var(--responds-tint);
+  --pillar-hover:   var(--responds-hover);
 }
+
+/* Karbon @font-face declarations (local fallback) */
+@font-face { font-family: 'Karbon'; src: local('Karbon Bold');                    font-weight: 700; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Semibold');                font-weight: 600; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Medium');                  font-weight: 500; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Regular'), local('Karbon');font-weight: 400; }
 
 /* ===== Reset / Base ===== */
 *, *::before, *::after { box-sizing: border-box; }
@@ -140,7 +143,7 @@ p { margin: 0; }
 /* ===== Highlight ===== */
 .highlight {
   background-color: var(--pillar-primary);
-  color: var(--white);
+  color: var(--navy);
   font-weight: 700;
   padding: 0.05em 0.28em;
   margin: 0 -0.05em;
@@ -151,6 +154,7 @@ p { margin: 0; }
 .highlight--welcomes { background-color: var(--welcomes); color: var(--white); }
 .highlight--connects { background-color: var(--connects); color: var(--white); }
 .highlight--responds { background-color: var(--responds); color: var(--navy); }
+.highlight--navy     { background-color: var(--navy);     color: var(--white); }
 
 /* ===== Page chrome ===== */
 .site-header {
@@ -160,9 +164,20 @@ p { margin: 0; }
 .site-header__logo {
   font-family: var(--font-display); font-weight: 700;
   font-size: 14px; letter-spacing: 0.04em; color: var(--navy);
+  display: inline-flex; align-items: center;
+}
+.site-header__logo svg {
+  display: block;
+  height: 36px;
+  width: auto;
+  fill: var(--navy);
+}
+@media (max-width: 640px) {
+  .site-header__logo svg { height: 28px; }
 }
 .site-header__title {
-  font-size: var(--type-h4); font-weight: 500; color: var(--navy);
+  font-size: var(--type-eyebrow); font-weight: 500; color: var(--navy);
+  letter-spacing: 0.10em; text-transform: uppercase;
 }
 .site-footer {
   display: flex; align-items: center; justify-content: space-between;
@@ -176,11 +191,15 @@ p { margin: 0; }
 .section-divider { border: 0; border-top: 1px solid var(--border); margin: 48px 0; }
 
 /* ===== Hero ===== */
-.hero { padding: 96px 0 48px; }
-.hero__eyebrow { margin-bottom: 24px; color: var(--navy); }
+.hero { padding: 48px 0 0; }
+.hero__eyebrow {
+  font-size: var(--type-eyebrow); font-weight: 500;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 16px;
+}
 .hero__headline {
   font-size: var(--type-display); font-weight: 700; line-height: 1.05;
-  letter-spacing: -0.02em; color: var(--navy); margin-bottom: 24px;
+  letter-spacing: -0.02em; color: var(--navy); margin-bottom: 32px;
 }
 .hero__subtitle {
   font-size: var(--type-body-lg); font-weight: 400; line-height: 1.65;
@@ -188,12 +207,12 @@ p { margin: 0; }
 }
 .hero__rule { border: 0; border-top: 1px solid var(--navy); margin: 0; }
 @media (max-width: 1024px) {
-  .hero { padding: 64px 0 32px; }
+  .hero { padding: 36px 0 0; }
   .hero__headline { font-size: 48px; }
   .hero__subtitle { max-width: 100%; }
 }
 @media (max-width: 640px) {
-  .hero { padding: 48px 0 24px; }
+  .hero { padding: 28px 0 0; }
   .hero__headline { font-size: 36px; }
 }
 
@@ -220,6 +239,7 @@ p { margin: 0; }
 
 /* ===== Grids ===== */
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.grid-2--fixed { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
 
 /* ===== Numbered card ===== */
@@ -233,6 +253,7 @@ p { margin: 0; }
 }
 .card-numbered__title {
   font-size: var(--type-h3); font-weight: 500; color: var(--navy); line-height: 1.25;
+  letter-spacing: -0.005em;
 }
 .card-numbered__numeral {
   font-family: var(--font-display); font-weight: 700; font-size: 40px;
@@ -260,8 +281,8 @@ p { margin: 0; }
   color: var(--navy); margin-bottom: 12px;
 }
 .card-callout__title {
-  font-size: var(--type-h2); font-weight: 700; color: var(--navy);
-  margin-bottom: 12px; line-height: 1.20; letter-spacing: -0.01em;
+  font-size: var(--type-h3); font-weight: 500; color: var(--navy);
+  margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.005em;
 }
 .card-callout__body {
   font-size: var(--type-body); color: var(--navy); line-height: 1.65; margin-bottom: 16px;
@@ -271,9 +292,6 @@ p { margin: 0; }
   font-style: italic; font-size: var(--type-body); color: var(--navy); line-height: 1.65;
 }
 .card-callout__closer .highlight { font-style: normal; }
-@media (max-width: 640px) {
-  .card-callout__title { font-size: 24px; }
-}
 
 /* ===== Lists ===== */
 .list-arrow, .list-dash { list-style: none; padding: 0; margin: 0; }
@@ -284,7 +302,8 @@ p { margin: 0; }
 .list-arrow li::before { content: "→"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
 .list-dash li::before  { content: "—"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
 
-/* ===== Numbered list (custom variant) ===== */
+/* Numbered list — extension of the list family using the navy-soft numerals
+   from .card-numbered__numeral, sized down to body weight. */
 .list-num { list-style: none; padding: 0; margin: 0; counter-reset: ln; }
 .list-num li {
   counter-increment: ln; display: flex; gap: 16px; padding: 8px 0;
@@ -305,11 +324,102 @@ p { margin: 0; }
 }
 .pill-list-group { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* ===== Mobile fine-tuning ===== */
+/* ===== Stats row (data display) ===== */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+.stat-block {
+  padding: 0 24px;
+  border-left: 1px solid var(--border);
+}
+.stat-block:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.stat-block__value {
+  font-size: var(--type-h1);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+}
+.stat-block__caption {
+  font-size: var(--type-small);
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ===== TABLET (≤ 1024px) ===== */
+@media (max-width: 1024px) {
+  .section-header { margin: 40px 0 20px; }
+  .section-divider { margin: 40px 0; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .card-callout { padding: 28px 24px; }
+}
+
+/* ===== PRINT (Save as PDF) ===== */
+@media print {
+  @page { size: letter; margin: 0.5in; }
+  html, body { background: var(--white) !important; }
+  .page { padding: 0; max-width: 100%; }
+  .site-header { padding-top: 0; }
+  .site-footer { margin-top: 48px; padding-bottom: 0; }
+  .section-divider { margin: 28px 0; }
+  .section-header { margin: 28px 0 16px; }
+  .hero { padding: 24px 0 0; }
+  .hero__headline { font-size: 48px; }
+  .card-numbered, .card-callout, .stats-row, .grid-2, .section-header { break-inside: avoid; }
+  a { color: var(--navy); text-decoration: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ===== PHONE (≤ 640px) ===== */
 @media (max-width: 640px) {
-  .pill-list { font-size: 14px; padding: 8px 16px; }
-  .card-numbered__numeral { font-size: 32px; }
-  .card-numbered__title { font-size: 20px; }
+  .site-header { padding: 28px 0 16px; flex-wrap: wrap; gap: 4px; }
+  .site-footer { padding: 16px 0 32px; margin-top: 64px; flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  .hero__headline { font-size: 32px; line-height: 1.15; margin-bottom: 20px; }
+  .hero__subtitle { margin-bottom: 32px; }
+
+  .section-header { margin: 32px 0 16px; gap: 12px; flex-wrap: wrap; }
+  .section-header__title { font-size: 22px; }
+  .section-divider { margin: 32px 0; }
+  .pill-section { font-size: 10px; padding: 5px 11px; }
+
+  .grid-2 { grid-template-columns: 1fr; gap: 14px; }
+  .card-numbered { padding: 22px 20px; }
+  .card-numbered__head { gap: 12px; margin-bottom: 8px; }
+  .card-numbered__title { font-size: 19px; }
+  .card-numbered__numeral { font-size: 30px; }
+  .card-numbered__intro { font-size: 14px; margin-bottom: 12px; }
+  .card-numbered__divider { margin: 12px 0; }
+
+  .card-callout { padding: 24px 20px; }
+  .card-callout__title { font-size: 22px; line-height: 1.25; }
+  .card-callout__body, .card-callout__closer { font-size: 14px; }
+
+  .pill-list { font-size: 14px; padding: 8px 14px; white-space: normal; }
+  .pill-list-group { gap: 8px; }
+
+  .list-arrow li, .list-dash li, .list-num li { font-size: 14px; padding: 5px 0; }
+  .list-arrow li, .list-dash li { gap: 10px; }
+  .list-num li { gap: 12px; padding: 6px 0; }
+
+  .t-body-lg { font-size: 15.5px; }
+}
+
+/* ===== SMALL PHONE (≤ 380px) ===== */
+@media (max-width: 380px) {
+  .hero__headline { font-size: 28px; }
+  .section-header__title { font-size: 20px; }
+  .card-numbered { padding: 20px 18px; }
+  .card-callout { padding: 22px 18px; }
+  .card-callout__title { font-size: 20px; }
+  .pill-section { font-size: 9.5px; letter-spacing: 0.06em; padding: 4px 10px; }
 }
 </style>
 </head>
@@ -319,34 +429,57 @@ p { margin: 0; }
 
 <!-- HEADER -->
 <header class="site-header">
-  <div class="site-header__logo">UCLA RESIDENTIAL LIFE</div>
-  <div class="site-header__title">Apartment Resident Assistant · UAS</div>
+  <div class="site-header__logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 291 71" role="img" aria-label="UCLA Residential Life">
+      <g>
+        <path d="M112,29.2h8c3.3,0,5.6,1.9,5.6,4.8s-.9,3.6-3.2,4.2h0c1.6.5,2.4,1.5,2.6,3.6.2,2.4.1,4.3.8,4.6v.2h-3.4c-.4-.2-.5-2.1-.6-4-.1-1.9-1.2-3-3.4-3h-2.8v7h-3.5v-17.3ZM115.5,36.9h3.7c1.9,0,2.9-1,2.9-2.4s-.9-2.4-2.8-2.4h-3.8v4.8Z"/>
+        <path d="M126.7,40.3c0-3.7,2.5-6.5,6.1-6.5s6.1,3.1,6.1,7.5h-9c.2,1.9,1.3,3.1,3.2,3.1s2-.6,2.4-1.5h3.2c-.5,2.2-2.4,4.1-5.6,4.1s-6.4-2.9-6.4-6.6ZM130,39h5.5c0-1.6-1.1-2.7-2.6-2.7s-2.6,1-2.9,2.7Z"/>
+        <path d="M139.7,42.5h3.1c.2,1.4,1.2,2.1,2.7,2.1s2.3-.6,2.3-1.4-1.6-1.3-3.3-1.6c-2.2-.4-4.4-1-4.4-3.8s2.2-4,5.1-4,5.1,1.6,5.3,4.1h-3c-.1-1.3-1-1.8-2.4-1.8s-2.1.5-2.1,1.4,1.6,1.2,3.4,1.5c2.1.4,4.4,1,4.4,3.9s-2.1,4-5.2,4-5.6-1.7-5.8-4.4Z"/>
+        <path d="M152.3,29.2h3.3v3h-3.3v-3ZM152.3,34.1h3.3v12.4h-3.3v-12.4Z"/>
+        <path d="M157.1,40.3c0-3.9,2.2-6.6,5.3-6.6s2.8.8,3.5,1.8h0v-6.4h3.3v17.3h-3.2v-1.6h0c-.7,1.2-2,2-3.7,2-3.1,0-5.3-2.5-5.3-6.6ZM166.1,40.4c0-2.4-.8-4-2.9-4s-2.7,1.6-2.7,3.9.9,3.8,2.6,3.8,3-1.5,3-3.7Z"/>
+        <path d="M170.8,40.3c0-3.7,2.5-6.5,6.1-6.5s6.1,3.1,6.1,7.5h-9c.2,1.9,1.3,3.1,3.2,3.1s2-.6,2.4-1.5h3.2c-.5,2.2-2.4,4.1-5.6,4.1s-6.4-2.9-6.4-6.6ZM174.1,39h5.5c0-1.6-1.1-2.7-2.6-2.7s-2.6,1-2.9,2.7Z"/>
+        <path d="M187.8,35.8h0c.8-1.3,2-2,3.7-2,2.6,0,4.3,1.9,4.3,4.7v8.1h-3.3v-7.6c0-1.3-.8-2.3-2.2-2.3s-2.5,1.2-2.5,2.9v7.1h-3.3v-12.4h3.2v1.7Z"/>
+        <path d="M196.7,34.1h1.7v-3.9h3.2v3.9h2.1v2.2h-2.1v6.6c0,.9.5,1.2,1.2,1.2s1,0,1,0v2.4s-.8,0-2.1,0-3.4-.6-3.4-3v-7.3h-1.7v-2.2Z"/>
+        <path d="M205.4,29.2h3.3v3h-3.3v-3ZM205.4,34.1h3.3v12.4h-3.3v-12.4Z"/>
+        <path d="M218.2,45.2h0c-.6.9-1.5,1.7-3.7,1.7s-4.3-1.3-4.3-3.8,2.2-3.6,5-4c2.1-.3,3-.5,3-1.4s-.7-1.5-2.1-1.5-2.3.6-2.4,1.7h-2.9c0-2.2,1.7-4.1,5.4-4.1s5.2,1.7,5.2,4.6v6.3c0,.9.1,1.5.4,1.7h0c0,.1-3.2.1-3.2.1-.2-.2-.3-.8-.4-1.4ZM218.2,42.2v-1.9c-.6.3-1.5.5-2.3.7-1.7.4-2.6.8-2.6,1.9s.8,1.6,1.9,1.6c1.9,0,2.9-1.2,2.9-2.4Z"/>
+        <path d="M223.4,29.2h3.3v17.3h-3.3v-17.3Z"/>
+        <path d="M233.2,29.2h3.5v14.4h8.1v2.9h-11.7v-17.3Z"/>
+        <path d="M246.1,29.2h3.3v3h-3.3v-3ZM246.1,34.1h3.3v12.4h-3.3v-12.4Z"/>
+        <path d="M250.6,34.1h1.7v-1.1c0-3,2.4-4.1,5.5-3.8v2.5c-1.6,0-2.2.1-2.2,1.4v.9h2.2v2.3h-2.2v10.2h-3.3v-10.2h-1.7v-2.3Z"/>
+        <path d="M258.1,40.3c0-3.7,2.5-6.5,6.1-6.5s6.1,3.1,6.1,7.5h-9c.2,1.9,1.3,3.1,3.2,3.1s2-.6,2.4-1.5h3.2c-.5,2.2-2.4,4.1-5.6,4.1s-6.4-2.9-6.4-6.6ZM261.4,39h5.5c0-1.6-1.1-2.7-2.6-2.7s-2.6,1-2.9,2.7Z"/>
+      </g>
+      <g>
+        <path d="M20.1,39.2c-.1-.9,0-2.2,0-2.8l1.3-15.2h5l-1.4,15.3c-.3,3.3,1,5.7,4.3,5.7s5.2-2.4,5.5-5.4l1.4-15.7h5l-1.4,15.5c-.6,6-4.5,10.4-10.9,10.4s-8.2-3.2-8.8-7.9"/>
+        <path d="M42.3,34c.6-7.3,5.6-13.4,14.1-13.4s4.4.5,6.5,1.9l-.6,6c-2-2.6-4.3-3-6.4-3-5.3,0-8.2,3.7-8.6,8.3-.4,4.5,1.9,8.2,7.1,8.2s4.6-.6,7.1-3.1l-.6,6.2c-2.4,1.3-4.7,1.9-6.9,1.9-8.4,0-12.3-6.3-11.7-13.1"/>
+        <path d="M66.9,21.2h5l-1.8,20.7h7.1c.5,0,2.2,0,2.7,0,0,.2-.5,4.8-.5,4.8h-14.7l2.3-25.4Z"/>
+        <path d="M92.8,30.6c.2-.4.3-.8.4-1.1,0,0,0,0,0,0,0,.3,0,.7.2,1.1.3,1.2,2.2,7.6,2.2,7.6h-6.3s3.4-7.4,3.4-7.6M94,20h-.3s-13.6,26.5-13.6,26.5h5.3l1.9-4h9.6l1.2,4h5.3l-9.3-26.5Z"/>
+      </g>
+    </svg>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero__eyebrow t-eyebrow">UCLA Residential Life · Position Description</div>
-  <h1 class="hero__headline">Apartment Resident Assistant <span class="highlight highlight--responds">(ARA)</span></h1>
+  <div class="hero__eyebrow">University Apartments South</div>
+  <h1 class="hero__headline">Apartment Resident Assistant <span class="highlight highlight--navy">(ARA)</span></h1>
   <hr class="hero__rule">
 </section>
 
 <!-- SECTION 01 — What this role is about -->
 <div class="section-header">
-  <span class="pill-section">Section 01</span>
   <h2 class="section-header__title">What this role is about</h2>
 </div>
-<p class="t-body-lg t-secondary prose">The ARA is a live-in student leader in University Apartments South (UAS) who helps create a welcoming, connected, and supportive community. This role blends community builder, crisis and emergency responder, institutional representative, and team member. Each conversation, duty shift, and program is an opportunity to make UAS feel like home.</p>
+<p class="t-body-lg t-secondary prose">The ARA is a live-in student leader in University Apartments South (UAS) who helps create a welcomed, connected, and supported community. This role blends community builder, crisis and emergency responder, institutional representative, and team member. Each conversation, duty shift, and program is an opportunity to make UAS feel like home.</p>
 
 <hr class="section-divider">
 
 <!-- SECTION 02 — What you'll do -->
 <div class="section-header">
-  <span class="pill-section">Section 02</span>
   <h2 class="section-header__title">What you'll do</h2>
 </div>
 <p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Four core responsibilities: community, response, standards, and operations. Together they shape every week of the role.</p>
 
-<div class="grid-2">
+<div class="grid-2 grid-2--fixed">
 
   <article class="card-numbered">
     <div class="card-numbered__head">
@@ -358,9 +491,9 @@ p { margin: 0; }
     <ul class="list-arrow">
       <li>Welcome residents and set clear community expectations</li>
       <li>Plan and implement weekly community-building programs and engagement</li>
-      <li>Create virtual connection spaces (bulletin boards, Slack, GroupMe)</li>
+      <li>Create virtual connection spaces (bulletin boards, Slack, GroupMe, etc.)</li>
       <li>Facilitate roommate discussions, agreements, and conflict resolution</li>
-      <li>Build relationships so residents feel known, connected, and supported</li>
+      <li>Build relationships so residents feel welcomed, connected, and supported</li>
     </ul>
   </article>
 
@@ -373,10 +506,10 @@ p { margin: 0; }
     <hr class="card-numbered__divider">
     <ul class="list-arrow">
       <li>Participate weekly in a scheduled duty rotation with defined shifts</li>
-      <li>Respond to incidents (lockouts, wellness concerns, emergencies)</li>
+      <li>Respond to incidents (lockouts, wellness concerns, emergencies, etc.)</li>
       <li>Assess situations: act, refer, or escalate as appropriate</li>
       <li>Connect residents to appropriate campus resources</li>
-      <li>Support follow-up after incidents with professional staff</li>
+      <li>Support follow-up after incidents</li>
       <li>Contribute to a coordinated, timely, thoughtful response system</li>
     </ul>
   </article>
@@ -407,7 +540,7 @@ p { margin: 0; }
     <ul class="list-arrow">
       <li>Attend weekly staff and biweekly supervisor meetings</li>
       <li>Support move-in, welcome efforts, and community transitions</li>
-      <li>Follow up on common concerns (maintenance, noise, policy)</li>
+      <li>Follow up on common concerns (maintenance, noise, policy, etc.)</li>
       <li>Help residents navigate systems and know who to contact</li>
       <li>Complete administrative tasks, reports, and communications as expected</li>
     </ul>
@@ -419,10 +552,9 @@ p { margin: 0; }
 
 <!-- SECTION 03 — What we're looking for -->
 <div class="section-header">
-  <span class="pill-section">Section 03</span>
   <h2 class="section-header__title">What we're looking for</h2>
 </div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Traits, not credentials. The strongest ARAs share a few qualities, and we'll help you build the rest.</p>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Traits, not credentials. The strongest ARAs bring a shared set of qualities, and we'll support you in building the skills needed for the role.</p>
 
 <div class="pill-list-group">
   <span class="pill-list">Genuine care for people &amp; community</span>
@@ -438,16 +570,15 @@ p { margin: 0; }
 
 <!-- SECTION 04 — Role expectations & accountability -->
 <div class="section-header">
-  <span class="pill-section">Section 04</span>
   <h2 class="section-header__title">Role expectations &amp; accountability</h2>
 </div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The ARA role carries priority commitments. You'll have clear schedules, expectations, and support, and we'll expect consistent follow-through in return.</p>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The ARA role comes with important commitments. You'll have clear schedules, expectations, and support, along with an expectation of consistent follow-through.</p>
 
 <ol class="list-num">
   <li>This role carries priority commitments and responsibility.</li>
   <li>Outside commitments must be approved and not conflict with ARA responsibilities.</li>
   <li>You are expected to be a positive role model, both on and off duty.</li>
-  <li>While not on call 24/7, you remain a visible and influential presence.</li>
+  <li>While not on call 24/7, you remain a visible and influential presence in the community.</li>
   <li>You will have clear duty schedules, expectations, and support systems.</li>
   <li>You are expected to document, communicate, and follow through consistently.</li>
 </ol>
@@ -456,7 +587,6 @@ p { margin: 0; }
 
 <!-- SECTION 05 — Training & development -->
 <div class="section-header">
-  <span class="pill-section">Section 05</span>
   <h2 class="section-header__title">Training &amp; development</h2>
 </div>
 <p class="t-body-lg t-secondary prose">You'll be set up to succeed and supported through the year. Participate in <strong>mandatory summer training</strong> and ongoing development throughout the year. Each training cycle pairs operational protocol with personal growth so you can lead with confidence.</p>
@@ -465,7 +595,6 @@ p { margin: 0; }
 
 <!-- SECTION 06 — What you'll gain -->
 <div class="section-header">
-  <span class="pill-section">Section 06</span>
   <h2 class="section-header__title">What you'll gain</h2>
 </div>
 <p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The skills and experiences you'll carry well past the role.</p>
@@ -489,13 +618,36 @@ p { margin: 0; }
   <h2 class="card-callout__title">More than programs or duty shifts.</h2>
   <p class="card-callout__body">This role is the connective tissue of UAS. It's the difference between a place where residents live and a place where they belong.</p>
   <hr class="card-callout__divider">
-  <ul class="list-dash" style="margin-bottom: 16px;">
+  <ul class="list-arrow" style="margin-bottom: 16px;">
     <li>Creating spaces where people feel they belong</li>
     <li>Supporting residents through important moments</li>
     <li>Building a community rooted in care, accountability, and connection</li>
   </ul>
   <p class="card-callout__closer">You help create the experience people <span class="highlight highlight--responds">remember</span>, and the environment where they succeed.</p>
 </article>
+
+<hr class="section-divider">
+
+<!-- SECTION — Compensation -->
+<div class="section-header">
+  <h2 class="section-header__title">Compensation</h2>
+</div>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The role is supported by a housing credit applied to your UAS rent and a stipend paid bi-weekly through the academic year.</p>
+
+<div class="stats-row">
+  <div class="stat-block">
+    <div class="stat-block__value">$1,250.93</div>
+    <div class="stat-block__caption">Monthly housing credit</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block__value">$312.46</div>
+    <div class="stat-block__caption">Bi-weekly stipend</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block__value">$23,135.12</div>
+    <div class="stat-block__caption">Yearly total package</div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="site-footer">
