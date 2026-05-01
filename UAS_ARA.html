@@ -338,6 +338,16 @@ p { margin: 0; }
   padding-left: 0;
   border-left: 0;
 }
+.stat-block__qualifier {
+  display: block;
+  font-size: var(--type-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
 .stat-block__value {
   font-size: var(--type-h1);
   font-weight: 700;
@@ -632,20 +642,13 @@ p { margin: 0; }
 <div class="section-header">
   <h2 class="section-header__title">Compensation</h2>
 </div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The role is supported by a housing credit applied to your UAS rent and a stipend paid bi-weekly through the academic year.</p>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The role is supported by a housing credit applied to your UAS rent throughout the academic year.</p>
 
 <div class="stats-row">
   <div class="stat-block">
-    <div class="stat-block__value">$1,250.93</div>
+    <span class="stat-block__qualifier">Up to</span>
+    <div class="stat-block__value">$1,402.93</div>
     <div class="stat-block__caption">Monthly housing credit</div>
-  </div>
-  <div class="stat-block">
-    <div class="stat-block__value">$312.46</div>
-    <div class="stat-block__caption">Bi-weekly stipend</div>
-  </div>
-  <div class="stat-block">
-    <div class="stat-block__value">$23,135.12</div>
-    <div class="stat-block__caption">Yearly total package</div>
   </div>
 </div>
 
