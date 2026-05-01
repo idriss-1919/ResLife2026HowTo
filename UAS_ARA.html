@@ -5,309 +5,357 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UCLA ResLife · Apartment Resident Assistant (ARA) · UAS</title>
 <style>
-@font-face { font-family: 'Karbon'; src: local('Karbon Bold');     font-weight: 700; }
-@font-face { font-family: 'Karbon'; src: local('Karbon Semibold'); font-weight: 600; }
-@font-face { font-family: 'Karbon'; src: local('Karbon Medium');   font-weight: 500; }
-@font-face { font-family: 'Karbon'; src: local('Karbon Regular'), local('Karbon'); font-weight: 400; }
+/* ============================================================
+   UCLA ResLife Design System v1.0 (subset)
+   Editorial discipline. Monochromatic foundation. Color as punctuation.
+   ============================================================ */
 
-:root{
-  --ink:#0A2540;
-  --ink-2:#1A2B3C;
-  --sub:#5A6573;
-  --line:#C4D5E1;
-  --line-2:#E5ECF1;
-  --accent:#2774AE;
-  --highlight:#FFD100;
-  --gold-bg:#FFFCEC;
-  --gold-border:#D4A017;
-  --gold-text:#8C7200;
-  --white:#FFFFFF;
-  --bg:#FFFFFF;
-  --r-md:8px;--r-lg:12px;
-  --ff:'Karbon', system-ui, -apple-system, sans-serif;
-}
+:root {
+  /* Anchor & accent */
+  --navy:        #003F70;
+  --navy-soft:   #3D5670;
+  --navy-tint:   #EDF1F6;
+  --accent-blue: #B8D9F2;
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px}
-.page-canvas{width:8.5in;background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.06);padding:48px 56px;display:flex;flex-direction:column}
+  /* Pillars */
+  --welcomes:       #2774AE;
+  --welcomes-tint:  #E8F1F8;
+  --welcomes-hover: #1B5582;
 
-/* HERO */
-.hero{margin-bottom:8px}
-.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--sub);margin-bottom:14px}
-.hero-title{font-size:32px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
-.hl{background:var(--highlight);padding:0 .15em;border-radius:2px}
-.hero-sub{font-size:13.5px;color:var(--sub);line-height:1.55;max-width:640px}
-.hero-sub strong{color:var(--ink);font-weight:700}
+  --connects:       #D900A5;
+  --connects-tint:  #FCE6F5;
+  --connects-hover: #A6007F;
 
-/* SECTION HEADER */
-.section-head{display:flex;align-items:center;gap:12px;margin:42px 0 18px}
-.section-num{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:8px 14px;border-radius:4px;flex-shrink:0}
-.section-name{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.005em;line-height:1.2}
+  --responds:       #FFD100;
+  --responds-tint:  #FEF8E7;
+  --responds-hover: #6B5700;
 
-/* LEDE */
-.lede{margin-bottom:22px}
-.lede h2{font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-.015em;line-height:1.2;margin-bottom:10px}
-.lede p{font-size:13px;color:var(--sub);line-height:1.6;max-width:640px}
-.lede p + p{margin-top:8px}
+  /* Neutrals */
+  --white:          #FFFFFF;
+  --surface-card:   #F4F4F3;
+  --border:         #E0E0E0;
+  --text-primary:   #003F70;
+  --text-secondary: #4D4D4D;
+  --text-muted:     #4D5563;
+  --responds-text:  #8C7200;
+  --dark-body:      #F1F1F1;
+  --dark-sub:       #D2D2D2;
 
-/* ABOUT — gold core callout */
-.about-core{
-  margin:8px 0 16px;
-  padding:18px 22px;
-  background:var(--gold-bg);
-  border:1px solid var(--gold-border);
-  border-left:4px solid var(--gold-border);
-  border-radius:var(--r-md);
-}
-.about-core-label{
-  font-size:9.5px;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold-text);margin-bottom:8px;
-}
-.about-core-list{list-style:none;padding:0;margin:0}
-.about-core-list li{
-  font-size:13px;color:var(--ink);line-height:1.55;font-weight:600;
-  padding-left:22px;position:relative;
-}
-.about-core-list li + li{margin-top:6px}
-.about-core-list li::before{
-  content:'';position:absolute;left:0;top:8px;
-  width:8px;height:8px;border-radius:50%;background:var(--gold-border);
-}
+  /* Typography */
+  --font-display: "Karbon", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "Karbon", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --type-display: 64px;
+  --type-h1:      44px;
+  --type-h2:      32px;
+  --type-h3:      24px;
+  --type-h4:      18px;
+  --type-body-lg: 18px;
+  --type-body:    16px;
+  --type-small:   14px;
+  --type-eyebrow: 12px;
+  --type-tiny:    11px;
 
-/* ROLE GRID — What You'll Do (2x2 numbered cards) */
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px}
-.role-card{
-  border:1px solid var(--line);border-radius:var(--r-md);
-  padding:24px 26px;background:var(--white);
-  display:flex;flex-direction:column;
-  position:relative;
-}
-.role-num{
-  position:absolute;top:24px;right:24px;
-  font-size:34px;font-weight:700;color:var(--line);
-  letter-spacing:-.02em;line-height:.85;font-variant-numeric:tabular-nums;
-}
-.role-eyebrow{
-  font-size:9.5px;font-weight:600;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--sub);margin-bottom:8px;
-}
-.role-title{
-  font-size:18px;font-weight:700;color:var(--ink);
-  letter-spacing:-.01em;line-height:1.2;margin-bottom:8px;
-  padding-right:60px;
-}
-.role-tag{
-  font-size:12.5px;color:var(--sub);
-  line-height:1.55;margin-bottom:12px;
-  padding-right:60px;
-}
-.role-divider{
-  border:none;border-top:1px solid var(--line-2);
-  margin:6px 0 14px;
-}
-.role-list{list-style:none;padding:0;margin:0}
-.role-list li{
-  font-size:12px;color:var(--ink);
-  line-height:1.65;padding-left:22px;position:relative;
-}
-.role-list li + li{margin-top:1px}
-.role-list li::before{
-  content:'→';position:absolute;left:0;top:0;
-  color:var(--accent);font-weight:700;
+  /* Spacing */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+  --space-9: 96px; --space-10: 128px;
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --page-max-width: 1120px;
+  --prose-max-width: 720px;
+
+  /* Page pillar context (default = navy/neutral) */
+  --pillar-primary: var(--navy);
+  --pillar-tint:    var(--navy-tint);
+  --pillar-hover:   var(--navy);
 }
 
-/* PILL CLUSTER (Looking For + Gain) */
-.pill-cluster{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.pill{
-  display:inline-block;
-  font-size:12.5px;font-weight:600;color:var(--ink);
-  padding:7px 14px;border-radius:999px;background:var(--white);
-  border:1px solid var(--accent);letter-spacing:0;line-height:1.4;
-  white-space:nowrap;box-sizing:border-box;
+/* ===== Reset / Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--white);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+*:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 120ms, text-decoration-thickness 120ms;
+}
+a:hover { color: var(--pillar-hover); text-decoration-thickness: 2px; }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+p { margin: 0; }
+
+/* ===== Layout ===== */
+.page {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+@media (max-width: 1024px) { .page { padding: 0 32px; } }
+@media (max-width: 640px)  { .page { padding: 0 20px; } }
+.prose { max-width: var(--prose-max-width); }
+
+/* ===== Typography utilities ===== */
+.t-display  { font-size: var(--type-display); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+.t-h1       { font-size: var(--type-h1); font-weight: 700; line-height: 1.10; letter-spacing: -0.015em; }
+.t-h2       { font-size: var(--type-h2); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+.t-h3       { font-size: var(--type-h3); font-weight: 500; line-height: 1.25; letter-spacing: -0.005em; }
+.t-h4       { font-size: var(--type-h4); font-weight: 500; line-height: 1.30; }
+.t-body-lg  { font-size: var(--type-body-lg); font-weight: 400; line-height: 1.65; }
+.t-body     { font-size: var(--type-body); font-weight: 400; line-height: 1.65; }
+.t-small    { font-size: var(--type-small); font-weight: 400; line-height: 1.55; }
+.t-eyebrow  { font-size: var(--type-eyebrow); font-weight: 500; line-height: 1.40; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-muted); }
+.t-tiny     { font-size: var(--type-tiny); font-weight: 500; line-height: 1.40; letter-spacing: 0.08em; text-transform: uppercase; }
+.t-secondary { color: var(--text-secondary); }
+.t-muted     { color: var(--text-muted); }
+.t-navy      { color: var(--navy); }
+.tabular     { font-variant-numeric: tabular-nums; }
+
+/* ===== Highlight ===== */
+.highlight {
+  background-color: var(--pillar-primary);
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.05em 0.28em;
+  margin: 0 -0.05em;
+  border-radius: var(--radius-sm);
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+.highlight--welcomes { background-color: var(--welcomes); color: var(--white); }
+.highlight--connects { background-color: var(--connects); color: var(--white); }
+.highlight--responds { background-color: var(--responds); color: var(--navy); }
+
+/* ===== Page chrome ===== */
+.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 48px 0 24px; border-bottom: 1px solid var(--navy);
+}
+.site-header__logo {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 14px; letter-spacing: 0.04em; color: var(--navy);
+}
+.site-header__title {
+  font-size: var(--type-h4); font-weight: 500; color: var(--navy);
+}
+.site-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 0 48px; border-top: 1px solid var(--navy); margin-top: 96px;
+}
+.site-footer a {
+  font-size: var(--type-small); font-weight: 500; color: var(--navy); text-decoration: none;
 }
 
-/* NUMBERED EXPECTATIONS */
-.expect-list{list-style:none;counter-reset:exp;padding:0;margin:0 0 14px}
-.expect-list li{
-  counter-increment:exp;
-  font-size:13px;color:var(--ink);line-height:1.6;
-  padding-left:36px;position:relative;
-}
-.expect-list li + li{margin-top:10px}
-.expect-list li::before{
-  content:counter(exp);
-  position:absolute;left:0;top:1px;
-  width:24px;height:24px;border-radius:50%;
-  background:var(--ink);color:var(--white);
-  font-size:11px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-}
-.expect-list li strong{color:var(--ink);font-weight:700}
+/* ===== Section divider ===== */
+.section-divider { border: 0; border-top: 1px solid var(--border); margin: 48px 0; }
 
-/* TRAINING TWO-PART BLOCK */
-.train-block{
-  border:1px solid var(--line);border-radius:var(--r-md);
-  padding:22px 24px;background:var(--white);
+/* ===== Hero ===== */
+.hero { padding: 96px 0 48px; }
+.hero__eyebrow { margin-bottom: 24px; color: var(--navy); }
+.hero__headline {
+  font-size: var(--type-display); font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.02em; color: var(--navy); margin-bottom: 24px;
 }
-.train-intro{font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:14px}
-.train-intro strong{color:var(--ink);font-weight:700}
-.train-divider{border:none;border-top:1px solid var(--line-2);margin:6px 0 14px}
-.train-skills-label{
-  font-size:9.5px;font-weight:600;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--sub);margin-bottom:8px;
+.hero__subtitle {
+  font-size: var(--type-body-lg); font-weight: 400; line-height: 1.65;
+  color: var(--text-secondary); max-width: 60%; margin-bottom: 48px;
+}
+.hero__rule { border: 0; border-top: 1px solid var(--navy); margin: 0; }
+@media (max-width: 1024px) {
+  .hero { padding: 64px 0 32px; }
+  .hero__headline { font-size: 48px; }
+  .hero__subtitle { max-width: 100%; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 48px 0 24px; }
+  .hero__headline { font-size: 36px; }
 }
 
-/* GAIN ARROW LIST */
-.gain-list{list-style:none;padding:0;margin:0}
-.gain-list li{
-  font-size:13px;color:var(--ink);line-height:1.7;
-  padding-left:22px;position:relative;font-weight:500;
+/* ===== Section header ===== */
+.section-header {
+  display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+  flex-wrap: wrap;
 }
-.gain-list li::before{
-  content:'→';position:absolute;left:0;top:0;
-  color:var(--accent);font-weight:700;
+.pill-section {
+  display: inline-flex; align-items: center;
+  background: var(--navy); color: var(--white);
+  font-size: var(--type-tiny); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: var(--radius-pill);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
 }
-
-/* CLOSING BLOCK — Why This Role Matters */
-.closing{
-  margin-top:50px;padding:36px 40px;
-  border:1px solid var(--gold-border);border-radius:var(--r-lg);
-  background:var(--gold-bg);
-  position:relative;
+.section-header__title {
+  font-size: var(--type-h2); font-weight: 700; color: var(--navy);
+  line-height: 1.15; letter-spacing: -0.01em;
 }
-.closing::before{
-  content:'';position:absolute;top:0;left:24px;right:24px;
-  height:4px;background:var(--highlight);border-radius:0 0 4px 4px;
-}
-.closing-eyebrow{
-  font-size:10.5px;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--gold-text);margin-bottom:10px;
-}
-.closing-title{
-  font-size:26px;font-weight:700;color:var(--ink);
-  letter-spacing:-.015em;line-height:1.2;margin-bottom:14px;
-}
-.closing-body{
-  font-size:14px;color:var(--ink);line-height:1.6;
-  margin-bottom:18px;max-width:600px;
-}
-.closing-body strong{font-weight:700}
-.closing-pillars{
-  display:flex;flex-direction:column;gap:6px;margin-bottom:18px;
-}
-.closing-pillar{
-  font-size:13px;color:var(--ink);line-height:1.5;
-  padding-left:24px;position:relative;font-weight:600;
-}
-.closing-pillar::before{
-  content:'';position:absolute;left:0;top:9px;
-  width:10px;height:2px;background:var(--gold-border);
-}
-.closing-final{
-  font-size:14px;color:var(--ink);line-height:1.55;
-  font-style:italic;
-  padding-top:14px;border-top:1px solid var(--gold-border);
-}
-.closing-final .hl{font-style:normal}
-
-/* FOOTER */
-.page-footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;font-size:11.5px;color:var(--sub)}
-.page-footer a{color:var(--ink);text-decoration:none;font-weight:500}
-.page-footer .right{margin-left:auto}
-
-/* MOBILE — narrow viewports */
-@media (max-width: 768px){
-  body{padding:0;background:var(--white)}
-  .page-canvas{
-    width:100%;
-    max-width:100%;
-    padding:28px 20px;
-    box-shadow:none;
-  }
-  .hero-title{font-size:26px;line-height:1.2}
-  .hero-eyebrow{font-size:10px;letter-spacing:.16em}
-  .lede h2{font-size:20px;line-height:1.25}
-  .lede p,.lede p+p{font-size:13px}
-  .section-head{margin:32px 0 14px;gap:10px}
-  .section-name{font-size:16px;line-height:1.3}
-  .role-grid{grid-template-columns:1fr;gap:12px}
-  .role-card{padding:20px 22px}
-  .role-num{font-size:28px;top:20px;right:20px}
-  .role-title{font-size:16px;padding-right:44px}
-  .role-tag{font-size:12px;padding-right:44px}
-  .role-list li{font-size:12px;line-height:1.6}
-  .pill{font-size:12px;padding:6px 12px;white-space:normal}
-  .pill-cluster{gap:6px}
-  .expect-list li{font-size:12.5px;padding-left:32px}
-  .expect-list li::before{width:22px;height:22px;font-size:10.5px}
-  .gain-list li{font-size:13px}
-  .train-block{padding:18px 20px}
-  .train-intro{font-size:12.5px}
-  .closing{margin-top:32px;padding:26px 22px}
-  .closing-eyebrow{font-size:10px;letter-spacing:.18em}
-  .closing-title{font-size:21px;line-height:1.25}
-  .closing-body{font-size:13.5px}
-  .closing-pillar{font-size:12.5px}
-  .closing-final{font-size:13px}
-  .page-footer{flex-direction:column;align-items:flex-start;gap:6px;margin-top:32px}
-  .page-footer .right{margin-left:0}
+@media (max-width: 640px) {
+  .section-header__title { font-size: 24px; }
 }
 
-/* VERY NARROW — small phones */
-@media (max-width: 380px){
-  .page-canvas{padding:24px 16px}
-  .hero-title{font-size:24px}
-  .role-card{padding:18px 18px}
-  .role-num{font-size:24px;top:16px;right:16px}
-  .role-title{padding-right:38px}
-  .role-tag{padding-right:38px}
-  .closing{padding:22px 18px}
+/* ===== Grids ===== */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+
+/* ===== Numbered card ===== */
+.card-numbered {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 28px 24px; position: relative;
+}
+.card-numbered__head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 12px;
+}
+.card-numbered__title {
+  font-size: var(--type-h3); font-weight: 500; color: var(--navy); line-height: 1.25;
+}
+.card-numbered__numeral {
+  font-family: var(--font-display); font-weight: 700; font-size: 40px;
+  line-height: 1; color: var(--navy-soft); font-variant-numeric: tabular-nums;
+}
+.card-numbered__intro {
+  font-size: var(--type-body); color: var(--text-secondary);
+  margin-bottom: 16px; line-height: 1.65;
+}
+.card-numbered__divider { border: 0; border-top: 1px solid var(--border); margin: 16px 0; }
+
+/* ===== Callout card ===== */
+.card-callout {
+  background: var(--pillar-tint);
+  border-top: 3px solid var(--pillar-primary);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+}
+.card-callout--welcomes { background: var(--welcomes-tint); border-top-color: var(--welcomes); }
+.card-callout--connects { background: var(--connects-tint); border-top-color: var(--connects); }
+.card-callout--responds { background: var(--responds-tint); border-top-color: var(--responds); }
+.card-callout__eyebrow {
+  font-size: var(--type-eyebrow); font-weight: 500;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 12px;
+}
+.card-callout__title {
+  font-size: var(--type-h2); font-weight: 700; color: var(--navy);
+  margin-bottom: 12px; line-height: 1.20; letter-spacing: -0.01em;
+}
+.card-callout__body {
+  font-size: var(--type-body); color: var(--navy); line-height: 1.65; margin-bottom: 16px;
+}
+.card-callout__divider { border: 0; border-top: 1px solid rgba(0, 63, 112, 0.22); margin: 16px 0; }
+.card-callout__closer {
+  font-style: italic; font-size: var(--type-body); color: var(--navy); line-height: 1.65;
+}
+.card-callout__closer .highlight { font-style: normal; }
+@media (max-width: 640px) {
+  .card-callout__title { font-size: 24px; }
 }
 
-@media print{
-  @page{size:8.5in 11in;margin:0}
-  html,body{background:#FFF!important;padding:0!important;margin:0!important}
-  body{display:block}
-  .page-canvas{box-shadow:none!important;padding:32px 40px;width:8.5in;max-width:8.5in}
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .role-card,.about-core,.train-block,.closing{break-inside:avoid}
-  .section-head{break-inside:avoid}
+/* ===== Lists ===== */
+.list-arrow, .list-dash { list-style: none; padding: 0; margin: 0; }
+.list-arrow li, .list-dash li {
+  display: flex; gap: 12px; padding: 6px 0;
+  font-size: var(--type-body); color: var(--text-secondary); line-height: 1.55;
+}
+.list-arrow li::before { content: "→"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
+.list-dash li::before  { content: "—"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
+
+/* ===== Numbered list (custom variant) ===== */
+.list-num { list-style: none; padding: 0; margin: 0; counter-reset: ln; }
+.list-num li {
+  counter-increment: ln; display: flex; gap: 16px; padding: 8px 0;
+  font-size: var(--type-body); color: var(--text-secondary); line-height: 1.6;
+}
+.list-num li::before {
+  content: counter(ln, decimal-leading-zero);
+  color: var(--navy-soft); font-weight: 700;
+  font-variant-numeric: tabular-nums; flex-shrink: 0;
+}
+
+/* ===== Pills ===== */
+.pill-list {
+  display: inline-flex; align-items: center;
+  background: var(--white); border: 1px solid var(--navy); color: var(--navy);
+  font-size: var(--type-body); font-weight: 400;
+  padding: 10px 20px; border-radius: var(--radius-pill); white-space: normal;
+}
+.pill-list-group { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ===== Mobile fine-tuning ===== */
+@media (max-width: 640px) {
+  .pill-list { font-size: 14px; padding: 8px 16px; }
+  .card-numbered__numeral { font-size: 32px; }
+  .card-numbered__title { font-size: 20px; }
 }
 </style>
 </head>
 <body>
-<div class="page-canvas">
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-eyebrow">UCLA Residential Life · Position Description</div>
-  <h1 class="hero-title">Apartment Resident Assistant <span class="hl">(ARA)</span></h1>
+<div class="page">
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header__logo">UCLA RESIDENTIAL LIFE</div>
+  <div class="site-header__title">Apartment Resident Assistant · UAS</div>
 </header>
 
-<!-- SECTION 1 -->
-<div class="section-head"><span class="section-name">What this role is about</span></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__eyebrow t-eyebrow">UCLA Residential Life · Position Description</div>
+  <h1 class="hero__headline">Apartment Resident Assistant <span class="highlight highlight--responds">(ARA)</span></h1>
+  <hr class="hero__rule">
+</section>
 
-<div class="lede">
-  <h2>More than a title. A way of showing up.</h2>
-  <p>The ARA is a live-in student leader in University Apartments South (UAS) who helps create a welcoming, connected, and supportive community. This role blends community builder, crisis and emergency responder, institutional representative, and team member. Each conversation, duty shift, and program is an opportunity to make UAS feel like home.</p>
+<!-- SECTION 01 — What this role is about -->
+<div class="section-header">
+  <span class="pill-section">Section 01</span>
+  <h2 class="section-header__title">What this role is about</h2>
 </div>
+<p class="t-body-lg t-secondary prose">The ARA is a live-in student leader in University Apartments South (UAS) who helps create a welcoming, connected, and supportive community. This role blends community builder, crisis and emergency responder, institutional representative, and team member. Each conversation, duty shift, and program is an opportunity to make UAS feel like home.</p>
 
-<!-- SECTION 2 -->
-<div class="section-head"><span class="section-name">What you'll do</span></div>
+<hr class="section-divider">
 
-<div class="lede">
-  <p>Four core responsibilities: community, response, standards, and operations. Together they shape every week of the role.</p>
+<!-- SECTION 02 — What you'll do -->
+<div class="section-header">
+  <span class="pill-section">Section 02</span>
+  <h2 class="section-header__title">What you'll do</h2>
 </div>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Four core responsibilities: community, response, standards, and operations. Together they shape every week of the role.</p>
 
-<div class="role-grid">
+<div class="grid-2">
 
-  <article class="role-card">
-    <div class="role-num">01</div>
-<h3 class="role-title">Build community</h3>
-    <p class="role-tag">Create an environment where residents feel they belong.</p>
-    <hr class="role-divider">
-    <ul class="role-list">
+  <article class="card-numbered">
+    <div class="card-numbered__head">
+      <h3 class="card-numbered__title">Build community</h3>
+      <span class="card-numbered__numeral">01</span>
+    </div>
+    <p class="card-numbered__intro">Create an environment where residents feel they belong.</p>
+    <hr class="card-numbered__divider">
+    <ul class="list-arrow">
       <li>Welcome residents and set clear community expectations</li>
       <li>Plan and implement weekly community-building programs and engagement</li>
       <li>Create virtual connection spaces (bulletin boards, Slack, GroupMe)</li>
@@ -316,12 +364,14 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
     </ul>
   </article>
 
-  <article class="role-card">
-    <div class="role-num">02</div>
-<h3 class="role-title">Support &amp; respond</h3>
-    <p class="role-tag">Be part of the team residents rely on when things come up.</p>
-    <hr class="role-divider">
-    <ul class="role-list">
+  <article class="card-numbered">
+    <div class="card-numbered__head">
+      <h3 class="card-numbered__title">Support &amp; respond</h3>
+      <span class="card-numbered__numeral">02</span>
+    </div>
+    <p class="card-numbered__intro">Be part of the team residents rely on when things come up.</p>
+    <hr class="card-numbered__divider">
+    <ul class="list-arrow">
       <li>Participate weekly in a scheduled duty rotation with defined shifts</li>
       <li>Respond to incidents (lockouts, wellness concerns, emergencies)</li>
       <li>Assess situations: act, refer, or escalate as appropriate</li>
@@ -331,12 +381,14 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
     </ul>
   </article>
 
-  <article class="role-card">
-    <div class="role-num">03</div>
-<h3 class="role-title">Uphold community standards</h3>
-    <p class="role-tag">Maintain a safe, respectful, and accountable living environment.</p>
-    <hr class="role-divider">
-    <ul class="role-list">
+  <article class="card-numbered">
+    <div class="card-numbered__head">
+      <h3 class="card-numbered__title">Uphold community standards</h3>
+      <span class="card-numbered__numeral">03</span>
+    </div>
+    <p class="card-numbered__intro">Maintain a safe, respectful, and accountable living environment.</p>
+    <hr class="card-numbered__divider">
+    <ul class="list-arrow">
       <li>Know, uphold, and enforce university and housing policies</li>
       <li>Address policy violations and community concerns appropriately</li>
       <li>Document incidents accurately and on time</li>
@@ -345,12 +397,14 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
     </ul>
   </article>
 
-  <article class="role-card">
-    <div class="role-num">04</div>
-<h3 class="role-title">Help things run smoothly</h3>
-    <p class="role-tag">Support the day-to-day operations of the community.</p>
-    <hr class="role-divider">
-    <ul class="role-list">
+  <article class="card-numbered">
+    <div class="card-numbered__head">
+      <h3 class="card-numbered__title">Help things run smoothly</h3>
+      <span class="card-numbered__numeral">04</span>
+    </div>
+    <p class="card-numbered__intro">Support the day-to-day operations of the community.</p>
+    <hr class="card-numbered__divider">
+    <ul class="list-arrow">
       <li>Attend weekly staff and biweekly supervisor meetings</li>
       <li>Support move-in, welcome efforts, and community transitions</li>
       <li>Follow up on common concerns (maintenance, noise, policy)</li>
@@ -361,31 +415,35 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
 
 </div>
 
-<!-- SECTION 3 -->
-<div class="section-head"><span class="section-name">What we're looking for</span></div>
+<hr class="section-divider">
 
-<div class="lede">
-  <p>Traits, not credentials. The strongest ARAs share a few qualities, and we'll help you build the rest.</p>
+<!-- SECTION 03 — What we're looking for -->
+<div class="section-header">
+  <span class="pill-section">Section 03</span>
+  <h2 class="section-header__title">What we're looking for</h2>
+</div>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Traits, not credentials. The strongest ARAs share a few qualities, and we'll help you build the rest.</p>
+
+<div class="pill-list-group">
+  <span class="pill-list">Genuine care for people &amp; community</span>
+  <span class="pill-list">Strong communication &amp; listening</span>
+  <span class="pill-list">Reliability &amp; follow-through</span>
+  <span class="pill-list">Time management</span>
+  <span class="pill-list">Sound judgment</span>
+  <span class="pill-list">Willingness to learn &amp; grow</span>
+  <span class="pill-list">Represents UCLA &amp; ResLife values</span>
 </div>
 
-<div class="pill-cluster">
-  <span class="pill">Genuine care for people &amp; community</span>
-  <span class="pill">Strong communication &amp; listening</span>
-  <span class="pill">Reliability &amp; follow-through</span>
-  <span class="pill">Time management</span>
-  <span class="pill">Sound judgment</span>
-  <span class="pill">Willingness to learn &amp; grow</span>
-  <span class="pill">Represents UCLA &amp; ResLife values</span>
+<hr class="section-divider">
+
+<!-- SECTION 04 — Role expectations & accountability -->
+<div class="section-header">
+  <span class="pill-section">Section 04</span>
+  <h2 class="section-header__title">Role expectations &amp; accountability</h2>
 </div>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The ARA role carries priority commitments. You'll have clear schedules, expectations, and support, and we'll expect consistent follow-through in return.</p>
 
-<!-- SECTION 4 -->
-<div class="section-head"><span class="section-name">Role expectations &amp; accountability</span></div>
-
-<div class="lede">
-  <p>The ARA role carries priority commitments. You'll have clear schedules, expectations, and support, and we'll expect consistent follow-through in return.</p>
-</div>
-
-<ol class="expect-list">
+<ol class="list-num">
   <li>This role carries priority commitments and responsibility.</li>
   <li>Outside commitments must be approved and not conflict with ARA responsibilities.</li>
   <li>You are expected to be a positive role model, both on and off duty.</li>
@@ -394,25 +452,25 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
   <li>You are expected to document, communicate, and follow through consistently.</li>
 </ol>
 
-<!-- SECTION 5 -->
-<div class="section-head"><span class="section-name">Training &amp; development</span></div>
+<hr class="section-divider">
 
-<div class="lede">
-  <p>You'll be set up to succeed and supported through the year.</p>
+<!-- SECTION 05 — Training & development -->
+<div class="section-header">
+  <span class="pill-section">Section 05</span>
+  <h2 class="section-header__title">Training &amp; development</h2>
 </div>
+<p class="t-body-lg t-secondary prose">You'll be set up to succeed and supported through the year. Participate in <strong>mandatory summer training</strong> and ongoing development throughout the year. Each training cycle pairs operational protocol with personal growth so you can lead with confidence.</p>
 
-<div class="train-block">
-  <p class="train-intro" style="margin-bottom:0">Participate in <strong>mandatory summer training</strong> and ongoing development throughout the year. Each training cycle pairs operational protocol with personal growth so you can lead with confidence.</p>
+<hr class="section-divider">
+
+<!-- SECTION 06 — What you'll gain -->
+<div class="section-header">
+  <span class="pill-section">Section 06</span>
+  <h2 class="section-header__title">What you'll gain</h2>
 </div>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The skills and experiences you'll carry well past the role.</p>
 
-<!-- SECTION 6 -->
-<div class="section-head"><span class="section-name">What you'll gain</span></div>
-
-<div class="lede">
-  <p>The skills and experiences you'll carry well past the role.</p>
-</div>
-
-<ul class="gain-list">
+<ul class="list-arrow">
   <li>Leadership and communication that translate across any path</li>
   <li>A strong foundation in teamwork and collaboration</li>
   <li>Confidence in decision-making and crisis response</li>
@@ -423,23 +481,29 @@ body{font-family:var(--ff);background:#DDDDE0;color:var(--ink);min-height:100vh;
   <li>An opportunity to meaningfully impact others' lives</li>
 </ul>
 
-<!-- CLOSING — Why This Role Matters -->
-<div class="closing">
-  <div class="closing-eyebrow">Why this role matters</div>
-  <h2 class="closing-title">More than programs or duty shifts.</h2>
-  <p class="closing-body">This role is the connective tissue of UAS. It's the difference between a place where residents live and a place where they belong.</p>
-  <div class="closing-pillars">
-    <div class="closing-pillar">Creating spaces where people feel they belong</div>
-    <div class="closing-pillar">Supporting residents through important moments</div>
-    <div class="closing-pillar">Building a community rooted in care, accountability, and connection</div>
-  </div>
-  <p class="closing-final">You help create the experience people <span class="hl">remember</span>, and the environment where they succeed.</p>
-</div>
+<hr class="section-divider">
 
-<footer class="page-footer">
+<!-- CLOSING — Why this role matters -->
+<article class="card-callout card-callout--responds">
+  <div class="card-callout__eyebrow">Why this role matters</div>
+  <h2 class="card-callout__title">More than programs or duty shifts.</h2>
+  <p class="card-callout__body">This role is the connective tissue of UAS. It's the difference between a place where residents live and a place where they belong.</p>
+  <hr class="card-callout__divider">
+  <ul class="list-dash" style="margin-bottom: 16px;">
+    <li>Creating spaces where people feel they belong</li>
+    <li>Supporting residents through important moments</li>
+    <li>Building a community rooted in care, accountability, and connection</li>
+  </ul>
+  <p class="card-callout__closer">You help create the experience people <span class="highlight highlight--responds">remember</span>, and the environment where they succeed.</p>
+</article>
+
+<!-- FOOTER -->
+<footer class="site-footer">
   <a href="mailto:hello@orl.ucla.edu">hello@orl.ucla.edu</a>
-  <a href="https://reslife.ucla.edu" class="right">reslife.ucla.edu</a>
+  <a href="https://reslife.ucla.edu">reslife.ucla.edu</a>
 </footer>
 
 </div>
-</body></html>
+
+</body>
+</html>
