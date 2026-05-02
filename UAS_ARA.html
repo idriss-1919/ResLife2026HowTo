@@ -199,11 +199,11 @@ p { margin: 0; }
 }
 .hero__headline {
   font-size: var(--type-display); font-weight: 700; line-height: 1.05;
-  letter-spacing: -0.02em; color: var(--navy); margin-bottom: 32px;
+  letter-spacing: -0.02em; color: var(--navy); margin-bottom: 24px;
 }
 .hero__subtitle {
   font-size: var(--type-body-lg); font-weight: 400; line-height: 1.65;
-  color: var(--text-secondary); max-width: 60%; margin-bottom: 48px;
+  color: var(--text-secondary); max-width: var(--prose-max-width); margin-bottom: 48px;
 }
 .hero__rule { border: 0; border-top: 1px solid var(--navy); margin: 0; }
 @media (max-width: 1024px) {
@@ -472,22 +472,48 @@ p { margin: 0; }
 <section class="hero">
   <div class="hero__eyebrow">University Apartments South</div>
   <h1 class="hero__headline">Apartment Resident Assistant <span class="highlight highlight--navy">(ARA)</span></h1>
+  <p class="hero__subtitle">The ARA is a live-in student leader in University Apartments South (UAS) who helps create a community where every resident feels welcomed, connected, and supported. Serving graduate students, students with families, and postdoctoral residents, the ARA acts as a community builder, responder, teammate, and institutional representative, making UAS feel like home in both everyday interactions and critical moments.</p>
   <hr class="hero__rule">
 </section>
 
-<!-- SECTION 01 — What this role is about -->
+<!-- SECTION — What you'll need -->
 <div class="section-header">
-  <h2 class="section-header__title">What this role is about</h2>
+  <h2 class="section-header__title">What you'll need</h2>
 </div>
-<p class="t-body-lg t-secondary prose">The ARA is a live-in student leader in University Apartments South (UAS) who helps create a welcomed, connected, and supported community. This role blends community builder, crisis and emergency responder, institutional representative, and team member. Each conversation, duty shift, and program is an opportunity to make UAS feel like home.</p>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">To be eligible for the role, you'll need to meet the following requirements.</p>
+
+<ul class="list-arrow">
+  <li>Be a full-time UCLA student</li>
+  <li>Maintain a minimum cumulative GPA of 2.3 (or meet graduate program standards)</li>
+  <li>Be eligible to work in the U.S. and complete a background check</li>
+  <li>Hold a valid U.S. driver's license</li>
+</ul>
 
 <hr class="section-divider">
 
-<!-- SECTION 02 — What you'll do -->
+<!-- SECTION — What we're looking for -->
 <div class="section-header">
-  <h2 class="section-header__title">What you'll do</h2>
+  <h2 class="section-header__title">What we're looking for</h2>
 </div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Four core responsibilities: community, response, operations, and standards. Together they shape every week of the role.</p>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Traits, not credentials. The strongest ARAs bring a shared set of qualities, and we'll support you in building the skills needed for the role.</p>
+
+<div class="pill-list-group">
+  <span class="pill-list">Genuine care for people and community</span>
+  <span class="pill-list">Strong communication and active listening</span>
+  <span class="pill-list">Reliability and follow-through</span>
+  <span class="pill-list">Sound judgment</span>
+  <span class="pill-list">Time management and organization</span>
+  <span class="pill-list">Willingness to learn and grow</span>
+  <span class="pill-list">Ability to work collaboratively with others</span>
+  <span class="pill-list">Alignment with UCLA and Residential Life values</span>
+</div>
+
+<hr class="section-divider">
+
+<!-- SECTION — Operations -->
+<div class="section-header">
+  <h2 class="section-header__title">Operations</h2>
+</div>
 
 <div class="grid-2 grid-2--fixed">
 
@@ -499,10 +525,10 @@ p { margin: 0; }
     <p class="card-numbered__intro">Create an environment where residents feel they belong.</p>
     <hr class="card-numbered__divider">
     <ul class="list-arrow">
-      <li>Plan and implement one weekly community-building program</li>
+      <li>Plan and implement weekly community-building programs</li>
       <li>Welcome residents and set clear community expectations</li>
-      <li>Create virtual connection spaces (bulletin boards, Slack, GroupMe)</li>
-      <li>Facilitate roommate discussions, agreements, and conflict resolution</li>
+      <li>Build relationships and maintain a visible, supportive presence</li>
+      <li>Facilitate roommate conversations and conflict resolution</li>
     </ul>
   </article>
 
@@ -514,15 +540,16 @@ p { margin: 0; }
     <p class="card-numbered__intro">Be part of the team residents rely on when things come up.</p>
     <hr class="card-numbered__divider">
     <ul class="list-arrow">
-      <li>Participate once per week in a scheduled duty rotation of ~ 13-hour day and overnight shifts</li>
-      <li>Respond to incidents in line with established protocols and support appropriate follow-up</li>
-      <li>Connect residents to appropriate campus resources</li>
+      <li>Participate in a weekly overnight duty rotation</li>
+      <li>Respond to incidents by assessing situations, taking action, and escalating when needed</li>
+      <li>Support appropriate follow-up after incidents</li>
+      <li>Connect residents to campus resources, including academic and personal support</li>
     </ul>
   </article>
 
   <article class="card-numbered">
     <div class="card-numbered__head">
-      <h3 class="card-numbered__title">Help things run smoothly</h3>
+      <h3 class="card-numbered__title">Operate effectively</h3>
       <span class="card-numbered__numeral">03</span>
     </div>
     <p class="card-numbered__intro">Support the day-to-day operations of the community.</p>
@@ -531,6 +558,7 @@ p { margin: 0; }
       <li>Attend weekly staff and biweekly supervisor meetings</li>
       <li>Support move-in, welcome efforts, and community transitions</li>
       <li>Complete administrative tasks, reports, and communications as expected</li>
+      <li>Participate in training and ongoing development</li>
     </ul>
   </article>
 
@@ -543,9 +571,9 @@ p { margin: 0; }
     <hr class="card-numbered__divider">
     <ul class="list-arrow">
       <li>Know, uphold, and enforce university and housing policies</li>
-      <li>Document incidents accurately and on time</li>
-      <li>Maintain confidentiality and professionalism</li>
-      <li>Balance care and accountability in all interactions</li>
+      <li>Document incidents accurately and in a timely manner</li>
+      <li>Maintain professionalism, confidentiality, and integrity</li>
+      <li>Contribute to a coordinated, 24/7 residential support system</li>
     </ul>
   </article>
 
@@ -553,42 +581,7 @@ p { margin: 0; }
 
 <hr class="section-divider">
 
-<!-- SECTION 03 — What we're looking for -->
-<div class="section-header">
-  <h2 class="section-header__title">What we're looking for</h2>
-</div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">Traits, not credentials. The strongest ARAs bring a shared set of qualities, and we'll support you in building the skills needed for the role.</p>
-
-<div class="pill-list-group">
-  <span class="pill-list">Genuine care for people &amp; community</span>
-  <span class="pill-list">Strong communication &amp; listening</span>
-  <span class="pill-list">Reliability &amp; follow-through</span>
-  <span class="pill-list">Time management</span>
-  <span class="pill-list">Sound judgment</span>
-  <span class="pill-list">Willingness to learn &amp; grow</span>
-  <span class="pill-list">Represents UCLA &amp; ResLife values</span>
-</div>
-
-<hr class="section-divider">
-
-<!-- SECTION 04 — Role expectations & accountability -->
-<div class="section-header">
-  <h2 class="section-header__title">Role expectations &amp; accountability</h2>
-</div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The ARA role comes with important commitments. You'll have clear schedules, expectations, and support, along with an expectation of consistent follow-through.</p>
-
-<ol class="list-num">
-  <li>This role carries priority commitments and responsibility.</li>
-  <li>Outside commitments must be approved and not conflict with ARA responsibilities.</li>
-  <li>You are expected to be a positive role model, both on and off duty.</li>
-  <li>While not on call 24/7, you remain a visible and influential presence in the community.</li>
-  <li>You will have clear duty schedules, expectations, and support systems.</li>
-  <li>You are expected to document, communicate, and follow through consistently.</li>
-</ol>
-
-<hr class="section-divider">
-
-<!-- SECTION 05 — Training & development -->
+<!-- SECTION — Training & development -->
 <div class="section-header">
   <h2 class="section-header__title">Training &amp; development</h2>
 </div>
@@ -596,11 +589,11 @@ p { margin: 0; }
 
 <hr class="section-divider">
 
-<!-- SECTION 06 — What you'll gain -->
+<!-- SECTION — What you'll gain -->
 <div class="section-header">
   <h2 class="section-header__title">What you'll gain</h2>
 </div>
-<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The skills and experiences you'll carry well past the role.</p>
+<p class="t-body-lg t-secondary prose" style="margin-bottom: 32px;">The skills and experiences you'll carry well beyond the role.</p>
 
 <ul class="list-arrow">
   <li>Leadership and communication that translate across any path</li>
@@ -609,8 +602,8 @@ p { margin: 0; }
   <li>Real-world experience navigating complex and dynamic situations</li>
   <li>Skills in conflict mediation and resolution</li>
   <li>The ability to build and sustain community</li>
-  <li>Lasting relationships that evolve into a lifelong network of colleagues, mentors, and support systems</li>
-  <li>An opportunity to meaningfully impact others' lives</li>
+  <li>Lasting relationships that grow into a lifelong network of colleagues, mentors, and support</li>
+  <li>The opportunity to make a meaningful impact on others' lives</li>
 </ul>
 
 <hr class="section-divider">
