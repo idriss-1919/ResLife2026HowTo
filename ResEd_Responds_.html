@@ -86,10 +86,16 @@ html { scroll-behavior: smooth; }
   body.nav-open .nav-backdrop { display: block; z-index: 90; }
   body.nav-open { overflow: hidden; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center;
+    position: fixed; top: 12px; left: 12px; z-index: 95;
     width: 44px; height: 44px; border-radius: var(--radius-sm);
     background: var(--white); border: 1px solid var(--navy); color: var(--navy);
-    font-family: var(--font-display); font-size: 20px; line-height: 1; cursor: pointer; padding: 0; }
+    font-family: var(--font-display); font-size: 20px; line-height: 1; cursor: pointer; padding: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
   .nav-toggle:hover { background: var(--navy); color: var(--white); }
+  /* Hide the toggle while the drawer is open — the drawer has its own close button */
+  body.nav-open .nav-toggle { display: none; }
+  /* Reserve space at top of header so the logo doesn't tuck under the floating toggle */
+  .site-header { padding-top: 64px; }
 }
 
 /* Visible focus rings for keyboard navigation */
@@ -275,11 +281,10 @@ a:hover { color: var(--pillar-hover); text-decoration-thickness: 2px; }
 /* Lists */
 .list-arrow { list-style: none; padding: 0; margin: 0; }
 .list-arrow li {
-  display: block; padding: 6px 0 6px 24px; position: relative;
+  display: flex; gap: 12px; padding: 6px 0;
   font-size: var(--type-body); color: var(--text-secondary); line-height: 1.55;
 }
-.list-arrow li::before { content: "→"; color: var(--navy); font-weight: 500;
-  position: absolute; left: 0; top: 6px; }
+.list-arrow li::before { content: "→"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
 .list-num { list-style: none; padding: 0; margin: 0; counter-reset: ln; }
 .list-num li {
   counter-increment: ln; display: flex; gap: 16px; padding: 10px 0;
@@ -602,14 +607,8 @@ h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--navy); font-family: var(--font-
 }
 .card-callout__body { font-size: var(--type-body); color: var(--navy); line-height: 1.65; margin-bottom: 16px; }
 .list-num li {
-  counter-increment: ln; display: block; padding: 8px 0 8px 36px; position: relative;
+  counter-increment: ln; display: flex; gap: 16px; padding: 8px 0;
   font-size: var(--type-body); color: var(--text-secondary); line-height: 1.6;
-}
-.list-num li::before {
-  content: counter(ln, decimal-leading-zero);
-  color: var(--navy-soft); font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  position: absolute; left: 0; top: 8px;
 }
 /* Pills */
 .pill-list {
@@ -957,17 +956,6 @@ h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--navy); font-family: var(--font-
   .daybar__label { font-size: 12px; }
   .daybar__shift { font-size: 9.5px; }
 }
-@media (max-width: 560px) {
-  /* Stack the label above the track so the timeline gets full width */
-  .daybar__head { flex-direction: column; gap: 4px; align-items: stretch; }
-  .daybar__head-spacer { display: none; }
-  .daybar__row { flex-direction: column; align-items: stretch; gap: 6px; padding: 10px 0; }
-  .daybar__label { width: 100%; }
-  .daybar__track { height: 24px; }
-  .daybar__shift { font-size: 10px; padding: 0 4px; }
-  /* Hide every other axis tick to prevent label overlap */
-  .daybar__tick:nth-child(even) { display: none; }
-}
 /* Break bars — for D4D break period lengths with holiday split */
 .break-bars { display: flex; flex-direction: column; gap: 18px; margin: 16px 0 24px; }
 .break-bar {}
@@ -1130,14 +1118,10 @@ h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--navy); font-family: var(--font-
 .section-header { display: flex; align-items: baseline; gap: 16px; margin: 48px 0 24px; flex-wrap: wrap; }
 .subsection { margin: 36px 0 14px; }
 .list-arrow { list-style: none; padding: 0; margin: 0; }
-.list-arrow li { display: flex; gap: 12px; padding: 6px 0; font-size: var(--type-body);
-  color: var(--text-secondary); line-height: 1.55; }
-.list-arrow li::before { content: "→"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
 .list-tight { list-style: none; padding: 0; margin: 0; }
-.list-tight li { display: block; padding: 4px 0 4px 22px; position: relative; font-size: var(--type-small);
+.list-tight li { display: flex; gap: 10px; padding: 4px 0; font-size: var(--type-small);
   color: var(--text-secondary); line-height: 1.5; }
-.list-tight li::before { content: "→"; color: var(--navy); font-weight: 500;
-  position: absolute; left: 0; top: 4px; }
+.list-tight li::before { content: "→"; color: var(--navy); flex-shrink: 0; font-weight: 500; }
 .note { background: var(--surface-card); border-radius: var(--radius-md); padding: 18px 22px;
   margin: 16px 0; font-size: var(--type-small); color: var(--text-secondary); line-height: 1.6; }
 .lo { background: var(--responds-tint); border-radius: var(--radius-md);
