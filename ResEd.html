@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCLA ResLife — Director of Residential Education JDs &amp; Org Structure</title>
+<style>
+/* ════════════════════════════════════════════════════ */
+/* JDs — base styles (variables, body, doc-canvas, etc.) */
+/* ════════════════════════════════════════════════════ */
+
+@font-face { font-family: 'Karbon'; src: local('Karbon Bold');                       font-weight: 700; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Semibold');                   font-weight: 600; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Medium');                     font-weight: 500; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Regular'), local('Karbon');   font-weight: 400; }
+
+:root {
+  --white:   #FFFFFF;
+  --gray:    #F4F4F3;
+  --bg:      #DDDDE0;
+  --blue:    #005587;
+  --ink:     #005587;
+  --text:    #1B2A3A;
+  --sub:     #595959;
+  --line:    #E0E0E0;
+
+  --welcomes: #2774AE;
+  --connects: #D900A5;
+  --responds: #FFD100;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+
+  --ff: 'Karbon', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  font-family: var(--ff);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+/* ── DOC CANVAS: 8.5in × 11in (letter portrait) ── */
+.doc-canvas {
+  width: 8.5in;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  padding: 0 0.6in;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  flex-shrink: 0;
+}
+.brand     { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.page-meta { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sub); }
+
+/* ── JD WRAPPER ── */
+.jd {
+  padding: 0.5in 0.6in 0.5in;
+}
+.jd + .jd {
+  border-top: 1px solid var(--line);
+  page-break-before: always;
+}
+
+/* ── TITLE BLOCK ── */
+.jd-title {
+  margin-bottom: 24px;
+  padding-top: 8px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--welcomes);
+}
+.jd.apartment .jd-title {
+  border-bottom-color: var(--responds);
+}
+.jd-title .eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: 4px;
+}
+.jd-title h1 {
+  font-family: var(--ff);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ── SECTION HEADING ── */
+.jd h2 {
+  font-family: var(--ff);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ── PROSE PARAGRAPHS ── */
+.jd p {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+/* ── REQUIREMENT LINES ── */
+.req-line {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 6px;
+  padding-left: 12px;
+  position: relative;
+}
+.req-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--welcomes);
+}
+.jd.apartment .req-line::before {
+  background: var(--responds);
+}
+
+/* ── RESPONSIBILITIES TABLE ── */
+.resp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+.resp-table thead th {
+  background: var(--gray);
+  color: var(--ink);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 9.5px;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+}
+.resp-table thead th.pct { text-align: center; width: 70px; }
+.resp-table thead th.fn  { width: 28%; }
+.resp-table tbody td {
+  border: 1px solid var(--line);
+  padding: 9px 10px;
+  vertical-align: top;
+  background: var(--white);
+}
+.resp-table tbody td.fn {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: -0.005em;
+  border-left: 3px solid var(--welcomes);
+}
+.jd.apartment .resp-table tbody td.fn {
+  border-left-color: var(--responds);
+}
+.resp-table tbody td.pct {
+  text-align: center;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 12px;
+  width: 70px;
+}
+.resp-table tbody td ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.resp-table tbody td li {
+  padding-left: 12px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.resp-table tbody td li:last-child { margin-bottom: 0; }
+.resp-table tbody td li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--welcomes);
+  font-weight: bold;
+}
+.jd.apartment .resp-table tbody td li::before {
+  color: var(--responds);
+}
+
+/* ── KSA TABLE ── */
+.ksa-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+.ksa-table thead th {
+  background: var(--gray);
+  color: var(--ink);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 9.5px;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+}
+.ksa-table thead th.req { text-align: center; width: 130px; }
+.ksa-table tbody td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  vertical-align: top;
+  background: var(--white);
+}
+.ksa-table tbody td.req {
+  text-align: center;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* ── FOOTER ── */
+.doc-footer {
+  width: 100%;
+  border-top: 1px solid var(--line);
+  padding: 12px 0.6in;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 10.5px;
+  color: var(--sub);
+  background: var(--white);
+}
+.doc-footer a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+}
+.doc-footer .right { margin-left: auto; }
+
+/* ── CASE INTRO ── */
+.case-intro {
+  padding: 0.55in 0.6in 0.5in;
+  border-bottom: 1px solid var(--line);
+  page-break-after: always;
+}
+.case-intro .case-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: 6px;
+}
+.case-intro h1 {
+  font-family: var(--ff);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--welcomes);
+}
+
+.case-block { margin-bottom: 14px; }
+.case-block p {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+}
+.case-lede {
+  font-size: 13px !important;
+  font-weight: 600;
+  color: var(--ink) !important;
+  line-height: 1.45 !important;
+  margin-bottom: 6px !important;
+}
+
+/* Growth stat pill */
+.growth-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(39, 116, 174, 0.06);
+  border: 1px solid rgba(39, 116, 174, 0.2);
+  border-left: 3px solid var(--welcomes);
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--text);
+  margin-top: 8px;
+}
+.growth-pill strong { color: var(--welcomes); font-weight: 700; }
+
+/* Two-portfolio split row */
+.portfolio-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+.portfolio-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--welcomes);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+}
+.portfolio-card.apt { border-top-color: var(--responds); }
+.portfolio-card .label {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--sub);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.portfolio-card .name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.portfolio-card .detail {
+  font-size: 10.5px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Stats row (carrying numbers) */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.stat-card {
+  background: var(--gray);
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  text-align: center;
+}
+.stat-card .num {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.stat-card .lbl {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--sub);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* Cost callout */
+.cost-callout {
+  background: rgba(255, 209, 0, 0.10);
+  border: 1px solid rgba(255, 209, 0, 0.45);
+  border-left: 3px solid var(--responds);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.cost-callout strong { color: var(--ink); font-weight: 700; }
+
+/* Delivery list */
+.deliver-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  margin-top: 8px;
+}
+.deliver-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.deliver-item::before {
+  content: "✓";
+  color: var(--responds);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4;
+  flex-shrink: 0;
+  background: var(--ink);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.case-section-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+@media print {
+  @page { size: 8.5in 11in; margin: 0; }
+  html, body { background: #FFFFFF !important; padding: 0 !important; margin: 0 !important; }
+  body { display: block; align-items: unset; }
+  .doc-canvas { box-shadow: none !important; width: 8.5in !important; }
+  .topbar, .doc-footer { background: var(--white) !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .resp-table, .ksa-table, .resp-table tr, .ksa-table tr { break-inside: avoid; }
+  .jd h2 { break-after: avoid; }
+}
+
+@media (max-width: 900px) { body { padding: 12px; } }
+
+
+/* ════════════════════════════════════════════════════ */
+/* Org Chart styles (scoped under .page-canvas)        */
+/* ════════════════════════════════════════════════════ */
+
+@font-face { font-family: 'Karbon'; src: local('Karbon Bold');                       font-weight: 700; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Semibold');                   font-weight: 600; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Medium');                     font-weight: 500; }
+@font-face { font-family: 'Karbon'; src: local('Karbon Regular'), local('Karbon');   font-weight: 400; }
+
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+
+
+/* ── PAGE CANVAS: 11in tall × 17in wide (tabloid landscape) ── */
+.page-canvas {
+  width: 17in;
+  height: 11in;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── TOPBAR ── */
+.page-canvas .topbar {
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  flex-shrink: 0;
+}
+.page-canvas .brand     { font-size: 11.9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.page-canvas .page-meta { font-size: 10.8px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sub); }
+
+/* ── CHART WRAPPER ── */
+.chart-wrap {
+  width: 100%;
+  flex: 1;
+  background: var(--white);
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* ── NODE BOX ── */
+.node {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 6px 10px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: border-color 150ms ease-out;
+}
+.node .role  { font-family: var(--ff); font-size: 11.3px; font-weight: 600; color: var(--ink); line-height: 1.3; display: block; letter-spacing: -0.005em; }
+.node .area  { font-family: var(--ff); font-size: 9.7px; font-weight: 500; color: var(--sub); margin-top: 2px; display: block; letter-spacing: 0.04em; }
+
+/* Vacant: dashed border + muted text (no gray fill) */
+.node-vacant         { border-style: dashed; border-color: var(--vacant); background: var(--white); }
+.node-vacant .role   { color: var(--vacant); }
+.node-vacant .role::after { content: " · vacant"; font-size: 9.7px; font-weight: 500; color: var(--vacant); letter-spacing: 0.1em; text-transform: uppercase; margin-left: 4px; }
+
+/* ResEd Assistant Director nodes use the standard node styling */
+.node-resed .role { color: var(--ink); }
+
+/* ── VERTICAL LINE ── */
+.vline {
+  width: 1px;
+  background: var(--line);
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ── TOP CHAIN (AVC → ED, each with their own EA on the right) ── */
+.top-chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+.top-chain .node { width: fit-content; min-width: 240px; }
+
+.chain-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.chain-spacer { flex: 1; }
+.chain-ea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-left: 0;
+}
+.chain-hline {
+  width: 24px;
+  height: 1px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+.chain-ea .node { min-width: 120px; }
+
+/* ── ED DIRECT REPORTS ROW ── */
+.reports-tier {
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Vertical connector from ED bubble down to the horizontal bar — */
+/* anchored at exact 50% of the reports-tier so it always lines up */
+/* with col-4 (Associate Director, Conduct). */
+.reports-tier::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+}
+
+.reports-tier > .col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* vertical line from horizontal bar down to each column's node */
+.reports-tier > .col::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 20px;
+  background: var(--line);
+}
+
+.reports-tier > .col > .node {
+  width: 100%;
+}
+
+/* Label above the tier */
+.tier-label {
+  width: 100%;
+  font-size: 10.3px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+/* ── UNIT REPORTS (vertical list below a unit head) ── */
+.unit-reports {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  position: relative;
+}
+
+.unit-reports::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+}
+
+.report-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 4px 7px;
+  text-align: left;
+  transition: background 150ms ease-out;
+}
+.report-box:hover { background: var(--gray); }
+.report-box .role { font-size: 10.3px; font-weight: 600; color: var(--ink); line-height: 1.25; display: block; letter-spacing: -0.005em; }
+.report-box .area { font-size: 9.2px; color: var(--sub); margin-top: 1px; display: block; letter-spacing: 0.03em; }
+.report-box.vacant { border-style: dashed; border-color: var(--vacant); }
+.report-box.vacant .role { color: var(--vacant); }
+.report-box.vacant .role::after { content: " · vacant"; font-size: 8.6px; font-weight: 500; color: var(--vacant); letter-spacing: 0.1em; text-transform: uppercase; margin-left: 4px; }
+
+/* nested report */
+.report-box.nested  { margin-left: 12px; }
+.report-box.nested-2 { margin-left: 24px; }
+
+/* graduate role accent */
+.report-box.grad {
+  border-left: 3px solid var(--welcomes);
+}
+.report-box.grad .role { color: var(--welcomes); }
+
+/* placeholder/info note inside a unit-reports list */
+.report-note {
+  font-size: 9.7px;
+  font-style: italic;
+  color: var(--sub);
+  padding: 5px 8px;
+  border: 1px dashed var(--line);
+  border-radius: var(--r-sm);
+  letter-spacing: 0.02em;
+}
+
+/* Scope pointer: visually links a unit-reports note to a scope wrapper below */
+.scope-pointer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 1px dashed;
+  border-radius: var(--r-sm);
+  font-size: 9.7px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+}
+.scope-pointer .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.scope-pointer .arrow {
+  margin-left: auto;
+  font-weight: 700;
+}
+.scope-pointer-deputy {
+  border-color: var(--responds);
+  background: rgba(255, 209, 0, 0.06);
+  color: var(--ink);
+}
+.scope-pointer-deputy .dot   { background: var(--responds); }
+.scope-pointer-director {
+  border-color: var(--welcomes);
+  background: rgba(39, 116, 174, 0.05);
+  color: var(--welcomes);
+}
+.scope-pointer-director .dot { background: var(--welcomes); }
+
+/* ── RESED SECTION ── */
+.resed-section {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.resed-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.resed-label {
+  font-size: 10.3px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: 2px;
+}
+.resed-label .accent { color: var(--welcomes); font-weight: 700; }
+
+.resed-title {
+  font-family: var(--ff);
+  font-size: 15.1px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.resed-sub {
+  font-size: 10.8px;
+  color: var(--sub);
+  max-width: 560px;
+  text-align: right;
+  line-height: 1.4;
+}
+
+.resed-areas {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+}
+
+.area-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.area-col > .node {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.area-reports {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  position: relative;
+}
+.area-reports::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 12px;
+  background: var(--line);
+}
+
+.area-report {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 3px 6px;
+  text-align: left;
+}
+.area-report .role { font-size: 9.7px; font-weight: 600; color: var(--ink); line-height: 1.25; display: block; letter-spacing: -0.005em; }
+.area-report .area { font-size: 8.6px; color: var(--sub); display: block; margin-top: 0; letter-spacing: 0.03em; }
+.area-report.grad  { border-left: 3px solid var(--welcomes); }
+.area-report.grad .role { color: var(--welcomes); }
+.area-report.nested { margin-left: 10px; }
+
+/* Director of ResEd scope — single unified box */
+.director-scope-wrapper {
+  grid-column: span 4;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--welcomes);
+  border-radius: var(--r-md);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  position: relative;
+}
+
+/* Deputy Director scope — single unified box */
+.deputy-scope-wrapper {
+  grid-column: span 4;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--responds);
+  border-radius: var(--r-md);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  position: relative;
+}
+
+/* Scope label inside each wrapper */
+.scope-tag {
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  background: var(--white);
+  padding: 0 6px;
+  font-size: 9.7px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.scope-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.scope-tag .dot.deputy   { background: var(--responds); }
+.scope-tag .dot.director { background: var(--welcomes); }
+
+/* ── FOOTER (matches Welcomes page treatment) ── */
+.chart-footer {
+  width: 100%;
+  border-top: 1px solid var(--line);
+  padding: 12px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 11.9px;
+  color: var(--sub);
+  flex-shrink: 0;
+  background: var(--white);
+}
+.chart-footer a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 150ms ease-out;
+}
+.chart-footer a:hover { color: var(--sub); }
+.chart-footer .right { margin-left: auto; }
+
+/* ── PRINT: 11×17 LANDSCAPE ── */
+@media print {
+  @page {
+    size: 17in 11in;
+    margin: 0;
+  }
+  html, body {
+    background: #FFFFFF !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 17in;
+    height: 11in;
+  }
+  body { display: block; align-items: unset; }
+  .page-canvas {
+    box-shadow: none !important;
+    width: 17in !important;
+    height: 11in !important;
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .col, .area-col, .node, .report-box, .area-report { break-inside: avoid; }
+}
+
+/* ── RESPONSIVE: scale canvas to fit narrower screens ── */
+
+}
+
+
+/* ── Combined-document spacing between the two canvases ── */
+.canvas-spacer { height: 28px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- 1. JOB DESCRIPTIONS (8.5in × 11in letter portrait)   -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="doc-canvas">
+
+<header class="topbar">
+  <span class="brand">UCLA ResLife · Job Descriptions</span>
+  <span class="page-meta">Director of Residential Education · Two Roles</span>
+</header>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- CASE INTRO: Why two Directors                        -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="case-intro">
+
+  <div class="case-eyebrow">Executive Summary</div>
+  <h1>The case for two Directors of Residential Education</h1>
+
+  <div class="case-block">
+    <p class="case-lede">The growth is real and continuing.</p>
+    <p>23,000 &rarr; 27,000+ residents during the current Director&rsquo;s tenure.</p>
+    <div class="growth-pill"><strong>+2,000&ndash;3,000 beds</strong> coming in the next 3&ndash;4 years.</div>
+  </div>
+
+  <div class="case-block">
+    <p class="case-lede">The portfolio is already two jobs.</p>
+    <div class="portfolio-split">
+      <div class="portfolio-card">
+        <div class="label">On-Campus Housing</div>
+        <div class="name">15,000 residents</div>
+        <div class="detail">First-year-heavy traditional residence hall environment.</div>
+      </div>
+      <div class="portfolio-card apt">
+        <div class="label">Apartment Housing</div>
+        <div class="name">12,000 residents</div>
+        <div class="detail">UAN, UAS, and Family Housing &mdash; plus the department-wide Leadership &amp; Involvement unit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-block">
+    <p class="case-lede">One Director is carrying it all.</p>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="num">400+</div>
+        <div class="lbl">Staff</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">$8M</div>
+        <div class="lbl">Combined budget</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">24/7</div>
+        <div class="lbl">Sole on-call</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">5,000+</div>
+        <div class="lbl">Incidents per year</div>
+      </div>
+    </div>
+    <p style="margin-top: 8px; font-size: 11px; color: var(--sub); text-align: center; letter-spacing: 0.04em;">
+      86% support response &nbsp;·&nbsp; 14% conduct violations
+    </p>
+  </div>
+
+  <div class="case-block">
+    <div class="case-section-label">The Cost</div>
+    <div class="cost-callout">
+      Multiple overnight calls per week, active case management on weekends and vacations, and structural burnout. <strong>This is not an aberration &mdash; it is what the current structure produces.</strong>
+    </div>
+  </div>
+
+  <div class="case-block">
+    <div class="case-section-label">What the Split Delivers</div>
+    <div class="deliver-list">
+      <div class="deliver-item">Peer backup coverage so on-call is sustainable</div>
+      <div class="deliver-item">Specialized leadership for two distinct environments</div>
+      <div class="deliver-item">Succession bench in place of a single point of failure</div>
+      <div class="deliver-item">Spans of control aligned with R1 peer institutions</div>
+      <div class="deliver-item" style="grid-column: 1 / -1;">A clear signal that we invest in leader well-being and an appropriate support structure for staff and students</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- JD 1: ON-CAMPUS HOUSING                              -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="jd oncampus">
+
+  <div class="jd-title">
+    <div class="eyebrow">UCLA Residential Life · Senior Leadership</div>
+    <h1>Director of Residential Education, On-Campus Housing</h1>
+  </div>
+
+  <h2>About UCLA Residential Life</h2>
+  <p>At UCLA Residential Life, our mission is to create safe, supportive, and inclusive living-learning communities for all members of our Bruin residential community. With 15,000 undergraduates in our residence halls and 12,000 undergraduate and graduate students in our apartments and family housing, we are committed to making UCLA a place where community thrives. Supported by a team of over 100 professional staff across 10 units, 20 Faculty-in-Residence, and 700+ student staff, we strive to enrich the student experience through connection, learning, and growth.</p>
+  <p>Residential Education is one of 10 units within Residential Life, integral to shaping the student experience at UCLA. This unit fosters an environment that enhances Bruins&rsquo; academic success, promotes community engagement, and supports personal development.</p>
+
+  <h2>Position Overview</h2>
+  <p>The Director of Residential Education, On-Campus Housing is a full-time, live-in professional responsible for implementing a comprehensive residential life program that encourages student engagement, academic success, and community building for the 15,000+ undergraduate residents living in UCLA&rsquo;s on-campus residence halls. The Director plays a significant role in advancing UCLA&rsquo;s mission, Student Affairs&rsquo; strategic initiatives, and the mission, vision, and values of the Office of Residential Life.</p>
+  <p>Reporting to the Executive Director of Residential Life and First Year Experience, the Director of Residential Education, On-Campus Housing provides senior-level leadership for Residential Education programs and services that support the On-Campus Housing residential community &mdash; UCLA&rsquo;s first-year-heavy traditional residence hall environment, where the majority of incoming Bruins begin their college experience. Residential Education staff in On-Campus Housing, who report to the Director, provide a broad range of student affairs and student development functions to create safe, supportive, and inclusive living-learning communities.</p>
+  <p>The Director is responsible to respond to life-threatening emergencies and after-hours crises and will live on campus and oversee all emergency and crisis response of the On-Campus Housing Residential Education Team. The Director serves as a primary administrator-on-call within a department rotation, providing 24/7 emergency response coordination through an on-call system in partnership with the Director of Residential Education, Apartment Housing.</p>
+  <p>Serving as a member of the Residential Life Executive Leadership Team, the Director functions with a high degree of autonomy in multiple roles, and is primarily responsible for independently exercising authority and making decisions in regard to On-Campus Housing Residential Education based on broad goals established collaboratively with the Executive Director and peers in the department.</p>
+  <p>The Director is responsible for: strategic planning and implementation of an integrated Residential Education program serving On-Campus Housing&rsquo;s first-year and continuing undergraduate population; direct supervision of 4 full-time Assistant Directors who are formally evaluated annually; coordinating the efforts of On-Campus Housing&rsquo;s residential areas and integrating with Student Conduct, Leadership and Involvement, and First Year Experience units; overseeing an On-Campus Housing Residential Education budget of approximately $5 million; performing management-level assignments for On-Campus Housing, including, but not limited to, human resource and performance management, chairing and representing the department on a variety of standing and ad-hoc committees, developing operational enhancements, research analysis, making presentations and recommendations to establish standards and practice guidelines as it relates to On-Campus Housing Residential Education; and interacting regularly with faculty, students, administration, parents, and other UC campuses.</p>
+  <p>The Director functions independently with minimal direction from the Executive Director, accepting challenging circumstances and taking initiative to solve problems where solutions are not readily apparent, interpreting established departmental, divisional, and university guidelines and policies, and prioritizing tasks while working in the midst of ever-changing student resident needs.</p>
+  <p>The Director partners closely with the Director of Residential Education, Apartment Housing, who oversees the department-wide Leadership &amp; Involvement unit, to ensure that On-Campus Housing residents have full access to department-wide leadership development, civic engagement, and student governance programming. The Director also partners with the department&rsquo;s Associate Director of Conduct to align case management, adjudication standards, and educational sanctioning across On-Campus Housing.</p>
+
+  <h2>Key Responsibilities and Essential Functions</h2>
+  <table class="resp-table">
+    <thead>
+      <tr><th class="fn">Function</th><th>Responsibilities</th><th class="pct">% Time</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fn">Staffing &amp; Supervision</td>
+        <td>
+          <ul>
+            <li>Lead hiring, training, and performance evaluation of staff for the On-Campus Housing Residential Education team.</li>
+            <li>Directly supervise, train, and evaluate 4 Assistant Directors; indirectly supervise approximately 16 Resident Directors, 14 Assistant Resident Directors, 4 Graduate Resident Directors, 220+ Resident Assistants, and 30+ Office Assistants.</li>
+            <li>Plan and implement training programs for professional and student staff in On-Campus Housing, including annual orientation, UCLA Residential Life&rsquo;s department-wide summer training framework, and ongoing professional development sessions.</li>
+            <li>Partner with the Director of Residential Education, Apartment Housing to align cross-area training, hiring cycles, and shared development experiences.</li>
+          </ul>
+        </td>
+        <td class="pct">25%</td>
+      </tr>
+      <tr>
+        <td class="fn">Administration &amp; Budget Management</td>
+        <td>
+          <ul>
+            <li>Oversee an On-Campus Housing Residential Education budget of approximately $5 million, including planning, tracking, and reconciliation.</li>
+            <li>Develop, implement, and evaluate long-term goals and annual objectives for the On-Campus Housing Residential Education unit.</li>
+            <li>Interpret, implement, and maintain departmental policies and procedures as applied to On-Campus Housing.</li>
+            <li>Collaborate with Housing Services, Faculty-in-Residence, and campus partners to optimize services and facilities for On-Campus Housing&rsquo;s high-density residential environment.</li>
+            <li>Provide regular reports to senior leadership on On-Campus Housing program outcomes, budget status, and strategic initiatives.</li>
+          </ul>
+        </td>
+        <td class="pct">20%</td>
+      </tr>
+      <tr>
+        <td class="fn">Crisis Management &amp; Emergency Response</td>
+        <td>
+          <ul>
+            <li>Participate in a 24/7 on-call duty rotation, serving as a critical responder for crises impacting On-Campus Housing&rsquo;s 15,000+ residents and the broader UCLA student population.</li>
+            <li>Coordinate with campus partners, including Housing Services, UCPD, the Ashe Student Health and Wellness Center, and Counseling and Psychological Services, during emergencies in On-Campus Housing.</li>
+            <li>Provide leadership and guidance during on-site emergencies, ensuring the safety and well-being of On-Campus Housing residents.</li>
+            <li>Coordinate cross-area crisis response with the Director of Residential Education, Apartment Housing to ensure department-wide coverage.</li>
+          </ul>
+        </td>
+        <td class="pct">20%</td>
+      </tr>
+      <tr>
+        <td class="fn">Program Development &amp; Community Engagement</td>
+        <td>
+          <ul>
+            <li>Design, implement, and assess programs that enhance student learning, community engagement, and personal development for On-Campus Housing&rsquo;s first-year-heavy population.</li>
+            <li>Oversee programming within On-Campus Housing residential communities to foster inclusivity, academic success, social engagement, and successful transition to university life.</li>
+            <li>Partner with the Office of First Year Experience and Faculty-in-Residence to integrate academic and co-curricular learning across On-Campus Housing.</li>
+          </ul>
+        </td>
+        <td class="pct">10%</td>
+      </tr>
+      <tr>
+        <td class="fn">Student Conduct &amp; Conflict Resolution</td>
+        <td>
+          <ul>
+            <li>Engage in the strategic oversight of student conduct and conflict resolution in On-Campus Housing, in partnership with the department&rsquo;s Associate Director of Conduct.</li>
+            <li>Communicate, interpret, uphold, and adjudicate University and Residential Life conduct regulations within delegated authority.</li>
+            <li>Support staff in mediating roommate conflicts and resolving community issues, including oversight of the roommate agreement process and facilitation of room-change protocols common in high-density residence hall settings.</li>
+          </ul>
+        </td>
+        <td class="pct">10%</td>
+      </tr>
+      <tr>
+        <td class="fn">Strategic Planning &amp; Assessment</td>
+        <td>
+          <ul>
+            <li>Lead strategic planning efforts to align On-Campus Housing Residential Education programs with UCLA&rsquo;s mission and Student Affairs strategic initiatives.</li>
+            <li>Utilize data to assess program effectiveness, inform decision-making, and drive continuous improvement in On-Campus Housing.</li>
+            <li>Develop relationships with campus partners and contribute to divisional committees and task forces focused on student success and campus engagement.</li>
+          </ul>
+        </td>
+        <td class="pct">10%</td>
+      </tr>
+      <tr>
+        <td class="fn">Advising &amp; Mentorship</td>
+        <td>
+          <ul>
+            <li>Provide guidance, support, and resources to professional and student staff, including Assistant Directors, Resident Directors, Resident Assistants, and Office Assistants in On-Campus Housing.</li>
+            <li>Advise On-Campus Housing residential student governments and student organizations on effective governance, event planning, and group dynamics.</li>
+            <li>Facilitate workshops, training sessions, and leadership development opportunities for student leaders in On-Campus Housing.</li>
+          </ul>
+        </td>
+        <td class="pct">5%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Education Requirements</h2>
+  <div class="req-line">Master&rsquo;s degree in Higher Education, Student Affairs, or a related field <strong>(Required)</strong></div>
+  <div class="req-line">PhD or Doctorate in Higher Education, Student Affairs, or a related field <strong>(Preferred)</strong></div>
+
+  <h2>Experience Requirements</h2>
+  <div class="req-line">A minimum of 8&ndash;10 years of progressive professional experience in residential life, student affairs, or related fields, with substantial experience in traditional residence hall settings.</div>
+  <div class="req-line">At least 3&ndash;5 years of experience in supervising full-time professional staff in a residential setting.</div>
+  <div class="req-line">Proven track record of managing large-scale programs, budgets, and staff teams effectively, particularly in high-density first-year residential environments.</div>
+
+  <h2>Knowledge, Skills, and Abilities (KSAs)</h2>
+  <table class="ksa-table">
+    <thead>
+      <tr><th>KSA</th><th class="req">Required / Preferred</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Skill in supervising and mentoring professional staff to maximize performance, stimulate growth, and foster expertise.</td><td class="req">Required</td></tr>
+      <tr><td>Skill in organizing information, personnel, budgets, and other resources to optimize operational systems and procedures.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to analyze data, evaluate programs, and interpret information to provide actionable recommendations.</td><td class="req">Required</td></tr>
+      <tr><td>Strong crisis management skills, including the ability to respond effectively to emergencies and critical incidents in a high-density residence hall environment.</td><td class="req">Required</td></tr>
+      <tr><td>Working knowledge of financial management, including budget planning, tracking, and reconciliation.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to build and sustain collaborative relationships with campus partners, Faculty-in-Residence, staff, and students to enhance community engagement.</td><td class="req">Required</td></tr>
+      <tr><td>Skill in developing and delivering presentations to various audiences to convey information, explain procedures, and persuade stakeholders.</td><td class="req">Required</td></tr>
+      <tr><td>Skill in counseling students to address personal, academic, and interpersonal challenges, with particular attention to the developmental needs of first-year and continuing undergraduate students.</td><td class="req">Required</td></tr>
+      <tr><td>Understanding of student development theories, community building, group dynamics, and behavior within first-year and traditional residence hall communities.</td><td class="req">Required</td></tr>
+      <tr><td>Knowledge of student leadership development, residential student government, and co-curricular engagement programming.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to assess student needs and implement programs to foster an inclusive, safe, and supportive living environment.</td><td class="req">Required</td></tr>
+      <tr><td>High emotional intelligence and cultural competence to effectively support a diverse student population.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to work flexible hours, including evenings, weekends, and holidays, as needed to support residential communities.</td><td class="req">Required</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- JD 2: APARTMENT HOUSING                              -->
+<!-- ════════════════════════════════════════════════════ -->
+<section class="jd apartment">
+
+  <div class="jd-title">
+    <div class="eyebrow">UCLA Residential Life · Senior Leadership</div>
+    <h1>Director of Residential Education, Apartment Housing</h1>
+  </div>
+
+  <h2>About UCLA Residential Life</h2>
+  <p>At UCLA Residential Life, our mission is to create safe, supportive, and inclusive living-learning communities for all members of our Bruin residential community. With 15,000 undergraduates in our residence halls and 12,000 undergraduate and graduate students in our apartments and family housing, we are committed to making UCLA a place where community thrives. Supported by a team of over 100 professional staff across 10 units, 20 Faculty-in-Residence, and 700+ student staff, we strive to enrich the student experience through connection, learning, and growth.</p>
+  <p>Residential Education is one of 10 units within Residential Life, integral to shaping the student experience at UCLA. This unit fosters an environment that enhances Bruins&rsquo; academic success, promotes community engagement, and supports personal development.</p>
+
+  <h2>Position Overview</h2>
+  <p>The Director of Residential Education, Apartment Housing is a full-time, live-in professional responsible for implementing a comprehensive residential life program that encourages student engagement, academic success, and community building for the 12,000+ undergraduate, graduate, and family residents living in UCLA&rsquo;s University Apartments North (UAN) and University Apartments South (UAS) communities. The Director plays a significant role in advancing UCLA&rsquo;s mission, Student Affairs&rsquo; strategic initiatives, and the mission, vision, and values of the Office of Residential Life.</p>
+  <p>Reporting to the Executive Director of Residential Life and First Year Experience, the Director of Residential Education, Apartment Housing provides senior-level leadership for Residential Education programs and services across UCLA&rsquo;s apartment-style housing. Residential Education staff in Apartment Housing, who report to the Director, provide a broad range of student affairs and student development functions tailored to the unique developmental needs of independent-living adult residents and resident families.</p>
+  <p>The Apartment Director leads across multiple geographic sites &mdash; University Apartments North (UAN), University Apartments South (UAS), and Family Housing &mdash; and serves three distinct populations (upper-division undergraduates, graduate students, and families with children), each with different developmental needs, conduct considerations, and partner ecosystems. This scope requires the Director to coordinate site-specific operations, tailor programs and policies to each population, and maintain strong relationships with graduate-serving units, family-serving partners, and apartment-style housing operations.</p>
+  <p>The Director is responsible to respond to life-threatening emergencies and after-hours crises and will live on-site in University Apartments and oversee all emergency and crisis response of the Apartment Housing Residential Education Team. The Director serves as a primary administrator-on-call within a department rotation, providing 24/7 emergency response coordination through an on-call system in partnership with the Director of Residential Education, On-Campus Housing.</p>
+  <p>Serving as a member of the Residential Life Executive Leadership Team, the Director functions with a high degree of autonomy in multiple roles, and is primarily responsible for independently exercising authority and making decisions in regard to Apartment Housing Residential Education based on broad goals established collaboratively with the Executive Director and peers in the department.</p>
+  <p>The Director is responsible for: strategic planning and implementation of an integrated Residential Education program serving Apartment Housing&rsquo;s upper-division undergraduate, graduate, and family populations across multiple geographic sites; direct supervision of 4 full-time Assistant Directors (3 Residential Education and 1 Leadership &amp; Involvement) who are formally evaluated annually; coordinating the efforts of the UAN and UAS areas and integrating Student Conduct, Leadership and Involvement, and graduate-student-serving units within Apartment Housing; overseeing an Apartment Housing Residential Education and Leadership &amp; Involvement budget of approximately $3 million; performing management-level assignments for Apartment Housing, including, but not limited to, human resource and performance management, chairing and representing the department on a variety of standing and ad-hoc committees, developing operational enhancements, research analysis, making presentations and recommendations to establish standards and practice guidelines as it relates to Apartment Housing Residential Education and Leadership &amp; Involvement; and interacting regularly with faculty, students, administration, families, and other UC campuses.</p>
+  <p>The Director functions independently with minimal direction from the Executive Director, accepting challenging circumstances and taking initiative to solve problems where solutions are not readily apparent, interpreting established departmental, divisional, and university guidelines and policies, and prioritizing tasks while working in the midst of ever-changing resident needs across a geographically dispersed apartment community.</p>
+  <p>The Director partners closely with the Director of Residential Education, On-Campus Housing on shared training, hiring cycles, crisis coverage, and cross-area student experience, and partners with the department&rsquo;s Associate Director of Conduct to align case management, adjudication standards, and educational sanctioning across Apartment Housing.</p>
+
+  <h2>Key Responsibilities and Essential Functions</h2>
+  <table class="resp-table">
+    <thead>
+      <tr><th class="fn">Function</th><th>Responsibilities</th><th class="pct">% Time</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fn">Staffing &amp; Supervision</td>
+        <td>
+          <ul>
+            <li>Lead hiring, training, and performance evaluation of staff for the Apartment Housing Residential Education and Leadership &amp; Involvement teams across UAN and UAS.</li>
+            <li>Directly supervise, train, and evaluate 4 Assistant Directors (3 Residential Education and 1 Leadership &amp; Involvement); indirectly supervise approximately 8 Resident Directors, 10 Assistant Resident Directors, 4 Graduate Resident Directors, 90+ Resident Assistants, and 20+ Office Assistants, along with the Apartment Housing Leadership &amp; Involvement team (1 Program Manager, 1 Program Coordinator, 3 Leadership &amp; Involvement Coordinators, and 1 Graduate Intern).</li>
+            <li>Plan and implement training programs for professional and student staff in Apartment Housing, including annual orientation, UCLA Residential Life&rsquo;s department-wide summer training framework, and ongoing professional development sessions tailored to apartment-style and graduate/family residential contexts, as well as student leadership development.</li>
+            <li>Partner with the Director of Residential Education, On-Campus Housing to align cross-area training, hiring cycles, and shared development experiences.</li>
+          </ul>
+        </td>
+        <td class="pct">25%</td>
+      </tr>
+      <tr>
+        <td class="fn">Administration &amp; Budget Management</td>
+        <td>
+          <ul>
+            <li>Oversee an Apartment Housing Residential Education and Leadership &amp; Involvement budget of approximately $3 million, including planning, tracking, and reconciliation.</li>
+            <li>Develop, implement, and evaluate long-term goals and annual objectives for the Apartment Housing Residential Education and Leadership &amp; Involvement units.</li>
+            <li>Interpret, implement, and maintain departmental policies and procedures as applied to apartment-style housing, family housing, and student leadership programming.</li>
+            <li>Collaborate with Housing Services, Family Housing, and campus partners to optimize services and facilities across multiple geographically dispersed sites.</li>
+            <li>Provide regular reports to senior leadership on Apartment Housing program outcomes, budget status, and strategic initiatives.</li>
+          </ul>
+        </td>
+        <td class="pct">20%</td>
+      </tr>
+      <tr>
+        <td class="fn">Crisis Management &amp; Emergency Response</td>
+        <td>
+          <ul>
+            <li>Participate in a 24/7 on-call duty rotation, serving as a critical responder for crises impacting Apartment Housing&rsquo;s 12,000+ residents and the broader UCLA student population.</li>
+            <li>Coordinate with campus partners, including Housing Services, UCPD, the Ashe Student Health and Wellness Center, Counseling and Psychological Services, and family-serving partners during emergencies in Apartment Housing.</li>
+            <li>Provide leadership and guidance during on-site emergencies across geographically dispersed apartment sites, ensuring the safety and well-being of residents and their families.</li>
+            <li>Coordinate cross-area crisis response with the Director of Residential Education, On-Campus Housing to ensure department-wide coverage.</li>
+          </ul>
+        </td>
+        <td class="pct">20%</td>
+      </tr>
+      <tr>
+        <td class="fn">Program Development &amp; Community Engagement</td>
+        <td>
+          <ul>
+            <li>Design, implement, and assess programs that enhance student learning, community engagement, and personal development for upper-division undergraduate, graduate, and family residents.</li>
+            <li>Oversee programming within Apartment Housing residential communities to foster inclusivity, academic success, professional development for graduate students, and family-friendly community engagement.</li>
+            <li>Provide strategic oversight of the Apartment Housing Leadership &amp; Involvement unit, whose purpose is to foster student leadership development and meaningful campus involvement through structured programming, civic engagement initiatives, and collaborative governance opportunities within UCLA Housing communities.</li>
+            <li>Partner with graduate student services, Family Housing, and campus partners to address the distinct developmental needs of independent adult residents and resident families.</li>
+          </ul>
+        </td>
+        <td class="pct">10%</td>
+      </tr>
+      <tr>
+        <td class="fn">Student Conduct &amp; Conflict Resolution</td>
+        <td>
+          <ul>
+            <li>Engage in the strategic oversight of student conduct and conflict resolution in Apartment Housing, in partnership with the department&rsquo;s Associate Director of Conduct.</li>
+            <li>Communicate, interpret, uphold, and adjudicate University and Residential Life conduct regulations within delegated authority, including lease-related and family-housing-specific provisions.</li>
+            <li>Support staff in mediating roommate conflicts, neighbor disputes, and community issues unique to apartment-style and family residential settings, including oversight of the roommate agreement process.</li>
+          </ul>
+        </td>
+        <td class="pct">10%</td>
+      </tr>
+      <tr>
+        <td class="fn">Strategic Planning &amp; Assessment</td>
+        <td>
+          <ul>
+            <li>Lead strategic planning efforts to align Apartment Housing Residential Education programs with UCLA&rsquo;s mission and Student Affairs strategic initiatives.</li>
+            <li>Utilize data to assess program effectiveness, inform decision-making, and drive continuous improvement across UAN and UAS.</li>
+            <li>Develop relationships with campus partners and contribute to divisional committees and task forces focused on graduate student success, family housing, and campus engagement.</li>
+          </ul>
+        </td>
+        <td class="pct">10%</td>
+      </tr>
+      <tr>
+        <td class="fn">Advising &amp; Mentorship</td>
+        <td>
+          <ul>
+            <li>Provide guidance, support, and resources to professional and student staff, including Assistant Directors, Resident Directors, Resident Assistants, Office Assistants, Leadership &amp; Involvement Coordinators, and the Graduate Intern in Apartment Housing.</li>
+            <li>Advise Apartment Housing residential student governments, graduate student leadership groups, and family-housing community organizations on effective governance, event planning, and group dynamics, in partnership with the Leadership &amp; Involvement team.</li>
+            <li>Facilitate workshops, training sessions, and leadership development opportunities for student leaders in Apartment Housing.</li>
+          </ul>
+        </td>
+        <td class="pct">5%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Education Requirements</h2>
+  <div class="req-line">Master&rsquo;s degree in Higher Education, Student Affairs, or a related field <strong>(Required)</strong></div>
+  <div class="req-line">PhD or Doctorate in Higher Education, Student Affairs, or a related field <strong>(Preferred)</strong></div>
+
+  <h2>Experience Requirements</h2>
+  <div class="req-line">A minimum of 8&ndash;10 years of progressive professional experience in residential life, student affairs, or related fields, with substantial experience in apartment-style, graduate, or family housing settings preferred.</div>
+  <div class="req-line">At least 3&ndash;5 years of experience in supervising full-time professional staff in a residential setting.</div>
+  <div class="req-line">Proven track record of managing large-scale programs, budgets, and staff teams effectively, particularly across geographically distributed residential communities.</div>
+
+  <h2>Knowledge, Skills, and Abilities (KSAs)</h2>
+  <table class="ksa-table">
+    <thead>
+      <tr><th>KSA</th><th class="req">Required / Preferred</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Skill in supervising and mentoring professional staff to maximize performance, stimulate growth, and foster expertise.</td><td class="req">Required</td></tr>
+      <tr><td>Skill in organizing information, personnel, budgets, and other resources to optimize operational systems and procedures across multiple geographic sites.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to analyze data, evaluate programs, and interpret information to provide actionable recommendations.</td><td class="req">Required</td></tr>
+      <tr><td>Strong crisis management skills, including the ability to respond effectively to emergencies and critical incidents across geographically dispersed apartment communities.</td><td class="req">Required</td></tr>
+      <tr><td>Working knowledge of financial management, including budget planning, tracking, and reconciliation.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to build and sustain collaborative relationships with campus partners, graduate-serving units, family housing partners, staff, and students to enhance community engagement.</td><td class="req">Required</td></tr>
+      <tr><td>Skill in developing and delivering presentations to various audiences to convey information, explain procedures, and persuade stakeholders.</td><td class="req">Required</td></tr>
+      <tr><td>Skill in counseling students to address personal, academic, and interpersonal challenges, with particular attention to the developmental needs of upper-division, graduate, and family residents.</td><td class="req">Required</td></tr>
+      <tr><td>Understanding of student development theories, community building, group dynamics, and behavior within apartment-style, graduate, and family residential communities.</td><td class="req">Required</td></tr>
+      <tr><td>Knowledge of student leadership development, residential student government, and co-curricular engagement programming.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to assess resident needs and implement programs to foster an inclusive, safe, and supportive living environment for independent adult residents and families.</td><td class="req">Required</td></tr>
+      <tr><td>High emotional intelligence and cultural competence to effectively support a diverse resident population, including international students, graduate students, and families.</td><td class="req">Required</td></tr>
+      <tr><td>Ability to work flexible hours, including evenings, weekends, and holidays, as needed to support residential communities.</td><td class="req">Required</td></tr>
+    </tbody>
+  </table>
+
+</section>
+
+<footer class="doc-footer">
+  <a href="mailto:hello@orl.ucla.edu">hello@orl.ucla.edu</a>
+  <a href="https://reslife.ucla.edu" class="right">reslife.ucla.edu</a>
+</footer>
+
+</div>
+
+<div class="canvas-spacer"></div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- 2. ORG CHART (17in × 11in tabloid landscape)         -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="page-canvas">
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <span class="brand">UCLA ResLife · Organizational Structure</span>
+  <span class="page-meta">Future Plan (Starting AY 2027)</span>
+</header>
+
+<div class="chart-wrap">
+
+  <!-- ═══ TOP CHAIN: AVC → ED (each with EA on right) ═══ -->
+  <div class="top-chain">
+    <div class="chain-row">
+      <div class="chain-spacer"></div>
+      <div class="node" style="white-space:nowrap;"><span class="role">Associate Vice Chancellor, Student Development &amp; Health</span></div>
+      <div class="chain-ea">
+        <div class="chain-hline"></div>
+        <div class="node"><span class="role">Executive Assistant</span></div>
+      </div>
+    </div>
+    <div class="vline"></div>
+    <div class="chain-row">
+      <div class="chain-spacer"></div>
+      <div class="node"><span class="role">Executive Director, Residential Life &amp; FYE</span></div>
+      <div class="chain-ea">
+        <div class="chain-hline"></div>
+        <div class="node"><span class="role">Executive Assistant</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ALL ED DIRECT REPORTS ═══ -->
+  <div class="reports-tier">
+
+    <!-- ── 1. Associate Director, Academics & FYE ── -->
+    <div class="col">
+      <div class="node"><span class="role">Associate Director, Academics &amp; FYE</span></div>
+      <div class="unit-reports">
+        <div class="report-box"><span class="role">Assistant Director</span></div>
+        <div class="report-box nested"><span class="role">Living Learning Communities Coordinator</span></div>
+        <div class="report-box nested"><span class="role">Academic Initiatives Coordinator</span></div>
+        <div class="report-box"><span class="role">First Year Experience Coordinator</span></div>
+        <div class="report-box grad"><span class="role">Graduate Intern, AFYE</span></div>
+      </div>
+    </div>
+
+    <!-- ── 2. Associate Director, Conduct ── -->
+    <div class="col">
+      <div class="node"><span class="role">Associate Director, Conduct</span></div>
+      <div class="unit-reports">
+        <div class="report-box"><span class="role">Assistant Director</span></div>
+        <div class="report-box"><span class="role">Assistant Director</span></div>
+        <div class="report-box"><span class="role">Conduct Coordinator</span></div>
+      </div>
+    </div>
+
+    <!-- ── 3. Associate Director, OPEM ── -->
+    <div class="col">
+      <div class="node"><span class="role">Associate Director, OPEM</span></div>
+      <div class="unit-reports">
+        <div class="report-box"><span class="role">Assistant Director, Program &amp; Event Mgmt</span></div>
+        <div class="report-box nested"><span class="role">Program Support Coordinator</span></div>
+        <div class="report-box nested"><span class="role">Program Support Coordinator</span></div>
+        <div class="report-box"><span class="role">Assistant Director, Operations</span></div>
+        <div class="report-box nested"><span class="role">Operations Coordinator</span></div>
+        <div class="report-box nested"><span class="role">Senior Event Manager</span></div>
+        <div class="report-box"><span class="role">Audio Visual Coordinator</span></div>
+        <div class="report-box"><span class="role">Audio Visual Coordinator</span></div>
+        <div class="report-box vacant"><span class="role">Assistant Director, Org Dev</span></div>
+        <div class="report-box nested"><span class="role">Research Coordinator</span></div>
+        <div class="report-box nested"><span class="role">Training Coordinator</span></div>
+      </div>
+    </div>
+
+    <!-- ── 4. Director, Apartment Housing ── -->
+    <div class="col">
+      <div class="node node-vacant"><span class="role">Director, Apartment Housing</span></div>
+      <div class="unit-reports">
+        <div class="report-note scope-pointer scope-pointer-deputy">
+          <span class="dot"></span>
+          Area teams below
+          <span class="arrow">↓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. Director, Learning Centers ── -->
+    <div class="col">
+      <div class="node"><span class="role">Director, Learning Centers</span></div>
+      <div class="unit-reports">
+        <div class="report-box"><span class="role">Learning Labs Manager</span></div>
+        <div class="report-box"><span class="role">Principal Producer</span></div>
+        <div class="report-box"><span class="role">Managing Producer</span></div>
+        <div class="report-box"><span class="role">Makerspace Manager</span></div>
+        <div class="report-box nested"><span class="role">Makerspace Technician</span></div>
+      </div>
+    </div>
+
+    <!-- ── 6. Director, On-Campus Housing ── -->
+    <div class="col">
+      <div class="node"><span class="role">Director, On-Campus Housing</span></div>
+      <div class="unit-reports">
+        <div class="report-note scope-pointer scope-pointer-director">
+          <span class="dot"></span>
+          Area teams below
+          <span class="arrow">↓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 7. Faculty-in-Residence ── -->
+    <div class="col">
+      <div class="node"><span class="role">Faculty-in-Residence (20)</span></div>
+    </div>
+
+  </div><!-- /reports-tier -->
+
+
+  <!-- ═══ RESED AREA TEAMS ═══ -->
+  <div class="resed-section">
+    <div class="resed-header">
+      <div>
+        <div class="resed-label"><span class="accent">Residential Education</span> · Area Teams</div>
+      </div>
+    </div>
+    <div class="resed-areas">
+
+      <!-- Director, Apartment Housing scope: L&I + UA South + UA North 1 + UA North 2 -->
+      <div class="deputy-scope-wrapper">
+        <span class="scope-tag"><span class="dot deputy"></span>Director, Apartment Housing scope</span>
+
+        <!-- Leadership & Involvement -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">Leadership &amp; Involvement</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">L&amp;I Coordinator</span></div>
+            <div class="area-report"><span class="role">L&amp;I Coordinator</span></div>
+            <div class="area-report"><span class="role">L&amp;I Coordinator</span></div>
+            <div class="area-report grad"><span class="role">Graduate Intern</span><span class="area">L&amp;I</span></div>
+          </div>
+        </div>
+
+        <!-- UA South -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">UA South</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Single Grads</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Single Grads</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Single Grads</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">University Village</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">University Village</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">University Village</span></div>
+          </div>
+        </div>
+
+        <!-- UA North 1 -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">UA North 1</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Gayley Heights</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Gayley Heights</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Westwood Hills &amp; Hilgard</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Westwood Hills &amp; Hilgard</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Laurel</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Laurel</span></div>
+          </div>
+        </div>
+
+        <!-- UA North 2 -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">UA North 2</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Tipuana</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Tipuana</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Palo Verde &amp; SAM</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Palo Verde &amp; SAM</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">PaPa &amp; JOC</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">PaPa &amp; JOC</span></div>
+          </div>
+        </div>
+      </div><!-- /deputy-scope-wrapper -->
+
+      <!-- Director, On-Campus Housing scope -->
+      <div class="director-scope-wrapper">
+        <span class="scope-tag"><span class="dot director"></span>Director, On-Campus Housing scope</span>
+
+        <!-- De Neve / Dykstra -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">De Neve &amp; Dykstra Court</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">De Neve East</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">De Neve East</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">De Neve Towers</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">De Neve Towers</span></div>
+            <div class="area-report nested grad"><span class="role">Graduate Resident Director</span><span class="area">De Neve Towers</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">De Neve West</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">De Neve West</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Dykstra Hall</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Dykstra Hall</span></div>
+            <div class="area-report nested grad"><span class="role">Graduate Resident Director</span><span class="area">Dykstra Hall</span></div>
+          </div>
+        </div>
+
+        <!-- Sproul & SV -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">Sproul &amp; Sunset Village Court</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Cove / Landing</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Cove / Landing</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Sproul Hall</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Sproul Hall</span></div>
+            <div class="area-report nested grad"><span class="role">Graduate Resident Director</span><span class="area">Sproul Hall</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">SV East</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">SV East</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">SV West</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">SV West</span></div>
+          </div>
+        </div>
+
+        <!-- Rieber -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">Rieber &amp; Suites Court</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Rieber Hall</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Rieber Hall</span></div>
+            <div class="area-report nested grad"><span class="role">Graduate Resident Director</span><span class="area">Rieber Hall</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Rieber Terrace</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Rieber Terrace</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Rieber Vista</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Rieber Vista</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Suites</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Suites</span></div>
+          </div>
+        </div>
+
+        <!-- Hedrick -->
+        <div class="area-col">
+          <div class="node node-resed"><span class="role">Assistant Director</span><span class="area">Hedrick &amp; OC Court</span></div>
+          <div class="area-reports">
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Centennial Hall</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Centennial Hall</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Hedrick Hall</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Hedrick Hall</span></div>
+            <div class="area-report nested grad"><span class="role">Graduate Resident Director</span><span class="area">Hedrick Hall</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Hedrick Summit</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Hedrick Summit</span></div>
+            <div class="area-report"><span class="role">Resident Director</span><span class="area">Olympic Hall</span></div>
+            <div class="area-report nested"><span class="role">Assistant Resident Director</span><span class="area">Olympic Hall</span></div>
+          </div>
+        </div>
+
+      </div><!-- /director-scope-wrapper -->
+
+    </div><!-- /resed-areas -->
+  </div><!-- /resed-section -->
+
+</div><!-- /chart-wrap -->
+
+<footer class="chart-footer">
+  <a href="mailto:hello@orl.ucla.edu">hello@orl.ucla.edu</a>
+  <a href="https://reslife.ucla.edu" class="right">reslife.ucla.edu</a>
+</footer>
+
+</div><!-- /page-canvas -->
+
+</body>
+</html>
