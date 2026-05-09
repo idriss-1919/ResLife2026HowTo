@@ -86,9 +86,45 @@ h1 strong, h2 strong { color: #FFD100; }
   .slide [style*="font-size:3rem"] { font-size: 1.6rem !important; }
   .slide [style*="font-size:1.5rem"] { font-size: 1.05rem !important; }
   .slide [style*="font-size:1.4rem"] { font-size: 1rem !important; }
-  /* Catalog slide: shrink module text and let column content flow */
-  .slide [style*="padding:4vh 4vw 7vh"] { padding: 3vh 5vw 9vh !important; }
-  .slide [style*="background:#FFFFFF"] { width: 100% !important; }
+  /* Catalog slide: full-width cards, auto height, readable text */
+  .slide [style*="padding:4vh 4vw 7vh"] {
+    padding: 3vh 4vw 9vh !important;
+  }
+  .slide [style*="background:#FFFFFF"][style*="border-radius:6px"] {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 0.8rem;
+  }
+  /* Catalog module list — readable size on mobile */
+  .slide ul[style*="font-size:0.6rem"],
+  .slide ul[style*="font-size:0.62rem"] {
+    font-size: 0.95rem !important;
+    gap: 0.35rem !important;
+  }
+  /* Catalog card body padding wider on mobile */
+  .slide div[style*="padding:0.7rem 0.9rem"] {
+    padding: 1rem 1.1rem !important;
+    gap: 0.9rem !important;
+  }
+  /* P / R / O section labels readable */
+  .slide span[style*="font-size:0.55rem"][style*="letter-spacing:0.14em"] {
+    font-size: 0.78rem !important;
+  }
+  /* Pillar header inside catalog cards — bigger for mobile */
+  .slide div[style*="background:#2774AE"][style*="padding:0.9rem 1.1rem"],
+  .slide div[style*="background:#D900A5"][style*="padding:0.9rem 1.1rem"],
+  .slide div[style*="background:#FFD100"][style*="padding:0.9rem 1.1rem"] {
+    padding: 1.2rem 1.4rem !important;
+  }
+  /* Pillar title in card header */
+  .slide [style*="background:#2774AE"] [style*="font-size:1.1rem"],
+  .slide [style*="background:#D900A5"] [style*="font-size:1.1rem"],
+  .slide [style*="background:#FFD100"] [style*="font-size:1.1rem"] {
+    font-size: 1.5rem !important;
+  }
+  .slide [style*="font-size:0.6rem"][style*="text-transform:uppercase"] {
+    font-size: 0.78rem !important;
+  }
 }
 </style>
 <script>
