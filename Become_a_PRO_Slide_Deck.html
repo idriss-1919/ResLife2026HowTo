@@ -49,83 +49,6 @@ h1 strong, h2 strong { color: #FFD100; }
   cursor: pointer;
 }
 .dot.active { background: #FFD100; }
-
-/* ----- Mobile / narrow-screen overrides ----- */
-@media (max-width: 900px) {
-  .slide {
-    padding: 4vh 5vw 9vh !important;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    justify-content: flex-start !important;
-  }
-  /* Force any 3-column or 2-column grid to stack */
-  .slide div[style*="grid-template-columns:repeat(3,1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
-  .slide div[style*="grid-template-columns:1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
-  /* Stack flex rows vertically */
-  .slide div[style*="flex-direction:row"] {
-    flex-direction: column !important;
-  }
-  /* Hide horizontal arrow connectors between stacked cards */
-  .slide i[data-feather="arrow-right"] { display: none !important; }
-  /* Tame oversized headline / hero numbers */
-  .slide h1 { font-size: 2rem !important; line-height: 1.15 !important; }
-  .slide h2 { font-size: 1.5rem !important; }
-  .slide [style*="font-size:8rem"] { font-size: 4rem !important; }
-  .slide [style*="font-size:7rem"] { font-size: 3rem !important; }
-  .slide [style*="font-size:6.5rem"] { font-size: 2.8rem !important; }
-  .slide [style*="font-size:6rem"] { font-size: 2.4rem !important; }
-  .slide [style*="font-size:5rem"] { font-size: 2rem !important; }
-  .slide [style*="font-size:4.5rem"] { font-size: 2.4rem !important; }
-  .slide [style*="font-size:3.6rem"] { font-size: 1.8rem !important; }
-  .slide [style*="font-size:3.4rem"] { font-size: 1.7rem !important; }
-  .slide [style*="font-size:3.2rem"] { font-size: 1.7rem !important; }
-  .slide [style*="font-size:3rem"] { font-size: 1.6rem !important; }
-  .slide [style*="font-size:1.5rem"] { font-size: 1.05rem !important; }
-  .slide [style*="font-size:1.4rem"] { font-size: 1rem !important; }
-  /* Catalog slide: full-width cards, auto height, readable text */
-  .slide [style*="padding:4vh 4vw 7vh"] {
-    padding: 3vh 4vw 9vh !important;
-  }
-  .slide [style*="background:#FFFFFF"][style*="border-radius:6px"] {
-    width: 100% !important;
-    height: auto !important;
-    margin-bottom: 0.8rem;
-  }
-  /* Catalog module list — readable size on mobile */
-  .slide ul[style*="font-size:0.6rem"],
-  .slide ul[style*="font-size:0.62rem"] {
-    font-size: 0.95rem !important;
-    gap: 0.35rem !important;
-  }
-  /* Catalog card body padding wider on mobile */
-  .slide div[style*="padding:0.7rem 0.9rem"] {
-    padding: 1rem 1.1rem !important;
-    gap: 0.9rem !important;
-  }
-  /* P / R / O section labels readable */
-  .slide span[style*="font-size:0.55rem"][style*="letter-spacing:0.14em"] {
-    font-size: 0.78rem !important;
-  }
-  /* Pillar header inside catalog cards — bigger for mobile */
-  .slide div[style*="background:#2774AE"][style*="padding:0.9rem 1.1rem"],
-  .slide div[style*="background:#D900A5"][style*="padding:0.9rem 1.1rem"],
-  .slide div[style*="background:#FFD100"][style*="padding:0.9rem 1.1rem"] {
-    padding: 1.2rem 1.4rem !important;
-  }
-  /* Pillar title in card header */
-  .slide [style*="background:#2774AE"] [style*="font-size:1.1rem"],
-  .slide [style*="background:#D900A5"] [style*="font-size:1.1rem"],
-  .slide [style*="background:#FFD100"] [style*="font-size:1.1rem"] {
-    font-size: 1.5rem !important;
-  }
-  .slide [style*="font-size:0.6rem"][style*="text-transform:uppercase"] {
-    font-size: 0.78rem !important;
-  }
-}
 </style>
 <script>
 /* Feather Icons v4.29.0 — embedded inline for offline use */
@@ -504,22 +427,6 @@ document.addEventListener('mousemove', () => {
   clearTimeout(cursorTimer);
   cursorTimer = setTimeout(() => { document.body.style.cursor = 'none'; }, 3000);
 });
-
-// Touch swipe navigation (mobile)
-let touchStartX = 0, touchStartY = 0;
-document.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-  touchStartY = e.changedTouches[0].screenY;
-}, { passive: true });
-document.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].screenX - touchStartX;
-  const dy = e.changedTouches[0].screenY - touchStartY;
-  // Only treat as a swipe if horizontal motion dominates and is meaningful
-  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-    if (dx < 0) showSlide(current + 1);   // swipe left → next
-    else        showSlide(current - 1);   // swipe right → previous
-  }
-}, { passive: true });
 
 showSlide(0);
 feather.replace({ 'stroke-width': 1.5 });
